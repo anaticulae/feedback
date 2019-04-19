@@ -17,7 +17,7 @@ from re import search
 from setuptools import setup
 
 ROOT = abspath(dirname(__file__))
-UTF8 - 'utf8'
+UTF8 = 'utf8'
 
 with open(join(ROOT, 'README.md'), mode='rt', encoding=UTF8) as fp:
     README = fp.read()
@@ -46,7 +46,7 @@ if __name__ == "__main__":
         author='Helmut Konrad Fahrendholz',
         author_email='info@checkitweg.de',
         data_files=datafiles(),
-        description='It's important!',
+        description='It\'s important!',
         include_package_data=True,
         install_requires=INSTALL_REQUIRES,
         long_description=README,
