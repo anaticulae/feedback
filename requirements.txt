@@ -1,4 +1,4 @@
 Jinja2==2.10
 PyYAML==5.1
 
-utila==0.5.7
+utila==0.5.9
