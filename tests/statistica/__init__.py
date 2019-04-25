@@ -15,10 +15,10 @@ from tests import TEST_PATH
 STATISTICA_TEST_DATA = join(TEST_PATH, 'statistica/data')
 assert exists(STATISTICA_TEST_DATA), STATISTICA_TEST_DATA
 
-SAMPLE_MEASURE = join(STATISTICA_TEST_DATA, 'sample/measure.yaml')
+SAMPLE_MEASURE = join(STATISTICA_TEST_DATA, 'sample/text_statistics.yaml')
 assert exists(SAMPLE_MEASURE), SAMPLE_MEASURE
 
-SAMPLE_OCCURENCE = join(STATISTICA_TEST_DATA, 'sample/occurence.yaml')
+SAMPLE_OCCURENCE = join(STATISTICA_TEST_DATA, 'sample/word_statistics.yaml')
 assert exists(SAMPLE_OCCURENCE), SAMPLE_OCCURENCE
 
 SAMPLE_ALPHA = join(STATISTICA_TEST_DATA, 'sample/toc_and_chapter.yaml')
