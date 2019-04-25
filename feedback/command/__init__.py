@@ -14,7 +14,8 @@ from utila import sources
 
 from feedback import __version__
 
-COMMANDS = [] # add additonal commands here
+COMMANDS = []  # add additonal commands here
+
 
 @saveme
 def main():

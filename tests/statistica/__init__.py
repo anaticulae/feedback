@@ -9,6 +9,7 @@
 
 from os.path import exists
 from os.path import join
+
 from tests import TEST_PATH
 
 STATISTICA_TEST_DATA = join(TEST_PATH, 'statistica/data')

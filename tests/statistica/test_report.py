@@ -9,13 +9,13 @@
 
 from os.path import exists
 from os.path import join
-from tests.statistica import SAMPLE_ALPHA
-from tests.statistica import SAMPLE_MEASURE
-from tests.statistica import SAMPLE_OCCURENCE
 
 from utila import file_read
 
 from feedback.features.statistica.result import generate
+from tests.statistica import SAMPLE_ALPHA
+from tests.statistica import SAMPLE_MEASURE
+from tests.statistica import SAMPLE_OCCURENCE
 
 
 def test_generate_chapter_report(tmpdir):
