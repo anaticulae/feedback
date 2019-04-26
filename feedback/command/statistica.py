@@ -65,7 +65,7 @@ def main():
         outputparameter=True,
     )
     args = parse(parser)
-    output_path = sources(args)
+    _, output_path = sources(args)
 
     chapter, text, word = path_from_args(args)
     write_to_stdout = not output_path
