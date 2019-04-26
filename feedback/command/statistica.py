@@ -63,6 +63,8 @@ def main():
         version=__version__,
         inputparameter=False,
         outputparameter=True,
+        prog='feedback_statistica',
+        description='create html output for chapter analysis and word count.',
     )
     args = parse(parser)
     _, output_path = sources(args)
