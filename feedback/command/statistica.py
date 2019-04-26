@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 from os import makedirs
 from os.path import join
 
@@ -63,7 +64,6 @@ def main():
         inputparameter=False,
         outputparameter=True,
     )
-
     args = parse(parser)
     output_path = sources(args)
 

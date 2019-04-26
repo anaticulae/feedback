@@ -23,10 +23,7 @@ from tests.statistica import SAMPLE_TEXT_STATISTICS
 from tests.statistica import SAMPLE_TOC_AND_CHAPTER
 from tests.statistica import SAMPLE_WORD_STATISTICS
 
-# from feedback.command.statistica import main
 
-
-@mark.skipif(True, reason='')
 @skip_not_virtual
 def test_run_statistica():
     """Install and run --help to ensure basic function"""
@@ -38,22 +35,30 @@ def test_run_statistica():
     assert completed.returncode == 0, completed.stdout + completed.stderr
 
 
-@mark.skipif(True, reason='')
 @mark.parametrize('command', [
     ['-h'],
     ['-v'],
 ])
 def test_run_command(monkeypatch, command):
     """Run help and version and format command to reach basic test coverage"""
+
+    result = None
+    with raises(SystemExit) as result:
+        run_statistica(monkeypatch, command)
+    assert_success(result)
+
+
+def test_run_generation(monkeypatch):
+
+    # command = ['--%s' % TEXT_STATISTICS,
+    pass
+
+
+def run_statistica(monkeypatch, command):
     with monkeypatch.context() as context:
-        # Remove all environment vars
-        # baw is removed as first arg
         context.setattr(sys, 'argv', ['feedback_statistica'] + command)
-
-        with raises(SystemExit) as result:
-            main()
-
-        assert_success(result)
+        result = main()
+        return result
 
 
 def assert_success(result):
