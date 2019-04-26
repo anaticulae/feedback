@@ -68,12 +68,20 @@ def main():
     )
     args = parse(parser)
     if not any(args.values()):
+        # Missing parameter must procdue failure
         parser.print_help()
         return FAILURE
 
     _, output_path = sources(args)
 
     chapter, text, word = path_from_args(args)
+    if not all([chapter, text, word]):
+        logging_error('Missing resources')
+        logging_error('chapter : %s ' % chapter)
+        logging_error('text:     %s ' % text)
+        logging_error('word:     %s ' % word)
+        # Missing parameter must procdue failure
+        return FAILURE
     write_to_stdout = not output_path
     try:
         result_chapter, result_words = generate(chapter, text, word)
