@@ -12,7 +12,7 @@ from os.path import join
 
 from utila import FAILURE
 from utila import SUCCESS
-from utila import Command
+from utila import Parameter
 from utila import create_parser
 from utila import file_append
 from utila import logging
@@ -30,15 +30,15 @@ TEXT_STATISTICS = 'text_statistics'
 WORD_STATISTICS = 'word_statistics'
 
 COMMANDS = [
-    Command(
+    Parameter(
         longcut='--%s' % TOC_AND_CHAPTER,
         message='compressed output of `rawmaker`',
     ),
-    Command(
+    Parameter(
         longcut='--%s' % TEXT_STATISTICS,
         message='analysed text from `groupme`',
     ),
-    Command(
+    Parameter(
         longcut='--%s' % WORD_STATISTICS,
         message='list of words with occurence from `groupme`',
     ),
