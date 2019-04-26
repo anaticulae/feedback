@@ -32,13 +32,19 @@ with open(join(ROOT, "requirements.txt"), mode='rt', encoding=UTF8) as fp:
 
 
 def datafiles():
-    return [('.', [
-        'BUGS.md',
-        'CHANGELOG.md',
-        'README.md',
-        'TODO.md',
-        'requirements.txt',
-    ])]
+    return [
+        ('.', [
+            'BUGS.md',
+            'CHANGELOG.md',
+            'README.md',
+            'TODO.md',
+            'requirements.txt',
+        ]),
+        ('feedback/features/statistica/templates', [
+            'feedback/features/statistica/templates/chapter.html',
+            'feedback/features/statistica/templates/words.html',
+        ]),
+    ]
 
 
 if __name__ == "__main__":
