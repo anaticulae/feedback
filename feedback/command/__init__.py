@@ -25,6 +25,8 @@ def main():
         outputparameter=True,
         inputparameter=True,
     )
+
+    parser.print_help()
     args = parse(parser)
     inputpath, output = sources(args)
 
