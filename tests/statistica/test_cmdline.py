@@ -53,7 +53,17 @@ def test_run_statistica():
 ])
 def test_run_command(monkeypatch, command):
     """Run help and version and format command to reach basic test coverage"""
-    run_statistica(command, monkeypatch)
+    result = run_statistica(command, monkeypatch)
+
+
+@mark.parametrize(
+    'command',
+    [
+        [],  # no resources given
+    ])
+def test_run_command_failure(monkeypatch, command):
+    """Run help and version and format command to reach basic test coverage"""
+    run_statistica(command, monkeypatch, expect_success=False)
 
 
 def test_run_generation(monkeypatch):
@@ -70,16 +80,24 @@ def test_run_generation_to_output(tmpdir, monkeypatch):
     assert len(written_files) == 2, written_files
 
 
-def run_statistica(command, monkeypatch):
+def run_statistica(command, monkeypatch, expect_success=True):
     result = None
     with raises(SystemExit) as result:
         with monkeypatch.context() as context:
             context.setattr(sys, 'argv', ['feedback_statistica'] + command)
             result = main()
-    assert_success(result)
+    if expect_success:
+        assert_success(result)
+    else:
+        assert_failure(result)
     return result
 
 
 def assert_success(result):
     result = str(result)
     assert 'SystemExit: 0' in result, result
+
+
+def assert_failure(result):
+    result = str(result)
+    assert 'SystemExit: 1' in result, result

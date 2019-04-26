@@ -67,6 +67,10 @@ def main():
         description='create html output for chapter analysis and word count.',
     )
     args = parse(parser)
+    if not any(args.values()):
+        parser.print_help()
+        return FAILURE
+
     _, output_path = sources(args)
 
     chapter, text, word = path_from_args(args)
