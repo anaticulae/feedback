@@ -1,45 +1,23 @@
-<!DOCTYPE html>
-<html>
+<style>
+    a {
+        color: black;
+    }
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
-    <style>
-        html,
-        body {
-            padding: 0%;
-            margin: 0%;
-            text-align: justify;
-        }
-        a{
-            color: black;
-        }
-        u,
-        abbr {
-            background: yellowgreen;
-        }
+    u,
+    abbr {
+        background: yellowgreen;
+    }
 
-        #view {
-            /* overflow: auto; */
-            padding: 15%;
-            display: block;
-            /* position: fixed; */
-            width: 60%;
-            position: absolute;
-        }
+    #view {
+        /* overflow: auto; */
+        display: block;
+        /* position: fixed; */
+        position: absolute;
+    }
 
-
-
-    </style>
-</head>
-
-<body width=800>
+</style>
 <div id=view>
-    <h1>Schreibstil</h1>
+    <h2>Schreibstil</h2>
 
     {% if chapters %}
     <h2>Inhaltsverzeichnis</h2>
@@ -87,26 +65,4 @@
     {% endfor %}
     {% endif %}
 
-    {% if words %}
-    <h4>Worthäufigkeit</h4>
-    <table>
-        <thead>
-            <tr>
-                <td width=250>Wort</td>
-                <td>Anzahl</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for word, occurence in words %}
-            <tr>
-                <td>{{word}}</td>
-                <td>{{occurence}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
 </div>
-</body>
-
-</html>
