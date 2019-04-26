@@ -19,11 +19,11 @@ from tests.statistica import SAMPLE_OCCURENCE
 
 
 def test_generate_chapter_report(tmpdir):
-    source = [SAMPLE_ALPHA, SAMPLE_MEASURE, SAMPLE_OCCURENCE]
+    chapter, word = generate(
+        SAMPLE_ALPHA,
+        SAMPLE_MEASURE,
+        SAMPLE_OCCURENCE,
+    )
 
-    report = join(tmpdir, 'report.html')
-
-    generate(source, report)
-
-    assert exists(report)
-    assert len(file_read(report)) > 500
+    assert len(chapter) > 500
+    assert len(word) > 200

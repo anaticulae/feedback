@@ -16,6 +16,7 @@ STATISTICA_TEST_DATA = join(TEST_PATH, 'statistica/data')
 assert exists(STATISTICA_TEST_DATA), STATISTICA_TEST_DATA
 
 SAMPLE_MEASURE = join(STATISTICA_TEST_DATA, 'sample/text_statistics.yaml')
+
 assert exists(SAMPLE_MEASURE), SAMPLE_MEASURE
 
 SAMPLE_OCCURENCE = join(STATISTICA_TEST_DATA, 'sample/word_statistics.yaml')
