@@ -30,6 +30,7 @@ with open(join(ROOT, "requirements.txt"), mode='rt', encoding=UTF8) as fp:
         line for line in fp.readlines() if line and '#' not in line
     ]
 
+
 def datafiles():
     return [('.', [
         'BUGS.md',
@@ -38,6 +39,7 @@ def datafiles():
         'TODO.md',
         'requirements.txt',
     ])]
+
 
 if __name__ == "__main__":
     # allow setup.py to run from another directory
@@ -52,8 +54,6 @@ if __name__ == "__main__":
         long_description=README,
         name='feedback',
         platforms='any',
-        setup_requires=[],
-        tests_require=[],
         url='https://dev.package.checkitweg.de/feedback',
         version=VERSION,
         zip_safe=False,  # create 'zip'-file if True. Don't do it!
@@ -65,9 +65,12 @@ if __name__ == "__main__":
         packages=[
             'feedback',
             'feedback.command',
+            'feedback.features',
+            'feedback.features.statistica',
+            'feedback.report',
         ],
         entry_points={
-            'console_scripts': ['feedback = feedback.command:main'],
+            'console_scripts':
+            ['feedback_statistica = feedback.command.statistica:main'],
         },
-
     )
