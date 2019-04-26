@@ -75,13 +75,15 @@ def main():
     _, output_path = sources(args)
 
     chapter, text, word = path_from_args(args)
-    if not all([chapter, text, word]):
-        logging_error('Missing resources')
-        logging_error('chapter : %s ' % chapter)
-        logging_error('text:     %s ' % text)
-        logging_error('word:     %s ' % word)
+    missing_input = not all([chapter, text, word])
+    if missing_input:
         # Missing parameter must procdue failure
+        logging_error('Missing resources')
+        logging_error('chapter: %s' % chapter)
+        logging_error('text:    %s' % text)
+        logging_error('word:    %s' % word)
         return FAILURE
+
     write_to_stdout = not output_path
     try:
         result_chapter, result_words = generate(chapter, text, word)

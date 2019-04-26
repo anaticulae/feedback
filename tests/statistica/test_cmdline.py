@@ -56,10 +56,19 @@ def test_run_command(monkeypatch, command):
     result = run_statistica(command, monkeypatch)
 
 
+MISSING_PARAMETER = [
+    '--%s' % TEXT_STATISTICS,
+    SAMPLE_TEXT_STATISTICS,
+    '--%s' % WORD_STATISTICS,
+    SAMPLE_WORD_STATISTICS,
+]
+
+
 @mark.parametrize(
     'command',
     [
         [],  # no resources given
+        MISSING_PARAMETER,
     ])
 def test_run_command_failure(monkeypatch, command):
     """Run help and version and format command to reach basic test coverage"""
