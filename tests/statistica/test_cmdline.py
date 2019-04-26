@@ -8,9 +8,12 @@
 # =============================================================================
 
 import sys
+from os import listdir
+from os.path import join
 
 from pytest import mark
 from pytest import raises
+from utila import SUCCESS
 from utila.test import run
 from utila.test import skip_not_virtual
 
@@ -22,6 +25,15 @@ from feedback.command.statistica import main
 from tests.statistica import SAMPLE_TEXT_STATISTICS
 from tests.statistica import SAMPLE_TOC_AND_CHAPTER
 from tests.statistica import SAMPLE_WORD_STATISTICS
+
+COMMAND = [
+    '--%s' % TEXT_STATISTICS,
+    SAMPLE_TEXT_STATISTICS,
+    '--%s' % WORD_STATISTICS,
+    SAMPLE_WORD_STATISTICS,
+    '--%s' % TOC_AND_CHAPTER,
+    SAMPLE_TOC_AND_CHAPTER,
+]
 
 
 @skip_not_virtual
@@ -41,24 +53,31 @@ def test_run_statistica():
 ])
 def test_run_command(monkeypatch, command):
     """Run help and version and format command to reach basic test coverage"""
-
-    result = None
-    with raises(SystemExit) as result:
-        run_statistica(monkeypatch, command)
-    assert_success(result)
+    run_statistica(command, monkeypatch)
 
 
 def test_run_generation(monkeypatch):
-
-    # command = ['--%s' % TEXT_STATISTICS,
-    pass
+    run_statistica(COMMAND, monkeypatch)
 
 
-def run_statistica(monkeypatch, command):
-    with monkeypatch.context() as context:
-        context.setattr(sys, 'argv', ['feedback_statistica'] + command)
-        result = main()
-        return result
+def test_run_generation_to_output(tmpdir, monkeypatch):
+    outdir = join(tmpdir.strpath, 'result')
+    cmd = list(COMMAND)
+    cmd.extend(['-o', outdir])
+
+    run_statistica(cmd, monkeypatch)
+    written_files = listdir(outdir)
+    assert len(written_files) == 2, written_files
+
+
+def run_statistica(command, monkeypatch):
+    result = None
+    with raises(SystemExit) as result:
+        with monkeypatch.context() as context:
+            context.setattr(sys, 'argv', ['feedback_statistica'] + command)
+            result = main()
+    assert_success(result)
+    return result
 
 
 def assert_success(result):
