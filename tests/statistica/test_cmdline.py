@@ -15,6 +15,13 @@ from utila.test import run
 from utila.test import skip_not_virtual
 
 from feedback import ROOT
+from feedback.command.statistica import TEXT_STATISTICS
+from feedback.command.statistica import TOC_AND_CHAPTER
+from feedback.command.statistica import WORD_STATISTICS
+from feedback.command.statistica import main
+from tests.statistica import SAMPLE_TEXT_STATISTICS
+from tests.statistica import SAMPLE_TOC_AND_CHAPTER
+from tests.statistica import SAMPLE_WORD_STATISTICS
 
 # from feedback.command.statistica import main
 

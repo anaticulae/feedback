@@ -12,15 +12,17 @@ from os.path import join
 
 from tests import TEST_PATH
 
-STATISTICA_TEST_DATA = join(TEST_PATH, 'statistica/data')
-assert exists(STATISTICA_TEST_DATA), STATISTICA_TEST_DATA
+STATISTICA_TDATA = join(TEST_PATH, 'statistica/data')
+assert exists(STATISTICA_TDATA), STATISTICA_TDATA
 
-SAMPLE_MEASURE = join(STATISTICA_TEST_DATA, 'sample/text_statistics.yaml')
+STAT_SAMPLE_DATA = join(STATISTICA_TDATA, 'sample')
+assert exists(STAT_SAMPLE_DATA), STAT_SAMPLE_DATA
 
-assert exists(SAMPLE_MEASURE), SAMPLE_MEASURE
+SAMPLE_TEXT_STATISTICS = join(STAT_SAMPLE_DATA, 'text_statistics.yaml')
+assert exists(SAMPLE_TEXT_STATISTICS), SAMPLE_TEXT_STATISTICS
 
-SAMPLE_OCCURENCE = join(STATISTICA_TEST_DATA, 'sample/word_statistics.yaml')
-assert exists(SAMPLE_OCCURENCE), SAMPLE_OCCURENCE
+SAMPLE_WORD_STATISTICS = join(STAT_SAMPLE_DATA, 'word_statistics.yaml')
+assert exists(SAMPLE_WORD_STATISTICS), SAMPLE_WORD_STATISTICS
 
-SAMPLE_ALPHA = join(STATISTICA_TEST_DATA, 'sample/toc_and_chapter.yaml')
-assert exists(SAMPLE_ALPHA), SAMPLE_ALPHA
+SAMPLE_TOC_AND_CHAPTER = join(STAT_SAMPLE_DATA, 'toc_and_chapter.yaml')
+assert exists(SAMPLE_TOC_AND_CHAPTER), SAMPLE_TOC_AND_CHAPTER
