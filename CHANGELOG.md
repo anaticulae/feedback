@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.2.1
+
+### Feature
+
+* print error message when missing resources (f4d028c4913d)
+* a description and shortcut for cmdline tool (f205a19cff99)
+
+### Fix
+
+* catch empty resources and produce help view (91958e378589)
+
 ## v0.2.0
 
 ### Feature
