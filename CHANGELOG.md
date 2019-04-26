@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v0.2.0
+
+### Feature
+
+* print help if nothing is passed to cmdinterface (7cdb8adc7560)
+* add command line interface to run generation of statistica result (2414e714059a)
+* split result template in two parts (aa79d82879ce)
+
+### Fix
+
+* use the single parameter, not the tuple (4a6bbc909a03)
+* add missing template to copy templates while installing (b0da2d743d05)
+
 ## v0.1.1
 
 ## v0.1.0
