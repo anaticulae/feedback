@@ -18,11 +18,13 @@ assert exists(STATISTICA_TDATA), STATISTICA_TDATA
 STAT_SAMPLE_DATA = join(STATISTICA_TDATA, 'sample')
 assert exists(STAT_SAMPLE_DATA), STAT_SAMPLE_DATA
 
-SAMPLE_TEXT_STATISTICS = join(STAT_SAMPLE_DATA, 'text_statistics.yaml')
+SAMPLE_TEXT_STATISTICS = join(STAT_SAMPLE_DATA,
+                              'analysis_statistica__statistics_chapters.yaml')
 assert exists(SAMPLE_TEXT_STATISTICS), SAMPLE_TEXT_STATISTICS
 
-SAMPLE_WORD_STATISTICS = join(STAT_SAMPLE_DATA, 'word_statistics.yaml')
+SAMPLE_WORD_STATISTICS = join(STAT_SAMPLE_DATA,
+                              'analysis_statistica__statistics_words.yaml')
 assert exists(SAMPLE_WORD_STATISTICS), SAMPLE_WORD_STATISTICS
 
-SAMPLE_TOC_AND_CHAPTER = join(STAT_SAMPLE_DATA, 'toc_and_chapter.yaml')
-assert exists(SAMPLE_TOC_AND_CHAPTER), SAMPLE_TOC_AND_CHAPTER
+SAMPLE_RAWMAKER_TEXT = join(STAT_SAMPLE_DATA, 'rawmaker__text.yaml')
+assert exists(SAMPLE_RAWMAKER_TEXT), SAMPLE_RAWMAKER_TEXT
