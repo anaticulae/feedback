@@ -14,7 +14,7 @@ from jinja2 import PackageLoader
 from jinja2 import Template
 from utila import NEWLINE
 from utila import from_raw_or_path
-from yaml import load_all as from_yaml
+from yaml import load as from_yaml
 from yaml.loader import SafeLoader
 
 from feedback import ROOT
@@ -31,28 +31,26 @@ assert exists(TEMPLATE_WORD), TEMPLATE_WORD
 
 
 def generate(
-        toc_and_chapter: str,
-        texts: str,
+        rawtexts: str,
         words: str,
+        text_statistic: str,
 ):
     """
     Args:
-        toc_and_chapter(str): path to generated file by rawmaker wich contains
-                              the table of content of an document and the
-                              content below.
+        text(str): path to generated file by rawmaker wich contains
+                    the content of an document
         words(str): path to file wich which contains a list which contains a
                     descending list with [words, occurence]
-        texts(str): path to file which contain some statistics, with longest
+        chapter(str): path to file which contain some statistics, with longest
                     sentence, words of an chapter
     Returns:
         tuple(chapter, word): of generated content
     """
-    chapter = load_chapters(toc_and_chapter)
-
+    chapters = load_chapters(rawtexts)
     words = load_words(words)
-    texts = load_text_statistics(texts)
+    texts = load_text_statistics(text_statistic)
 
-    tagged = tagged_content(texts, chapter)
+    tagged = tagged_content(texts, chapters)
     word, chapter = render(tagged, words)
 
     return chapter, word
@@ -70,8 +68,7 @@ def render(chapters: list, words: list):
 
 def load_chapters(path: str):
     """Raw maker result"""
-    loaded = load(path)[1]  # we need the second file
-
+    loaded = load(path)
     # link chapter content to title
     chapter = {item['title']: item['content'] for item in loaded}
     return chapter
@@ -79,14 +76,14 @@ def load_chapters(path: str):
 
 def load_words(path: str) -> list:
     """Return descending list with a pair of word and occurence"""
-    words = load(path)[0]  # use first file
+    words = load(path)  # use first file
     assert isinstance(words, list)
     converted = [(item[0], item[1]) for item in words]
     return converted
 
 
 def load_text_statistics(path: str):
-    return load(path)[0]
+    return load(path)
 
 
 def tagged_content(loaded, chapter: dict):
@@ -119,7 +116,6 @@ def tag_content(content, tags):
 def load(content: str):
     content = from_raw_or_path(content)
     raw = from_yaml(content, Loader=SafeLoader)
-    raw = list(raw)  # load complete generator
     return raw
 
 

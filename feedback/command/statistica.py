@@ -8,11 +8,11 @@
 # =============================================================================
 
 from os import makedirs
+from os.path import exists
 from os.path import join
 
 from utila import FAILURE
 from utila import SUCCESS
-from utila import Parameter
 from utila import create_parser
 from utila import file_append
 from utila import logging
@@ -29,83 +29,54 @@ TOC_AND_CHAPTER = 'toc_and_chapter'
 TEXT_STATISTICS = 'text_statistics'
 WORD_STATISTICS = 'word_statistics'
 
-COMMANDS = [
-    Parameter(
-        longcut='--%s' % TOC_AND_CHAPTER,
-        message='compressed output of `rawmaker`',
-    ),
-    Parameter(
-        longcut='--%s' % TEXT_STATISTICS,
-        message='analysed text from `groupme`',
-    ),
-    Parameter(
-        longcut='--%s' % WORD_STATISTICS,
-        message='list of words with occurence from `groupme`',
-    ),
-]
-
-
-def path_from_args(args):
-    # TODO: CONVERT TO ABSOULTE PATH
-    tocandchapter = args[TOC_AND_CHAPTER]
-    textstatistics = args[TEXT_STATISTICS]
-    wordstatistics = args[WORD_STATISTICS]
-    return tocandchapter, textstatistics, wordstatistics
-
-
-NEWLINE = '-------------------------------------------------------------------'
+PROCESS_NAME = 'feedback_statistica'
 
 
 @saveme
 def main():
     parser = create_parser(
-        COMMANDS,
         version=__version__,
-        inputparameter=False,
+        inputparameter=True,
         outputparameter=True,
         prog='feedback_statistica',
         description='create html output for chapter analysis and word count.',
     )
     args = parse(parser)
-    if not any(args.values()):
-        # Missing parameter must procdue failure
-        parser.print_help()
+    inputpath, outputpath = sources(args)
+
+    if not inputpath or not outputpath:
+        logging_error('Missing input or output')
         return FAILURE
 
-    _, output_path = sources(args)
+    text_statistic = join(inputpath,
+                          'analysis_statistica__statistics_chapters.yaml')
+    words = join(inputpath, 'analysis_statistica__statistics_words.yaml')
+    rawtexts = join(inputpath, 'rawmaker__text.yaml')
 
-    chapter, text, word = path_from_args(args)
-    missing_input = not all([chapter, text, word])
-    if missing_input:
-        # Missing parameter must procdue failure
-        logging_error('Missing resources')
-        logging_error('chapter: %s' % chapter)
-        logging_error('text:    %s' % text)
-        logging_error('word:    %s' % word)
-        return FAILURE
+    ret = 0
+    for item in [text_statistic, words, rawtexts]:
+        if not exists(item):
+            logging_error('File does not exist: %s' % item)
+            ret += 1
+    if ret:
+        return ret
 
-    write_to_stdout = not output_path
     try:
-        result_chapter, result_words = generate(chapter, text, word)
+        result_chapter, result_words = generate(rawtexts, words, text_statistic)
 
-        if write_to_stdout:
-            logging(result_chapter)
-            logging(NEWLINE)
-            logging(result_words)
-        else:
-            makedirs(output_path, exist_ok=True)
-            logging('write result to: %s' % output_path)
-            file_append(
-                join(output_path, 'chapter.html'),
-                result_chapter,
-                create=True,
-            )
-            file_append(
-                join(output_path, 'words.html'),
-                result_words,
-                create=True,
-            )
-    except Exception as error:
+        makedirs(outputpath, exist_ok=True)
+        logging('write result to: %s' % outputpath)
+        file_append(
+            join(outputpath, '%s_chapter.html' % PROCESS_NAME),
+            result_chapter,
+            create=True,
+        )
+        file_append(
+            join(outputpath, '%s_words.html' % PROCESS_NAME),
+            result_words,
+            create=True,
+        )
+    except Exception as error:  #pylint: disable=broad-except
         logging_error(error)
         logging_stacktrace()
         return FAILURE
