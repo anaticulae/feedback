@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.2
+
+### Feature
+
+* pass data from folder (b2fbb0a946d1)
+
 ## v0.2.1
 
 ### Feature
