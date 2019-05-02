@@ -13,7 +13,6 @@ from os.path import join
 from jinja2 import PackageLoader
 from jinja2 import Template
 from utila import NEWLINE
-from utila import file_create
 from utila import from_raw_or_path
 from yaml import load_all as from_yaml
 from yaml.loader import SafeLoader
