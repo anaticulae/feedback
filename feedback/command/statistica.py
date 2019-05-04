@@ -51,7 +51,7 @@ def main():
     text_statistic = join(inputpath,
                           'analysis_statistica__statistics_chapters.yaml')
     words = join(inputpath, 'analysis_statistica__statistics_words.yaml')
-    rawtexts = join(inputpath, 'rawmaker__text.yaml')
+    rawtexts = join(inputpath, 'groupme__chapter.yaml')
 
     ret = 0
     for item in [text_statistic, words, rawtexts]:

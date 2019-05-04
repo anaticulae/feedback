@@ -8,14 +8,14 @@
 # =============================================================================
 
 from feedback.features.statistica.result import generate
-from tests.statistica import SAMPLE_RAWMAKER_TEXT
+from tests.statistica import SAMPLE_GROUPME_TEXT
 from tests.statistica import SAMPLE_TEXT_STATISTICS
 from tests.statistica import SAMPLE_WORD_STATISTICS
 
 
 def test_generate_chapter_report():
     chapter, word = generate(
-        SAMPLE_RAWMAKER_TEXT,
+        SAMPLE_GROUPME_TEXT,
         SAMPLE_WORD_STATISTICS,
         SAMPLE_TEXT_STATISTICS,
     )
