@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.2.3
+
+### Fix
+
+* if file exists, command line must fail (f973e81cc80c)
+* rename file to new convention (1d14fa4ad71d)
+
 ## v0.2.2
 
 ### Feature
