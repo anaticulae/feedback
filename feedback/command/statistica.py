@@ -14,7 +14,7 @@ from os.path import join
 from utila import FAILURE
 from utila import SUCCESS
 from utila import create_parser
-from utila import file_append
+from utila import file_create
 from utila import logging
 from utila import logging_error
 from utila import logging_stacktrace
@@ -66,15 +66,13 @@ def main():
 
         makedirs(outputpath, exist_ok=True)
         logging('write result to: %s' % outputpath)
-        file_append(
-            join(outputpath, '%s_chapter.html' % PROCESS_NAME),
+        file_create(
+            join(outputpath, '%s__chapter.html' % PROCESS_NAME),
             result_chapter,
-            create=True,
         )
-        file_append(
-            join(outputpath, '%s_words.html' % PROCESS_NAME),
+        file_create(
+            join(outputpath, '%s__words.html' % PROCESS_NAME),
             result_words,
-            create=True,
         )
     except Exception as error:  #pylint: disable=broad-except
         logging_error(error)
