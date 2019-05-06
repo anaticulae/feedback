@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.6
+
+### Fix
+
+* avoid out of container overflow (4890643abca5)
+
 ## v0.2.5
 
 ### Fix
