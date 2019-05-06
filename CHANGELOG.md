@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.5
+
+### Fix
+
+* fix scrambled order of return parameter (dd6df3aee668)
+
 ## v0.2.4
 
 ## v0.2.3
