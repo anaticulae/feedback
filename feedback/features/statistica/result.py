@@ -51,8 +51,8 @@ def generate(
     texts = load_text_statistics(text_statistic)
 
     tagged = tagged_content(texts, chapters)
-    word, chapter = render(tagged, words)
 
+    chapter, word = render(tagged, words)
     return chapter, word
 
 
