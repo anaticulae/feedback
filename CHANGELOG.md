@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.2.7
+
+### Feature
+
+* add hit the box renderer (6b629219e7f5)
+* add feature selector - remove later after utila upgrade (b434b6ee1b7e)
+
 ## v0.2.6
 
 ### Fix
