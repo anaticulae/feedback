@@ -44,6 +44,9 @@ def datafiles():
             'feedback/features/statistica/templates/chapter.html',
             'feedback/features/statistica/templates/words.html',
         ]),
+        ('feedback/features/border/templates', [
+            'feedback/features/border/templates/hits.html',
+        ]),
     ]
 
 
@@ -71,12 +74,16 @@ if __name__ == "__main__":
         packages=[
             'feedback',
             'feedback.command',
+            'feedback.command.decider',
             'feedback.features',
+            'feedback.features.border',
             'feedback.features.statistica',
             'feedback.report',
         ],
         entry_points={
-            'console_scripts':
-            ['feedback_statistica = feedback.command.statistica:main'],
+            'console_scripts': [
+                'feedback_statistica = feedback.command.statistica:main',
+                'feedback_decider_border = feedback.command.decider.border:main',
+            ],
         },
     )
