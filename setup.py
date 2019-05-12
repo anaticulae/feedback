@@ -44,6 +44,10 @@ def datafiles():
             'feedback/features/statistica/templates/chapter.html',
             'feedback/features/statistica/templates/words.html',
         ]),
+        ('feedback/features/fonts/templates', [
+            'feedback/features/fonts/templates/fonts_used.html',
+            'feedback/features/fonts/templates/fonts_ugly_badfont.html',
+        ]),
         ('feedback/features/border/templates', [
             'feedback/features/border/templates/hits.html',
         ]),
