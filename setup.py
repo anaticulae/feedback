@@ -77,13 +77,15 @@ if __name__ == "__main__":
             'feedback.command.decider',
             'feedback.features',
             'feedback.features.border',
+            'feedback.features.fonts',
             'feedback.features.statistica',
             'feedback.report',
         ],
         entry_points={
             'console_scripts': [
-                'feedback_statistica = feedback.command.statistica:main',
                 'feedback_decider_border = feedback.command.decider.border:main',
+                'feedback_decider_fonts = feedback.command.decider.fonts:main',
+                'feedback_statistica = feedback.command.statistica:main',
             ],
         },
     )

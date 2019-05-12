@@ -1,0 +1,20 @@
+<h2>Verwendete Schriftarten</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td width=250>Schriftart</td>
+            <td>Groesse</td>
+            <td>Style</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for font in fonts %}
+        <tr>
+            <td>{{font.name}}</td>
+            <td>{{font.scale}}</td>
+            <!-- <td>{{style}}</td> -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
