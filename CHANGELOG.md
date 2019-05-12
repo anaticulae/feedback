@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.2.8
+
+### Feature
+
+* add ugly font view generation (a5c7a003cb22)
+
+### Fix
+
+* add missing templates to copy job (4ed76d6a2074)
+* rename test data to correct data pattern (1a5202f8557b)
+
 ## v0.2.7
 
 ### Feature
