@@ -21,7 +21,7 @@ FEATURE_NAME = 'hitthebox_view'
 DESCRIPTION = 'generate html view for overlapping content'
 WORKPLAN = [
     create_step(FEATURE_NAME, work, [
-        ('hitthebox', 'hits'),
+        ('decider_border_hitthebox', 'hits'),
     ], (
         ('result', 'html'),
         'error',
