@@ -1,0 +1,119 @@
+- font:
+    name: CQYGZP+NimbusSanL
+    scale: 21.7
+    stretch: REGULAR
+    style: ITALIC
+    weight: BOLD
+  index: 0
+- font:
+    name: JCUGNO+NimbusSanL
+    scale: 21.6
+    stretch: REGULAR
+    style: NORMAL
+    weight: BOLD
+  index: 1
+- font:
+    name: JCUGNO+NimbusSanL
+    scale: 15.0
+    stretch: REGULAR
+    style: NORMAL
+    weight: BOLD
+  index: 2
+- font:
+    name: COEANW+NimbusRomNo9L
+    scale: 13.0
+    stretch: REGULAR
+    style: NORMAL
+    weight: MEDIUM
+  index: 3
+- font:
+    name: PMNELC+NimbusRomNo9L
+    scale: 12.0
+    stretch: REGULAR
+    style: NORMAL
+    weight: LIGHT
+  index: 4
+- font:
+    name: FVTEZF+NimbusMonL
+    scale: 10.4
+    stretch: REGULAR
+    style: NORMAL
+    weight: LIGHT
+  index: 5
+- font:
+    name: JCUGNO+NimbusSanL
+    scale: 12.5
+    stretch: REGULAR
+    style: NORMAL
+    weight: BOLD
+  index: 6
+- font:
+    name: DVDJKK+NimbusSanL
+    scale: 30.7
+    stretch: REGULAR
+    style: NORMAL
+    weight: LIGHT
+  index: 7
+- font:
+    name: DJTTCG+NimbusRomNo9L
+    scale: 11.9
+    stretch: REGULAR
+    style: ITALIC
+    weight: LIGHT
+  index: 8
+- font:
+    name: FVTEZF+NimbusMonL
+    scale: 9.4
+    stretch: REGULAR
+    style: NORMAL
+    weight: LIGHT
+  index: 9
+- font:
+    name: DVDJKK+NimbusSanL
+    scale: 17.8
+    stretch: REGULAR
+    style: NORMAL
+    weight: LIGHT
+  index: 10
+- font:
+    name: NGRKLG+NimbusMonL
+    scale: 10.3
+    stretch: REGULAR
+    style: NORMAL
+    weight: BOLD
+  index: 11
+- font:
+    name: JCUGNO+NimbusSanL
+    scale: 18.0
+    stretch: REGULAR
+    style: NORMAL
+    weight: BOLD
+  index: 12
+- font:
+    name: NGRKLG+NimbusMonL
+    scale: 16.5
+    stretch: REGULAR
+    style: NORMAL
+    weight: BOLD
+  index: 13
+- font:
+    name: PMNELC+NimbusRomNo9L
+    scale: 9.6
+    stretch: REGULAR
+    style: NORMAL
+    weight: LIGHT
+  index: 14
+- font:
+    name: GCJXHR+CMMI5
+    scale: 5.0
+    stretch: REGULAR
+    style: NORMAL
+    weight: LIGHT
+  index: 15
+- font:
+    name: NGRKLG+NimbusMonL
+    scale: 11.4
+    stretch: REGULAR
+    style: NORMAL
+    weight: BOLD
+  index: 16
