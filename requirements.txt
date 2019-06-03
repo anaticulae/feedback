@@ -3,5 +3,5 @@ Jinja2==2.10
 PyYAML==5.1
 
 # Internal packages
-iamraw==0.4.11
-utila==0.6.0
+iamraw==0.4.13
+utila==0.6.1
