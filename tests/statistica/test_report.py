@@ -7,14 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from feedback.features.statistica.result import generate
+from feedback.features.statistica.result import work
 from tests.statistica import SAMPLE_GROUPME_TEXT
 from tests.statistica import SAMPLE_TEXT_STATISTICS
 from tests.statistica import SAMPLE_WORD_STATISTICS
 
 
 def test_generate_chapter_report():
-    chapter, word = generate(
+    chapter, word = work(
         SAMPLE_GROUPME_TEXT,
         SAMPLE_WORD_STATISTICS,
         SAMPLE_TEXT_STATISTICS,
