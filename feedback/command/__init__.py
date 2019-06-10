@@ -27,7 +27,5 @@ def main():
     )
 
     parser.print_help()
-    args = parse(parser)
-    inputpath, output = sources(args)
 
     return SUCCESS

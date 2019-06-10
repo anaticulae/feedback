@@ -35,8 +35,6 @@ def work(iamugly_path: str, fontstore_path: str) -> Tuple[str, str, str]:
 
 
 def render_error(ugly: list):
-    from feedback.command.decider.fonts import FEATURE_NAME
-    from feedback.command.decider.fonts import PROCESS_NAME
     errors = []
     # TODO: Create error module, EXPORT ERROR TYPES
     # page, index, box
