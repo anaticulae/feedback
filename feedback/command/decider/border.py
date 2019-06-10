@@ -14,6 +14,9 @@ from utila import featurepack
 
 from feedback import ROOT
 from feedback import __version__
+from feedback.command.utils import infile
+from feedback.command.utils import outhtml
+from feedback.command.utils import outyaml
 from feedback.features.border.hitthebox import work
 
 PROCESS_NAME = 'feedback_decider_border'
@@ -21,10 +24,10 @@ FEATURE_NAME = 'hitthebox_view'
 DESCRIPTION = 'generate html view for overlapping content'
 WORKPLAN = [
     create_step(FEATURE_NAME, work, [
-        ('decider_border_hitthebox', 'hits'),
+        infile('decider_border_hitthebox', 'hits'),
     ], (
-        ('result', 'html'),
-        'error',
+        outhtml('result'),
+        outyaml('error'),
     ))
 ]
 FEATURE_PATH = join(ROOT, 'feedback/features/border')

@@ -15,3 +15,7 @@ def infile(progress: str, stepfile: str):
 
 def outhtml(name: str):
     return (name, 'html')
+
+
+def outyaml(name: str):
+    return (name, 'yaml')

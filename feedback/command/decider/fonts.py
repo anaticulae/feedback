@@ -14,6 +14,9 @@ from utila import featurepack
 
 from feedback import ROOT
 from feedback import __version__
+from feedback.command.utils import infile
+from feedback.command.utils import outhtml
+from feedback.command.utils import outyaml
 from feedback.features.fonts.ugly import work
 
 PROCESS_NAME = 'feedback_decider_fonts'
@@ -24,13 +27,13 @@ WORKPLAN = [
         FEATURE_NAME,
         work,
         [
-            ('decider_fonts_iamugly', 'ugly'),
-            ('rawmaker', 'fonts_header'),
+            infile('decider_fonts_iamugly', 'ugly'),
+            infile('rawmaker', 'fonts_header'),
         ],
         (
-            ('ugly', 'html'),
-            ('used', 'html'),
-            'error',
+            outhtml('ugly'),
+            outhtml('used'),
+            outyaml('error'),
         ),
     )
 ]
