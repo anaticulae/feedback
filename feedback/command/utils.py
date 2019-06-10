@@ -7,3 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """Place experimental implementation here, before moving them to utila"""
+
+
+def infile(progress: str, stepfile: str):
+    return (progress, stepfile)
+
+
+def outhtml(name: str):
+    return (name, 'html')
