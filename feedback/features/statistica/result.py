@@ -9,10 +9,12 @@
 
 from os.path import exists
 from os.path import join
+from typing import Tuple
 
 from jinja2 import PackageLoader
 from jinja2 import Template
 from utila import NEWLINE
+from utila import Flag
 from utila import from_raw_or_path
 from yaml import load as from_yaml
 from yaml.loader import SafeLoader
@@ -30,11 +32,11 @@ TEMPLATE_WORD = join(TEMPLATES, 'words.html')
 assert exists(TEMPLATE_WORD), TEMPLATE_WORD
 
 
-def generate(
+def work(
         rawtexts: str,
         words: str,
         text_statistic: str,
-):
+) -> Tuple[str, str]:
     """
     Args:
         text(str): path to generated file by rawmaker wich contains
@@ -128,3 +130,11 @@ def strip_jinja(content: str):
         item.rstrip() for item in content.splitlines() if item and item.strip()
     ]
     return NEWLINE.join(clean)
+
+
+def name():
+    return 'statistica'
+
+
+def commandline():
+    return Flag(longcut=name(), message='export the html result of %s' % name())

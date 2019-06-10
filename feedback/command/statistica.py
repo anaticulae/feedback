@@ -7,75 +7,45 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os import makedirs
-from os.path import exists
 from os.path import join
 
-from utila import FAILURE
-from utila import SUCCESS
-from utila import create_parser
-from utila import file_create
-from utila import logging
-from utila import logging_error
-from utila import logging_stacktrace
-from utila import parse
-from utila import saveme
-from utila import sources
+from utila import create_step
+from utila import featurepack
 
+from feedback import ROOT
 from feedback import __version__
-from feedback.features.statistica.result import generate
+from feedback.command.utils import infile
+from feedback.command.utils import outhtml
+from feedback.features.statistica.result import work
 
 TOC_AND_CHAPTER = 'toc_and_chapter'
 TEXT_STATISTICS = 'text_statistics'
 WORD_STATISTICS = 'word_statistics'
 
 PROCESS_NAME = 'feedback_statistica'
+FEATURE_NAME = 'feedback_statistica'
+
+DESCRIPTION = 'create html output for chapter analysis and word count.'
+WORKPLAN = [
+    create_step(FEATURE_NAME, work, [
+        infile('groupme', 'chapter'),
+        infile('analysis_statistica', 'statistics_words'),
+        infile('analysis_statistica', 'statistics_chapters'),
+    ], (
+        outhtml('chapter'),
+        outhtml('words'),
+    ))
+]
+
+FEATURE_PATH = join(ROOT, 'feedback/features/statistica')
 
 
-@saveme
 def main():
-    parser = create_parser(
+    featurepack(
+        workplan=WORKPLAN,
+        feature_path=FEATURE_PATH,
+        feature_package='feedback.features.statistica',
+        name=PROCESS_NAME,
+        description=DESCRIPTION,
         version=__version__,
-        inputparameter=True,
-        outputparameter=True,
-        prog='feedback_statistica',
-        description='create html output for chapter analysis and word count.',
     )
-    args = parse(parser)
-    inputpath, outputpath = sources(args)
-
-    if not inputpath or not outputpath:
-        logging_error('Missing input or output')
-        return FAILURE
-
-    text_statistic = join(inputpath,
-                          'analysis_statistica__statistics_chapters.yaml')
-    words = join(inputpath, 'analysis_statistica__statistics_words.yaml')
-    rawtexts = join(inputpath, 'groupme__chapter.yaml')
-
-    ret = 0
-    for item in [text_statistic, words, rawtexts]:
-        if not exists(item):
-            logging_error('File does not exist: %s' % item)
-            ret += 1
-    if ret:
-        return ret
-
-    try:
-        result_chapter, result_words = generate(rawtexts, words, text_statistic)
-
-        makedirs(outputpath, exist_ok=True)
-        logging('write result to: %s' % outputpath)
-        file_create(
-            join(outputpath, '%s__chapter.html' % PROCESS_NAME),
-            result_chapter,
-        )
-        file_create(
-            join(outputpath, '%s__words.html' % PROCESS_NAME),
-            result_words,
-        )
-    except Exception as error:  #pylint: disable=broad-except
-        logging_error(error)
-        logging_stacktrace()
-        return FAILURE
-    return SUCCESS

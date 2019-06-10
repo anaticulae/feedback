@@ -9,11 +9,11 @@
 
 from os.path import join
 
+from utila import create_step
+from utila import featurepack
+
 from feedback import ROOT
 from feedback import __version__
-# TODO: Remove after upgrading utila
-from feedback.command.feature import create_step
-from feedback.command.feature import featurepack
 from feedback.features.fonts.ugly import work
 
 PROCESS_NAME = 'feedback_decider_fonts'
