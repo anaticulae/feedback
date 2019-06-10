@@ -40,13 +40,13 @@ def work(
     """
     Args:
         text(str): path to generated file by rawmaker wich contains
-                    the content of an document
+                   the content of an document
         words(str): path to file wich which contains a list which contains a
                     descending list with [words, occurence]
         chapter(str): path to file which contain some statistics, with longest
-                    sentence, words of an chapter
+                      sentence, words of an chapter
     Returns:
-        tuple(chapter, word): of generated content
+        tuple(chapter, word): of generated html content
     """
     chapters = load_chapters(rawtexts)
     words = load_words(words)
