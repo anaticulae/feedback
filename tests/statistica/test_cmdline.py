@@ -68,10 +68,13 @@ def run_statistica(command, monkeypatch, expect_success=True):
 
 
 def assert_success(result):
+    # TODO: replace with returncode() from utila, after utila 0.6.3
     result = str(result)
     assert 'SystemExit: 0' in result, result
 
 
 def assert_failure(result):
     result = str(result)
+    # XXX: this is not always correct, for examle 'SystemExit: 1' replace
+    # with "not assert_success"
     assert 'SystemExit: 1' in result, result
