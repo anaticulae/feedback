@@ -12,25 +12,24 @@ from os import listdir
 
 from pytest import mark
 from pytest import raises
-from utila import SUCCESS
-from utila.test import run
-from utila.test import skip_not_virtual
+from utila import install_and_run
+from utila import skip_nonvirtual
 
+from feedback import PACKAGE_NAME
 from feedback import ROOT
 from feedback.command.statistica import PROCESS_NAME
 from feedback.command.statistica import main
 from tests.statistica import STAT_SAMPLE_DATA
 
 
-@skip_not_virtual
+@skip_nonvirtual
 def test_run_statistica():
     """Install and run --help to ensure basic function"""
-    uninstall = 'pip uninstall feedback -y'
-    install = 'python setup.py install && %s --help' % PROCESS_NAME
-
-    clean_and_run = uninstall + ' && ' + install
-    completed = run(clean_and_run, cwd=ROOT)
-    assert completed.returncode == SUCCESS, completed.stdout + completed.stderr
+    install_and_run(
+        ROOT,
+        package=PACKAGE_NAME,
+        executable=PROCESS_NAME,
+    )
 
 
 @mark.parametrize('command', [
