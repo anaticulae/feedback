@@ -19,6 +19,7 @@ from feedback import PACKAGE_NAME
 from feedback import ROOT
 from feedback.command.statistica import PROCESS_NAME
 from feedback.command.statistica import main
+from tests import assert_html
 from tests.statistica import STAT_SAMPLE_DATA
 
 
@@ -49,6 +50,8 @@ def test_run_generation_to_output(testdir, monkeypatch):  #pylint:disable=W0613
     run_statistica(cmd, monkeypatch)
     written_files = listdir(outdir)
     assert len(written_files) == 2, written_files
+
+    assert_html(written_files)
 
 
 def run_statistica(command, monkeypatch, expect_success=True):
