@@ -39,7 +39,8 @@ def test_run_main(testdir, monkeypatch):
         monkeypatch=monkeypatch,
         process=PROCESS_NAME,
         main=main,
-        success=True)
+        success=True,
+    )
 
     written_files = listdir('.')
     view_and_error_file = 2

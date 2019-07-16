@@ -7,24 +7,23 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from utila import SUCCESS
-from utila import saveme
-from utila.cmdline import create_parser
+from utila import featurepack
 
+from feedback import PACKAGE_NAME
+from feedback import ROOT
 from feedback import __version__
 
-COMMANDS = []  # add additonal commands here
+DESCRIPTION = 'generate central result view'
+
+WORKPLAN = []
 
 
-@saveme
 def main():
-    parser = create_parser(
-        COMMANDS,
+    featurepack(
+        workplan=WORKPLAN,
+        root=ROOT,
+        featurepackage='feedback.report',
+        name=PACKAGE_NAME,
+        description=DESCRIPTION,
         version=__version__,
-        outputparameter=True,
-        inputparameter=True,
     )
-
-    parser.print_help()
-
-    return SUCCESS
