@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v0.3.0
+
+### Feature
+
+* use new feature function from utila package (78f6263fd040)
+* improve the clarity of a workplan (f3442a432c42)
+
+### Fix
+
+* fix spelling error in header (b90955d8bbab)
+
+### Documentation
+
+* add basic information to readme (fe59f3944af0)
+
 ## v0.2.9
 
 ## v0.2.8
