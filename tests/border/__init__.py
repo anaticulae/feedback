@@ -18,3 +18,10 @@ HITS = join(TEST_PATH_BORDER, 'hits')
 assert exists(HITS), HITS
 HITS_YAML = join(HITS, 'decider_border_hitthebox__hits.yaml')
 assert exists(HITS_YAML), HITS_YAML
+
+# TODO: autogenerate test data - Testdata is out of date
+
+# -Border = namedtuple('Border', 'left bottom right top')
+# +from utila import logging_error
+# +
+# +Border = namedtuple('Border', 'left right top bottom')
