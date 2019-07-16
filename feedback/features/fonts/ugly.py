@@ -12,7 +12,7 @@ from typing import Tuple
 
 from jinja2 import PackageLoader
 from jinja2 import Template
-from serializeraw import load_fontstore
+from serializeraw import load_font_header
 from utila import Flag
 from utila import from_raw_or_path
 from yaml import FullLoader
@@ -23,7 +23,7 @@ from yaml import load
 # ('decider_fonts_iamugly', 'ugly'),
 # ('rawmaker_fonts', 'hedaer'),
 def work(iamugly_path: str, fontstore_path: str) -> Tuple[str, str, str]:
-    fonts = load_fontstore(fontstore_path)
+    fonts = load_font_header(fontstore_path)
 
     ugly = load(from_raw_or_path(iamugly_path), Loader=FullLoader)
     # border, hits = load_hits(hitspath)
@@ -84,7 +84,7 @@ def render_used_fonts(fonts: List) -> str:
 
 
 def name():
-    return 'hitthebox'
+    return 'iamugly_view'
 
 
 def commandline():

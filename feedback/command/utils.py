@@ -8,6 +8,10 @@
 # =============================================================================
 """Place experimental implementation here, before moving them to utila"""
 
+from utila import ResultFile as RF
+
+ResultFile = lambda producer, name: RF(producer=producer, name=name)
+
 
 def infile(progress: str, stepfile: str):
     return (progress, stepfile)

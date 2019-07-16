@@ -7,37 +7,38 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os.path import join
-
-from utila import create_step
+from utila import ResultFile
+from utila import create_step as step
 from utila import featurepack
 
 from feedback import ROOT
 from feedback import __version__
-from feedback.command.utils import infile
 from feedback.command.utils import outhtml
 from feedback.command.utils import outyaml
-from feedback.features.border.hitthebox import work
 
 PROCESS_NAME = 'feedback_decider_border'
-FEATURE_NAME = 'hitthebox_view'
+FEATURE_NAME = 'hitthebox'
 DESCRIPTION = 'generate html view for overlapping content'
+
 WORKPLAN = [
-    create_step(FEATURE_NAME, work, [
-        infile('decider_border_hitthebox', 'hits'),
-    ], (
-        outhtml('result'),
-        outyaml('error'),
-    ))
+    step(
+        FEATURE_NAME,
+        [
+            ResultFile(producer='decider_border_hitthebox', name='hits'),
+        ],
+        (
+            outhtml('result'),
+            outyaml('error'),
+        ),
+    )
 ]
-FEATURE_PATH = join(ROOT, 'feedback/features/border')
 
 
 def main():
     featurepack(
         workplan=WORKPLAN,
-        feature_path=FEATURE_PATH,
-        feature_package='feedback.features.border',
+        root=ROOT,
+        featurepackage='feedback.features.border',
         name=PROCESS_NAME,
         description=DESCRIPTION,
         version=__version__,

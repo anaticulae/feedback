@@ -133,7 +133,7 @@ def strip_jinja(content: str):
 
 
 def name():
-    return 'statistica'
+    return 'feedback_statistica'
 
 
 def commandline():

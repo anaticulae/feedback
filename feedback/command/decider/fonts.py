@@ -7,28 +7,24 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os.path import join
-
-from utila import create_step
+from utila import create_step as step
 from utila import featurepack
 
 from feedback import ROOT
 from feedback import __version__
-from feedback.command.utils import infile
+from feedback.command.utils import ResultFile
 from feedback.command.utils import outhtml
 from feedback.command.utils import outyaml
-from feedback.features.fonts.ugly import work
 
 PROCESS_NAME = 'feedback_decider_fonts'
 FEATURE_NAME = 'iamugly_view'
 DESCRIPTION = 'generate html view for ugly fonts'
 WORKPLAN = [
-    create_step(
+    step(
         FEATURE_NAME,
-        work,
         [
-            infile('decider_fonts_iamugly', 'ugly'),
-            infile('rawmaker', 'fonts_header'),
+            ResultFile('decider_fonts_iamugly', 'ugly'),
+            ResultFile('rawmaker', 'fonts_header'),
         ],
         (
             outhtml('ugly'),
@@ -37,14 +33,13 @@ WORKPLAN = [
         ),
     )
 ]
-FEATURE_PATH = join(ROOT, 'feedback/features/fonts')
 
 
 def main():
     featurepack(
         workplan=WORKPLAN,
-        feature_path=FEATURE_PATH,
-        feature_package='feedback.features.fonts',
+        root=ROOT,
+        featurepackage='feedback.features.fonts',
         name=PROCESS_NAME,
         description=DESCRIPTION,
         version=__version__,

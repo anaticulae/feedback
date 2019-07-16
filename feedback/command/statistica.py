@@ -7,16 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os.path import join
-
-from utila import create_step
+from utila import create_step as step
 from utila import featurepack
 
 from feedback import ROOT
 from feedback import __version__
-from feedback.command.utils import infile
+from feedback.command.utils import ResultFile
 from feedback.command.utils import outhtml
-from feedback.features.statistica.result import work
 
 TOC_AND_CHAPTER = 'toc_and_chapter'
 TEXT_STATISTICS = 'text_statistics'
@@ -27,24 +24,26 @@ FEATURE_NAME = 'feedback_statistica'
 
 DESCRIPTION = 'create html output for chapter analysis and word count.'
 WORKPLAN = [
-    create_step(FEATURE_NAME, work, [
-        infile('groupme', 'chapter'),
-        infile('analysis_statistica', 'statistics_words'),
-        infile('analysis_statistica', 'statistics_chapters'),
-    ], (
-        outhtml('chapter'),
-        outhtml('words'),
-    ))
+    step(
+        FEATURE_NAME,
+        [
+            ResultFile('groupme', 'chapter'),
+            ResultFile('analysis_statistica', 'statistics_words'),
+            ResultFile('analysis_statistica', 'statistics_chapters'),
+        ],
+        (
+            outhtml('chapter'),
+            outhtml('words'),
+        ),
+    )
 ]
-
-FEATURE_PATH = join(ROOT, 'feedback/features/statistica')
 
 
 def main():
     featurepack(
         workplan=WORKPLAN,
-        feature_path=FEATURE_PATH,
-        feature_package='feedback.features.statistica',
+        root=ROOT,
+        featurepackage='feedback.features.statistica',
         name=PROCESS_NAME,
         description=DESCRIPTION,
         version=__version__,
