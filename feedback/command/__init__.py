@@ -6,26 +6,3 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
-from utila import SUCCESS
-from utila import parse
-from utila import saveme
-from utila import sources
-from utila.cmdline import create_parser
-
-from feedback import __version__
-
-COMMANDS = []  # add additonal commands here
-
-
-@saveme
-def main():
-    parser = create_parser(
-        COMMANDS,
-        version=__version__,
-        outputparameter=True,
-        inputparameter=True,
-    )
-
-    parser.print_help()
-
-    return SUCCESS

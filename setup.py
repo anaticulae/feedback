@@ -87,6 +87,7 @@ if __name__ == "__main__":
         ],
         entry_points={
             'console_scripts': [
+                'feedback = feedback.cli:main',
                 'feedback_decider_border = feedback.command.decider.border:main',
                 'feedback_decider_fonts = feedback.command.decider.fonts:main',
                 'feedback_statistica = feedback.command.statistica:main',
