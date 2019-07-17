@@ -16,9 +16,22 @@ TEST_RESOURCES = join(ROOT, 'tests/resources')
 
 RESTRUCTED = join(TEST_RESOURCES, 'restruct')
 
+RESTRUCTED_HEADLINES = join(RESTRUCTED, 'words__headlines_headlines.yaml')
+RESTRUCTED_TEXT = join(RESTRUCTED, 'words__text_text.yaml')
+RESTRUCTED_LISTS = join(RESTRUCTED, 'words__list_list.yaml')
+RESTRUCTED_BOXEDCONTENT = join(RESTRUCTED, 'words__boxed_boxed.yaml')
+RESTRUCTED_RESULT = join(RESTRUCTED, 'words__words_result.yaml')
+RESTRUCTED_SECTIONS = join(RESTRUCTED, 'sections__sections_result.yaml')
+
 RESOURCES = [
-    TEST_RESOURCES,
     RESTRUCTED,
+    RESTRUCTED_BOXEDCONTENT,
+    RESTRUCTED_HEADLINES,
+    RESTRUCTED_LISTS,
+    RESTRUCTED_RESULT,
+    RESTRUCTED_SECTIONS,
+    RESTRUCTED_TEXT,
+    TEST_RESOURCES,
 ]
 
 for item in RESOURCES:
