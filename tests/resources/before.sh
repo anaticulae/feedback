@@ -42,10 +42,17 @@ sections -i restruct/restructuredtext.pdf\
          --toc\
          --whitepage
 
+echo "    running groumpe restruct"
+
+groupme -i restruct\
+        -o ./restruct\
+        --footer\
+        --pagenumbers
+
 echo "    running words restruct"
 
 words -i restruct\
-       --headlines\
+      --headlines\
       --boxed\
       --list\
       --text\
