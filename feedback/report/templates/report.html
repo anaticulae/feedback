@@ -1,0 +1,41 @@
+<h2>Dokument</h2>
+
+{% for page in pages %}
+<style>
+    td {
+        padding: 20px;
+    }
+
+</style>
+<table border="1" width="{{page.width}}" height="{{page.height}}" padding="20"
+    margin="20">
+    {% if page.header %}
+    <thead>
+        <tr>
+            <td height="{{page.header.height}}">HEADER</td>
+        </tr>
+    </thead>
+    {% endif %}
+
+    <tbody>
+        <tr>
+            <td style="vertical-align: text-top">
+                {% for item in page.content %}
+                {{item}}
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+
+    {% if page.footer %}
+    <tfoot>
+        <tr>
+            <td height="{{page.footer.height}}">FOOTER</td>
+        </tr>
+    </tfoot>
+    {% endif %}
+</table>
+<br />
+<br />
+<br />
+{% endfor %}
