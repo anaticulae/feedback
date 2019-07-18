@@ -22,12 +22,15 @@ RESTRUCTED_LISTS = join(RESTRUCTED, 'words__list_list.yaml')
 RESTRUCTED_BOXEDCONTENT = join(RESTRUCTED, 'words__boxed_boxed.yaml')
 RESTRUCTED_RESULT = join(RESTRUCTED, 'words__words_result.yaml')
 RESTRUCTED_SECTIONS = join(RESTRUCTED, 'sections__sections_result.yaml')
+RESTRUCTED_PAGENUMBERS = join(RESTRUCTED,
+                              'groupme__pagenumbers_pagenumbers.yaml')
 
 RESOURCES = [
     RESTRUCTED,
     RESTRUCTED_BOXEDCONTENT,
     RESTRUCTED_HEADLINES,
     RESTRUCTED_LISTS,
+    RESTRUCTED_PAGENUMBERS,
     RESTRUCTED_RESULT,
     RESTRUCTED_SECTIONS,
     RESTRUCTED_TEXT,
