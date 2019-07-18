@@ -9,12 +9,14 @@
 
 from contextlib import suppress
 from dataclasses import dataclass
+from typing import List
 
 from jinja2 import PackageLoader
 from jinja2 import Template
 from serializeraw import load_boxedcontent
 from serializeraw import load_headlines
 from serializeraw import load_lists
+from serializeraw import load_pagenumbers
 from serializeraw import load_sections
 from serializeraw import load_text
 from utila import NEWLINE
@@ -31,13 +33,15 @@ def work(
         headlines: str,
         lists: str,
         boxed: str,
+        pagenumbers: str,
 ) -> str:
-    sections, text, headlines, lists, boxed = prepare_input(
+    sections, text, headlines, lists, boxed, pagenumbers = prepare_input(
         sections,
         text,
         headlines,
         lists,
         boxed,
+        pagenumbers,
     )
 
     result = process_content(
@@ -46,9 +50,74 @@ def work(
         headlines,
         lists,
         boxed,
+        pagenumbers,
     )
 
     return result
+
+
+class PageNumbersLookup:
+
+    def __init__(self, pagenumbers):
+        loader = (PageNumbersLookup._prepare_double if isinstance(
+            pagenumbers, tuple) else PageNumbersLookup._prepare_single)
+        self.data = loader(pagenumbers)
+
+    def userpage(self, pdfpage: int):
+        with suppress(KeyError):
+            return self.data[pdfpage]
+        return None
+
+    @staticmethod
+    def _prepare_single(items):
+        return {pdfpage: page for (pdfpage, _, page) in items}
+
+    @staticmethod
+    def _prepare_double(items):
+        (left, right) = items
+        left = PageNumbersLookup._prepare_single(left)
+        right = PageNumbersLookup._prepare_single(right)
+
+        for key, value in right.items():
+            left[key] = value
+        return left
+
+
+def process_content(
+        sections,
+        text,
+        headlines,
+        listslookup,
+        boxed,
+        pagenumbers: PageNumbersLookup,
+):
+    # boxlookup = BoxLookUp(boxed)
+    result = []
+    for section in sections:
+        for page in section:
+            content = []
+            with suppress(KeyError):
+                content = text[page.start]
+                content = [
+                    prepare_headlinecontent(item, listslookup, boxed)
+                    for item in content
+                ]
+                content = flatten(content)
+            footer = None
+            page = pagenumbers.userpage(page.start)
+            if page is not None:
+                footer = FooterHeader(userpage=page, hrline=True)
+            # prepare
+            content = SinglePage(
+                width=800,
+                height=700,
+                content=content,
+                footer=footer,
+            )
+
+            result.append(content)
+    rendered = render(result)
+    return rendered
 
 
 @checkdatatype
@@ -58,15 +127,29 @@ def prepare_input(
         headlines: str,
         lists: str,
         boxed: str,
+        pagenumbers: str,
 ):
     sections = load_sections(sections)
     headlines = load_headlines(headlines)
     text = load_text(text, headlines)
+
     lists = load_lists(lists)
+    lists = ListLookUp(lists)
+
     boxed = load_boxedcontent(boxed)
+    pagenumbers = load_pagenumbers(pagenumbers)
+    pagenumbers = PageNumbersLookup(pagenumbers)
 
     text = {item[0]: item[1] for item in text}
-    return sections, text, headlines, lists, boxed
+
+    return sections, text, headlines, lists, boxed, pagenumbers
+
+
+@dataclass
+class FooterHeader:
+    userpage: str = ''
+    hrline: bool = False
+    height: int = 30
 
 
 @dataclass
@@ -74,87 +157,17 @@ class SinglePage:
     width: int = -1
     height: int = -1
     content: str = ''
-
-
-def process_content(
-        sections,
-        text,
-        headlines,
-        lists,
-        boxed,
-):
-    # for key, value in text.items():
-    #     print(key)
-    #     print(value)
-    #     print()
-    #     print()
-    listlookup = ListLookUp(lists)
-    # boxlookup = BoxLookUp(boxed)
-    result = []
-    for section in sections:
-        for page in section:
-            content = ['Page %d' % page.start]
-            with suppress(KeyError):
-                content = text[page.start]
-                content = [
-                    prepare_headlinecontent(item, listlookup, boxed)
-                    for item in content
-                ]
-                content = flatten(content)
-
-            # prepare
-            content = SinglePage(width=800, height=700, content=content)
-            # for item in page:
-            #     print(item)
-            result.append(content)
-    rendered = render(result)
-    return rendered
+    footer: FooterHeader = None
 
 
 # TODO: Define `hey`/ general public API?
-
-NO_LIST = -1
-LIST_START = 0
-
-BOXED_START = 0
-NO_BOXED = -1
-
-
-def find_list(listlookup, page, item, index):
-    lists = listlookup.data[page]
-    for content, _index in lists:
-        if _index == item:
-            return content[2].data[index]
-    return None
-
-
-def find_boxed(boxedlookup, page, item, boxindex):
-    # TODO: Bad solution!
-    # for item in boxedlookup:
-    #     print(item)
-    #     print()
-    #     print()
-    # assert 0
-    for (current_page, content) in boxedlookup:
-        if current_page != page:
-            continue
-        for (_, __, boxedcontent) in content:
-            # match
-            for www in boxedcontent:
-                for (bounding, (index, content)) in www:
-                    if index == item:
-                        try:
-                            return content[boxindex][2]
-                        except IndexError:
-                            return item
-    return None
 
 
 def prepare_headlinecontent(
         paragraph,
         listlookup: ListLookUp,
         boxed,
-):
+) -> List[str]:
     # TODO: Rework when jinja documentation is available
     headline, content = paragraph
     level = headline.level if headline.level is not None else 2
@@ -238,14 +251,6 @@ def render(pages) -> str:
     return rendered
 
 
-def name():
-    return 'view'
-
-
-def commandline():
-    return Flag(longcut=name(), message='export the html result of %s' % name())
-
-
 def parseindex(item, checkedchar):
     try:
         index, char = int(item[0:-1]), item[-1]
@@ -262,3 +267,51 @@ def listindex(item):
 
 def boxedcontentindex(item):
     return parseindex(item, 'b')
+
+
+NO_LIST = -1
+LIST_START = 0
+
+BOXED_START = 0
+NO_BOXED = -1
+
+
+def find_list(listlookup, page, item, index):
+    lists = listlookup.data[page]
+    for content, _index in lists:
+        if _index == item:
+            return content[2].data[index]
+    return None
+
+
+def find_boxed(boxedlookup, page, item, boxindex):
+    # TODO: Bad solution!
+    # for item in boxedlookup:
+    #     print(item)
+    #     print()
+    #     print()
+    # assert 0
+    for (current_page, content) in boxedlookup:
+        if current_page != page:
+            continue
+        for (_, __, boxedcontent) in content:
+            # match
+            for www in boxedcontent:
+                for (bounding, (index, content)) in www:
+                    if index == item:
+                        try:
+                            return content[boxindex][2]
+                        except IndexError:
+                            return item
+    return None
+
+
+def name():
+    return 'view'
+
+
+def commandline():
+    return Flag(
+        longcut=name(),
+        message='export central user analysis landing page',
+    )

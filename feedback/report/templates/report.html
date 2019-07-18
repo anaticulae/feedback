@@ -1,5 +1,3 @@
-<h2>Dokument</h2>
-
 {% for page in pages %}
 <style>
     td {
@@ -30,7 +28,12 @@
     {% if page.footer %}
     <tfoot>
         <tr>
-            <td height="{{page.footer.height}}">FOOTER</td>
+            <td height="{{page.footer.height}}">
+                {% if page.footer.hrline %}
+                <hr />
+                {% endif %}
+                {{page.footer.userpage}}
+            </td>
         </tr>
     </tfoot>
     {% endif %}

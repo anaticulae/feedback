@@ -18,6 +18,7 @@ from feedback.report.view import work
 from tests.resources import RESTRUCTED_BOXEDCONTENT
 from tests.resources import RESTRUCTED_HEADLINES
 from tests.resources import RESTRUCTED_LISTS
+from tests.resources import RESTRUCTED_PAGENUMBERS
 from tests.resources import RESTRUCTED_RESULT
 from tests.resources import RESTRUCTED_SECTIONS
 
@@ -28,6 +29,7 @@ def test_report_view_work(testdir):
     headlines = RESTRUCTED_HEADLINES
     boxed = RESTRUCTED_BOXEDCONTENT
     lists = RESTRUCTED_LISTS
+    pagenumbers = RESTRUCTED_PAGENUMBERS
 
     result = work(
         sections,
@@ -35,6 +37,7 @@ def test_report_view_work(testdir):
         headlines,
         lists,
         boxed,
+        pagenumbers,
     )
 
     path = join(str(testdir), 'result.html')
