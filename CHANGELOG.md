@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v0.4.0
+
+### Feature
+
+* add workplan to generate view due `feedback` tool (3b7ac8c4645f)
+* add horizontal line and page numbers to view report (c0bf7b6f7b3d)
+* add feature to generate view with pdf content - draft (8af945cdf624)
+* add new tool `feedback` to generate main report view (c8ae1f90f290)
+
+### Fix
+
+* remove duplicated requirement (0bbb75fe3e07)
+
 ## v0.3.0
 
 ### Feature
