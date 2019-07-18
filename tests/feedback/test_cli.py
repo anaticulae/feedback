@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os import listdir
-
 from utila import install_and_run
 from utila import run_command
 from utila import skip_nonvirtual
@@ -38,5 +36,5 @@ def test_run_feedback(testdir, monkeypatch):
         monkeypatch=monkeypatch,
         process=PACKAGE_NAME,
         main=main,
-        success=False,  # TODO: change after adding functionality
+        success=True,
     )

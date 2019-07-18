@@ -7,15 +7,32 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from utila import ResultFile
+from utila import create_step as step
 from utila import featurepack
 
 from feedback import PACKAGE_NAME
 from feedback import ROOT
 from feedback import __version__
+from feedback.command.utils import outhtml
 
+FEATURE_NAME = 'view'
 DESCRIPTION = 'generate central result view'
 
-WORKPLAN = []
+WORKPLAN = [
+    step(
+        FEATURE_NAME,
+        [
+            ResultFile(producer='sections', name='sections_result'),
+            ResultFile(producer='words', name='words_result'),
+            ResultFile(producer='words', name='headlines_headlines'),
+            ResultFile(producer='words', name='list_list'),
+            ResultFile(producer='words', name='boxed_boxed'),
+            ResultFile(producer='groupme', name='pagenumbers_pagenumbers'),
+        ],
+        (outhtml('result'),),
+    )
+]
 
 
 def main():
