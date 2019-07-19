@@ -12,7 +12,7 @@ from os.path import join
 
 from tests import TEST_PATH
 
-STATISTICA_TDATA = join(TEST_PATH, 'statistica/data')
+STATISTICA_TDATA = join(TEST_PATH, 'statistica/resources')
 assert exists(STATISTICA_TDATA), STATISTICA_TDATA
 
 STAT_SAMPLE_DATA = join(STATISTICA_TDATA, 'sample')
