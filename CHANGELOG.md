@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.4
+
+### Fix
+
+* fix output data path due `featurepack` (0be4981db350)
+
 ## v0.4.3
 
 ### Fix
