@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.2
+
+### Fix
+
+* fix data input to `featurepack` structure (b29cdb461fee)
+
 ## v0.4.1
 
 ## v0.4.0
