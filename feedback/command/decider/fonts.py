@@ -23,7 +23,7 @@ WORKPLAN = [
     step(
         FEATURE_NAME,
         [
-            ResultFile('decider_fonts_iamugly', 'ugly'),
+            ResultFile('decider_fonts', 'ugly_ugly'),
             ResultFile('rawmaker', 'fonts_header'),
         ],
         (
