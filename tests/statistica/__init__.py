@@ -26,5 +26,5 @@ SAMPLE_WORD_STATISTICS = join(STAT_SAMPLE_DATA,
                               'analysis_statistica__statistics_words.yaml')
 assert exists(SAMPLE_WORD_STATISTICS), SAMPLE_WORD_STATISTICS
 
-SAMPLE_GROUPME_TEXT = join(STAT_SAMPLE_DATA, 'groupme__chapter.yaml')
+SAMPLE_GROUPME_TEXT = join(STAT_SAMPLE_DATA, 'groupme__chapter_chapter.yaml')
 assert exists(SAMPLE_GROUPME_TEXT), SAMPLE_GROUPME_TEXT

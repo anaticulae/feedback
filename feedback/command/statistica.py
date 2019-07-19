@@ -27,7 +27,7 @@ WORKPLAN = [
     step(
         FEATURE_NAME,
         [
-            ResultFile('groupme', 'chapter'),
+            ResultFile('groupme', 'chapter_chapter'),
             ResultFile('analysis_statistica', 'statistics_words'),
             ResultFile('analysis_statistica', 'statistics_chapters'),
         ],
