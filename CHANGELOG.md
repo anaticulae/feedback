@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.3
+
+### Fix
+
+* fix input path to `featurepack` pattern (62bafcdb891a)
+
 ## v0.4.2
 
 ### Fix
