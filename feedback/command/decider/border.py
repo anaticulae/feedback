@@ -24,7 +24,7 @@ WORKPLAN = [
     step(
         FEATURE_NAME,
         [
-            ResultFile(producer='decider_border_hitthebox', name='hits'),
+            ResultFile(producer='decider_border', name='hitthebox_hits'),
         ],
         (
             outhtml('result'),

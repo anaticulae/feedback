@@ -16,7 +16,7 @@ TEST_PATH_BORDER = join(TEST_PATH, 'border/data')
 
 HITS = join(TEST_PATH_BORDER, 'hits')
 assert exists(HITS), HITS
-HITS_YAML = join(HITS, 'decider_border_hitthebox__hits.yaml')
+HITS_YAML = join(HITS, 'decider_border__hitthebox_hits.yaml')
 assert exists(HITS_YAML), HITS_YAML
 
 # TODO: autogenerate test data - Testdata is out of date
