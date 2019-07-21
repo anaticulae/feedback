@@ -23,6 +23,10 @@ PROCESS_NAME = 'feedback_statistica'
 FEATURE_NAME = 'feedback_statistica'
 
 DESCRIPTION = 'create html output for chapter analysis and word count.'
+
+CHAPTER = 'chapter'
+WORDS = 'words'
+
 WORKPLAN = [
     step(
         FEATURE_NAME,
@@ -32,11 +36,14 @@ WORKPLAN = [
             ResultFile('analysis_statistica', 'statistics_chapters'),
         ],
         (
-            outhtml('chapter'),
-            outhtml('words'),
+            outhtml(CHAPTER),
+            outhtml(WORDS),
         ),
     )
 ]
+
+CHAPTER_HTML = '%s__%s_%s' % (PROCESS_NAME, FEATURE_NAME, CHAPTER)
+WORDS_HTML = '%s__%s_%s' % (PROCESS_NAME, FEATURE_NAME, WORDS)
 
 
 def main():
