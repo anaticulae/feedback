@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.6
+
+### Feature
+
+* expose naming to use in `queuemo` (923ea04984ba)
+
 ## v0.4.5
 
 ## v0.4.4
