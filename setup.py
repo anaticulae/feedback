@@ -51,6 +51,9 @@ def datafiles():
         ('feedback/features/border/templates', [
             'feedback/features/border/templates/hits.html',
         ]),
+        ('feedback/report/templates', [
+            'feedback/report/templates/report.html',
+        ]),
     ]
 
 
