@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.12
+
+### Fix
+
+* add missing report template to setup/installation package (a96b55992433)
+
 ## v0.4.11
 
 ## v0.4.10
