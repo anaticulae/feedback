@@ -10,7 +10,7 @@
 from os.path import exists
 from os.path import join
 
-from utila import logging_error
+from utila import error
 
 from feedback import ROOT
 
@@ -35,7 +35,7 @@ def assert_file(files, filetype: str):
     raises = 0
     for item in files:
         if not item.endswith('.%s' % filetype):
-            logging_error('No %s file: %s' % (filetype, item))
+            error('No %s file: %s' % (filetype, item))
             raises += 1
     assert not raises, 'wrong file types'
 

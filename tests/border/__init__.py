@@ -22,6 +22,6 @@ assert exists(HITS_YAML), HITS_YAML
 # TODO: autogenerate test data - Testdata is out of date
 
 # -Border = namedtuple('Border', 'left bottom right top')
-# +from utila import logging_error
+# +from utila import error
 # +
 # +Border = namedtuple('Border', 'left right top bottom')
