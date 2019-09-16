@@ -6,18 +6,18 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-
+import os
 from os.path import exists
 from os.path import join
 
 from feedback import ROOT
 
 RESOURCES = join(ROOT, 'tests/resources')
+GENERATED = os.path.join(ROOT, 'tests/generated')
 
 # TODO: MOVE restruct to power library
 
-RESTRUCTED = join(RESOURCES, 'restruct')
-
+RESTRUCTED = join(GENERATED, 'restruct_restructuredtext')
 RESTRUCTED_HEADLINES = join(RESTRUCTED, 'words__headlines_headlines.yaml')
 RESTRUCTED_TEXT = join(RESTRUCTED, 'words__text_text.yaml')
 RESTRUCTED_LISTS = join(RESTRUCTED, 'words__list_list.yaml')
@@ -27,8 +27,12 @@ RESTRUCTED_SECTIONS = join(RESTRUCTED, 'sections__sections_result.yaml')
 RESTRUCTED_PAGENUMBERS = join(RESTRUCTED,
                               'groupme__pagenumbers_pagenumbers.yaml')
 
+RESTRUCTED_PDF = join(RESOURCES, 'restruct/restructuredtext.pdf')
+PORTING_PYTHON3 = join(RESOURCES, 'docu/porting_extension_modules_python3.pdf')
+
 # test after running generation step in update.py
 REQUIRED_RESOURCES = [
+    GENERATED,
     RESOURCES,
     RESTRUCTED,
     RESTRUCTED_BOXEDCONTENT,
@@ -38,4 +42,5 @@ REQUIRED_RESOURCES = [
     RESTRUCTED_RESULT,
     RESTRUCTED_SECTIONS,
     RESTRUCTED_TEXT,
+    RESTRUCTED_PDF,
 ]

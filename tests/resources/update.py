@@ -7,10 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
 import detector.feature.titlepage
 import utila
 
 import feedback
+import feedback.utils
 import tests.resources
 
 
@@ -24,15 +27,30 @@ def sync_resources():
 
 
 def extract_examples():
-    todo = create_todo_rawmaker(
-        'restruct/restructuredtext.pdf',
-        './restruct',
-    )\
-    + create_todo_sections('./restruct')\
-    + create_todo_groupme('./restruct')\
-    + create_todo_words('./restruct')
+    # ensure that generation folder exists
+    os.makedirs(tests.resources.GENERATED, exist_ok=True)
 
-    for (executable, inpath, outpath, configuration) in todo:
+    analyze_pdf(tests.resources.RESTRUCTED_PDF)
+    analyze_pdf(tests.resources.PORTING_PYTHON3)
+
+
+def analyze_pdf(path: str):
+    relative_path = feedback.utils.relative_path(path)
+    root, _ = relative_path.split('.pdf')
+    root = str(root).replace('/', '_').replace('\\', '_')
+
+    generator = os.path.join(tests.resources.GENERATED, root)
+    os.makedirs(generator, exist_ok=True)
+
+    todo = []
+    todo.extend(create_todo_rawmaker(path, generator))
+    todo.extend(create_todo_sections(generator))
+    todo.extend(create_todo_groupme(generator))
+    todo.extend(create_todo_words(generator))
+    todo.extend(create_todo('detector', generator, '--pages=0 --all'))
+    todo.extend(create_todo('decider', generator))
+
+    for executable, inpath, outpath, configuration in todo:
         cmd = f'{executable} -i {inpath} -o {outpath} {configuration}'
         utila.debug(f'run {cmd}')
         completed = utila.run(cmd, cwd=tests.resources.RESOURCES)
@@ -59,7 +77,7 @@ def create_todo_rawmaker(inpath, outpath):
     return result
 
 
-def create_todo(process, path, todo):
+def create_todo(process, path, todo='--all'):
     result = [
         (process, path, path, todo),
     ]
