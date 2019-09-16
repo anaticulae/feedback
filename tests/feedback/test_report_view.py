@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import webbrowser
 from os.path import join
 
 from iamraw import BoundingBox
@@ -42,7 +41,6 @@ def test_report_view_work(testdir):
 
     path = join(str(testdir), 'result.html')
     file_create(path, result)
-    webbrowser.open_new_tab(path)
 
 
 def test_find_bounding_box():
