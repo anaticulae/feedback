@@ -11,7 +11,7 @@ from utila import install_and_run
 from utila import run_command
 from utila import skip_nonvirtual
 
-from feedback import PACKAGE_NAME
+from feedback import PACKAGE
 from feedback import ROOT
 from feedback.cli import main
 from tests.resources import RESTRUCTED
@@ -22,8 +22,8 @@ def test_run_decider_border():
     """Install and run --help to ensure basic function"""
     install_and_run(
         ROOT,
-        package=PACKAGE_NAME,
-        executable=PACKAGE_NAME,
+        package=PACKAGE,
+        executable=PACKAGE,
     )
 
 
@@ -34,7 +34,7 @@ def test_run_feedback(testdir, monkeypatch):
     run_command(
         cmd,
         monkeypatch=monkeypatch,
-        process=PACKAGE_NAME,
+        process=PACKAGE,
         main=main,
         success=True,
     )

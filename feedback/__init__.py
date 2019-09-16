@@ -12,4 +12,4 @@ __version__ = '0.4.14'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-PACKAGE_NAME = 'feedback'
+PACKAGE = 'feedback'

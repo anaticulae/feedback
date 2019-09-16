@@ -11,7 +11,7 @@ from utila import ResultFile
 from utila import create_step as step
 from utila import featurepack
 
-from feedback import PACKAGE_NAME
+from feedback import PACKAGE
 from feedback import ROOT
 from feedback import __version__
 from feedback.command.utils import outhtml
@@ -40,7 +40,7 @@ def main():
         workplan=WORKPLAN,
         root=ROOT,
         featurepackage='feedback.report',
-        name=PACKAGE_NAME,
+        name=PACKAGE,
         description=DESCRIPTION,
         version=__version__,
     )

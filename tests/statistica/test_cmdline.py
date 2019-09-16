@@ -15,7 +15,7 @@ from pytest import raises
 from utila import install_and_run
 from utila import skip_nonvirtual
 
-from feedback import PACKAGE_NAME
+from feedback import PACKAGE
 from feedback import ROOT
 from feedback.command.statistica import PROCESS_NAME
 from feedback.command.statistica import main
@@ -28,7 +28,7 @@ def test_run_statistica():
     """Install and run --help to ensure basic function"""
     install_and_run(
         ROOT,
-        package=PACKAGE_NAME,
+        package=PACKAGE,
         executable=PROCESS_NAME,
     )
 

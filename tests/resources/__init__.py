@@ -12,9 +12,11 @@ from os.path import join
 
 from feedback import ROOT
 
-TEST_RESOURCES = join(ROOT, 'tests/resources')
+RESOURCES = join(ROOT, 'tests/resources')
 
-RESTRUCTED = join(TEST_RESOURCES, 'restruct')
+# TODO: MOVE restruct to power library
+
+RESTRUCTED = join(RESOURCES, 'restruct')
 
 RESTRUCTED_HEADLINES = join(RESTRUCTED, 'words__headlines_headlines.yaml')
 RESTRUCTED_TEXT = join(RESTRUCTED, 'words__text_text.yaml')
@@ -25,7 +27,9 @@ RESTRUCTED_SECTIONS = join(RESTRUCTED, 'sections__sections_result.yaml')
 RESTRUCTED_PAGENUMBERS = join(RESTRUCTED,
                               'groupme__pagenumbers_pagenumbers.yaml')
 
-RESOURCES = [
+# test after running generation step in update.py
+REQUIRED_RESOURCES = [
+    RESOURCES,
     RESTRUCTED,
     RESTRUCTED_BOXEDCONTENT,
     RESTRUCTED_HEADLINES,
@@ -34,8 +38,4 @@ RESOURCES = [
     RESTRUCTED_RESULT,
     RESTRUCTED_SECTIONS,
     RESTRUCTED_TEXT,
-    TEST_RESOURCES,
 ]
-
-for item in RESOURCES:
-    assert exists(item), str(item)
