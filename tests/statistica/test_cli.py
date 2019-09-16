@@ -7,13 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import sys
 from os import listdir
 
-from pytest import mark
-from pytest import raises
-from utila import install_and_run
-from utila import skip_nonvirtual
+import pytest
+import utila
 
 from feedback import PACKAGE
 from feedback import ROOT
@@ -23,24 +20,23 @@ from tests import assert_html
 from tests.statistica import STAT_SAMPLE_DATA
 
 
-@skip_nonvirtual
+@utila.skip_nonvirtual
 def test_run_statistica():
     """Install and run --help to ensure basic function"""
-    install_and_run(
+    utila.install_and_run(
         ROOT,
         package=PACKAGE,
         executable=PROCESS_NAME,
     )
 
 
-@mark.parametrize('command', [
+@pytest.mark.parametrize('command', [
     ['-h'],
     ['-v'],
 ])
 def test_run_command(monkeypatch, command):
     """Run help and version and format command to reach basic test coverage"""
-    result = run_statistica(command, monkeypatch)
-    assert result
+    run_statistica(command, monkeypatch)
 
 
 def test_run_generation_to_output(testdir, monkeypatch):  #pylint:disable=W0613
@@ -54,27 +50,11 @@ def test_run_generation_to_output(testdir, monkeypatch):  #pylint:disable=W0613
     assert_html(written_files)
 
 
-def run_statistica(command, monkeypatch, expect_success=True):
-    result = None
-    with raises(SystemExit) as result:
-        with monkeypatch.context() as context:
-            context.setattr(sys, 'argv', [PROCESS_NAME] + command)
-            main()
-    if expect_success:
-        assert_success(result)
-    else:
-        assert_failure(result)
-    return result
-
-
-def assert_success(result):
-    # TODO: replace with returncode() from utila, after utila 0.6.3
-    result = str(result)
-    assert 'SystemExit: 0' in result, result
-
-
-def assert_failure(result):
-    result = str(result)
-    # XXX: this is not always correct, for examle 'SystemExit: 1' replace
-    # with "not assert_success"
-    assert 'SystemExit: 1' in result, result
+def run_statistica(command, monkeypatch, success=True):
+    utila.run_command(
+        command,
+        PROCESS_NAME,
+        main,
+        success=success,
+        monkeypatch=monkeypatch,
+    )
