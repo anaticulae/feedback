@@ -9,9 +9,9 @@
 
 from os import listdir
 
+import utila
 from utila import install_and_run
 from utila import run_command
-from utila import skip_nonvirtual
 
 from feedback import PACKAGE
 from feedback import ROOT
@@ -20,7 +20,8 @@ from feedback.command.decider.border import main
 from tests.border import HITS
 
 
-@skip_nonvirtual
+@utila.skip_longrun
+@utila.skip_nonvirtual
 def test_run_decider_border():
     """Install and run --help to ensure basic function"""
     install_and_run(

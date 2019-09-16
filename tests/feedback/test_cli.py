@@ -7,34 +7,33 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from utila import install_and_run
-from utila import run_command
-from utila import skip_nonvirtual
+import utila
 
-from feedback import PACKAGE
-from feedback import ROOT
-from feedback.cli import main
-from tests.resources import RESTRUCTED
+import feedback
+import feedback.cli
+import feedback.command.decider.border
+import tests.resources
 
 
-@skip_nonvirtual
-def test_run_decider_border():
+@utila.skip_longrun
+@utila.skip_nonvirtual
+def test_install_and_run_feedback():
     """Install and run --help to ensure basic function"""
-    install_and_run(
-        ROOT,
-        package=PACKAGE,
-        executable=PACKAGE,
+    utila.install_and_run(
+        feedback.ROOT,
+        package=feedback.PACKAGE,
+        executable=feedback.PACKAGE,
     )
 
 
 # pylint:disable=unused-argument
 def test_run_feedback(testdir, monkeypatch):
-    cmd = ['-i', RESTRUCTED, '-o', '.']
+    cmd = ['-i', tests.resources.RESTRUCTED, '-o', '.']
 
-    run_command(
+    utila.run_command(
         cmd,
         monkeypatch=monkeypatch,
-        process=PACKAGE,
-        main=main,
+        process=feedback.PACKAGE,
+        main=feedback.cli.main,
         success=True,
     )
