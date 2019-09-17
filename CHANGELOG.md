@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.15
+
+### Fix
+
+* do not open generated page automatically (920d8ed49b4a)
+
 ## v0.4.14
 
 ## v0.4.13
