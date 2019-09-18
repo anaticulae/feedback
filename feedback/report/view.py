@@ -56,31 +56,11 @@ def work(
     return result
 
 
-class PageNumbersLookup:
-
-    def __init__(self, pagenumbers):
-        loader = (PageNumbersLookup._prepare_double if isinstance(
-            pagenumbers, tuple) else PageNumbersLookup._prepare_single)
-        self.data = loader(pagenumbers)
-
-    def userpage(self, pdfpage: int):
-        with suppress(KeyError):
-            return self.data[pdfpage]
-        return None
-
-    @staticmethod
-    def _prepare_single(items):
-        return {pdfpage: page for (pdfpage, _, page) in items}
-
-    @staticmethod
-    def _prepare_double(items):
-        (left, right) = items
-        left = PageNumbersLookup._prepare_single(left)
-        right = PageNumbersLookup._prepare_single(right)
-
-        for key, value in right.items():
-            left[key] = value
-        return left
+def render(pages) -> str:
+    loader = PackageLoader('feedback.report')
+    reporttemplate = Template(loader.get_source(None, 'report.html')[0])
+    rendered = reporttemplate.render(pages=pages)
+    return rendered
 
 
 def process_content(
@@ -89,7 +69,7 @@ def process_content(
         headlines,
         listslookup,
         boxed,
-        pagenumbers: PageNumbersLookup,
+        pagenumbers: 'PageNumbersLookup',
 ):
     # boxlookup = BoxLookUp(boxed)
     result = []
@@ -143,6 +123,33 @@ def prepare_input(
     text = {item[0]: item[1] for item in text}
 
     return sections, text, headlines, lists, boxed, pagenumbers
+
+
+class PageNumbersLookup:
+
+    def __init__(self, pagenumbers):
+        loader = (PageNumbersLookup._prepare_double if isinstance(
+            pagenumbers, tuple) else PageNumbersLookup._prepare_single)
+        self.data = loader(pagenumbers)
+
+    def userpage(self, pdfpage: int):
+        with suppress(KeyError):
+            return self.data[pdfpage]
+        return None
+
+    @staticmethod
+    def _prepare_single(items):
+        return {pdfpage: page for (pdfpage, _, page) in items}
+
+    @staticmethod
+    def _prepare_double(items):
+        (left, right) = items
+        left = PageNumbersLookup._prepare_single(left)
+        right = PageNumbersLookup._prepare_single(right)
+
+        for key, value in right.items():
+            left[key] = value
+        return left
 
 
 @dataclass
@@ -242,13 +249,6 @@ def preprare_boxcontent(item):
 
 def prepare_listcontent(item):
     pass
-
-
-def render(pages) -> str:
-    loader = PackageLoader('feedback.report')
-    reporttemplate = Template(loader.get_source(None, 'report.html')[0])
-    rendered = reporttemplate.render(pages=pages)
-    return rendered
 
 
 def parseindex(item, checkedchar):
