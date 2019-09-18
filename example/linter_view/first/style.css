@@ -1,0 +1,135 @@
+html,
+body {
+    padding: 0%;
+    margin: 0%;
+    height: 90%;
+    max-width:1500px;
+}
+
+#content {
+    width: 50%;
+    min-height: 500px;
+    border: black solid 1px;
+    display: table
+}
+
+#error {
+    min-height: 30%;
+    max-height: 50%;
+    width: 48%;
+    border: black solid 1px;
+    display: table-row-group;
+}
+
+#selector {
+    min-height: 20%;
+    max-height: 50%;
+    width: 48%;
+    border: black solid 1px;
+    float: right
+}
+
+#linter_numbers {
+    background: beige;
+    border: black solid 1px;
+    display: inline-block;
+    margin: 0px;
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 98%;
+}
+
+.linter_numbers,
+a.linter_numbers,
+ul.linter_numbers,
+li.linter_numbers,
+a:hover.linter_numbers
+{
+    padding: 3px;
+    margin: 0px;
+    text-align: center;
+    display: inline;
+}
+a:hover.linter_numbers
+{
+   background : gray;
+    border: black solid 1px;
+}
+
+ul.linter_list,
+li.linter_list {
+    background: beige;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    /* padding-top: 5px; */
+    padding-bottom: 5px;
+}
+li:hover.linter_list
+{
+   background : gray;
+    border: black solid 1px;
+}
+ul.linter_list{
+    margin-bottom: 10px;
+    /* padding-top: 10px; */
+    padding: 0px;
+    border: black solid 1px;
+}
+
+a.linter_list{
+    padding-left: 5px;
+}
+
+#linter_message_display{
+    border: black solid 1px;
+    padding-left: 10px;
+}
+
+ul.linter_message,
+li.linter_message{
+    display: block;
+}
+.hidden {
+    display: none;
+}
+
+.highlighted{
+    background: yellowgreen;
+    color: yellowgreen;
+    /* padding-top: 5px; */
+    padding-bottom: 5px;
+    display: block;
+}
+td.linter_message_display{
+    display: block;
+    border:1px solid;
+    /* min-width:400px;
+    min-height:150px; */
+    min-height: 400px;
+}
+
+#linter_message_control{
+    text-align: right;
+    padding-bottom: 10px;
+}
+a.nav {
+    display: inline-block;
+    margin: 0px;
+    padding: 5px 5px 5px 5px;
+    font-size: 150%;
+}
+
+#pageview{
+    width:800px;
+    /* width:30%; */
+    border: 1px solid;
+}
+
+#linter_control{
+    /* width:70%; */
+    min-width:500px;
+    max-width:600px;
+    /* max-width: 600px; */
+    vertical-align: top;
+}
