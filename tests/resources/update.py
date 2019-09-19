@@ -28,6 +28,10 @@ def sync_resources():
 
 def extract_examples():
     # ensure that generation folder exists
+    if os.path.exists(tests.resources.GENERATED):
+        # generate only once, to reduce
+        return
+
     os.makedirs(tests.resources.GENERATED, exist_ok=True)
 
     analyze_pdf(tests.resources.RESTRUCTED_PDF)
@@ -61,13 +65,13 @@ def analyze_pdf(path: str):
 def create_todo_rawmaker(inpath, outpath):
     result = [
         (
-            'rawmaker',
+            'rawmaker -j4 --pages=0:10 ',
             inpath,
             outpath,
             detector.feature.titlepage.RAWMAKER_CONFIGURATION,
         ),
         (
-            'rawmaker',
+            'rawmaker -j4',
             inpath,
             outpath,
             ('--border --boxes --font --text --toc '
@@ -94,7 +98,7 @@ def create_todo_sections(path):
 
 def create_todo_groupme(path):
     return create_todo(
-        'groupme',
+        'groupme -j4',
         path,
         '--footer --pagenumbers',
     )
