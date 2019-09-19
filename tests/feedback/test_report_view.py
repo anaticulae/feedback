@@ -8,6 +8,7 @@
 # =============================================================================
 
 import os
+import sys
 
 import pytest
 import utila
@@ -19,6 +20,8 @@ from feedback.report.view import work
 
 
 def test_report_view_work(testdir):
+    """Generate report view and open in current webbrowser if test is
+    specified as single test via pytest -k .."""
     root = str(testdir)
 
     sections = tests.resources.RESTRUCTED_SECTIONS
@@ -42,11 +45,10 @@ def test_report_view_work(testdir):
     outpath = os.path.join(root, 'result.html')
     utila.file_create(outpath, result)
 
-    # TODO: Detect if developer uses bttv or use pytest-env vars, to
-    # avoid commenting in/out.
-    # Hint: Enable for fast feedback loop
-    # import webbrowser
-    # webbrowser.open(outpath)
+    if all([item in sys.argv for item in ['-k', 'test_report_view_work']]):
+        # Hint: Enable for fast feedback loop
+        import webbrowser
+        webbrowser.open(outpath)
 
 
 @pytest.fixture(
