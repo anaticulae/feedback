@@ -13,3 +13,4 @@ __version__ = '0.4.15'
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 PACKAGE = 'feedback'
+PROCESS = 'feedback'
