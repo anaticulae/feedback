@@ -35,7 +35,8 @@ def extract_examples():
     os.makedirs(tests.resources.GENERATED, exist_ok=True)
 
     analyze_pdf(tests.resources.RESTRUCTED_PDF)
-    analyze_pdf(tests.resources.PORTING_PYTHON3)
+    analyze_pdf(tests.resources.PORTING_PYTHON3_PDF)
+    analyze_pdf(tests.resources.MASTER_72_PAGE_NOIMAGES_PDF)
 
 
 def analyze_pdf(path: str):
