@@ -16,25 +16,18 @@ from iamraw import BoundingBox
 import tests
 from feedback.report.view import find_boxed
 from feedback.report.view import work
-from tests.resources import RESTRUCTED_BOXEDCONTENT
-from tests.resources import RESTRUCTED_HEADLINES
-from tests.resources import RESTRUCTED_LISTS
-from tests.resources import RESTRUCTED_PAGENUMBERS
-from tests.resources import RESTRUCTED_RESULT
-from tests.resources import RESTRUCTED_SECTIONS
-from tests.resources import RESTRUCTED_USERLINTING
 
 
 def test_report_view_work(testdir):
     root = str(testdir)
 
-    sections = RESTRUCTED_SECTIONS
-    text = RESTRUCTED_RESULT
-    headlines = RESTRUCTED_HEADLINES
-    boxed = RESTRUCTED_BOXEDCONTENT
-    lists = RESTRUCTED_LISTS
-    pagenumbers = RESTRUCTED_PAGENUMBERS
-    problems = RESTRUCTED_USERLINTING
+    sections = tests.resources.RESTRUCTED_SECTIONS
+    text = tests.resources.RESTRUCTED_RESULT
+    headlines = tests.resources.RESTRUCTED_HEADLINES
+    boxed = tests.resources.RESTRUCTED_BOXEDCONTENT
+    lists = tests.resources.RESTRUCTED_LISTS
+    pagenumbers = tests.resources.RESTRUCTED_PAGENUMBERS
+    problems = tests.resources.RESTRUCTED_USERLINTING
 
     result = work(
         sections,
