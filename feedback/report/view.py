@@ -6,11 +6,12 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-
+import typing
 from contextlib import suppress
 from dataclasses import dataclass
 from typing import List
 
+import protocol
 from jinja2 import PackageLoader
 from jinja2 import Template
 from serializeraw import load_boxedcontent
@@ -25,6 +26,8 @@ from utila import checkdatatype
 from utila import flatten
 from words.feature.words import ListLookUp
 
+import feedback.linter.linter
+
 
 @checkdatatype
 def work(
@@ -34,14 +37,16 @@ def work(
         lists: str,
         boxed: str,
         pagenumbers: str,
+        userlinting: str,
 ) -> str:
-    sections, text, headlines, lists, boxed, pagenumbers = prepare_input(
+    sections, text, headlines, lists, boxed, pagenumbers, problems = prepare_input(
         sections,
         text,
         headlines,
         lists,
         boxed,
         pagenumbers,
+        userlinting,
     )
 
     result = process_content(
@@ -51,16 +56,31 @@ def work(
         lists,
         boxed,
         pagenumbers,
+        problems,
     )
 
     return result
 
 
-def render(pages) -> str:
+def render(pages, problems) -> str:
+    # TODO: improve with more jinja appraoch
     loader = PackageLoader('feedback.report')
     reporttemplate = Template(loader.get_source(None, 'report.html')[0])
-    rendered = reporttemplate.render(pages=pages)
-    return rendered
+    rendered = reporttemplate.render(pages=pages, problems=problems)
+
+    main_js = loader.get_source(None, 'main.js')[0]
+    style_css = loader.get_source(None, 'style.css')[0]
+
+    result = f"""
+    <style>
+    {style_css}
+    </style>
+    <script>
+    {main_js}
+    </script>
+    {rendered}
+    """
+    return result
 
 
 def process_content(
@@ -70,6 +90,7 @@ def process_content(
         listslookup,
         boxed,
         pagenumbers: 'PageNumbersLookup',
+        problems: dict,
 ):
     # boxlookup = BoxLookUp(boxed)
     result = []
@@ -84,9 +105,9 @@ def process_content(
                 ]
                 content = flatten(content)
             footer = None
-            page = pagenumbers.userpage(page.start)
-            if page is not None:
-                footer = FooterHeader(userpage=page, hrline=True)
+            pdfpage = pagenumbers.userpage(page.start)
+            if pdfpage is not None:
+                footer = FooterHeader(userpage=pdfpage, hrline=True)
             # prepare
             content = SinglePage(
                 width=800,
@@ -96,7 +117,10 @@ def process_content(
             )
 
             result.append(content)
-    rendered = render(result)
+    # update page number in pdf
+    for index, item in enumerate(result):
+        item.page = index
+    rendered = render(result, problems)
     return rendered
 
 
@@ -108,6 +132,7 @@ def prepare_input(
         lists: str,
         boxed: str,
         pagenumbers: str,
+        userlinting: str,
 ):
     sections = load_sections(sections)
     headlines = load_headlines(headlines)
@@ -120,9 +145,12 @@ def prepare_input(
     pagenumbers = load_pagenumbers(pagenumbers)
     pagenumbers = PageNumbersLookup(pagenumbers)
 
+    result: typing.List[protocol.Finding] = protocol.load_result(userlinting)
+    problems = feedback.linter.linter.group_finding_bypage(result)
+
     text = {item[0]: item[1] for item in text}
 
-    return sections, text, headlines, lists, boxed, pagenumbers
+    return sections, text, headlines, lists, boxed, pagenumbers, problems
 
 
 class PageNumbersLookup:
@@ -165,6 +193,7 @@ class SinglePage:
     height: int = -1
     content: str = ''
     footer: FooterHeader = None
+    page: int = -1
 
 
 # TODO: Define `hey`/ general public API?

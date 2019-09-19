@@ -86,6 +86,7 @@ if __name__ == "__main__":
             'feedback.features.border',
             'feedback.features.fonts',
             'feedback.features.statistica',
+            'feedback.linter',
             'feedback.report',
         ],
         entry_points={

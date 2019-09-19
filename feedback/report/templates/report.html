@@ -1,44 +1,109 @@
-{% for page in pages %}
-<style>
-    td {
-        padding: 20px;
-    }
+<!DOCTYPE html>
+<html>
 
-</style>
-<table border="1" width="{{page.width}}" height="{{page.height}}" padding="20"
-    margin="20">
-    {% if page.header %}
-    <thead>
-        <tr>
-            <td height="{{page.header.height}}">HEADER</td>
-        </tr>
-    </thead>
-    {% endif %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-    <tbody>
+<body>
+    {% for page in pages %}
+    <style>
+        /* td {
+            padding: 20px;
+        } */
+
+    </style>
+    <table>
         <tr>
-            <td style="vertical-align: text-top">
-                {% for item in page.content %}
-                {{item}}
-                {% endfor %}
+            <td id="pageview">
+                <table border="0"
+                    style="max-width:{{page.width}}px; min-width:500px; min-height:700px; max-height:{{page.height}}px;"
+                    padding="20" margin="20">
+                    {% if page.header %}
+                    <thead>
+                        <tr>
+                            <td height="{{page.header.height}}">HEADER</td>
+                        </tr>
+                    </thead>
+                    {% endif %}
+
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align: text-top">
+                                {% for item in page.content %}
+                                {{item}}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    {% if page.footer %}
+                    <tfoot>
+                        <tr>
+                            <td height="{{page.footer.height}}">
+                                {% if page.footer.hrline %}
+                                <hr />
+                                {% endif %}
+                                {{page.footer.userpage}}
+                            </td>
+                        </tr>
+                    </tfoot>
+                    {% endif %}
+                </table>
             </td>
-        </tr>
-    </tbody>
-
-    {% if page.footer %}
-    <tfoot>
-        <tr>
-            <td height="{{page.footer.height}}">
-                {% if page.footer.hrline %}
-                <hr />
-                {% endif %}
-                {{page.footer.userpage}}
+            {% if page.page in problems %}
+            <td id="linter_control">
+                <table id="linter_control">
+                    <tr>
+                        <td>
+                            <ul class="linter_list">
+                                {% for problem in problems[page.page] %}
+                                <li class='linter_list' onclick="show({{loop.index0}})"
+                                    id="selected_{{loop.index0}}">
+                                    <a class='linter_list'
+                                        href='##{{loop.index0}}'>{{problem.solution.title}}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="linter_message_control">
+                            <!-- <a href="#">Disagree</a>
+                            <a href="#">Hide</a>
+                            <a href="#">Comment</a> -->
+                            <a href="#previous"
+                                onclick="previous(0,{{ (problems[page.page]|count) }})"><b><u>Previous</u></b></a>
+                            <a href="#next"
+                                onclick="next(0,{{ (problems[page.page]|count) }})"><b><u>Next</u></b></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="linter_message_display">
+                            {% for problem in problems[page.page] %}
+                            <span id="{{loop.index0}}" class="hidden">
+                                <h3>{{problem.solution.title}}</h3>
+                                <pre>{{problem.solution.description}}</pre>
+                            </span>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </table>
             </td>
+            {% endif %}
         </tr>
-    </tfoot>
-    {% endif %}
-</table>
-<br />
-<br />
-<br />
-{% endfor %}
+    </table>
+    <br />
+    <br />
+    <br />
+    {% endfor %}
+</body>
+
+<script>
+    loaded()
+</script>
+
+</html>

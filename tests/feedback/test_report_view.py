@@ -20,6 +20,7 @@ from tests.resources import RESTRUCTED_LISTS
 from tests.resources import RESTRUCTED_PAGENUMBERS
 from tests.resources import RESTRUCTED_RESULT
 from tests.resources import RESTRUCTED_SECTIONS
+from tests.resources import RESTRUCTED_USERLINTING
 
 
 def test_report_view_work(testdir):
@@ -31,6 +32,7 @@ def test_report_view_work(testdir):
     boxed = RESTRUCTED_BOXEDCONTENT
     lists = RESTRUCTED_LISTS
     pagenumbers = RESTRUCTED_PAGENUMBERS
+    problems = RESTRUCTED_USERLINTING
 
     result = work(
         sections,
@@ -39,6 +41,7 @@ def test_report_view_work(testdir):
         lists,
         boxed,
         pagenumbers,
+        problems,
     )
 
     outpath = os.path.join(root, 'result.html')
@@ -49,6 +52,7 @@ def test_report_view_work(testdir):
     # Hint: Enable for fast feedback loop
     # import webbrowser
     # webbrowser.open(outpath)
+
 
 def test_find_bounding_box():
     data = [(9, [
