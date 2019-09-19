@@ -7,10 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os.path import join
+import os
 
+import utila
 from iamraw import BoundingBox
-from utila import file_create
 
 from feedback.report.view import find_boxed
 from feedback.report.view import work
@@ -23,6 +23,8 @@ from tests.resources import RESTRUCTED_SECTIONS
 
 
 def test_report_view_work(testdir):
+    root = str(testdir)
+
     sections = RESTRUCTED_SECTIONS
     text = RESTRUCTED_RESULT
     headlines = RESTRUCTED_HEADLINES
@@ -39,9 +41,14 @@ def test_report_view_work(testdir):
         pagenumbers,
     )
 
-    path = join(str(testdir), 'result.html')
-    file_create(path, result)
+    outpath = os.path.join(root, 'result.html')
+    utila.file_create(outpath, result)
 
+    # TODO: Detect if developer uses bttv or use pytest-env vars, to
+    # avoid commenting in/out.
+    # Hint: Enable for fast feedback loop
+    # import webbrowser
+    # webbrowser.open(outpath)
 
 def test_find_bounding_box():
     data = [(9, [
