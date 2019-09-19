@@ -7,3 +7,17 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """The feedback generates the central document view"""
+
+import utila
+
+import feedback
+
+
+def run(cmd: str, monkeypatch):
+    utila.run_command(
+        cmd,
+        process=feedback.PACKAGE,
+        main=feedback.cli.main,
+        success=True,
+        monkeypatch=monkeypatch,
+    )

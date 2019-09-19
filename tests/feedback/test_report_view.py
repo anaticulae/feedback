@@ -9,9 +9,11 @@
 
 import os
 
+import pytest
 import utila
 from iamraw import BoundingBox
 
+import tests
 from feedback.report.view import find_boxed
 from feedback.report.view import work
 from tests.resources import RESTRUCTED_BOXEDCONTENT
@@ -52,6 +54,28 @@ def test_report_view_work(testdir):
     # Hint: Enable for fast feedback loop
     # import webbrowser
     # webbrowser.open(outpath)
+
+
+@pytest.fixture(
+    params=[
+        tests.resources.GENERATED_RESTRUCTED,
+        tests.resources.GENERATED_PORTING_PYTHON3,
+        tests.resources.GENERATED_MASTER_PAGE72,
+    ],
+    ids=[
+        utila.make_single(tests.resources.GENERATED_RESTRUCTED),
+        utila.make_single(tests.resources.GENERATED_PORTING_PYTHON3),
+        utila.make_single(tests.resources.GENERATED_MASTER_PAGE72),
+    ])
+def feedback_result(request):
+    return request.param
+
+
+def test_report_view_main(feedback_result, testdir, monkeypatch): # pylint:disable=W0621
+    inpath = feedback_result
+    root = str(testdir)
+
+    tests.feedback.run(f'-i {inpath} -o {root}', monkeypatch=monkeypatch)
 
 
 def test_find_bounding_box():

@@ -12,6 +12,7 @@ import os
 import decider
 import protocol
 import pytest
+import utila
 
 import feedback.linter.linter
 import tests.resources
@@ -32,10 +33,3 @@ def findings():
 def test_report_linter_group_bypage(findings):  # pylint:disable=W0621
     grouped = feedback.linter.linter.group_finding_bypage(findings)
     assert grouped
-
-
-# @pytest.fixture(
-#     params=[tests.resources.RESTRUCTED, tests.resources.PORTING_PYTHON3_PDF],
-#     ids=["spam", "ham"])
-# def a(request):
-#     return request.param
