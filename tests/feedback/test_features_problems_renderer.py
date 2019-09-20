@@ -14,9 +14,8 @@ import pytest
 import utila
 from iamraw import BoundingBox
 
+import feedback.features.problems.renderer
 import tests
-from feedback.report.view import find_boxed
-from feedback.report.view import work
 
 
 def test_report_view_work(testdir):
@@ -32,7 +31,7 @@ def test_report_view_work(testdir):
     pagenumbers = tests.resources.RESTRUCTED_PAGENUMBERS
     problems = tests.resources.RESTRUCTED_USERLINTING
 
-    result = work(
+    result = feedback.features.problems.renderer.work(
         sections,
         text,
         headlines,
@@ -96,7 +95,7 @@ def test_find_bounding_box():
             ],
         ]),
     ])]
-
+    find_boxed = feedback.features.problems.renderer.find_boxed
     assert find_boxed(data, 9, 1, 0) == 'This is normal text.'
     assert find_boxed(data, 9, 1, 1) == 'This is blockquoted text.'
     assert find_boxed(data, 9, 1, 2) == 'This is another paragraph of'

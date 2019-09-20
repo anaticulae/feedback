@@ -12,9 +12,8 @@ import os
 import decider
 import protocol
 import pytest
-import utila
 
-import feedback.linter.linter
+import feedback.problems.linter
 import tests.resources
 
 
@@ -31,5 +30,5 @@ def findings():
 
 
 def test_report_linter_group_bypage(findings):  # pylint:disable=W0621
-    grouped = feedback.linter.linter.group_finding_bypage(findings)
+    grouped = feedback.problems.linter.group_finding_bypage(findings)
     assert grouped

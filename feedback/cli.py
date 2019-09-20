@@ -15,7 +15,7 @@ from utila import featurepack
 import feedback
 from feedback.command.utils import outhtml
 
-FEATURE_NAME = 'view'
+FEATURE_NAME = 'problems'
 DESCRIPTION = 'generate central result view'
 
 WORKPLAN = [
@@ -39,7 +39,7 @@ def main():
     featurepack(
         workplan=WORKPLAN,
         root=feedback.ROOT,
-        featurepackage='feedback.report',
+        featurepackage='feedback.features.problems',
         name=feedback.PROCESS,
         description=DESCRIPTION,
         version=feedback.__version__,

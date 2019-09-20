@@ -51,8 +51,8 @@ def datafiles():
         ('feedback/features/border/templates', [
             'feedback/features/border/templates/hits.html',
         ]),
-        ('feedback/report/templates', [
-            'feedback/report/templates/report.html',
+        ('feedback/features/problems/templates', [
+            'feedback/features/problems/templates/index.html',
         ]),
     ]
 
@@ -86,8 +86,8 @@ if __name__ == "__main__":
             'feedback.features.border',
             'feedback.features.fonts',
             'feedback.features.statistica',
-            'feedback.linter',
-            'feedback.report',
+            'feedback.features.problems',
+            'feedback.problems',
         ],
         entry_points={
             'console_scripts': [

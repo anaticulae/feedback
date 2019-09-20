@@ -9,7 +9,6 @@
 import typing
 from contextlib import suppress
 from dataclasses import dataclass
-from typing import List
 
 import protocol
 from jinja2 import PackageLoader
@@ -21,12 +20,11 @@ from serializeraw import load_pagenumbers
 from serializeraw import load_sections
 from serializeraw import load_text
 from utila import NEWLINE
-from utila import Flag
 from utila import checkdatatype
 from utila import flatten
 from words.feature.words import ListLookUp
 
-import feedback.linter.linter
+import feedback.problems
 
 
 @checkdatatype
@@ -64,8 +62,8 @@ def work(
 
 def render(pages, problems) -> str:
     # TODO: improve with more jinja appraoch
-    loader = PackageLoader('feedback.report')
-    reporttemplate = Template(loader.get_source(None, 'report.html')[0])
+    loader = PackageLoader('feedback.features.problems')
+    reporttemplate = Template(loader.get_source(None, 'index.html')[0])
     rendered = reporttemplate.render(pages=pages, problems=problems)
 
     main_js = loader.get_source(None, 'main.js')[0]
@@ -146,7 +144,7 @@ def prepare_input(
     pagenumbers = PageNumbersLookup(pagenumbers)
 
     result: typing.List[protocol.Finding] = protocol.load_result(userlinting)
-    problems = feedback.linter.linter.group_finding_bypage(result)
+    problems = feedback.problems.linter.group_finding_bypage(result)
 
     text = {item[0]: item[1] for item in text}
 
@@ -203,7 +201,7 @@ def prepare_headlinecontent(
         paragraph,
         listlookup: ListLookUp,
         boxed,
-) -> List[str]:
+) -> typing.List[str]:
     # TODO: Rework when jinja documentation is available
     headline, content = paragraph
     level = headline.level if headline.level is not None else 2
@@ -335,12 +333,5 @@ def find_boxed(boxedlookup, page, item, boxindex):
     return None
 
 
-def name():
-    return 'view'
-
-
-def commandline():
-    return Flag(
-        longcut=name(),
-        message='export central user analysis landing page',
-    )
+def name() -> str:
+    return feedback.cli.FEATURE_NAME
