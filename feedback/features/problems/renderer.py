@@ -38,29 +38,29 @@ def work(
         userlinting: str,
 ) -> str:
     sections, text, headlines, lists, boxed, pagenumbers, problems = prepare_input(
-        sections,
-        text,
-        headlines,
-        lists,
-        boxed,
-        pagenumbers,
-        userlinting,
+        boxed=boxed,
+        headlines=headlines,
+        lists=lists,
+        pagenumbers=pagenumbers,
+        sections=sections,
+        text=text,
+        userlinting=userlinting,
     )
 
     result = process_content(
-        sections,
-        text,
-        headlines,
-        lists,
-        boxed,
-        pagenumbers,
-        problems,
+        boxed=boxed,
+        headlines=headlines,
+        listslookup=lists,
+        pagenumbers=pagenumbers,
+        problems=problems,
+        sections=sections,
+        text=text,
     )
 
     return result
 
 
-def render(pages, problems) -> str:
+def render_html(pages, problems) -> str:
     # TODO: improve with more jinja appraoch
     loader = PackageLoader('feedback.features.problems')
     reporttemplate = Template(loader.get_source(None, 'index.html')[0])
@@ -82,54 +82,73 @@ def render(pages, problems) -> str:
 
 
 def process_content(
-        sections,
-        text,
+        boxed,
         headlines,
         listslookup,
-        boxed,
         pagenumbers: 'PageNumbersLookup',
         problems: dict,
+        sections,
+        text,
 ):
     # boxlookup = BoxLookUp(boxed)
     result = []
     for section in sections:
         for page in section:
-            content = []
-            with suppress(KeyError):
-                content = text[page.start]
-                content = [
-                    prepare_headlinecontent(item, listslookup, boxed)
-                    for item in content
-                ]
-                content = flatten(content)
-            footer = None
-            pdfpage = pagenumbers.userpage(page.start)
-            if pdfpage is not None:
-                footer = FooterHeader(userpage=pdfpage, hrline=True)
-            # prepare
-            content = SinglePage(
-                width=800,
-                height=700,
-                content=content,
-                footer=footer,
-            )
-
-            result.append(content)
+            rendered = build_page(page, text, listslookup, boxed, pagenumbers)
+            result.append(rendered)
     # update page number in pdf
     for index, item in enumerate(result):
         item.page = index
-    rendered = render(result, problems)
+    rendered = render_html(result, problems)
     return rendered
+
+
+def build_page(
+        page,
+        text,
+        listslookup,
+        boxed,
+        pagenumbers,
+) -> 'SinglePage':
+    """Create data structure which is passed to Jinja to render the html
+    output.
+
+    Supported elements:
+        headlines
+        text
+        boxes
+        list
+    """
+    content = []
+    with suppress(KeyError):
+        content = text[page.start]
+        content = [
+            prepare_headlinecontent(item, listslookup, boxed)
+            for item in content
+        ]
+        content = flatten(content)
+    footer = None
+    pdfpage = pagenumbers.userpage(page.start)
+    if pdfpage is not None:
+        footer = FooterHeader(userpage=pdfpage, hrline=True)
+    # prepare
+    content = SinglePage(
+        width=800,
+        height=700,
+        content=content,
+        footer=footer,
+    )
+    return content
 
 
 @checkdatatype
 def prepare_input(
-        sections: str,
-        text: str,
+        boxed: str,
         headlines: str,
         lists: str,
-        boxed: str,
         pagenumbers: str,
+        sections: str,
+        text: str,
         userlinting: str,
 ):
     sections = load_sections(sections)
@@ -212,7 +231,6 @@ def prepare_headlinecontent(
     result = []
     list_open = NO_LIST
     box_open = NO_LIST
-    # assert 0
     for item in content:
         listcontent = listindex(item) is not None
         if not listcontent and list_open > NO_LIST:
@@ -313,11 +331,6 @@ def find_list(listlookup, page, item, index):
 
 def find_boxed(boxedlookup, page, item, boxindex):
     # TODO: Bad solution!
-    # for item in boxedlookup:
-    #     print(item)
-    #     print()
-    #     print()
-    # assert 0
     for (current_page, content) in boxedlookup:
         if current_page != page:
             continue
