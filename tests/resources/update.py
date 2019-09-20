@@ -59,7 +59,8 @@ def analyze_pdf(path: str):
         cmd = f'{executable} -i {inpath} -o {outpath} {configuration}'
         utila.debug(f'run {cmd}')
         completed = utila.run(cmd, cwd=tests.resources.RESOURCES)
-        assert completed.returncode == utila.SUCCESS, str(completed)
+        assert completed.returncode == utila.SUCCESS, feedback.utils.format_completed(
+            completed)
         utila.debug('completed')
 
 
