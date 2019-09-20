@@ -21,7 +21,7 @@ from tests.statistica import STAT_SAMPLE_DATA
 
 
 @utila.skip_nonvirtual
-def test_run_statistica():
+def test_install_and_run_statistica():
     """Install and run --help to ensure basic function"""
     utila.install_and_run(
         ROOT,

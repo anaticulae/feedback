@@ -22,7 +22,7 @@ from tests.fonts import FONTS_UGLY_DATA
 
 @utila.skip_longrun
 @utila.skip_nonvirtual
-def test_run_decider_fonts_ugly():
+def test_install_and_run_decider_fonts_ugly():
     """Install and run --help to ensure basic function"""
     install_and_run(
         ROOT,
