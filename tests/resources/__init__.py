@@ -17,7 +17,7 @@ GENERATED = os.path.join(ROOT, 'tests/generated')
 
 # TODO: MOVE restruct to power library
 
-RESTRUCTED = join(GENERATED, 'restruct_restructuredtext')
+RESTRUCTED = join(GENERATED, 'restruct_restructuredtext_pdf')
 RESTRUCTED_HEADLINES = join(RESTRUCTED, 'words__headlines_headlines.yaml')
 RESTRUCTED_TEXT = join(RESTRUCTED, 'words__text_text.yaml')
 RESTRUCTED_LISTS = join(RESTRUCTED, 'words__list_list.yaml')
@@ -31,8 +31,8 @@ RESTRUCTED_PDF = join(RESOURCES, 'restruct/restructuredtext.pdf')
 PORTING_PYTHON3_PDF = join(RESOURCES, 'docu/porting_extension_modules_python3.pdf') # yapf:disable
 MASTER_72_PAGE_NOIMAGES_PDF = join(RESOURCES, 'master/page_72_noimages_toc.pdf')
 
-GENERATED_MASTER_PAGE72 = os.path.join(GENERATED, 'master_page_72_noimages_toc')
-GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules_python3') # yapf:disable
+GENERATED_MASTER_PAGE72 = os.path.join(GENERATED, 'master_page_72_noimages_toc_pdf') # yapf:disable
+GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules_python3_pdf') # yapf:disable
 GENERATED_RESTRUCTED = RESTRUCTED
 
 # test after running generation step in update.py

@@ -38,4 +38,4 @@ if not 'PYTEST_XDIST_WORKER' in os.environ:
 for item in REQUIRED_RESOURCES:
     advice = 'run `baw --test=long` to generate test data'
     msg = f'required test path does not exists: {item}, {advice}'
-    assert os.path.exists(item), msg
+    assert os.path.exists(item), str(msg)

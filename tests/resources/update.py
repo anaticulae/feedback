@@ -40,9 +40,9 @@ def extract_examples():
 
 
 def analyze_pdf(path: str):
-    relative_path = feedback.utils.relative_path(path)
-    root, _ = relative_path.split('.pdf')
-    root = str(root).replace('/', '_').replace('\\', '_')
+    relative_path = utila.make_relative(path, tests.resources.RESOURCES)
+    root = utila.make_single(relative_path)
+    root = root.replace('.', '_')  # TODO: REMOVE AFTER UPGRADING UTILA
 
     generator = os.path.join(tests.resources.GENERATED, root)
     os.makedirs(generator, exist_ok=True)
