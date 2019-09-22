@@ -22,8 +22,8 @@ RESTRUCTED_HEADLINES = join(RESTRUCTED, 'words__headlines_headlines.yaml')
 RESTRUCTED_TEXT = join(RESTRUCTED, 'words__text_text.yaml')
 RESTRUCTED_LISTS = join(RESTRUCTED, 'words__list_list.yaml')
 RESTRUCTED_BOXEDCONTENT = join(RESTRUCTED, 'words__boxed_boxed.yaml')
-RESTRUCTED_RESULT = join(RESTRUCTED, 'words__words_result.yaml')
-RESTRUCTED_SECTIONS = join(RESTRUCTED, 'sections__sections_result.yaml')
+RESTRUCTED_RESULT = join(RESTRUCTED, 'words__word_result.yaml')
+RESTRUCTED_SECTIONS = join(RESTRUCTED, 'sections__section_result.yaml')
 RESTRUCTED_PAGENUMBERS = join(RESTRUCTED, 'groupme__pagenumbers_pagenumbers.yaml') # yapf:disable
 RESTRUCTED_USERLINTING = join(RESTRUCTED, 'decider__titlepage_user.yaml')
 

@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import decider.cli
+import decider
 from utila import ResultFile
 from utila import create_step as step
 from utila import featurepack
@@ -22,13 +22,13 @@ WORKPLAN = [
     step(
         FEATURE_NAME,
         [
-            ResultFile(producer='sections', name='sections_result'),
-            ResultFile(producer='words', name='words_result'),
+            ResultFile(producer='sections', name='section_result'),
+            ResultFile(producer='words', name='word_result'),
             ResultFile(producer='words', name='headlines_headlines'),
             ResultFile(producer='words', name='list_list'),
             ResultFile(producer='words', name='boxed_boxed'),
             ResultFile(producer='groupme', name='pagenumbers_pagenumbers'),
-            ResultFile(producer=decider.cli.PROCESS, name='titlepage_user'),
+            ResultFile(producer=decider.PROCESS, name='titlepage_user'),
         ],
         (outhtml('result'),),
     )

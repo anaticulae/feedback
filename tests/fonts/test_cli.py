@@ -9,26 +9,11 @@
 
 from os import listdir
 
-import utila
-from utila import install_and_run
 from utila import run_command
 
-from feedback import PACKAGE
-from feedback import ROOT
 from feedback.command.decider.fonts import PROCESS_NAME
 from feedback.command.decider.fonts import main
 from tests.fonts import FONTS_UGLY_DATA
-
-
-@utila.skip_longrun
-@utila.skip_nonvirtual
-def test_install_and_run_decider_fonts_ugly():
-    """Install and run --help to ensure basic function"""
-    install_and_run(
-        ROOT,
-        package=PACKAGE,
-        executable=PROCESS_NAME,
-    )
 
 
 # pylint:disable=unused-argument

@@ -15,17 +15,6 @@ import feedback.command.decider.border
 import tests.resources
 
 
-@utila.skip_longrun
-@utila.skip_nonvirtual
-def test_install_and_run_feedback():
-    """Install and run --help to ensure basic function"""
-    utila.install_and_run(
-        feedback.ROOT,
-        package=feedback.PACKAGE,
-        executable=feedback.PACKAGE,
-    )
-
-
 # pylint:disable=unused-argument
 def test_run_feedback(testdir, monkeypatch):
     cmd = ['-i', tests.resources.RESTRUCTED, '-o', '.']

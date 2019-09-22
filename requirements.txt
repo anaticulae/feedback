@@ -3,13 +3,13 @@ Jinja2==2.10
 PyYAML==5.1
 
 # Internal packages
-iamraw==1.8.7
-protocol==0.4.0
-utila==1.6.0
+iamraw==1.12.7
+protocol==0.4.8
+utila==1.10.0
 
 # required feedback/linter result
-decider==0.3.1
+decider==0.4.0
 
 
 # ensure version of test data generator
-hey==1.6.2
+hey==1.14.4

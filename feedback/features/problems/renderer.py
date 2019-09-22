@@ -22,7 +22,7 @@ from serializeraw import load_text
 from utila import NEWLINE
 from utila import checkdatatype
 from utila import flatten
-from words.feature.words import ListLookUp
+from words.feature.word import ListLookUp
 
 import feedback.problems
 

@@ -49,8 +49,8 @@ def analyze_pdf(path: str):
 
     todo = []
     todo.extend(create_todo_rawmaker(path, generator))
-    todo.extend(create_todo_sections(generator))
     todo.extend(create_todo_groupme(generator))
+    todo.extend(create_todo_sections(generator))
     todo.extend(create_todo_words(generator))
     todo.extend(create_todo('detector', generator, '--pages=0 --all'))
     todo.extend(create_todo('decider', generator))
@@ -94,7 +94,7 @@ def create_todo_sections(path):
     return create_todo(
         'sections',
         path,
-        '--chapter --index --sections --title --toc --whitepage',
+        '--all -j4',
     )
 
 
@@ -102,13 +102,13 @@ def create_todo_groupme(path):
     return create_todo(
         'groupme -j4',
         path,
-        '--footer --pagenumbers',
+        '--all',
     )
 
 
 def create_todo_words(path):
     return create_todo(
-        'words',
+        'words -j4',
         path,
-        '--headlines --boxed --list --text --words',
+        '--all',
     )
