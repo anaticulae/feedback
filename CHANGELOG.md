@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.5.0
+
+### Feature
+
+* add linter results to pages result view (30dc85d31266)
+* add linter to prepare findings for preview (d4f6a2f9e4ea)
+* add draft to represent linter view (51ad3cc229b6)
+
 ## v0.4.15
 
 ### Fix
