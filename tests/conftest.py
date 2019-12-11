@@ -24,7 +24,7 @@ if not 'PYTEST_XDIST_WORKER' in os.environ:
     # master process only
     # ensure to avoid race condition if more than one thread tries to
     # install or use rawmaker
-    if utila.test.LONGRUN:
+    if 'GENERATE' in os.environ or utila.test.LONGRUN:
         # TODO: Make steps parallel
         utila.log('install requirements')
         install_requirements()
