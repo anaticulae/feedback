@@ -1,0 +1,35 @@
+.. _0_6_0:
+
+RP 0.6.0
+=========
+
+docs
+----
+
+* [ ] use doc structure pattern
+
+test
+----
+
+* [ ] automate test data creation process
+
+linter view
+-----------
+
+* [ ] add toc view
+
+* [ ] add hint with too few children
+
+* [ ] add hint with too deep level
+
+code quality
+------------
+
+before
+~~~~~~
+
+* Your code has been rated at 9.38/10
+* Total coverage: 95.50%
+
+after
+~~~~~
