@@ -9,6 +9,7 @@
 
 import os
 
+import decider.example
 import detector.feature.titlepage
 import utila
 
@@ -34,81 +35,9 @@ def extract_examples():
 
     os.makedirs(tests.resources.GENERATED, exist_ok=True)
 
-    analyze_pdf(tests.resources.RESTRUCTED_PDF)
-    analyze_pdf(tests.resources.PORTING_PYTHON3_PDF)
-    analyze_pdf(tests.resources.MASTER_72_PAGE_NOIMAGES_PDF)
-
-
-def analyze_pdf(path: str):
-    relative_path = utila.make_relative(path, tests.resources.RESOURCES)
-    root = utila.make_single(relative_path)
-    root = root.replace('.', '_')  # TODO: REMOVE AFTER UPGRADING UTILA
-
-    generator = os.path.join(tests.resources.GENERATED, root)
-    os.makedirs(generator, exist_ok=True)
-
-    todo = []
-    todo.extend(create_todo_rawmaker(path, generator))
-    todo.extend(create_todo_groupme(generator))
-    todo.extend(create_todo_sections(generator))
-    todo.extend(create_todo_words(generator))
-    todo.extend(create_todo('detector', generator, '--pages=0 --all'))
-    todo.extend(create_todo('decider', generator))
-
-    for executable, inpath, outpath, configuration in todo:
-        cmd = f'{executable} -i {inpath} -o {outpath} {configuration}'
-        utila.debug(f'run {cmd}')
-        completed = utila.run(cmd, cwd=tests.resources.RESOURCES)
-        assert completed.returncode == utila.SUCCESS, feedback.utils.format_completed(
-            completed)
-        utila.debug('completed')
-
-
-def create_todo_rawmaker(inpath, outpath):
-    result = [
-        (
-            'rawmaker -j4 --pages=0:10 ',
-            inpath,
-            outpath,
-            detector.feature.titlepage.RAWMAKER_CONFIGURATION,
-        ),
-        (
-            'rawmaker -j4',
-            inpath,
-            outpath,
-            ('--border --boxes --font --text --toc '
-             '--char_margin=5.0 --boxes_flow=1.0 --line_margin=0.3'),
-        ),
+    files = [
+        tests.resources.RESTRUCTED_PDF,
+        tests.resources.PORTING_PYTHON3_PDF,
+        tests.resources.MASTER_72_PAGE_NOIMAGES_PDF,
     ]
-    return result
-
-
-def create_todo(process, path, todo='--all'):
-    result = [
-        (process, path, path, todo),
-    ]
-    return result
-
-
-def create_todo_sections(path):
-    return create_todo(
-        'sections',
-        path,
-        '--all -j4',
-    )
-
-
-def create_todo_groupme(path):
-    return create_todo(
-        'groupme -j4',
-        path,
-        '--all',
-    )
-
-
-def create_todo_words(path):
-    return create_todo(
-        'words -j4',
-        path,
-        '--all',
-    )
+    decider.example.extract(files, tests.resources.GENERATED)

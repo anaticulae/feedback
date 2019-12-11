@@ -11,7 +11,7 @@ docs
 test
 ----
 
-* [ ] automate test data creation process
+* [x] improve test data creation process
 
 linter view
 -----------
