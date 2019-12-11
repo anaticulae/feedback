@@ -8,24 +8,23 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os import chdir
-from os.path import abspath
-from os.path import dirname
-from os.path import join
-from re import search
+import os
+import re
 
-from setuptools import setup
+import setuptools
 
-ROOT = abspath(dirname(__file__))
+ROOT = os.path.abspath(os.path.dirname(__file__))
 UTF8 = 'utf8'
 
-with open(join(ROOT, 'README.md'), mode='rt', encoding=UTF8) as fp:
+with open(os.path.join(ROOT, 'README.md'), mode='rt', encoding=UTF8) as fp:
     README = fp.read()
 
-with open(join(ROOT, 'feedback/__init__.py'), mode='rt', encoding=UTF8) as fp:
-    VERSION = search(r'__version__ = \'(.*?)\'', fp.read()).group(1)
+VERSION_PATH = os.path.join(ROOT, 'feedback/__init__.py')
+with open(VERSION_PATH, mode='rt', encoding=UTF8) as fp:
+    VERSION = re.search(r'__version__ = \'(.*?)\'', fp.read()).group(1)
 
-with open(join(ROOT, "requirements.txt"), mode='rt', encoding=UTF8) as fp:
+REQUIREMENTS_PATH = os.path.join(ROOT, 'requirements.txt')
+with open(REQUIREMENTS_PATH, mode='rt', encoding=UTF8) as fp:
     INSTALL_REQUIRES = [
         line for line in fp.readlines() if line and '#' not in line
     ]
@@ -59,8 +58,8 @@ def datafiles():
 
 if __name__ == "__main__":
     # allow setup.py to run from another directory
-    chdir(ROOT)
-    setup(
+    os.chdir(ROOT)
+    setuptools.setup(
         author='Helmut Konrad Fahrendholz',
         author_email='info@checkitweg.de',
         data_files=datafiles(),
@@ -74,7 +73,6 @@ if __name__ == "__main__":
         version=VERSION,
         zip_safe=False,  # create 'zip'-file if True. Don't do it!
         classifiers=[
-            'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
         ],
