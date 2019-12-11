@@ -33,10 +33,8 @@ with open(REQUIREMENTS_PATH, mode='rt', encoding=UTF8) as fp:
 def datafiles():
     return [
         ('.', [
-            'BUGS.md',
             'CHANGELOG.md',
             'README.md',
-            'TODO.md',
             'requirements.txt',
         ]),
         ('feedback/features/statistica/templates', [

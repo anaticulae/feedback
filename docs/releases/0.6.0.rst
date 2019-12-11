@@ -6,7 +6,7 @@ RP 0.6.0
 docs
 ----
 
-* [ ] use doc structure pattern
+* [x] use doc structure pattern
 
 test
 ----
