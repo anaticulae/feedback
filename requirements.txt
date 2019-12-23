@@ -4,12 +4,12 @@ PyYAML==5.1
 
 # Internal packages
 iamraw==1.12.7
-protocol==0.4.8
+protocol==0.5.0
 utila==1.10.0
 
 # required feedback/linter result
-decider==0.4.1
+decider==0.4.2
 
 
 # ensure version of test data generator
-hey==1.14.4
+hey==1.14.5
