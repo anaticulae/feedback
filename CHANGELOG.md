@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.5.1
+
+### Feature
+
+* add new rst doc structure (5db430e14d3d)
+
 ## v0.5.0
 
 ### Feature
