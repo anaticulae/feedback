@@ -220,7 +220,7 @@ def prepare_headlinecontent(
 
     result = []
     list_open = NO_LIST
-    box_open = NO_LIST
+    box_open = NO_BOXED
     for item in content:
         listcontent = listindex(item) is not None
         if not listcontent and list_open > NO_LIST:
@@ -307,8 +307,8 @@ def boxedcontentindex(item):
 NO_LIST = -1
 LIST_START = 0
 
-BOXED_START = 0
 NO_BOXED = -1
+BOXED_START = 0
 
 
 def find_list(listlookup, page, item, index):
