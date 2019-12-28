@@ -9,11 +9,11 @@
 
 from typing import Tuple
 
-from jinja2 import PackageLoader
-from jinja2 import Template
 from serializeraw import load_hits
 from utila import Flag
 from yaml import dump
+
+import feedback.templates
 
 
 def work(hitspath: str) -> Tuple[str, str]:
@@ -49,10 +49,8 @@ def render_error(hits: list):
 
 
 def render(border, hits: list) -> str:
-    loader = PackageLoader('feedback.features.border')
-    hits_template = Template(loader.get_source(None, 'hits.html')[0])
-
-    rendered = hits_template.render(border=border, hits=hits)
+    template = feedback.templates.template('border', 'hits.html')
+    rendered = template.render(border=border, hits=hits)
     return rendered
 
 

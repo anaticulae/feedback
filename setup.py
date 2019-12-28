@@ -37,19 +37,19 @@ def datafiles():
             'README.md',
             'requirements.txt',
         ]),
-        ('feedback/features/statistica/templates', [
-            'feedback/features/statistica/templates/chapter.html',
-            'feedback/features/statistica/templates/words.html',
+        ('feedback/templates/statistica', [
+            'feedback/templates/statistica/chapter.html',
+            'feedback/templates/statistica/words.html',
         ]),
-        ('feedback/features/fonts/templates', [
-            'feedback/features/fonts/templates/fonts_used.html',
-            'feedback/features/fonts/templates/fonts_ugly_badfont.html',
+        ('feedback/templates/fonts', [
+            'feedback/templates/fonts/fonts_used.html',
+            'feedback/templates/fonts/fonts_ugly_badfont.html',
         ]),
-        ('feedback/features/border/templates', [
-            'feedback/features/border/templates/hits.html',
+        ('feedback/templates/border', [
+            'feedback/templates/border/hits.html',
         ]),
-        ('feedback/features/problems/templates', [
-            'feedback/features/problems/templates/index.html',
+        ('feedback/templates/problems', [
+            'feedback/templates/problems/index.html',
         ]),
     ]
 
@@ -81,9 +81,10 @@ if __name__ == "__main__":
             'feedback.features',
             'feedback.features.border',
             'feedback.features.fonts',
-            'feedback.features.statistica',
             'feedback.features.problems',
+            'feedback.features.statistica',
             'feedback.problems',
+            'feedback.templates',
         ],
         entry_points={
             'console_scripts': [

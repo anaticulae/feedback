@@ -10,13 +10,13 @@ import contextlib
 import dataclasses
 import typing
 
-import jinja2
 import protocol
 import serializeraw
 import utila
 import words.feature.word
 
 import feedback.problems
+import feedback.templates
 
 
 @utila.checkdatatype
@@ -53,13 +53,11 @@ def work(
 
 
 def render_html(pages, problems) -> str:
-    # TODO: improve with more jinja appraoch
-    loader = jinja2.PackageLoader('feedback.features.problems')
-    reporttemplate = jinja2.Template(loader.get_source(None, 'index.html')[0])
-    rendered = reporttemplate.render(pages=pages, problems=problems)
+    report = feedback.templates.template('problems', 'index.html')
+    rendered = report.render(pages=pages, problems=problems)
 
-    main_js = loader.get_source(None, 'main.js')[0]
-    style_css = loader.get_source(None, 'style.css')[0]
+    main_js = feedback.templates.template('problems', 'main.js').render()
+    style_css = feedback.templates.template('problems', 'style.css').render()
 
     result = f"""
     <style>

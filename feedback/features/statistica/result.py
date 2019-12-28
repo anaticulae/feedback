@@ -7,29 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from os.path import exists
-from os.path import join
 from typing import Tuple
 
-from jinja2 import PackageLoader
-from jinja2 import Template
 from utila import NEWLINE
 from utila import Flag
 from utila import from_raw_or_path
 from yaml import load as from_yaml
 from yaml.loader import SafeLoader
 
-from feedback import ROOT
-
-TEMPLATES = join(ROOT, 'feedback/features/statistica/templates')
-assert exists(TEMPLATES), TEMPLATES
-
-# TODO: Replace template
-TEMPLATE_CHAPTER = join(TEMPLATES, 'chapter.html')
-assert exists(TEMPLATE_CHAPTER), TEMPLATE_CHAPTER
-
-TEMPLATE_WORD = join(TEMPLATES, 'words.html')
-assert exists(TEMPLATE_WORD), TEMPLATE_WORD
+import feedback.templates
 
 
 def work(
@@ -59,9 +45,8 @@ def work(
 
 
 def render(chapters: list, words: list):
-    loader = PackageLoader('feedback.features.statistica')
-    chapter_template = Template(loader.get_source(None, 'chapter.html')[0])
-    word_template = Template(loader.get_source(None, 'words.html')[0])
+    chapter_template = feedback.templates.template('statistica', 'chapter.html')
+    word_template = feedback.templates.template('statistica', 'words.html')
 
     chapter = chapter_template.render(chapters=chapters)
     word = word_template.render(words=words)

@@ -10,14 +10,14 @@
 from typing import List
 from typing import Tuple
 
-from jinja2 import PackageLoader
-from jinja2 import Template
 from serializeraw import load_font_header
 from utila import Flag
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
+
+import feedback.templates
 
 
 # ('decider_fonts_iamugly', 'ugly'),
@@ -34,7 +34,7 @@ def work(iamugly_path: str, fontstore_path: str) -> Tuple[str, str, str]:
     return result_ugly, result_used, error
 
 
-def render_error(ugly: list):
+def render_error(ugly: list):  # pylint:disable=W0613
     errors = []
     # TODO: Create error module, EXPORT ERROR TYPES
     # page, index, box
@@ -61,25 +61,21 @@ def render_ugly_fonts(ugly):
     # - description: Do not use this peace of $h!t
     #   font: JCUGNO+NimbusSanL
     #   scale: 18.0    for item in ugly:
-    loader = PackageLoader('feedback.features.fonts')
-    ugly_template = Template(
-        loader.get_source(None, 'fonts_ugly_badfont.html')[0])
+    template = feedback.templates.template('fonts', 'fonts_ugly_badfont.html')
     result = [
         (item['font'], item['scale'], item['description'], []) for item in ugly
     ]
-    rendered = ugly_template.render(fonts=result)
+    rendered = template.render(fonts=result)
     return rendered
 
 
 def render_used_fonts(fonts: List) -> str:
-    loader = PackageLoader('feedback.features.fonts')
-    used_template = Template(loader.get_source(None, 'fonts_used.html')[0])
-
+    used = feedback.templates.template('fonts', 'fonts_used.html')
     sorted_fonts = sorted(
         fonts,
         key=lambda item: '%s %5.2f' % (item.name, item.scale),
     )
-    rendered = used_template.render(fonts=sorted_fonts)
+    rendered = used.render(fonts=sorted_fonts)
     return rendered
 
 
