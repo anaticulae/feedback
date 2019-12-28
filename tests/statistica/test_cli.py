@@ -12,8 +12,6 @@ from os import listdir
 import pytest
 import utila
 
-from feedback import PACKAGE
-from feedback import ROOT
 from feedback.command.statistica import PROCESS_NAME
 from feedback.command.statistica import main
 from tests import assert_html

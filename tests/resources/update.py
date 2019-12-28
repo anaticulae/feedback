@@ -10,7 +10,6 @@
 import os
 
 import decider.example
-import detector.feature.titlepage
 import utila
 
 import feedback
