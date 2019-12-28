@@ -16,6 +16,10 @@ test
 linter view
 -----------
 
+* [ ] refactor result view
+
+* [ ] add single page creation mode
+
 * [ ] add toc view
 
 * [ ] add hint with too few children
