@@ -6,28 +6,20 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+import contextlib
+import dataclasses
 import typing
-from contextlib import suppress
-from dataclasses import dataclass
 
+import jinja2
 import protocol
-from jinja2 import PackageLoader
-from jinja2 import Template
-from serializeraw import load_boxedcontent
-from serializeraw import load_headlines
-from serializeraw import load_lists
-from serializeraw import load_pagenumbers
-from serializeraw import load_sections
-from serializeraw import load_text
-from utila import NEWLINE
-from utila import checkdatatype
-from utila import flatten
-from words.feature.word import ListLookUp
+import serializeraw
+import utila
+import words.feature.word
 
 import feedback.problems
 
 
-@checkdatatype
+@utila.checkdatatype
 def work(
         sections: str,
         text: str,
@@ -62,8 +54,8 @@ def work(
 
 def render_html(pages, problems) -> str:
     # TODO: improve with more jinja appraoch
-    loader = PackageLoader('feedback.features.problems')
-    reporttemplate = Template(loader.get_source(None, 'index.html')[0])
+    loader = jinja2.PackageLoader('feedback.features.problems')
+    reporttemplate = jinja2.Template(loader.get_source(None, 'index.html')[0])
     rendered = reporttemplate.render(pages=pages, problems=problems)
 
     main_js = loader.get_source(None, 'main.js')[0]
@@ -120,13 +112,13 @@ def build_page(
         list
     """
     content = []
-    with suppress(KeyError):
+    with contextlib.suppress(KeyError):
         content = text[page.start]
         content = [
             prepare_headlinecontent(item, listslookup, boxed)
             for item in content
         ]
-        content = flatten(content)
+        content = utila.flatten(content)
     footer = None
     pdfpage = pagenumbers.userpage(page.start)
     if pdfpage is not None:
@@ -141,7 +133,7 @@ def build_page(
     return content
 
 
-@checkdatatype
+@utila.checkdatatype
 def prepare_input(
         boxed: str,
         headlines: str,
@@ -151,15 +143,15 @@ def prepare_input(
         text: str,
         userlinting: str,
 ):
-    sections = load_sections(sections)
-    headlines = load_headlines(headlines)
-    text = load_text(text, headlines)
+    sections = serializeraw.load_sections(sections)
+    headlines = serializeraw.load_headlines(headlines)
+    text = serializeraw.load_text(text, headlines)
 
-    lists = load_lists(lists)
-    lists = ListLookUp(lists)
+    lists = serializeraw.load_lists(lists)
+    lists = words.feature.word.ListLookUp(lists)
 
-    boxed = load_boxedcontent(boxed)
-    pagenumbers = load_pagenumbers(pagenumbers)
+    boxed = serializeraw.load_boxedcontent(boxed)
+    pagenumbers = serializeraw.load_pagenumbers(pagenumbers)
     pagenumbers = PageNumbersLookup(pagenumbers)
 
     result: typing.List[protocol.Finding] = protocol.load_result(userlinting)
@@ -178,7 +170,7 @@ class PageNumbersLookup:
         self.data = loader(pagenumbers)
 
     def userpage(self, pdfpage: int):
-        with suppress(KeyError):
+        with contextlib.suppress(KeyError):
             return self.data[pdfpage]
         return None
 
@@ -197,14 +189,14 @@ class PageNumbersLookup:
         return left
 
 
-@dataclass
+@dataclasses.dataclass
 class FooterHeader:
     userpage: str = ''
     hrline: bool = False
     height: int = 30
 
 
-@dataclass
+@dataclasses.dataclass
 class SinglePage:
     width: int = -1
     height: int = -1
@@ -218,7 +210,7 @@ class SinglePage:
 
 def prepare_headlinecontent(
         paragraph,
-        listlookup: ListLookUp,
+        listlookup: words.feature.word.ListLookUp,
         boxed,
 ) -> typing.List[str]:
     # TODO: Rework when jinja documentation is available
@@ -284,7 +276,7 @@ def prepare_headlinecontent(
 def escape_content(content):
     content = content.replace('<', '&lt;')
     content = content.replace('>', '&gt;')
-    content = content.replace(NEWLINE, '<br />')
+    content = content.replace(utila.NEWLINE, '<br />')
     return content
 
 
