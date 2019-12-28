@@ -75,7 +75,7 @@ def render_html(pages, problems) -> str:
 
 def process_content(
         boxed,
-        headlines,
+        headlines,  # pylint:disable=W0613
         listslookup,
         pagenumbers: 'PageNumbersLookup',
         problems: dict,
@@ -124,13 +124,13 @@ def build_page(
     if pdfpage is not None:
         footer = FooterHeader(userpage=pdfpage, hrline=True)
     # prepare
-    content = SinglePage(
+    result = SinglePage(
         width=800,
         height=700,
         content=content,
         footer=footer,
     )
-    return content
+    return result
 
 
 @utila.checkdatatype
@@ -147,8 +147,8 @@ def prepare_input(
     headlines = serializeraw.load_headlines(headlines)
     text = serializeraw.load_text(text, headlines)
 
-    lists = serializeraw.load_lists(lists)
-    lists = words.feature.word.ListLookUp(lists)
+    loaded = serializeraw.load_lists(lists)
+    listlookup = words.feature.word.ListLookUp(loaded)
 
     boxed = serializeraw.load_boxedcontent(boxed)
     pagenumbers = serializeraw.load_pagenumbers(pagenumbers)
@@ -159,7 +159,7 @@ def prepare_input(
 
     text = {item[0]: item[1] for item in text}
 
-    return sections, text, headlines, lists, boxed, pagenumbers, problems
+    return sections, text, headlines, listlookup, boxed, pagenumbers, problems
 
 
 class PageNumbersLookup:
@@ -316,25 +316,29 @@ NO_BOXED = -1
 def find_list(listlookup, page, item, index):
     lists = listlookup.data[page]
     for content, _index in lists:
-        if _index == item:
-            return content[2].data[index]
+        if _index != item:
+            continue
+        return content[2].data[index]
     return None
 
 
 def find_boxed(boxedlookup, page, item, boxindex):
     # TODO: Bad solution!
-    for (current_page, content) in boxedlookup:
-        if current_page != page:
-            continue
-        for (_, __, boxedcontent) in content:
-            # match
-            for www in boxedcontent:
-                for (bounding, (index, content)) in www:
-                    if index == item:
-                        try:
-                            return content[boxindex][2]
-                        except IndexError:
-                            return item
+    boxedlookup = {page: content for page, content in boxedlookup}
+    try:
+        content = boxedlookup[page]
+    except IndexError:
+        return None
+    for (_, __, boxedcontent) in content:
+        # match
+        for boxes in boxedcontent:
+            for (_, (index, content)) in boxes:
+                if index != item:
+                    continue
+                try:
+                    return content[boxindex][2]
+                except IndexError:
+                    return item
     return None
 
 
