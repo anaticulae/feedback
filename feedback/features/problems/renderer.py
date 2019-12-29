@@ -29,6 +29,11 @@ def work(
         pagenumbers: str,
         userlinting: str,
 ) -> str:
+    """
+    Args:
+        pagenumbers(str): path to groupme/pagenumbers
+        userlint(str): path to linter result .yaml
+    """
     sections, text, headlines, lists, boxed, pagenumbers, problems = prepare_input(
         boxed=boxed,
         headlines=headlines,
