@@ -8,21 +8,13 @@
 # =============================================================================
 
 import os
-import sys
 import webbrowser
 
-import pytest
 import utila
 
 import feedback.renderer.html
 import tests.resources
-
-
-@pytest.fixture
-def masterpage72():
-    path = tests.resources.GENERATED_MASTER_PAGE72
-    loaded = feedback.renderer.html.load(path)
-    return loaded
+from tests.feedback.fixtures import masterpage72  # pylint:disable=W0611
 
 
 def test_features_render_load(masterpage72):  # pylint:disable=W0621
