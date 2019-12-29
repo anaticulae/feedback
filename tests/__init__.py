@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import inspect
+import sys
 from os.path import exists
 from os.path import join
 
@@ -43,3 +45,14 @@ def assert_file(files, filetype: str):
 def assert_html(files):
     """Ensure that all given `files` are `html` files"""
     assert_file(files, 'html')
+
+
+def single_execution():
+    """Check that test method is executed as single test. You can use
+    this method to open the result in a web browser if test is executed
+    with a human in front of the machine eg. as a single test."""
+    # TODO: MOVE TO UTILA TEST
+    frame = inspect.currentframe()
+    parent = inspect.getouterframes(frame)[1]
+    caller = parent.function
+    return all([item in sys.argv for item in ['-k', caller]])

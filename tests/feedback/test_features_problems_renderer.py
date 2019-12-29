@@ -9,6 +9,7 @@
 
 import os
 import sys
+import webbrowser
 
 import pytest
 import utila
@@ -44,9 +45,8 @@ def test_report_view_work(testdir):
     outpath = os.path.join(root, 'result.html')
     utila.file_create(outpath, result)
 
-    if all([item in sys.argv for item in ['-k', 'test_report_view_work']]):
+    if tests.single_execution():
         # Hint: Enable for fast feedback loop
-        import webbrowser
         webbrowser.open(outpath)
 
 
