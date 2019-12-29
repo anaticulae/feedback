@@ -32,9 +32,9 @@ def render_page(page: feedback.renderer.HTMLPageContent) -> str:
 
     content = '\n'.join(result)
     result = (f'<div style="position:relative; width:{page.dimension[0]}px; '
-              f'height:{page.dimension[1]}px; border:1px solid black;">'
+              f'height:{page.dimension[1]}px; border:1px solid black;">\n'
               f'{content}'
-              '</div>')
+              '\n</div>')
     return result
 
 
