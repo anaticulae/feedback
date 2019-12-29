@@ -18,13 +18,18 @@ linter view
 
 * [ ] refactor result view
 
-* [ ] add single page creation mode
+* [x] add single page creation mode
 
-* [ ] add toc view
+* [/] add toc view
 
-* [ ] add hint with too few children
+.. note :: no special toc view is required
 
-* [ ] add hint with too deep level
+* [/] add hint with too few children
+* [/] add hint with too deep level
+
+.. note :: we will mark them by a general char/word/sentence marker
+
+* [ ] add mechanism to mark words, lines and pages
 
 code quality
 ------------
