@@ -7,24 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import dataclasses
 import os
-import typing
 
 import iamraw
 import serializeraw
 import utila
 
-
-@dataclasses.dataclass
-class HTMLPageContent:
-    dimension: iamraw.PageSize = None
-    page: int = None
-    content: typing.List[iamraw.TextContainer] = \
-                                         dataclasses.field(default_factory=list)
+import feedback.renderer
 
 
-def render_page(page: HTMLPageContent) -> str:
+def render_page(page: feedback.renderer.HTMLPageContent) -> str:
     result = []
     for line in page.content:
         if not line.text.strip():
@@ -64,7 +56,7 @@ def load(path, pages=None) -> list:
         ]
         for index, children in enumerate(selected):
             children.box = position[index]
-        item = HTMLPageContent(
+        item = feedback.renderer.HTMLPageContent(
             page=page,
             dimension=text.dimension,
             content=selected,
