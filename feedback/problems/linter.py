@@ -14,10 +14,10 @@ import protocol
 
 
 def group_finding_bypage(items: typing.List[protocol.Finding]):
-    result = collections.defaultdict(list)
+    collected = collections.defaultdict(list)
     for item in items:
-        result[item.location.page].append(item)
+        collected[item.location.page].append(item)
 
     # convert to normal dict to have KeyError's
-    result = dict(result)
+    result = dict(collected)
     return result
