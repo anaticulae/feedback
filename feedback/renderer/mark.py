@@ -133,7 +133,6 @@ class WordMarker:
                     result.append(self.decide_mark(current))
                     result.append(' ')
                     current = ''
-                    self.index += 1
                 else:
                     result.append(char)
             else:
@@ -143,9 +142,15 @@ class WordMarker:
         return ''.join(result)
 
     def decide_mark(self, item):
-        if self.index not in self.marks:
+        if not item.strip():
+            # add only white spaces
             return item
-        return f'<span id="word{self.page}_{self.index}">{item}</span>'
+        if self.index not in self.marks:
+            self.index += 1
+            return item
+        result = f'<span id="word{self.page}_{self.index}">{item}</span>'
+        self.index += 1
+        return result
 
 
 class LineMarker:
@@ -158,6 +163,9 @@ class LineMarker:
         self.index = 0
 
     def markme(self, line) -> str:
+        if not line.strip():
+            # white space line
+            return line
         if not self.index in self.marks:
             self.index += 1
             return line

@@ -32,6 +32,17 @@ def test_renderer_mark_word_marker():
     assert result == 'hello <span id="word2_11">mr</span> tom'
 
 
+def test_renderer_mark_word_marker_whitespace():
+    """Ensure to skip marking white spaces."""
+    marks = set([3, 4, 5, 7, 11])
+    marker = feedback.renderer.mark.WordMarker(page=2, marks=marks)
+    for _ in range(20):
+        marked = marker.markme('  ')
+        assert '<span' not in marked, marked
+        marked = marker.markme(' ')
+        assert '<span' not in marked, marked
+
+
 def test_renderer_mark_line_marker():
     marker = feedback.renderer.mark.LineMarker(page=1, marks=set([1, 2]))
     assert marker.markme('first line') == 'first line'

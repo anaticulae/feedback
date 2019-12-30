@@ -13,6 +13,7 @@ import webbrowser
 import utila
 
 import feedback.renderer.html
+import feedback.renderer.mark
 import tests.resources
 from tests.feedback.fixtures import masterpage72  # pylint:disable=W0611
 
@@ -29,6 +30,33 @@ def test_renderer_firstpage(testdir, masterpage72):  # pylint:disable=W0621
     assert len(rendered) > 300, str(rendered)
 
     utila.file_create(outpath, rendered)
+
+    if tests.single_execution():
+        webbrowser.open(outpath)
+
+
+def test_renderer_secondpage_mark_line_and_words(testdir, masterpage72):  # pylint:disable=W0621
+    outpath = os.path.join(str(testdir), 'secondpage.html')
+    secondpage = utila.select_page(masterpage72, 1)
+
+    marks = feedback.renderer.mark.PageMarkConfiguration(
+        page=1,
+        wordmarks=set([1, 2, 3, 4, 5]),
+        linemarks=set([4, 5, 20]),
+    )
+
+    rendered = feedback.renderer.html.render_page(secondpage, marks=marks)
+    assert len(rendered) > 300, str(rendered)
+
+    style = """\
+        <style>
+        #line1_20{
+            background:red;
+        }
+        </style>
+        """
+    output = style + rendered
+    utila.file_create(outpath, output)
 
     if tests.single_execution():
         webbrowser.open(outpath)
