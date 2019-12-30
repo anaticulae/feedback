@@ -29,7 +29,7 @@ linter view
 
 .. note :: we will mark them by a general char/word/sentence marker
 
-* [ ] add mechanism to mark words, lines and pages
+* [x] add mechanism to mark words, lines and pages
 
 code quality
 ------------
