@@ -99,18 +99,32 @@ class WordMarker:
     view.
 
     The **WordMarker** works on a single page and must be used within
-    the page content from top to bottom. Reseting the word number is not
-    possible.
+    the page content from top to bottom. Resetting the word number is
+    not possible.
     """
 
     def __init__(self, page, marks=None):
+        """Initialize single WordMarker.
+
+        Args:
+            page(int): pagenumber of page to mark
+            marks(set): set of number of words which must be highlighted
+        """
         if marks is None:
             marks = set()
         self.marks = marks
         self.page = page
         self.index = 0
 
-    def markme(self, line):
+    def markme(self, line: str) -> str:
+        """Add marker of defined `self.marks` words. Add for selected
+        word with <span id="word{page}_{index}">word</span>.
+
+        Args:
+            line(str): line which can contain words
+        Returns:
+            `line` with marked words
+        """
         result = []
         current = ''
         for char in line:
