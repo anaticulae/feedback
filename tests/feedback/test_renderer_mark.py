@@ -31,3 +31,17 @@ def test_renderer_mark_word_marker():
 
     result = marker.markme('hello mr tom')
     assert result == 'hello <span id="word2_11">mr</span> tom'
+
+
+def test_renderer_mark_line_marker():
+    marker = feedback.renderer.mark.LineMarker(page=1, marks=set([1, 2]))
+    assert marker.markme('first line') == 'first line'
+
+    expected = '<span id="line1_1">second line</span>'
+    assert marker.markme('second line') == expected
+
+    expected = '<span id="line1_2">third line</span>'
+    assert marker.markme('third line') == expected
+
+    expected = 'fourth line'
+    assert marker.markme('fourth line') == expected

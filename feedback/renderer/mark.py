@@ -125,3 +125,21 @@ class WordMarker:
         if self.index not in self.marks:
             return item
         return f'<span id="word{self.page}_{self.index}">{item}</span>'
+
+
+class LineMarker:
+
+    def __init__(self, page, marks=None):
+        if marks is None:
+            marks = set()
+        self.marks = marks
+        self.page = page
+        self.index = 0
+
+    def markme(self, line) -> str:
+        if not self.index in self.marks:
+            self.index += 1
+            return line
+        result = f'<span id="line{self.page}_{self.index}">{line}</span>'
+        self.index += 1
+        return result
