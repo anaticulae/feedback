@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import protocol
+
 import feedback.renderer.mark
 from tests.feedback.fixtures import masterpage72  # pylint:disable=W0611
 
@@ -55,3 +57,36 @@ def test_renderer_mark_line_marker():
 
     expected = 'fourth line'
     assert marker.markme('fourth line') == expected
+
+
+def test_render_mark_filter_lines():
+    create_line = protocol.Location.from_oneline
+    create_chapter = protocol.Location.from_chapter
+    findings = [
+        protocol.Finding(location=create_chapter(chapter=3, page=3)),
+        protocol.Finding(location=create_chapter(chapter=4, page=3)),
+        protocol.Finding(location=create_chapter(chapter=5, page=3)),
+        protocol.Finding(location=create_line(line=5, page=3)),
+        protocol.Finding(location=create_line(line=7, page=3)),
+        protocol.Finding(location=create_line(line=10, page=3)),
+        protocol.Finding(location=create_chapter(chapter=1, page=3)),
+    ]
+    filtered = feedback.renderer.mark.lines(findings)
+    assert len(filtered) == 3, str(filtered)
+
+
+def test_render_mark_filter_words():
+    create_line = protocol.Location.from_oneline
+    create_chapter = protocol.Location.from_chapter
+    findings = [
+        protocol.Finding(location=create_chapter(chapter=3, page=3)),
+        protocol.Finding(location=create_chapter(chapter=5, page=3)),
+        protocol.Finding(location=protocol.Location.fromstr('w30p3')),
+        protocol.Finding(location=protocol.Location.fromstr('w130p3')),
+        protocol.Finding(location=protocol.Location.fromstr('w5p3')),
+        protocol.Finding(location=protocol.Location.fromstr('w0p3')),
+        protocol.Finding(location=create_line(line=7, page=3)),
+        protocol.Finding(location=create_chapter(chapter=1, page=3)),
+    ]
+    filtered = feedback.renderer.mark.words(findings)
+    assert len(filtered) == 4, str(filtered)

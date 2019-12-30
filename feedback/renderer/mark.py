@@ -44,10 +44,16 @@ def sentence(number=10,page=13):
 
 """
 
+import collections
 import contextlib
 import dataclasses
+import glob
 import typing
 
+import protocol
+import utila
+
+import feedback.problems.linter
 import feedback.renderer.html
 
 
@@ -90,6 +96,9 @@ class PageMarkConfiguration:
     page: int = None
     wordmarks: set = dataclasses.field(default_factory=set)
     linemarks: set = dataclasses.field(default_factory=set)
+
+
+PageMarkConfigurations = typing.List[PageMarkConfiguration]
 
 
 class WordMarker:
@@ -172,3 +181,39 @@ class LineMarker:
         result = f'<span id="line{self.page}_{self.index}">{line}</span>'
         self.index += 1
         return result
+
+
+def collect(path: str) -> dict:
+    """Collect marks from `path` and sort them by page."""
+    with utila.chdir(path):
+        findings = [
+            protocol.load_result(item) for item in glob.glob('*_user.yaml')
+        ]
+    result = feedback.problems.linter.group_finding_bypage(findings)
+    return result
+
+
+# TODO: MOVE TO PROTOCOL PACKAGE
+def words(items: protocol.Findings) -> protocol.Findings:
+    return filter_mark(items, 'w')
+
+
+def lines(items: protocol.Findings) -> protocol.Findings:
+    return filter_mark(items, 'ol')
+
+
+def filter_mark(items: protocol.Findings, shortcut: str) -> protocol.Findings:
+    """Filter `Findings` by shortcut and sort them by `location.value`
+    afterwards.
+
+    Args:
+        items(protocol.Findings): list of findings
+        shortcut(str): shortcut of finding.location, w word, p page,
+                       ol oneline, etc.
+    Returns:
+        filtered, sorted list of `Findings`
+    """
+    assert all([item.location for item in items]), f'require location: {items}'
+    items = [item for item in items if item.location.shortcut == shortcut]
+    items = sorted(items, key=lambda x: x.location.value)
+    return items
