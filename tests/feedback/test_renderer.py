@@ -17,11 +17,11 @@ import tests.resources
 from tests.feedback.fixtures import masterpage72  # pylint:disable=W0611
 
 
-def test_features_render_load(masterpage72):  # pylint:disable=W0621
+def test_renderer_load(masterpage72):  # pylint:disable=W0621
     assert masterpage72
 
 
-def test_features_render_firstpage(testdir, masterpage72):  # pylint:disable=W0621
+def test_renderer_firstpage(testdir, masterpage72):  # pylint:disable=W0621
     outpath = os.path.join(str(testdir), 'firstpage.html')
     firstpage = utila.select_page(masterpage72, 0)
 
