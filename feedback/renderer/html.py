@@ -14,27 +14,42 @@ import serializeraw
 import utila
 
 import feedback.renderer
+import feedback.renderer.mark
 
 
-def render_page(page: feedback.renderer.HTMLPageContent) -> str:
-    result = []
+def render_page(
+        page: feedback.renderer.HTMLPageContent,
+        marks: set = None,
+) -> str:
+    if marks is None:
+        marks = set()
+    marker = feedback.renderer.mark.WordMarker(page.page, marks)
+    lines = []
     for line in page.content:
-        if not line.text.strip():
-            # remove white lines
-            continue
-        size = line.lines[0].chars[0].size
-        position = f'top: {line.box.y0}px; left: {line.box.x0}px;'
-        location = f'position:absolute; {position}'
-        fontsize = f'font-size:{size}px'
-        rawline = line.text.replace('\n', '<br>')
-        raw = f'<span style="{location} {fontsize}">{rawline}</span>'
-        result.append(raw)
+        marked = marker.markme(line.text)
+        html = create_line(line, marked)
+        lines.append(html)
 
-    content = '\n'.join(result)
-    result = (f'<div style="position:relative; width:{page.dimension[0]}px; '
-              f'height:{page.dimension[1]}px; border:1px solid black;">\n'
-              f'{content}'
-              '\n</div>')
+    content = '\n'.join(lines)
+    box = create_pagebox(content, page.dimension)
+    return box
+
+
+def create_line(line, rawline):
+    size = line.lines[0].chars[0].size
+    position = f'top: {line.box.y0}px; left: {line.box.x0}px;'
+    location = f'position:absolute; {position}'
+    fontsize = f'font-size:{size}px'
+    rawline = rawline.replace('\n', '<br>')
+    result = f'<span style="{location} {fontsize}">{rawline}</span>'
+    return result
+
+
+def create_pagebox(html, dimension):
+    result = (f'<div style="position:relative; width:{dimension[0]}px; '
+              f'height:{dimension[1]}px; border:1px solid black;">\n'
+              f'{html}\n'
+              '</div>')
     return result
 
 
