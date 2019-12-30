@@ -44,7 +44,6 @@ def sentence(number=10,page=13):
 
 """
 
-import collections
 import contextlib
 import dataclasses
 import glob

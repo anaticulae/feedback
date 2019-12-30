@@ -283,14 +283,6 @@ def escape_content(content):
     return content
 
 
-def preprare_boxcontent(item):
-    pass
-
-
-def prepare_listcontent(item):
-    pass
-
-
 def parseindex(item, checkedchar):
     try:
         index, char = int(item[0:-1]), item[-1]
