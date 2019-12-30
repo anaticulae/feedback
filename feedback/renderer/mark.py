@@ -85,6 +85,13 @@ class WordAccess:
         return len(self.words(page))
 
 
+@dataclasses.dataclass
+class PageMarkConfiguration:
+    page: int = None
+    wordmarks: set = dataclasses.field(default_factory=set)
+    linemarks: set = dataclasses.field(default_factory=set)
+
+
 class WordMarker:
     """The word marker is used to mark selected words with an unique id
     to define the style in an external stylesheet later. This is used to

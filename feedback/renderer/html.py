@@ -19,17 +19,19 @@ import feedback.renderer.mark
 
 def render_page(
         page: feedback.renderer.HTMLPageContent,
-        marks: set = None,
+        marks: feedback.renderer.mark.PageMarkConfiguration = None,
 ) -> str:
     if marks is None:
-        marks = set()
-    marker = feedback.renderer.mark.WordMarker(page.page, marks)
+        marks = feedback.renderer.mark.PageMarkConfiguration()
+    wordmarker = feedback.renderer.mark.WordMarker(page.page, marks.wordmarks)
+    linemarker = feedback.renderer.mark.LineMarker(page.page, marks.linemarks)
+
     lines = []
     for line in page.content:
-        marked = marker.markme(line.text)
+        marked = wordmarker.markme(line.text)
+        marked = linemarker.markme(marked)
         html = create_line(line, marked)
         lines.append(html)
-
     content = '\n'.join(lines)
     box = create_pagebox(content, page.dimension)
     return box
