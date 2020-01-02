@@ -16,7 +16,7 @@ test
 linter view
 -----------
 
-* [ ] refactor result view
+* [x] refactor result view
 
 * [x] add single page creation mode
 

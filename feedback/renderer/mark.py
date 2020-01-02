@@ -100,6 +100,30 @@ class PageMarkConfiguration:
 PageMarkConfigurations = typing.List[PageMarkConfiguration]
 
 
+def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
+    """Filter `marks` for selected `page`. Group them by word, line etc.
+
+    Args:
+        marks(int): dictonary with a list of marks per page
+        page(int): selected page to return filtered marks
+    Returns:
+        generated PageMarkConfiguration
+    """
+    try:
+        pagemarks = marks[page]
+    except KeyError:
+        pagemarks = {}
+    wordmarks = words(pagemarks)
+    linemarks = lines(pagemarks)
+
+    result = PageMarkConfiguration(
+        page=page,
+        wordmarks=wordmarks,
+        linemarks=linemarks,
+    )
+    return result
+
+
 class WordMarker:
     """The word marker is used to mark selected words with an unique id
     to define the style in an external stylesheet later. This is used to
