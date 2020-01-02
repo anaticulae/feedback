@@ -26,3 +26,9 @@ def test_run_feedback(testdir, monkeypatch):
         main=feedback.cli.main,
         success=True,
     )
+
+
+def test_run_feedback_help():
+    """Ensure that installing process works correctly."""
+    completed = utila.run('feedback --help')
+    assert completed.returncode == utila.SUCCESS, str(completed)
