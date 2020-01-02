@@ -56,24 +56,22 @@ def create_pagebox(html: str, page: int, dimension) -> str:
     return result
 
 
-def load(path, pages=None) -> list:
-    text = os.path.join(path, 'rawmaker__text_text.yaml')
+def load(text: str, textposition: str, pages: tuple = None) -> list:
     text = serializeraw.load_document(text, pages=pages)
-    text_position = os.path.join(path, 'rawmaker__text_positions.yaml')
-    text_position = serializeraw.load_textpositions(text_position, pages=pages)
-
+    textposition = serializeraw.load_textpositions(textposition, pages=pages)
     result = []
     for current in text.pages:
         page = current.page
-        position = utila.select_page(text_position, page)
-        position = position.content
+        position = utila.select_page(textposition, page)
         # skip non TextContainer boxes - for example LTRect
         selected = [
             item for item in current.children
             if isinstance(item, iamraw.TextContainer)
         ]
         for index, children in enumerate(selected):
-            children.box = position[index]
+            # update with loaded text position
+            children.box = position.content[index]
+
         item = feedback.renderer.HTMLPageContent(
             page=page,
             dimension=text.dimension,
@@ -81,3 +79,11 @@ def load(path, pages=None) -> list:
         )
         result.append(item)
     return result
+
+
+def from_path(path: str, pages: tuple = None) -> list:
+    assert os.path.exists(path), str(path)
+    text = os.path.join(path, 'rawmaker__text_text.yaml')
+    textposition = os.path.join(path, 'rawmaker__text_positions.yaml')
+    loaded = load(text, textposition, pages=pages)
+    return loaded
