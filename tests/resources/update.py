@@ -9,9 +9,9 @@
 
 import os
 
-import decider.example
 import utila
 
+import decider.example
 import feedback
 import feedback.utils
 import tests.resources

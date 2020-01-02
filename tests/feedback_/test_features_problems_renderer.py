@@ -16,7 +16,7 @@ import utila
 
 import feedback.features.problems.renderer
 import tests
-import tests.feedback
+import tests.feedback_
 
 
 def test_report_view_work(testdir):
@@ -68,7 +68,7 @@ def feedback_result(request):
 def test_report_view_main(feedback_result, testdir, monkeypatch):  # pylint:disable=W0621
     inpath = feedback_result
     root = str(testdir)
-    tests.feedback.run(f'-i {inpath} -o {root}', monkeypatch=monkeypatch)
+    tests.feedback_.run(f'-i {inpath} -o {root}', monkeypatch=monkeypatch)
 
 
 def test_find_bounding_box():
@@ -95,10 +95,13 @@ def test_find_bounding_box():
         ]),
         (0, 1, [
             [
-                (iamraw.BoundingBox(x0=68.61, y0=251.01, x1=543.39, y1=345.06),
-                 (0, [(iamraw.BoundingBox(
-                     x0=72.00, y0=252.70, x1=367.89, y1=339.90), 8,
-                       '<p>This is normal text.</p> </div>')]),),
+                (
+                    iamraw.BoundingBox(
+                        x0=68.61, y0=251.01, x1=543.39, y1=345.06),
+                    (0, [(iamraw.BoundingBox(
+                        x0=72.00, y0=252.70, x1=367.89, y1=339.90), 8,
+                          '<p>This is normal text.</p> </div>')]),
+                ),
             ],
         ]),
     ])]

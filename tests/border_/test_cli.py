@@ -13,7 +13,7 @@ from utila import run_command
 
 from feedback.command.decider.border import PROCESS_NAME
 from feedback.command.decider.border import main
-from tests.border import HITS
+from tests.border_ import HITS
 
 
 # pylint:disable=unused-argument

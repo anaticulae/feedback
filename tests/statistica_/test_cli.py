@@ -14,7 +14,7 @@ import utila
 
 from feedback.command.statistica import PROCESS_NAME
 from feedback.command.statistica import main
-from tests.statistica import STAT_SAMPLE_DATA
+from tests.statistica_ import STAT_SAMPLE_DATA
 
 
 @pytest.mark.parametrize('command', [

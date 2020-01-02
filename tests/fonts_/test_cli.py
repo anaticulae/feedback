@@ -13,7 +13,7 @@ from utila import run_command
 
 from feedback.command.decider.fonts import PROCESS_NAME
 from feedback.command.decider.fonts import main
-from tests.fonts import FONTS_UGLY_DATA
+from tests.fonts_ import FONTS_UGLY_DATA
 
 
 # pylint:disable=unused-argument

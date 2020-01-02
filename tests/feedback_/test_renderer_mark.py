@@ -10,7 +10,7 @@
 import protocol
 
 import feedback.renderer.mark
-from tests.feedback.fixtures import masterpage72  # pylint:disable=W0611
+from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
 
 
 def test_renderer_mark_access_words(masterpage72):  # pylint:disable=W0621

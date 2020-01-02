@@ -12,7 +12,7 @@ from os.path import join
 
 from tests import TEST_PATH
 
-TEST_PATH_BORDER = join(TEST_PATH, 'border/data')
+TEST_PATH_BORDER = join(TEST_PATH, 'border_/data')
 
 HITS = join(TEST_PATH_BORDER, 'hits')
 assert exists(HITS), HITS

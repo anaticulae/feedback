@@ -1,19 +1,18 @@
 # =============================================================================
 # C O P Y R I G H T
 # -----------------------------------------------------------------------------
-# Copyright (c) 2019-2020 by Helmut Konrad Fahrendholz. All rights reserved.
+# Copyright (c) 2020 by Helmut Konrad Fahrendholz. All rights reserved.
 # This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+import os
 
-from os.path import exists
-from os.path import join
+import tests.feedback_
+import tests.resources
 
-from tests import TEST_PATH
 
-FONTS_TDATA = join(TEST_PATH, 'fonts/data/')
-assert exists(FONTS_TDATA), FONTS_TDATA
-
-FONTS_UGLY_DATA = join(FONTS_TDATA, 'ugly')
-assert exists(FONTS_UGLY_DATA), FONTS_UGLY_DATA
+def test_report_problems_view(testdir, monkeypatch):
+    inpath = os.path.join(tests.resources.GENERATED_MASTER_PAGE72)
+    root = str(testdir)
+    tests.feedback_.run(f'-i {inpath} -o {root} --view', monkeypatch=monkeypatch) # yapf:disable

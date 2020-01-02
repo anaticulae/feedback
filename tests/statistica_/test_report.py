@@ -8,9 +8,9 @@
 # =============================================================================
 
 from feedback.features.statistica.result import work
-from tests.statistica import SAMPLE_GROUPME_TEXT
-from tests.statistica import SAMPLE_TEXT_STATISTICS
-from tests.statistica import SAMPLE_WORD_STATISTICS
+from tests.statistica_ import SAMPLE_GROUPME_TEXT
+from tests.statistica_ import SAMPLE_TEXT_STATISTICS
+from tests.statistica_ import SAMPLE_WORD_STATISTICS
 
 
 def test_generate_chapter_report():
