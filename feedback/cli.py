@@ -31,7 +31,15 @@ WORKPLAN = [
             ResultFile(producer=decider.PROCESS, name='titlepage_user'),
         ],
         (outhtml('result'),),
-    )
+    ),
+    step(
+        'view',
+        [
+            ResultFile(producer='rawmaker', name='text_text'),
+            ResultFile(producer='rawmaker', name='text_positions'),
+        ],
+        (outhtml('pages/view_*'),),
+    ),
 ]
 
 
