@@ -1,0 +1,16 @@
+.. _0_7_0:
+
+RP 0.7.0
+=========
+
+code quality
+------------
+
+before
+~~~~~~
+
+* Total coverage: 96.28%
+* Your code has been rated at 9.70/10
+
+after
+~~~~~
