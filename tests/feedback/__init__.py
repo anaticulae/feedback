@@ -11,6 +11,7 @@
 import utila
 
 import feedback
+import feedback.cli
 
 
 def run(cmd: str, monkeypatch):

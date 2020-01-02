@@ -16,6 +16,7 @@ from iamraw import BoundingBox
 
 import feedback.features.problems.renderer
 import tests
+import tests.feedback
 
 
 def test_report_view_work(testdir):
@@ -67,7 +68,6 @@ def feedback_result(request):
 def test_report_view_main(feedback_result, testdir, monkeypatch): # pylint:disable=W0621
     inpath = feedback_result
     root = str(testdir)
-
     tests.feedback.run(f'-i {inpath} -o {root}', monkeypatch=monkeypatch)
 
 
