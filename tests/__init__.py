@@ -20,33 +20,6 @@ TEST_PATH = join(ROOT, 'tests')
 assert exists(TEST_PATH)
 
 
-# TODO: remove after upgrading utila 0.6.3
-def assert_file(files, filetype: str):
-    """Ensure that the given `files` have the correct `filetype`
-
-    Args:
-        List[str]: list with files
-        filetype(str): filetype without leading dot
-    Returns:
-        raises assertion when passing invalid files
-    """
-    # support passing single str
-    files = [files] if isinstance(files, str) else files
-    # ensure passing without dot
-    filetype = filetype[1:] if filetype[0] == '.' else filetype
-    raises = 0
-    for item in files:
-        if not item.endswith('.%s' % filetype):
-            error('No %s file: %s' % (filetype, item))
-            raises += 1
-    assert not raises, 'wrong file types'
-
-
-def assert_html(files):
-    """Ensure that all given `files` are `html` files"""
-    assert_file(files, 'html')
-
-
 def single_execution():
     """Check that test method is executed as single test. You can use
     this method to open the result in a web browser if test is executed
