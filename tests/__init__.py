@@ -8,16 +8,13 @@
 # =============================================================================
 
 import inspect
+import os
 import sys
-from os.path import exists
-from os.path import join
 
-from utila import error
+import feedback
 
-from feedback import ROOT
-
-TEST_PATH = join(ROOT, 'tests')
-assert exists(TEST_PATH)
+TEST_PATH = os.path.join(feedback.ROOT, 'tests')
+assert os.path.exists(TEST_PATH)
 
 
 def single_execution():
