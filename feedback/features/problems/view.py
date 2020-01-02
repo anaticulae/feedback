@@ -6,9 +6,14 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+import feedback.renderer.html
 
 
-def work(text: str, textpositions: str) -> list:
+def work(text: str, textpositions: str, pages: tuple = None) -> list:
     result = []
+
+    html = feedback.renderer.html.load(text, textpositions, pages=pages)
+
+    result = [feedback.renderer.html.render_page(item) for item in html]
 
     return result

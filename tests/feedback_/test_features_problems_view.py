@@ -16,3 +16,7 @@ def test_report_problems_view(testdir, monkeypatch):
     inpath = os.path.join(tests.resources.GENERATED_MASTER_PAGE72)
     root = str(testdir)
     tests.feedback_.run(f'-i {inpath} -o {root} --view', monkeypatch=monkeypatch) # yapf:disable
+
+    outpath = os.path.join(root, 'feedback__view_pages')
+    written = list(os.listdir(outpath))
+    assert len(written) >= 10, written
