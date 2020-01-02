@@ -38,7 +38,7 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
         ],
-        (outhtml('pages/view_*'),),
+        (outhtml('pages/*'),),
     ),
 ]
 

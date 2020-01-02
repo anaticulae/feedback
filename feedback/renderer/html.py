@@ -33,8 +33,8 @@ def render_page(
         html = create_line(line, marked)
         lines.append(html)
     content = '\n'.join(lines)
-    box = create_pagebox(content, page.page, page.dimension)
-    return box
+    result = create_pagebox(content, page.page, page.dimension)
+    return result
 
 
 def create_line(line, rawline):
@@ -47,7 +47,7 @@ def create_line(line, rawline):
     return result
 
 
-def create_pagebox(html: str, page: int, dimension):
+def create_pagebox(html: str, page: int, dimension) -> str:
     result = (f'<div id="page{page}" '
               f'style="position:relative; width:{dimension[0]}px; '
               f'height:{dimension[1]}px; border:1px solid black;">\n'
