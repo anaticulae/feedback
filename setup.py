@@ -84,6 +84,7 @@ if __name__ == "__main__":
             'feedback.features.problems',
             'feedback.features.statistica',
             'feedback.problems',
+            'feedback.renderer',
             'feedback.templates',
         ],
         entry_points={
