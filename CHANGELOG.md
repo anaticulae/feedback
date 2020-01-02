@@ -2,6 +2,35 @@
 
 Every noteable change is logged here.
 
+## v0.6.0
+
+### Feature
+
+* add mark selector to problem view generator (d057ee76cd1e)
+* link and activate problems renderer (11b2518532a5)
+* add method to load required data from path (a8318a4c4199)
+* add step interface to run problem renderer (5f93fccf9543)
+* add method to group Findings by type(word, oneline) (8d099f783b37)
+* add id to access different pages (4bfc28e545f5)
+* handle white space and white lines correctly (0915f3d6c476)
+* use PageMarkConfiguration to mark highlights words and lines (3221132be15f)
+* add LineMarker to mark lines in renderer (fbbc0f0a9029)
+* add marker mechanism to html renderer (60e94b917f9c)
+* add word marker to add unique id for select words. (8c489be347d7)
+* add renderer to convert text data to html view (dbafac0fee15)
+
+### Fix
+
+* fix import location (3482599880fb)
+* add missing import (28e21c76ebad)
+* fix variable assignment logic (1c2220134e9e)
+
+### Documentation
+
+* Happy New Year! (93d2f24ae212)
+* extend interface documentation (a12ce8b3ab13)
+* extend interface documentation (671666501a64)
+
 ## v0.5.1
 
 ### Feature
