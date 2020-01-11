@@ -8,8 +8,8 @@ protocol==0.5.1
 utila==1.11.3
 
 # required feedback/linter result
-decider==0.4.4
+decider==0.4.5
 
 
 # ensure version of test data generator
-hey==1.14.8
+hey==1.14.9
