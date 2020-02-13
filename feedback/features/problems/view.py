@@ -6,6 +6,12 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""The view module generates the html representation of the pdf data
+structure. Furthermore the linter results are added to view the problems
+in user document.
+
+In the current state text and horizontal lines are printed.
+"""
 import os
 
 import protocol
