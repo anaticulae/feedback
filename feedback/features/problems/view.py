@@ -38,6 +38,7 @@ def work(
     html = feedback.renderer.html.load(text, textpositions, pages=pages)
     findings = load_linters(linters)
     # collect marks from current working directory
+    # TODO: IS THIS A DUPLICATION WITH *linters?
     root = str(os.getcwd())
     marks = feedback.renderer.mark.collect(root)
 
