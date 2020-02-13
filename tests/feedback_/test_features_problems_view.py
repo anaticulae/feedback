@@ -13,7 +13,7 @@ import tests.resources
 
 
 def test_report_problems_view(testdir, monkeypatch):
-    inpath = os.path.join(tests.resources.GENERATED_MASTER_PAGE72)
+    inpath = os.path.join(tests.resources.MASTER72_GENERATED)
     root = str(testdir)
     tests.feedback_.run(f'-i {inpath} -o {root} --view', monkeypatch=monkeypatch) # yapf:disable
 

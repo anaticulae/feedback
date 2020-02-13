@@ -14,8 +14,9 @@ from feedback import ROOT
 
 RESOURCES = join(ROOT, 'tests/resources')
 
-DOCU = os.path.join(RESOURCES, 'docu')
 BOOK = os.path.join(RESOURCES, 'book')
+DOCU = os.path.join(RESOURCES, 'docu')
+MASTER = os.path.join(RESOURCES, 'master')
 
 GENERATED = os.path.join(RESOURCES, 'generated')
 
@@ -31,23 +32,24 @@ RESTRUCTED_USERLINTING = join(RESTRUCTED, 'decider__titlepage_user.yaml')
 
 RESTRUCTED_PDF = join(DOCU, 'restructuredtext.pdf')
 PORTING_PYTHON3_PDF = join(DOCU, 'porting_extension_modules.pdf')
-MASTER_72_PAGE_NOIMAGES_PDF = join(RESOURCES, 'master/page_72_noimages_toc.pdf')
+MASTER72_PDF = join(MASTER, 'page_72_noimages_toc.pdf')
 
 LEFTRIGHT = join(BOOK, 'leftright.pdf')
 LEFTRIGHT_GENERATED = os.path.join(GENERATED, 'book_leftright')
 
-GENERATED_MASTER_PAGE72 = os.path.join(GENERATED, 'master_page_72_noimages_toc')
+MASTER72_GENERATED = os.path.join(GENERATED, 'master_page_72_noimages_toc')
 GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules') # yapf:disable
 GENERATED_RESTRUCTED = RESTRUCTED
 
 # test after running generation step in update.py
 REQUIRED_RESOURCES = [
     GENERATED,
-    GENERATED_MASTER_PAGE72,
     GENERATED_PORTING_PYTHON3,
     GENERATED_RESTRUCTED,
     LEFTRIGHT,
     LEFTRIGHT_GENERATED,
+    MASTER72_GENERATED,
+    MASTER72_PDF,
     RESOURCES,
     RESTRUCTED,
     RESTRUCTED_BOXEDCONTENT,

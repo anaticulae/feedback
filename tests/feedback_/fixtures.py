@@ -14,6 +14,6 @@ import tests.resources
 
 @pytest.fixture
 def masterpage72():
-    path = tests.resources.GENERATED_MASTER_PAGE72
+    path = tests.resources.MASTER72_GENERATED
     loaded = feedback.renderer.html.from_path(path)
     return loaded

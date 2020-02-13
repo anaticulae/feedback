@@ -37,7 +37,7 @@ def extract_examples():
     files = [
         tests.resources.RESTRUCTED_PDF,
         tests.resources.PORTING_PYTHON3_PDF,
-        tests.resources.MASTER_72_PAGE_NOIMAGES_PDF,
+        tests.resources.MASTER72_PDF,
         tests.resources.LEFTRIGHT,
     ]
     decider.example.extract(files, tests.resources.GENERATED)

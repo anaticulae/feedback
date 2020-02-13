@@ -54,12 +54,12 @@ def test_report_view_work(testdir):
     params=[
         tests.resources.GENERATED_RESTRUCTED,
         tests.resources.GENERATED_PORTING_PYTHON3,
-        tests.resources.GENERATED_MASTER_PAGE72,
+        tests.resources.MASTER72_GENERATED,
     ],
     ids=[
         utila.make_single(tests.resources.GENERATED_RESTRUCTED),
         utila.make_single(tests.resources.GENERATED_PORTING_PYTHON3),
-        utila.make_single(tests.resources.GENERATED_MASTER_PAGE72),
+        utila.make_single(tests.resources.MASTER72_GENERATED),
     ])
 def feedback_result(request):
     return request.param
