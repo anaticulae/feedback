@@ -29,7 +29,7 @@ def sync_resources():
 def extract_examples():
     # ensure that generation folder exists
     if os.path.exists(tests.resources.GENERATED):
-        # generate only once, to reduce
+        # generate only once, to reduce required test time
         return
 
     os.makedirs(tests.resources.GENERATED, exist_ok=True)
