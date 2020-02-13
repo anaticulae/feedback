@@ -17,3 +17,10 @@ def masterpage72():
     path = tests.resources.MASTER72_GENERATED
     loaded = feedback.renderer.html.from_path(path)
     return loaded
+
+
+@pytest.fixture
+def leftright():
+    path = tests.resources.LEFTRIGHT_GENERATED
+    loaded = feedback.renderer.html.from_path(path)
+    return loaded

@@ -15,11 +15,13 @@ import utila
 
 import feedback.renderer.content
 import feedback.renderer.mark
+import feedback.renderer.shape
 
 
 def render_page(
         page: feedback.renderer.content.HTMLPageContent,
         marks: feedback.renderer.mark.PageMarkConfiguration = None,
+        shapes: list = None,
 ) -> str:
     if marks is None:
         marks = feedback.renderer.mark.PageMarkConfiguration()
@@ -32,6 +34,11 @@ def render_page(
         marked = linemarker.markme(marked)
         html = create_line(line, marked)
         lines.append(html)
+
+    if shapes:
+        rendered = feedback.renderer.shape.render(shapes)
+        lines.extend(rendered)
+
     content = '\n'.join(lines)
     result = create_pagebox(content, page.page, page.dimension)
     return result

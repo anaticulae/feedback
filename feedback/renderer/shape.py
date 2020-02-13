@@ -14,11 +14,29 @@ virtual border is painted."""
 
 import iamraw
 
+
+def render(items: list) -> list:
+    result = []
+    for item in items:
+        typ = item['type']
+        item = item.copy()
+        item.pop('type')
+        rendered = None
+        if typ == 'rectangle':
+            rendered = render_rectangle(**item)
+        assert rendered, f'unsupported: {typ}'
+        result.append(rendered)
+    return result
+
+
+# Rectangle - Item is moved to the background with z-index: -1000; let
+# text selectable. If the index is not negative, the rectangle will hide
+# the focus of the underlaying content.
 RECTANGLE = """\
 <span style="position:absolute;
 top:{y0}px;left:{x0}px;width:{width}px;height:{height}px;
-border:{border}; background:{background}; {more}"></span>
-"""
+border:{border}; background:{background}; z-index: -1000;
+{more}"></span>"""
 
 
 def render_rectangle(

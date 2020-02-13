@@ -14,6 +14,7 @@ import utila
 
 import feedback.renderer.html
 import feedback.renderer.mark
+from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
 from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
 
 
@@ -35,6 +36,7 @@ def test_renderer_firstpage(testdir, masterpage72):  # pylint:disable=W0621
 
 
 def test_renderer_secondpage_mark_line_and_words(testdir, masterpage72):  # pylint:disable=W0621
+    # TODO: VERIFY WITH SELENIUM
     outpath = os.path.join(str(testdir), 'secondpage.html')
     secondpage = utila.select_page(masterpage72, 1)
 
@@ -56,6 +58,28 @@ def test_renderer_secondpage_mark_line_and_words(testdir, masterpage72):  # pyli
         """
     output = style + rendered
     utila.file_create(outpath, output)
+
+    if utila.single_execution():
+        webbrowser.open(outpath)
+
+
+def test_renderer_shapes_mark_bounding(testdir, leftright):  # pylint:disable=W0621
+    """Render first page of `leftright` example and add a red rectangle
+    in the top center of the page."""
+    outpath = os.path.join(str(testdir), 'firstpage.html')
+    firstpage = utila.select_page(leftright, 0)
+
+    shapes = [
+        {
+            'type': 'rectangle',
+            'bounding': (50, 50, 400, 400),
+            'border': '1px solid red',
+        },
+    ]
+
+    rendered = feedback.renderer.html.render_page(firstpage, shapes=shapes)
+    assert len(rendered) > 300, str(rendered)
+    utila.file_create(outpath, rendered)
 
     if utila.single_execution():
         webbrowser.open(outpath)
