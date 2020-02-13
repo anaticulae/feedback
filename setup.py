@@ -45,9 +45,6 @@ def datafiles():
             'feedback/templates/fonts/fonts_used.html',
             'feedback/templates/fonts/fonts_ugly_badfont.html',
         ]),
-        ('feedback/templates/border', [
-            'feedback/templates/border/hits.html',
-        ]),
         ('feedback/templates/problems', [
             'feedback/templates/problems/index.html',
         ]),
@@ -79,7 +76,6 @@ if __name__ == "__main__":
             'feedback.command',
             'feedback.command.decider',
             'feedback.features',
-            'feedback.features.border',
             'feedback.features.fonts',
             'feedback.features.problems',
             'feedback.features.statistica',

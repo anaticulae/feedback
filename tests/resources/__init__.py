@@ -27,11 +27,11 @@ RESTRUCTED_PAGENUMBERS = join(RESTRUCTED, 'groupme__pagenumbers_pagenumbers.yaml
 RESTRUCTED_USERLINTING = join(RESTRUCTED, 'decider__titlepage_user.yaml')
 
 RESTRUCTED_PDF = join(DOCU, 'restructuredtext.pdf')
-PORTING_PYTHON3_PDF = join(DOCU, 'porting_extension_modules_python3.pdf')
+PORTING_PYTHON3_PDF = join(DOCU, 'porting_extension_modules.pdf')
 MASTER_72_PAGE_NOIMAGES_PDF = join(RESOURCES, 'master/page_72_noimages_toc.pdf')
 
 GENERATED_MASTER_PAGE72 = os.path.join(GENERATED, 'master_page_72_noimages_toc')
-GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules_python3') # yapf:disable
+GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules') # yapf:disable
 GENERATED_RESTRUCTED = RESTRUCTED
 
 # test after running generation step in update.py

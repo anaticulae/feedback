@@ -9,10 +9,10 @@
 
 import os
 
+import decider
 import protocol
 import pytest
 
-import decider
 import feedback.problems.linter
 import tests.resources
 

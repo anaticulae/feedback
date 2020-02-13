@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import decider
 from utila import ResultFile
 from utila import create_step as step
 from utila import featurepack
 
-import decider
 import feedback
 from feedback.command.utils import outhtml
 
