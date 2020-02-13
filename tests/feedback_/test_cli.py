@@ -10,6 +10,7 @@
 import os
 import webbrowser
 
+import pytest
 import utila
 
 import feedback
@@ -38,15 +39,15 @@ def test_run_feedback_help():
     assert completed.returncode == utila.SUCCESS, str(completed)
 
 
-def test_run_feedback_linter_findings_to_shape(testdir, monkeypatch):
+@pytest.mark.parametrize('source', [
+    pytest.param(tests.resources.LEFTRIGHT_GENERATED, id='leftright'),
+    pytest.param(tests.resources.MASTER72_GENERATED, id='master72'),
+])
+def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     """Run linted example where findings are converted to shapes to
     display more information to the user."""
     root = str(testdir)
-    utila.copy_content(
-        tests.resources.LEFTRIGHT_GENERATED,
-        root,
-        pattern='rawmaker__*.yaml',
-    )
+    utila.copy_content(source, root, pattern='rawmaker__*.yaml')
     completed = utila.run('decider_border')
     assert completed.returncode == utila.SUCCESS
 
