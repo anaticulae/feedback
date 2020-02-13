@@ -45,7 +45,7 @@ def test_report_view_work(testdir):
     outpath = os.path.join(root, 'result.html')
     utila.file_create(outpath, result)
 
-    if tests.single_execution():
+    if utila.single_execution():
         # Hint: Enable for fast feedback loop
         webbrowser.open(outpath)
 
