@@ -113,8 +113,8 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
         pagemarks = marks[page]
     except KeyError:
         pagemarks = {}
-    wordmarks = words(pagemarks)
-    linemarks = lines(pagemarks)
+    wordmarks = protocol.words(pagemarks)
+    linemarks = protocol.lines(pagemarks)
 
     result = PageMarkConfiguration(
         page=page,
@@ -214,29 +214,3 @@ def collect(path: str) -> dict:
         ]
     result = feedback.problems.linter.group_finding_bypage(findings)
     return result
-
-
-# TODO: MOVE TO PROTOCOL PACKAGE
-def words(items: protocol.Findings) -> protocol.Findings:
-    return filter_mark(items, 'w')
-
-
-def lines(items: protocol.Findings) -> protocol.Findings:
-    return filter_mark(items, 'ol')
-
-
-def filter_mark(items: protocol.Findings, shortcut: str) -> protocol.Findings:
-    """Filter `Findings` by shortcut and sort them by `location.value`
-    afterwards.
-
-    Args:
-        items(protocol.Findings): list of findings
-        shortcut(str): shortcut of finding.location, w word, p page,
-                       ol oneline, etc.
-    Returns:
-        filtered, sorted list of `Findings`
-    """
-    assert all([item.location for item in items]), f'require location: {items}'
-    items = [item for item in items if item.location.shortcut == shortcut]
-    items = sorted(items, key=lambda x: x.location.value)
-    return items

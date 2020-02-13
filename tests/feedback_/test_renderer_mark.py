@@ -71,7 +71,7 @@ def test_render_mark_filter_lines():
         protocol.Finding(location=create_line(line=10, page=3)),
         protocol.Finding(location=create_chapter(chapter=1, page=3)),
     ]
-    filtered = feedback.renderer.mark.lines(findings)
+    filtered = protocol.lines(findings)
     assert len(filtered) == 3, str(filtered)
 
 
@@ -88,5 +88,5 @@ def test_render_mark_filter_words():
         protocol.Finding(location=create_line(line=7, page=3)),
         protocol.Finding(location=create_chapter(chapter=1, page=3)),
     ]
-    filtered = feedback.renderer.mark.words(findings)
+    filtered = protocol.words(findings)
     assert len(filtered) == 4, str(filtered)
