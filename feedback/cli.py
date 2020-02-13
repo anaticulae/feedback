@@ -8,6 +8,7 @@
 # =============================================================================
 
 import decider
+from utila import Pattern
 from utila import ResultFile
 from utila import create_step as step
 from utila import featurepack
@@ -37,6 +38,7 @@ WORKPLAN = [
         [
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
+            Pattern(name='*_user', ext='yaml'),
         ],
         (outhtml('pages/*'),),
     ),

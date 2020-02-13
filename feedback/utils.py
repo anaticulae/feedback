@@ -9,7 +9,11 @@
 
 # ADD EXPERIMENTAL CODE HERE
 
+import inspect
 import subprocess
+
+import utila
+import utila.feature
 
 
 def format_completed(completed: subprocess.CompletedProcess) -> str:
@@ -35,3 +39,37 @@ def format_completed(completed: subprocess.CompletedProcess) -> str:
            f'returncode: {completed.returncode}\n'
            '[process completed: end]')
     return msg
+
+
+def verify_interface(inputs, outputs, worker):
+    # TODO: MOVE TO UTILA
+    # TODO: EXTEND DOC
+    # check callable
+    # check input parameter
+    call_parameter = inspect.signature(worker).parameters
+    parameter = [str(item) for item in call_parameter.values()]
+    # variable name of input parameter
+    dynamic_collection = len([item for item in parameter if '*' in item]) == 1
+    if not dynamic_collection:
+        # Optional pages flag, reduces count of required parameter in
+        # definition.
+        has_pages = int(utila.PAGES_FLAG in call_parameter)
+        if not len(call_parameter) == len(inputs) + has_pages:
+            utila.error(
+                f'missing input resources: '
+                f'interface error {list(call_parameter.keys())} != {inputs}')
+            return utila.FAILURE
+
+    # check output parameter
+    return_parameter = str(inspect.signature(worker).return_annotation)
+    return_count = return_parameter.count('str')
+
+    variable_returnvalues = utila.feature.variable_parameter(outputs)
+    if not len(outputs) == return_count and not variable_returnvalues:
+        utila.error(f'missing output resources: '
+                    f'interface error {return_parameter} != {outputs}')
+        return utila.FAILURE
+    return utila.SUCCESS
+
+
+utila.feature.verify_interface = verify_interface

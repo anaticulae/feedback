@@ -12,7 +12,12 @@ import feedback.renderer.html
 import feedback.renderer.mark
 
 
-def work(text: str, textpositions: str, pages: tuple = None) -> list:
+def work(
+        text: str,
+        textpositions: str,
+        *linters: list,
+        pages: tuple = None,
+) -> list:
     """Generate html view for selected `pages`.
 
     TODO: define default parameter for source of protocol parameter
@@ -20,6 +25,7 @@ def work(text: str, textpositions: str, pages: tuple = None) -> list:
     Args:
         text(str): path to extract text
         textpositions(str): path to extracted text positions
+        linters(str): path to folder with linter results
         pages(tuple): selected pages to process
     Returns:
         List of extracted html view per page.
