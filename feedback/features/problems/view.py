@@ -8,8 +8,13 @@
 # =============================================================================
 import os
 
+import protocol
+import utila
+
+import feedback.problems.shapy
 import feedback.renderer.html
 import feedback.renderer.mark
+import feedback.renderer.shape
 
 
 def work(
@@ -31,7 +36,7 @@ def work(
         List of extracted html view per page.
     """
     html = feedback.renderer.html.load(text, textpositions, pages=pages)
-
+    findings = load_linters(linters)
     # collect marks from current working directory
     root = str(os.getcwd())
     marks = feedback.renderer.mark.collect(root)
@@ -42,6 +47,17 @@ def work(
             marks=marks,
             page=page.page,
         )
-        rendered = feedback.renderer.html.render_page(page, pagemarks)
+        shapes = feedback.problems.shapy.determine_shapes(findings, page.page)
+        rendered = feedback.renderer.html.render_page(
+            page,
+            pagemarks,
+            shapes=shapes,
+        )
         result.append(rendered)
     return result
+
+
+def load_linters(paths: str):
+    loaded = [protocol.load_result(path) for path in paths]
+    loaded = utila.flatten(loaded)
+    return loaded
