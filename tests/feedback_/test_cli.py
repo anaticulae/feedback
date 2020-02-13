@@ -7,11 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+import webbrowser
+
 import utila
 
 import feedback
 import feedback.cli
 import feedback.command.decider.border
+import tests.feedback_
 import tests.resources
 
 
@@ -32,3 +36,24 @@ def test_run_feedback_help():
     """Ensure that installing process works correctly."""
     completed = utila.run('feedback --help')
     assert completed.returncode == utila.SUCCESS, str(completed)
+
+
+def test_run_feedback_linter_findings_to_shape(testdir, monkeypatch):
+    """Run linted example where findings are converted to shapes to
+    display more information to the user."""
+    root = str(testdir)
+    utila.copy_content(
+        tests.resources.LEFTRIGHT_GENERATED,
+        root,
+        pattern='rawmaker__*.yaml',
+    )
+    completed = utila.run('decider_border')
+    assert completed.returncode == utila.SUCCESS
+
+    tests.feedback_.run('--view', monkeypatch)
+
+    first_file = os.path.join(root, 'feedback__view_pages/0.html')
+    assert os.path.exists(first_file), str(first_file)
+
+    if utila.single_execution():
+        webbrowser.open(first_file)

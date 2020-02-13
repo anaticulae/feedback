@@ -14,6 +14,7 @@ import protocol
 
 
 def group_finding_bypage(items: typing.List[protocol.Finding]) -> dict:
+    # TODO: MOVE TO PROTOCOL
     collected = collections.defaultdict(list)
     for item in items:
         collected[item.location.page].append(item)
