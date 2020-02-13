@@ -53,7 +53,7 @@ import protocol
 import utila
 
 import feedback.problems.linter
-import feedback.renderer.html
+import feedback.renderer.content
 
 
 @dataclasses.dataclass
@@ -68,7 +68,7 @@ TextMarks = typing.List[TextMark]
 
 class WordAccess:
 
-    def __init__(self, content: feedback.renderer.HTMLPageContents):
+    def __init__(self, content: feedback.renderer.content.HTMLPageContents):
         self.content = {item.page: item for item in content}
         self.cache = {}
 

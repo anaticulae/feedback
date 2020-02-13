@@ -13,12 +13,12 @@ import iamraw
 import serializeraw
 import utila
 
-import feedback.renderer
+import feedback.renderer.content
 import feedback.renderer.mark
 
 
 def render_page(
-        page: feedback.renderer.HTMLPageContent,
+        page: feedback.renderer.content.HTMLPageContent,
         marks: feedback.renderer.mark.PageMarkConfiguration = None,
 ) -> str:
     if marks is None:
@@ -72,7 +72,7 @@ def load(text: str, textposition: str, pages: tuple = None) -> list:
             # update with loaded text position
             children.box = position.content[index]
 
-        item = feedback.renderer.HTMLPageContent(
+        item = feedback.renderer.content.HTMLPageContent(
             page=page,
             dimension=text.dimension,
             content=selected,
