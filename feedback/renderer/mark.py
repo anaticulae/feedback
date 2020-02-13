@@ -212,5 +212,6 @@ def collect(path: str) -> dict:
         findings = [
             protocol.load_result(item) for item in glob.glob('*_user.yaml')
         ]
+    findings = utila.flatten(findings)
     result = feedback.problems.linter.group_finding_bypage(findings)
     return result
