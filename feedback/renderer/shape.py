@@ -33,7 +33,7 @@ def render(items: list) -> list:
 # text selectable. If the index is not negative, the rectangle will hide
 # the focus of the underlaying content.
 RECTANGLE = """\
-<span style="position:absolute;
+<span {reference} style="position:absolute;
 top:{y0}px;left:{x0}px;width:{width}px;height:{height}px;
 border:{border}; background:{background}; z-index: -1000;
 {more}"></span>"""
@@ -44,6 +44,7 @@ def render_rectangle(
         border: str = '1px solid black',
         background: str = 'transparent',
         more: str = '',
+        reference: str = None,
 ) -> str:
     """Render html rectangle represented as `<span>`."""
     x0 = bounding[0]
@@ -52,14 +53,15 @@ def render_rectangle(
     assert x0 <= bounding[2], str(bounding)
     width = bounding[2] - bounding[0]
     height = bounding[3] - bounding[1]
-
+    reference = '' if reference is None else f'id="{reference}"'
     rendered = RECTANGLE.format(
+        background=background,
+        border=border,
+        height=height,
+        more=more,
+        reference=reference,
+        width=width,
         x0=x0,
         y0=y0,
-        width=width,
-        height=height,
-        border=border,
-        background=background,
-        more=more,
     )
     return rendered
