@@ -30,10 +30,14 @@ def determine_shapes(findings, page):
 
 
 def error_2020(item) -> dict:
-    bounding = (40, 40, 560, 560)
+    bounding = item.location.value
+    # TODO: REMOVE AFTER FIXING COORDINATES
+    ytop = min([bounding[3], bounding[1]])
+    ybottom = max([bounding[3], bounding[1]])
+    bounding_reverse = (bounding[0], ytop, bounding[2], ybottom)
     result = {
         'type': 'rectangle',
-        'bounding': bounding,
+        'bounding': bounding_reverse,
         'border': '1px solid red',
     }
     return result
