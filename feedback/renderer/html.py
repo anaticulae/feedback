@@ -47,7 +47,11 @@ def render_page(
             page.border[1],
             page.border[3],
         )
-        border = feedback.renderer.shape.render_rectangle(rectangle)
+        # TODO: Think about style concept, USE HOLY VALUE?
+        border = feedback.renderer.shape.render_rectangle(
+            rectangle,
+            border='1px dotted gray',
+        )
         lines.append(border)
 
     content = '\n'.join(lines)
