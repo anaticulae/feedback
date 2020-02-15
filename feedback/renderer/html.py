@@ -6,7 +6,15 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""HTML View
+=========
 
+References
+----------
+
+* page_{number}_border_content: access content border to change
+                                appereance, show/hide etc.
+"""
 import os
 
 import iamraw
@@ -23,6 +31,11 @@ def render_page(
         marks: feedback.renderer.mark.PageMarkConfiguration = None,
         shapes: list = None,
 ) -> str:
+    """Convert `page`-data to raw html data.
+
+    If page.border is defined, the content border is added and a
+    reference to access these rectangle is added (see referece).
+    """
     if marks is None:
         marks = feedback.renderer.mark.PageMarkConfiguration()
     wordmarker = feedback.renderer.mark.WordMarker(page.page, marks.wordmarks)
@@ -51,6 +64,7 @@ def render_page(
         border = feedback.renderer.shape.render_rectangle(
             rectangle,
             border='1px dotted gray',
+            reference=f'page_{page.page}_border_content',
         )
         lines.append(border)
 

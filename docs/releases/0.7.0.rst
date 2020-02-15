@@ -3,14 +3,14 @@
 RP 0.7.0
 =========
 
-code quality
-------------
-
 * [ ] add border linter to feedback loop
 
 * [x] add two examples which run border feedback loop
 
-* [ ] make border optional - add switch to turn on and off
+* [x] make border optional - add switch to turn on and off
+
+code quality
+------------
 
 before
 ~~~~~~
