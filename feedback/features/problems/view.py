@@ -27,6 +27,7 @@ import feedback.renderer.shape
 def work(
         text: str,
         textpositions: str,
+        hits: str,
         *linters: list,
         pages: tuple = None,
 ) -> list:
@@ -37,12 +38,18 @@ def work(
     Args:
         text(str): path to extract text
         textpositions(str): path to extracted text positions
+        hits(str): path to hits extracted from decider_border-hits
         linters(str): path to folder with linter results
         pages(tuple): selected pages to process
     Returns:
         List of extracted html view per page.
     """
-    html = feedback.renderer.html.load(text, textpositions, pages=pages)
+    html = feedback.renderer.html.load(
+        text,
+        textpositions,
+        hits=hits,
+        pages=pages,
+    )
     findings = load_linters(linters)
     # collect marks from current working directory
     # TODO: IS THIS A DUPLICATION WITH *linters?
