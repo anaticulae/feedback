@@ -39,6 +39,17 @@ def render_page(
         rendered = feedback.renderer.shape.render(shapes)
         lines.extend(rendered)
 
+    if page.border:
+        # TODO: CREATE BORDER TO RECTANGLE METHOD
+        rectangle = (
+            page.border[0],
+            page.border[2],
+            page.border[1],
+            page.border[3],
+        )
+        border = feedback.renderer.shape.render_rectangle(rectangle)
+        lines.append(border)
+
     content = '\n'.join(lines)
     result = create_pagebox(content, page.page, page.dimension)
     return result
@@ -63,13 +74,20 @@ def create_pagebox(html: str, page: int, dimension) -> str:
     return result
 
 
-def load(text: str, textposition: str, pages: tuple = None) -> list:
+def load(
+        text: str,
+        textposition: str,
+        hits: str = None,
+        pages: tuple = None,
+) -> list:
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
+    hits = serializeraw.load_hits(hits, pages=pages) if hits else None
     result = []
     for current in text.pages:
         page = current.page
         position = utila.select_page(textposition, page)
+        border = utila.select_page(hits, page).border if hits else None
         # skip non TextContainer boxes - for example LTRect
         selected = [
             item for item in current.children
@@ -83,6 +101,7 @@ def load(text: str, textposition: str, pages: tuple = None) -> list:
             page=page,
             dimension=text.dimension,
             content=selected,
+            border=border,
         )
         result.append(item)
     return result
@@ -92,5 +111,8 @@ def from_path(path: str, pages: tuple = None) -> list:
     assert os.path.exists(path), str(path)
     text = os.path.join(path, 'rawmaker__text_text.yaml')
     textposition = os.path.join(path, 'rawmaker__text_positions.yaml')
-    loaded = load(text, textposition, pages=pages)
+    hits = os.path.join(path, 'decider_border__detection_hits.yaml')
+    # make border rendere optional
+    hits = hits if os.path.exists(hits) else None
+    loaded = load(text, textposition, hits=hits, pages=pages)
     return loaded

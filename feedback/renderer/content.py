@@ -18,9 +18,10 @@ iamraw.TextContainers = typing.List[iamraw.TextContainer]
 
 @dataclasses.dataclass
 class HTMLPageContent:
+    border: tuple = None
+    content: iamraw.TextContainers = dataclasses.field(default_factory=list)
     dimension: iamraw.PageSize = None
     page: int = None
-    content: iamraw.TextContainers = dataclasses.field(default_factory=list)
 
 
 HTMLPageContents = typing.List[HTMLPageContent]
