@@ -2,6 +2,31 @@
 
 Every noteable change is logged here.
 
+## v0.7.0
+
+### Feature
+
+* add reference to access added content border (6b682303410a)
+* add reference to refer renderer object directly (60de63322d63)
+* change content border to dotted style (ca7173d5615c)
+* add border shape renderer to console (347b75e8f4a5)
+* extend shape renderer to render content-border (66b400990f06)
+* use BoundingLocation to draw rectangles in view (61ff5a9cf53b)
+* make problem view modifiable (462599e369e1)
+* enable dynamic input parameter (5d3f5dc77c9c)
+* add option to render shapes in the background of html page (49cbed7c2491)
+* add shape renderer to render figures to html page (3a7a0512446e)
+
+### Fix
+
+* add import to help yaml loader (337303af9b01)
+* support to collect from multiple sources (6cd9c454958e)
+* solve cyclic import (f6b047cd0c5f)
+
+### Documentation
+
+* add module purpose of `view` (1b2fe19f8f92)
+
 ## v0.6.4
 
 ## v0.6.3
