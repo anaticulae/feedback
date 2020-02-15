@@ -3,7 +3,7 @@
 RP 0.7.0
 =========
 
-* [ ] add border linter to feedback loop
+* [x] add border linter to feedback loop
 
 * [x] add two examples which run border feedback loop
 

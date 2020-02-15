@@ -15,7 +15,6 @@ import utila
 
 import feedback
 import feedback.cli
-import feedback.command.decider.border
 import tests.feedback_
 import tests.resources
 
