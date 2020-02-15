@@ -42,9 +42,6 @@ WORKPLAN = [
     )
 ]
 
-CHAPTER_HTML = '%s__%s_%s' % (PROCESS_NAME, FEATURE_NAME, CHAPTER)
-WORDS_HTML = '%s__%s_%s' % (PROCESS_NAME, FEATURE_NAME, WORDS)
-
 
 def main():
     featurepack(
