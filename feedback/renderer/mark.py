@@ -6,41 +6,45 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""
+"""Mark the content
+================
+
 Separate TextMark, PageMark etc?
 
 ater we need ImageMark, TableMark, DiagramMark
 
-class Mark:
-    page: int
-    start: int
-    end: int
+.. code-block:: none
 
-Marks = typing.List[Mark]
+    class Mark:
+        page: int
+        start: int
+        end: int
 
-class WordMark:
-    page: int
-    word: int = 23
+    Marks = typing.List[Mark]
 
-class SentenceMark:
-    page: int
-    sentence: 10
+    class WordMark:
+        page: int
+        word: int = 23
 
-class CharMark:
-    page:int
-    char: 1336
+    class SentenceMark:
+        page: int
+        sentence: 10
 
-class Marker:
-    pages: range/int
+    class CharMark:
+        page:int
+        char: 1336
 
-class PageMark:
-    page: int
-    start: int
-    end: int
+    class Marker:
+        pages: range/int
+
+    class PageMark:
+        page: int
+        start: int
+        end: int
 
 
-def sentence(number=10,page=13):
-    return Mark(page=13, start=133, end=155)
+    def sentence(number=10,page=13):
+        return Mark(page=13, start=133, end=155)
 
 """
 

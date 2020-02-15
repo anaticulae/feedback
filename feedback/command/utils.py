@@ -10,7 +10,7 @@
 
 from utila import ResultFile as RF
 
-ResultFile = lambda producer, name: RF(producer=producer, name=name)
+ResultFile = lambda producer, name: RF(producer=producer, name=name)  # pylint:disable=C0103
 
 
 def infile(progress: str, stepfile: str):

@@ -29,7 +29,8 @@ def work(
         pagenumbers: str,
         userlinting: str,
 ) -> str:
-    """
+    """Render problem view
+
     Args:
         pagenumbers(str): path to groupme/pagenumbers
         userlint(str): path to linter result .yaml

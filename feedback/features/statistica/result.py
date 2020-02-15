@@ -23,14 +23,15 @@ def work(
         words: str,
         text_statistic: str,
 ) -> Tuple[str, str]:
-    """
+    """Render statistical analysis of chapter and words.
+
     Args:
-        text(str): path to generated file by rawmaker wich contains
-                   the content of an document
+        rawtexts(str): path to generated file by rawmaker wich contains
+                       the content of an document
         words(str): path to file wich which contains a list which contains a
                     descending list with [words, occurence]
-        chapter(str): path to file which contain some statistics, with longest
-                      sentence, words of an chapter
+        text_statistic(str): path to file which contain some statistics,
+                             with longest sentence, words of an chapter
     Returns:
         tuple(chapter, word): of generated html content
     """
