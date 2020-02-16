@@ -9,8 +9,11 @@
 
 # ADD EXPERIMENTAL CODE HERE
 
+import glob
 import inspect
+import os
 import subprocess
+import typing
 
 import utila
 import utila.feature
@@ -73,3 +76,89 @@ def verify_interface(inputs, outputs, worker):
 
 
 utila.feature.verify_interface = verify_interface
+
+
+def prepare_inputs(
+        inputs: list,
+        inspaces: list,
+        outspace: str,
+) -> typing.List[str]:
+    """Parse single and multiple file input
+
+    Locate files by defined pattern in `Workplan`. A file pattern is
+    defined via (name, typ). The ext is in UPPER-CASES, for example (*,
+    PDF) to locate multiple pdf's.
+
+    Args:
+        inputs(str): inputs are defined in a workplan
+        inspaces(str): inspaces is the current input via -i
+        outspace(str): path to write results and use as possible input
+                       source for `recursive inputs`.
+    Returns:
+        List of located files.
+    """
+
+    utila.call('prepare inputs')
+    result = []
+    # single file input
+    search_location = ' '.join(inspaces)
+    for item in inputs:
+        lastinput = item == inputs[-1]
+        utila.info('skipping input `%s`, require `Pattern' % str(item))
+        if not isinstance(item, utila.feature.Pattern):
+            continue
+        (name, ext) = item.name, item.ext
+        for inspace in inspaces:
+            if isinstance(item, utila.feature.ResultFile):
+                producer = item.producer
+                filename = '%s__%s.%s' % (producer, name, ext)
+                filepath = os.path.join(inspace, filename)
+                if os.path.exists(filepath):
+                    result.append(filepath)
+                    break  # do not double add path
+                else:
+                    # TODO: Refactor recursive inputs
+                    # Only on the last inspace, because the file could exists
+                    # in other input folder
+                    if inspace == inspaces[-1]:
+                        recursivepath = os.path.join(outspace, filename)
+                        utila.info('recursive input %s' % recursivepath)
+                        result.append('_%s' % recursivepath)
+            elif isinstance(item, utila.feature.File):
+                filename = '%s.%s' % (name, ext)
+                filepath = os.path.join(inspace, filename)
+                if os.path.exists(filepath):
+                    result.append(filepath)
+                    break  # do not double add path
+                else:
+                    if not lastinput:
+                        continue
+                    utila.error('search location: %s' % search_location)
+                    utila.error('missing input: %s' % filepath)
+            else:
+                _, filename = os.path.split(inspace)
+                if '.' in filename and filename[0] != '.':  # .tmp
+                    # .tmp is not a file name, it is a directory.
+                    # File as a input name
+                    result.append(inspace)
+                    break  # do not double add path
+                elif os.path.isfile(inspace):
+                    # support dir-like file-path as input
+                    # TODO: Introduce new datatype?
+                    result.append(inspace)
+                    break  # do not double add path
+                else:
+                    ext = ext.lower()
+                    pattern = '%s/%s.%s' % (inspace, name, ext)
+                    utila.info('using pattern: %s' % pattern)
+                    files = glob.glob(pattern)
+                    utila.info('%s' % str(files))
+                    for finding in files:
+                        utila.log('FINDING %s' % finding)
+                        result.append(finding)
+
+    utila.call('result: %s\n' % result)
+    return result
+
+
+utila.feature.prepare_inputs = prepare_inputs
