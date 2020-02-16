@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.7.3
+
+### Fix
+
+* correct code replacement (cf6efaa99e92)
+
 ## v0.7.2
 
 ### Fix
