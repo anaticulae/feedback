@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.7.2
+
+### Fix
+
+* fix problem in utila handling `.tmp folder` (e67cede9e5ca)
+
 ## v0.7.1
 
 ## v0.7.0
