@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.7.4
+
+### Fix
+
+* make shapes visible and clickable (a734c55d69fc)
+
 ## v0.7.3
 
 ### Fix
