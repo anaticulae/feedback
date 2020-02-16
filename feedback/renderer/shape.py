@@ -29,13 +29,14 @@ def render(items: list) -> list:
     return result
 
 
-# Rectangle - Item is moved to the background with z-index: -1000; let
-# text selectable. If the index is not negative, the rectangle will hide
-# the focus of the underlaying content.
+# pointer-events: do not catch any pointer event cause we print the
+# rectangle above the content and afterwards no selection is possible.
+# Hint: a negative z-index is no option, cause the backgrounds of parent
+# element hides this z-negative content.
 RECTANGLE = """\
 <span {reference} style="position:absolute;
 top:{y0}px;left:{x0}px;width:{width}px;height:{height}px;
-border:{border}; background:{background}; z-index: -1000;
+border:{border}; background:{background}; pointer-events: none;
 {more}"></span>"""
 
 
