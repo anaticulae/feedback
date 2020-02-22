@@ -14,7 +14,6 @@ In the current state text and horizontal lines are printed.
 """
 import os
 
-import decider.utils  # TODO: REMOVE AFATER MOVING BOUNDING LOCATION TO PROTOCOL
 import protocol
 import utila
 

@@ -8,7 +8,6 @@
 # =============================================================================
 
 import decider
-import utila.feature
 from utila import Pattern
 from utila import ResultFile
 from utila import create_step as step
@@ -49,9 +48,6 @@ WORKPLAN = [
 
 
 def main():
-    # TODO: REMOVE AFTER UPGRADING UTILA
-    utila.feature.verify_interface = feedback.utils.verify_interface
-    utila.feature.prepare_inputs = feedback.utils.prepare_inputs
     featurepack(
         workplan=WORKPLAN,
         root=feedback.ROOT,

@@ -46,9 +46,11 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     """Run linted example where findings are converted to shapes to
     display more information to the user."""
     root = str(testdir)
+    # TODO: UNIT THIS PATTERN AFTER UPGRADING UTILA
     utila.copy_content(source, root, pattern='rawmaker__*.yaml')
+    utila.copy_content(source, root, pattern='groupme__*.yaml')
     completed = utila.run('decider_border')
-    assert completed.returncode == utila.SUCCESS
+    assert completed.returncode == utila.SUCCESS, str(completed)
 
     tests.feedback_.run('--view', monkeypatch)
 
