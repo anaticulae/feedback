@@ -46,6 +46,10 @@ def render_page(
     linemarker = feedback.renderer.mark.LineMarker(page.page, marks.linemarks)
 
     lines = []
+
+    lines.extend(render_pageborder(page))
+    lines.extend(render_boxes(page))
+
     for line in page.content:
         marked = wordmarker.markme(line.text)
         marked = linemarker.markme(marked)
@@ -55,9 +59,6 @@ def render_page(
     if shapes:
         rendered = feedback.renderer.shape.render(shapes)
         lines.extend(rendered)
-
-    lines.extend(render_pageborder(page))
-    lines.extend(render_boxes(page))
 
     content = '\n'.join(lines)
     result = create_pagebox(content, page.page, page.dimension)
