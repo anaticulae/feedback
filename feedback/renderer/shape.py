@@ -13,6 +13,7 @@ For example - to highlight that a border was crossed, a rectangle as
 virtual border is painted."""
 
 import iamraw
+import utila
 
 
 def render(items: list) -> list:
@@ -48,6 +49,7 @@ def render_rectangle(
         reference: str = None,
 ) -> str:
     """Render html rectangle represented as `<span>`."""
+    bounding = utila.roundme(*bounding)  # reduce digits in html output
     x0 = bounding[0]
     y0 = bounding[1]
     assert y0 <= bounding[3], str(bounding)
