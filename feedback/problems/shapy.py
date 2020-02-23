@@ -38,10 +38,12 @@ def error_2020(item) -> dict:
     result = {
         'type': 'rectangle',
         'bounding': bounding_reverse,
-        'border': '1px solid red',
+        'border': '1px solid orange',
         'reference': f'finding_{item.number}'
     }
     return result
 
 
 SHAPY[2020] = error_2020
+SHAPY[3030] = error_2020
+SHAPY[3031] = error_2020
