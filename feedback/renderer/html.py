@@ -24,6 +24,7 @@ import utila
 import feedback.renderer.content
 import feedback.renderer.mark
 import feedback.renderer.shape
+import rawmaker.path
 
 
 def render_page(
@@ -127,8 +128,8 @@ def load(
 
 def from_path(path: str, pages: tuple = None) -> list:
     assert os.path.exists(path), str(path)
-    text = os.path.join(path, 'rawmaker__text_text.yaml')
-    textposition = os.path.join(path, 'rawmaker__text_positions.yaml')
+    text = rawmaker.path.text(path)
+    textposition = rawmaker.path.textposition(path)
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None
