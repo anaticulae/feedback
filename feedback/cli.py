@@ -39,6 +39,7 @@ WORKPLAN = [
         [
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
+            ResultFile(producer='rawmaker', name='boxes_boxes'),
             ResultFile(producer='decider_border', name='detection_hits'),
             Pattern(name='*_user', ext='yaml'),
         ],

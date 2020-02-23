@@ -119,19 +119,19 @@ def create_pagebox(html: str, page: int, dimension) -> str:
 def load(
         text: str,
         textposition: str,
-        boxed: str = None,
+        boxes: str = None,
         hits: str = None,
         pages: tuple = None,
 ) -> list:
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
-    boxed = serializeraw.load_boxes(boxed, pages=pages) if boxed else None
+    boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
     hits = serializeraw.load_hits(hits, pages=pages) if hits else None
     result = []
     for current in text.pages:
         page = current.page
         position = utila.select_page(textposition, page)
-        page_boxes = utila.select_page(boxed, page) if boxed else None
+        page_boxes = utila.select_page(boxes, page) if boxes else None
         border = utila.select_page(hits, page).border if hits else None
         # skip non TextContainer boxes - for example LTRect
         selected = [
@@ -158,10 +158,10 @@ def from_path(path: str, pages: tuple = None) -> list:
     assert os.path.exists(path), str(path)
     text = rawmaker.path.text(path)
     textposition = rawmaker.path.textposition(path)
-    boxed = rawmaker.path.boxed(path)
+    boxes = rawmaker.path.boxed(path)
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None
-    boxed = boxed if os.path.exists(boxed) else None
-    loaded = load(text, textposition, boxed=boxed, hits=hits, pages=pages)
+    boxes = boxes if os.path.exists(boxes) else None
+    loaded = load(text, textposition, boxes=boxes, hits=hits, pages=pages)
     return loaded

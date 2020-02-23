@@ -26,6 +26,7 @@ import feedback.renderer.shape
 def work(
         text: str,
         textpositions: str,
+        boxes: str,
         hits: str,
         *linters: list,
         pages: tuple = None,
@@ -46,6 +47,7 @@ def work(
     html = feedback.renderer.html.load(
         text,
         textpositions,
+        boxes=boxes,
         hits=hits,
         pages=pages,
     )
