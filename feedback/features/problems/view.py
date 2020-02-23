@@ -76,4 +76,6 @@ def work(
 def load_linters(paths: str):
     loaded = [protocol.load_result(path) for path in paths]
     loaded = utila.flatten(loaded)
+    for index, item in enumerate(loaded):
+        item.number = index
     return loaded
