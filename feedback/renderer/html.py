@@ -53,25 +53,30 @@ def render_page(
         rendered = feedback.renderer.shape.render(shapes)
         lines.extend(rendered)
 
-    if page.border:
-        # TODO: CREATE BORDER TO RECTANGLE METHOD
-        rectangle = (
-            page.border[0],
-            page.border[2],
-            page.border[1],
-            page.border[3],
-        )
-        # TODO: Think about style concept, USE HOLY VALUE?
-        border = feedback.renderer.shape.render_rectangle(
-            rectangle,
-            border='1px dotted gray',
-            reference=f'page_{page.page}_border_content',
-        )
-        lines.append(border)
+    lines.extend(render_pageborder(page))
 
     content = '\n'.join(lines)
     result = create_pagebox(content, page.page, page.dimension)
     return result
+
+
+def render_pageborder(page):
+    if not page.border:
+        return []
+    # TODO: CREATE BORDER TO RECTANGLE METHOD
+    rectangle = (
+        page.border[0],
+        page.border[2],
+        page.border[1],
+        page.border[3],
+    )
+    # TODO: Think about style concept, USE HOLY VALUE?
+    border = feedback.renderer.shape.render_rectangle(
+        rectangle,
+        border='1px dotted gray',
+        reference=f'page_{page.page}_border_content',
+    )
+    return [border]
 
 
 def create_line(line, rawline):
