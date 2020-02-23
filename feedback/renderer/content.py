@@ -20,6 +20,8 @@ iamraw.TextContainers = typing.List[iamraw.TextContainer]
 class HTMLPageContent:
     border: tuple = None
     content: iamraw.TextContainers = dataclasses.field(default_factory=list)
+    # TODO: REPLACE WITH LIST OF RECTANGLES
+    boxes: list = dataclasses.field(default_factory=list)
     dimension: iamraw.PageSize = None
     page: int = None
 

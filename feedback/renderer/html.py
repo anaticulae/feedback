@@ -96,16 +96,19 @@ def create_pagebox(html: str, page: int, dimension) -> str:
 def load(
         text: str,
         textposition: str,
+        boxes: str = None,
         hits: str = None,
         pages: tuple = None,
 ) -> list:
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
+    boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
     hits = serializeraw.load_hits(hits, pages=pages) if hits else None
     result = []
     for current in text.pages:
         page = current.page
         position = utila.select_page(textposition, page)
+        page_boxes = utila.select_page(boxes, page).content if boxes else None
         border = utila.select_page(hits, page).border if hits else None
         # skip non TextContainer boxes - for example LTRect
         selected = [
@@ -122,6 +125,8 @@ def load(
             content=selected,
             border=border,
         )
+        if page_boxes:
+            item.boxes.extend(page_boxes)  # pylint:disable=E1101
         result.append(item)
     return result
 
