@@ -122,7 +122,7 @@ def load(
         boxes: str = None,
         hits: str = None,
         pages: tuple = None,
-) -> list:
+) -> feedback.renderer.content.HTMLPageContents:
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
@@ -132,6 +132,7 @@ def load(
         page = current.page
         position = utila.select_page(textposition, page)
         page_boxes = utila.select_page(boxes, page) if boxes else None
+        # expected border which are violated by hits
         border = utila.select_page(hits, page).border if hits else None
         # skip non TextContainer boxes - for example LTRect
         selected = [
@@ -154,7 +155,10 @@ def load(
     return result
 
 
-def from_path(path: str, pages: tuple = None) -> list:
+def from_path(
+        path: str,
+        pages: tuple = None,
+) -> feedback.renderer.content.HTMLPageContents:
     assert os.path.exists(path), str(path)
     text = rawmaker.path.text(path)
     textposition = rawmaker.path.textposition(path)
