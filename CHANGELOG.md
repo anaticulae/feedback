@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.8.0
+
+### Feature
+
+* extends renderer to draw user boxes (0e3b8997dcd4)
+* add boxes to display user defined rectangles (8083e441fc75)
+
 ## v0.7.5
 
 ## v0.7.4
