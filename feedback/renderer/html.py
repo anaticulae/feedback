@@ -18,13 +18,13 @@ References
 import os
 
 import iamraw
+import rawmaker.path
 import serializeraw
 import utila
 
 import feedback.renderer.content
 import feedback.renderer.mark
 import feedback.renderer.shape
-import rawmaker.path
 
 
 def render_page(
@@ -36,6 +36,9 @@ def render_page(
 
     If page.border is defined, the content border is added and a
     reference to access these rectangle is added (see referece).
+
+    If page.boxes contains some rectangles, there are rendered as black
+    boxes.
     """
     if marks is None:
         marks = feedback.renderer.mark.PageMarkConfiguration()
@@ -54,6 +57,7 @@ def render_page(
         lines.extend(rendered)
 
     lines.extend(render_pageborder(page))
+    lines.extend(render_boxes(page))
 
     content = '\n'.join(lines)
     result = create_pagebox(content, page.page, page.dimension)
@@ -79,6 +83,20 @@ def render_pageborder(page):
     return [border]
 
 
+def render_boxes(page):
+    if not page.boxes:
+        return []
+    result = []
+    for index, item in enumerate(page.boxes):
+        box = feedback.renderer.shape.render_rectangle(
+            item.box,
+            border='1px solid black',
+            reference=f'page_{page.page}_boxed_{index}',
+        )
+        result.append(box)
+    return result
+
+
 def create_line(line, rawline):
     size = line.lines[0].chars[0].size
     position = f'top: {line.box.y0}px; left: {line.box.x0}px;'
@@ -101,19 +119,19 @@ def create_pagebox(html: str, page: int, dimension) -> str:
 def load(
         text: str,
         textposition: str,
-        boxes: str = None,
+        boxed: str = None,
         hits: str = None,
         pages: tuple = None,
 ) -> list:
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
-    boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
+    boxed = serializeraw.load_boxes(boxed, pages=pages) if boxed else None
     hits = serializeraw.load_hits(hits, pages=pages) if hits else None
     result = []
     for current in text.pages:
         page = current.page
         position = utila.select_page(textposition, page)
-        page_boxes = utila.select_page(boxes, page).content if boxes else None
+        page_boxes = utila.select_page(boxed, page) if boxed else None
         border = utila.select_page(hits, page).border if hits else None
         # skip non TextContainer boxes - for example LTRect
         selected = [
@@ -131,7 +149,7 @@ def load(
             border=border,
         )
         if page_boxes:
-            item.boxes.extend(page_boxes)  # pylint:disable=E1101
+            item.boxes.extend(page_boxes.content)  # pylint:disable=E1101
         result.append(item)
     return result
 
@@ -140,8 +158,10 @@ def from_path(path: str, pages: tuple = None) -> list:
     assert os.path.exists(path), str(path)
     text = rawmaker.path.text(path)
     textposition = rawmaker.path.textposition(path)
+    boxed = rawmaker.path.boxed(path)
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None
-    loaded = load(text, textposition, hits=hits, pages=pages)
+    boxed = boxed if os.path.exists(boxed) else None
+    loaded = load(text, textposition, boxed=boxed, hits=hits, pages=pages)
     return loaded
