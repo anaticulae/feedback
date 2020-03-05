@@ -18,7 +18,7 @@ References
 import os
 
 import iamraw
-import rawmaker.path
+import iamraw.path
 import serializeraw
 import utila
 
@@ -163,9 +163,9 @@ def from_path(
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     assert os.path.exists(path), str(path)
-    text = rawmaker.path.text(path)
-    textposition = rawmaker.path.textposition(path)
-    boxes = rawmaker.path.boxed(path)
+    text = iamraw.path.text(path)
+    textposition = iamraw.path.textposition(path)
+    boxes = iamraw.path.boxed(path)
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None

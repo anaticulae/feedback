@@ -8,6 +8,7 @@
 # =============================================================================
 
 import decider
+import utila
 from utila import Pattern
 from utila import ResultFile
 from utila import create_step as step
@@ -53,7 +54,9 @@ def main():
         workplan=WORKPLAN,
         root=feedback.ROOT,
         featurepackage='feedback.features.problems',
-        name=feedback.PROCESS,
-        description=DESCRIPTION,
-        version=feedback.__version__,
+        config=utila.FeaturePackConfig(
+            name=feedback.PROCESS,
+            description=DESCRIPTION,
+            version=feedback.__version__,
+        ),
     )

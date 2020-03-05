@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import utila
 from utila import create_step as step
 from utila import featurepack
 
@@ -48,7 +49,9 @@ def main():
         workplan=WORKPLAN,
         root=ROOT,
         featurepackage='feedback.features.statistica',
-        name=PROCESS_NAME,
-        description=DESCRIPTION,
-        version=__version__,
+        config=utila.FeaturePackConfig(
+            name=PROCESS_NAME,
+            description=DESCRIPTION,
+            version=__version__,
+        ),
     )
