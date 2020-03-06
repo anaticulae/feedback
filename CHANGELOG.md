@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v0.8.2
+
+### Feature
+
+* use rectangle renderer for failure 3030 and 3031 (e80f01fffa97)
+* skip mouse interaction on printed elements (c20d36e6f0e8)
+* add id to finding to show/hide it later (89c492ca8691)
+
+### Fix
+
+* renderer page content first to make content override able (b05d83b49288)
+* shrink html output (d5b559158428)
+
+### Documentation
+
+* extend interface documentation (db7fd9e27258)
+
 ## v0.8.1
 
 ### Fix
