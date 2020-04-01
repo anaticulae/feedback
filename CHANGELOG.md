@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.9.0
+
+### Feature
+
+* finalize and refactor new precise html view (df81f796c35a)
+* change to general marker approach (b6c6ff08ba0a)
+* add strategy to unite multiple styles (ee53fc4a6239)
+
+### Documentation
+
+* add purpose of given test (60356af383cd)
+
 ## v0.8.3
 
 ## v0.8.2
