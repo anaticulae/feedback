@@ -10,6 +10,7 @@
 import protocol
 
 import feedback.renderer.mark
+import feedback.utils.multiple_styles
 from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
 
 
@@ -19,19 +20,30 @@ def test_renderer_mark_access_words(masterpage72):  # pylint:disable=W0621
 
 
 def test_renderer_mark_word_marker():
-    marks = set([3, 4, 5, 7, 11])
+    marks = {3, 4, 5, 7, 11}
     marker = feedback.renderer.mark.WordMarker(page=2, marks=marks)
 
     line = '  Hier spricht super Helmut. Wie gehts    es dir mein Freund?    '
-    expected = ('  Hier spricht super <span id="word2_3">Helmut.</span> '
-                '<span id="word2_4">Wie</span> '
-                '<span id="word2_5">gehts</span> '
-                '   es <span id="word2_7">dir</span> mein Freund?    ')
+    # yapf:disable
+    expected = [
+        feedback.utils.multiple_styles.Style(21, 28, '<span id="word2_3">', '</span>'),
+        feedback.utils.multiple_styles.Style(29, 32, '<span id="word2_4">', '</span>'),
+        feedback.utils.multiple_styles.Style(33, 38, '<span id="word2_5">', '</span>'),
+        feedback.utils.multiple_styles.Style(45, 48, '<span id="word2_7">', '</span>'),
+    ]
+    # yapf:enable
     result = marker.markme(line)
     assert result == expected
 
-    result = marker.markme('hello mr tom')
-    assert result == 'hello <span id="word2_11">mr</span> tom'
+    # yapf:disable
+    last = [
+        feedback.utils.multiple_styles.Style(6, 8, '<span id="word2_11">', '</span>'),
+    ]
+    # yapf:enable
+    string = 'hello mr tom'
+    result = marker.markme(string)
+    assert result == last
+    assert string[last[0].start:last[0].end] == 'mr'
 
 
 def test_renderer_mark_word_marker_whitespace():
@@ -40,23 +52,30 @@ def test_renderer_mark_word_marker_whitespace():
     marker = feedback.renderer.mark.WordMarker(page=2, marks=marks)
     for _ in range(20):
         marked = marker.markme('  ')
-        assert '<span' not in marked, marked
-        marked = marker.markme(' ')
-        assert '<span' not in marked, marked
+        assert not marked, marked
 
 
 def test_renderer_mark_line_marker():
     marker = feedback.renderer.mark.LineMarker(page=1, marks=set([1, 2]))
-    assert marker.markme('first line') == 'first line'
+    assert marker.markme('first line') is None
 
-    expected = '<span id="line1_1">second line</span>'
+    expected = feedback.utils.multiple_styles.Style(
+        start=0,
+        end=len('second line'),
+        first='<span id="line1_1">',
+        last='</span>',
+    )
     assert marker.markme('second line') == expected
 
-    expected = '<span id="line1_2">third line</span>'
+    expected = feedback.utils.multiple_styles.Style(
+        start=0,
+        end=len('third line'),
+        first='<span id="line1_2">',
+        last='</span>',
+    )
     assert marker.markme('third line') == expected
 
-    expected = 'fourth line'
-    assert marker.markme('fourth line') == expected
+    assert marker.markme('fourth line') is None
 
 
 def test_render_mark_filter_lines():

@@ -58,6 +58,7 @@ import utila
 
 import feedback.problems.linter
 import feedback.renderer.content
+import feedback.utils.multiple_styles
 
 
 @dataclasses.dataclass
@@ -152,7 +153,7 @@ class WordMarker:
         self.page = page
         self.index = 0
 
-    def markme(self, line: str) -> str:
+    def markme(self, line: str) -> feedback.utils.multiple_styles.Styles:
         """Add marker of defined `self.marks` words. Add for selected
         word with <span id="word{page}_{index}">word</span>.
 
@@ -161,30 +162,35 @@ class WordMarker:
         Returns:
             `line` with marked words
         """
+        # TODO: USE SENTENCE ALGO TO SPLIT WORDS?
         result = []
         current = ''
-        for char in line:
+        for index, char in enumerate(line):
             if char == ' ':
                 if current.strip():
-                    result.append(self.decide_mark(current))
-                    result.append(' ')
+                    result.append(self.decide_mark(current, index))
                     current = ''
-                else:
-                    result.append(char)
             else:
                 current = current + char
         if current:
-            result.append(self.decide_mark(current))
-        return ''.join(result)
+            result.append(self.decide_mark(current, len(line)))
+        result = [item for item in result if item]
+        return result
 
-    def decide_mark(self, item):
+    def decide_mark(self, item, endpos) -> feedback.utils.multiple_styles.Style:
         if not item.strip():
             # add only white spaces
-            return item
+            return None
         if self.index not in self.marks:
             self.index += 1
-            return item
-        result = f'<span id="word{self.page}_{self.index}">{item}</span>'
+            return None
+        startpos = endpos - len(item)
+        result = feedback.utils.multiple_styles.Style(
+            startpos,
+            endpos,
+            f'<span id="word{self.page}_{self.index}">',
+            '</span>',
+        )
         self.index += 1
         return result
 
@@ -198,14 +204,16 @@ class LineMarker:
         self.page = page
         self.index = 0
 
-    def markme(self, line) -> str:
-        if not line.strip():
+    def markme(self, line) -> feedback.utils.multiple_styles.Style:
+        if not line:
             # white space line
-            return line
+            return None
         if not self.index in self.marks:
             self.index += 1
-            return line
-        result = f'<span id="line{self.page}_{self.index}">{line}</span>'
+            return None
+        start = f'<span id="line{self.page}_{self.index}">'
+        end = '</span>'
+        result = feedback.utils.multiple_styles.Style(0, len(line), start, end)
         self.index += 1
         return result
 
