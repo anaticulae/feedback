@@ -29,12 +29,7 @@ def work(
         pagenumbers: str,
         userlinting: str,
 ) -> str:
-    """Render problem view
-
-    Args:
-        pagenumbers(str): path to groupme/pagenumbers
-        userlint(str): path to linter result .yaml
-    """
+    """Render problem view."""
     sections, text, headlines, lists, boxed, pagenumbers, problems = prepare_input(
         boxed=boxed,
         headlines=headlines,
@@ -209,10 +204,7 @@ class SinglePage:
     page: int = -1
 
 
-# TODO: Define `hey`/ general public API?
-
-
-def prepare_headlinecontent(
+def prepare_headlinecontent(  # pylint:disable=R1260,R0914
         paragraph,
         listlookup: words.feature.word.ListLookUp,
         boxed,

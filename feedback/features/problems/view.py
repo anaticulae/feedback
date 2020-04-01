@@ -39,6 +39,7 @@ def work(
         text(str): path to extract text
         textpositions(str): path to extracted text positions
         hits(str): path to hits extracted from decider_border-hits
+        boxes(str): path to extracted boxes
         linters(str): path to folder with linter results
         pages(tuple): selected pages to process
     Returns:
