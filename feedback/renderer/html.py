@@ -25,6 +25,7 @@ import utila
 import feedback.renderer.content
 import feedback.renderer.mark
 import feedback.renderer.shape
+import feedback.utils.multiple_styles
 
 
 def render_page(
@@ -49,10 +50,17 @@ def render_page(
     lines.extend(render_pageborder(page))
     lines.extend(render_boxes(page))
 
-    for line in page.content:
-        marked = wordmarker.markme(line.text)
-        marked = linemarker.markme(marked)
-        html = create_line(line, marked)
+    for textcontainer in page.content:
+        text = textcontainer.text
+        styles = []
+        marked_words: list = wordmarker.markme(text)
+        # feedback.utils.multiple_styles.Style
+        marked_lines = linemarker.markme(text)
+        if marked_lines:
+            styles.append(marked_lines)
+        if marked_words:
+            styles.extend(marked_words)
+        html = create_line(textcontainer, styles)
         lines.append(html)
 
     if shapes:
@@ -92,13 +100,54 @@ def render_boxes(page):
     return result
 
 
-def create_line(line, rawline):
-    size = line.lines[0].chars[0].size
-    position = f'top: {line.box.y0}px; left: {line.box.x0}px;'
+def create_line(textcontainer, marked_line) -> str:
+    position = f'top: {textcontainer.box.y0}px; left: {textcontainer.box.x0}px;'
     location = f'position:absolute; {position}'
-    fontsize = f'font-size:{size}px'
-    rawline = rawline.replace('\n', '<br>')
-    result = f'<span style="{location} {fontsize}">{rawline}</span>'
+    result = []
+    for line in textcontainer:
+        line_style = []
+        line_style.extend(marked_line)
+        fontstyle = render_inline(line)
+        line_style.extend(fontstyle)
+
+        rendered = feedback.utils.multiple_styles.tostring(
+            line.text,
+            line_style,
+        )
+        rendered = rendered.replace('\n', '<br>')
+
+        raw = f'<span style="{location}">{rendered}</span>'
+        result.append(raw)
+
+    html = ''.join(result)
+    return html
+
+
+def render_inline(line) -> feedback.utils.multiple_styles.Styles:
+    assert isinstance(line, iamraw.Line), type(line)
+    # TODO: SUPPORT FONT SIZE AND RISE
+    chars = line.chars
+    grouped = [[chars[0]]]
+    for item in chars[1:]:
+        if item.size != grouped[-1][-1].size:
+            grouped.append([item])
+        else:
+            grouped[-1].append(item)
+    result = []
+    index = 0
+    for chunk in grouped:
+        start = index
+        end = start + len(chunk)
+        first = f'<span style="font-size:{chunk[0].size}px">'
+        last = '</span>'
+        result.append(
+            feedback.utils.multiple_styles.Style(
+                start,
+                end,
+                first,
+                last,
+            ))
+        index += len(chunk)
     return result
 
 
