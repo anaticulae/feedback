@@ -86,6 +86,8 @@ def test_renderer_shapes_mark_bounding(testdir, leftright):  # pylint:disable=W0
 
 
 def test_renderer_toc(testdir, masterpage72):  # pylint:disable=W0621
+    """This test aims to generate and view a toc very fast to check
+    develop new html renderings."""
     outpath = os.path.join(testdir.tmpdir, 'tocpage.html')
     tocpage = utila.select_page(masterpage72, 1)
 
