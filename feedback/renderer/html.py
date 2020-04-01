@@ -46,7 +46,6 @@ def render_page(
     linemarker = feedback.renderer.mark.LineMarker(page.page, marks.linemarks)
 
     lines = []
-
     lines.extend(render_pageborder(page))
     lines.extend(render_boxes(page))
 
@@ -69,12 +68,7 @@ def render_pageborder(page):
     if not page.border:
         return []
     # TODO: CREATE BORDER TO RECTANGLE METHOD
-    rectangle = (
-        page.border[0],
-        page.border[2],
-        page.border[1],
-        page.border[3],
-    )
+    rectangle = (page.border[0], page.border[2], page.border[1], page.border[3])
     # TODO: Think about style concept, USE HOLY VALUE?
     border = feedback.renderer.shape.render_rectangle(
         rectangle,
