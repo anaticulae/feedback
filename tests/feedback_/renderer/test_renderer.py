@@ -83,3 +83,16 @@ def test_renderer_shapes_mark_bounding(testdir, leftright):  # pylint:disable=W0
 
     if utila.single_execution():
         webbrowser.open(outpath)
+
+
+def test_renderer_toc(testdir, masterpage72):  # pylint:disable=W0621
+    outpath = os.path.join(testdir.tmpdir, 'tocpage.html')
+    tocpage = utila.select_page(masterpage72, 1)
+
+    rendered = feedback.renderer.html.render_page(tocpage)
+    assert len(rendered) > 300, str(rendered)
+
+    utila.file_create(outpath, rendered)
+
+    if utila.single_execution():
+        webbrowser.open(outpath)
