@@ -82,6 +82,7 @@ if __name__ == "__main__":
             'feedback.problems',
             'feedback.renderer',
             'feedback.templates',
+            'feedback.utils',
         ],
         entry_points={
             'console_scripts': [
