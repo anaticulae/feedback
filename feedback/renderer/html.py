@@ -23,6 +23,7 @@ import serializeraw
 import utila
 
 import feedback.renderer.content
+import feedback.renderer.images
 import feedback.renderer.mark
 import feedback.renderer.shape
 import feedback.utils.multiple_styles
@@ -67,6 +68,10 @@ def render_page(
         rendered = feedback.renderer.shape.render(shapes)
         lines.extend(rendered)
 
+    if page.images:
+        rendered = render_images(page.images)
+        lines.extend(rendered)
+
     content = '\n'.join(lines)
     result = create_pagebox(content, page.page, page.dimension)
     return result
@@ -84,6 +89,20 @@ def render_pageborder(page):
         reference=f'page_{page.page}_border_content',
     )
     return [border]
+
+
+def render_images(images):
+    result = []
+    for _, info, fileimage in images:
+        bounding = info.bounding
+        width = utila.roundme(info.bounding[2] - info.bounding[0])
+        height = utila.roundme(info.bounding[3] - info.bounding[1])
+        style = (f'style="position:absolute;border:1px solid black;'
+                 f'top:{bounding[1]}px;left:{bounding[0]}px;'
+                 f' width:{width}px;height:{height}px"')
+        img = (f'<img src="{fileimage}" {style}/>')
+        result.append(img)
+    return result
 
 
 def render_boxes(page):
@@ -165,17 +184,20 @@ def create_pagebox(html: str, page: int, dimension) -> str:
     return result
 
 
-def load(
+def load(  # pylint:disable=R0914
         text: str,
         textposition: str,
         boxes: str = None,
         hits: str = None,
+        images: str = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
     hits = serializeraw.load_hits(hits, pages=pages) if hits else None
+    if images:
+        images = feedback.renderer.images.zip_images(images, pages)
     result = []
     for current in text.pages:
         page = current.page
@@ -191,11 +213,12 @@ def load(
         for index, children in enumerate(selected):
             # update with loaded text position
             children.box = position.content[index][0]
-
+        pageimages = feedback.renderer.images.select_images(images, page)
         item = feedback.renderer.content.HTMLPageContent(
             page=page,
             dimension=text.dimension,
             content=selected,
+            images=pageimages,
             border=border,
         )
         if page_boxes:
@@ -216,5 +239,13 @@ def from_path(
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None
     boxes = boxes if os.path.exists(boxes) else None
-    loaded = load(text, textposition, boxes=boxes, hits=hits, pages=pages)
+    images = path if os.path.exists(path) else None
+    loaded = load(
+        text,
+        textposition,
+        boxes=boxes,
+        hits=hits,
+        images=images,
+        pages=pages,
+    )
     return loaded
