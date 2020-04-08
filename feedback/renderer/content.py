@@ -11,14 +11,14 @@ import dataclasses
 import typing
 
 import iamraw
+import utila
 
 
 @dataclasses.dataclass
 class HTMLPageContent:
     border: tuple = None
     content: iamraw.TextContainers = dataclasses.field(default_factory=list)
-    # TODO: REPLACE WITH LIST OF RECTANGLES
-    boxes: list = dataclasses.field(default_factory=list)
+    boxes: utila.Rectangles = dataclasses.field(default_factory=list)
     dimension: iamraw.PageSize = None
     page: int = None
 
