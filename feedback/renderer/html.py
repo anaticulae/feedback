@@ -187,7 +187,7 @@ def load(
         ]
         for index, children in enumerate(selected):
             # update with loaded text position
-            children.box = position.content[index]
+            children.box = position.content[index][0]
 
         item = feedback.renderer.content.HTMLPageContent(
             page=page,
