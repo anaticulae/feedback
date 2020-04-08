@@ -101,10 +101,13 @@ def render_boxes(page):
 
 
 def create_line(textcontainer, marked_line) -> str:
-    position = f'top: {textcontainer.box.y0}px; left: {textcontainer.box.x0}px;'
-    location = f'position:absolute; {position}'
+    bounding = textcontainer.box
     result = []
-    for line in textcontainer:
+    for index, line in enumerate(textcontainer):
+        # render multiline text lines
+        box = iamraw.split_y(bounding, index, len(textcontainer))
+        position = f'top:{box.y0}px;left:{box.x0}px;'
+        location = f'position:absolute;{position}'
         line_style = []
         line_style.extend(marked_line)
         fontstyle = render_inline(line)
