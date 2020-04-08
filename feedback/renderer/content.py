@@ -12,9 +12,6 @@ import typing
 
 import iamraw
 
-# TODO: MOVE TO IAMRAW
-iamraw.TextContainers = typing.List[iamraw.TextContainer]
-
 
 @dataclasses.dataclass
 class HTMLPageContent:
