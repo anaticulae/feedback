@@ -14,6 +14,7 @@ import utila
 
 import feedback.renderer.images
 import tests.resources
+from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
 
 
 def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621
@@ -33,3 +34,9 @@ def test_load_image_informations():
     source = tests.resources.LEFTRIGHT_GENERATED
     informations = feedback.renderer.images.load_image_informations(source)
     assert len(informations) == 5, str(informations)
+
+
+def test_load_image():
+    source = tests.resources.LEFTRIGHT_GENERATED
+    images = feedback.renderer.images.load_images(source)
+    assert len(images) == 5

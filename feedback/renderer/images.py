@@ -32,3 +32,19 @@ def load_image_informations(path: str) -> ImageInformations:
             loaded = rawmaker.images.info.load_info(source)
             result.append(loaded)
     return result
+
+
+def load_images(path: str) -> list:
+    result = []
+    path = os.path.join(path, 'rawmaker__images_images')
+    # TODO: REMOVE WITH UTILA CODE
+    with utila.chdir(path):
+        files = os.scandir(path)
+        # TODO: REMOVE WITH UTILA SORT METHOD
+        for item in sorted(files, key=lambda x: int(x.name.split('.')[0])):
+            if item.name.endswith('.yaml'):
+                continue
+            source = os.path.join(path, item)
+            loaded = utila.file_read_binary(source)
+            result.append((item.name, loaded))
+    return result
