@@ -10,6 +10,7 @@
 printing.
 """
 
+import collections
 import glob
 import os
 import typing
@@ -20,31 +21,81 @@ import utila
 
 ImageInformations = typing.List[rawmaker.images.info.ImageInformation]
 
+ZippedImageInfo = collections.namedtuple('ZippedImageInfo',
+                                         'number, info, filename')
+ZippedImageInfos = typing.List[ZippedImageInfo]
 
-def load_image_informations(path: str) -> ImageInformations:
-    result = []
+# TODO: VERY COMPLEX, REFACTOR
+
+
+def load_image_informations(
+        path: str,
+        pages: tuple = None,
+) -> ImageInformations:
     path = os.path.join(path, 'rawmaker__images_images')
-    # TODO: REMOVE WITH UTILA CODE
+    if not os.path.exists(path):
+        return []
+    result = []
+    # TODO: REPLACE WITH UTILA CODE
     with utila.chdir(path):
         files = glob.glob('*.yaml')
-        for item in files:
+        for index, item in enumerate(sorted(files, key=number)):
             source = os.path.join(path, item)
             loaded = rawmaker.images.info.load_info(source)
-            result.append(loaded)
+            if utila.should_skip(loaded.page, pages):
+                continue
+            result.append((index, loaded))
     return result
 
 
 def load_images(path: str) -> list:
-    result = []
     path = os.path.join(path, 'rawmaker__images_images')
-    # TODO: REMOVE WITH UTILA CODE
+    if not os.path.exists(path):
+        return []
+    result = []
+    # TODO: REPLACE WITH UTILA CODE
     with utila.chdir(path):
         files = os.scandir(path)
-        # TODO: REMOVE WITH UTILA SORT METHOD
-        for item in sorted(files, key=lambda x: int(x.name.split('.')[0])):
+        # TODO: REPLACE WITH UTILA SORT METHOD
+        for item in sorted(files, key=lambda x: number(x.name)):
             if item.name.endswith('.yaml'):
                 continue
             source = os.path.join(path, item)
             loaded = utila.file_read_binary(source)
             result.append((item.name, loaded))
     return result
+
+
+def images(path: str) -> list:
+    path = os.path.join(path, 'rawmaker__images_images')
+    if not os.path.exists(path):
+        return []
+    result = []
+    # TODO: REPLACE WITH UTILA CODE
+    with utila.chdir(path):
+        files = os.scandir(path)
+        # TODO: REPLACE WITH UTILA SORT METHOD
+        for item in sorted(files, key=lambda x: number(x.name)):
+            if item.name.endswith('.yaml'):
+                continue
+            result.append(item.name)
+    return result
+
+
+def zip_images(path: str, pages: tuple = None) -> ZippedImageInfos:
+    img = images(path)
+    informations = load_image_informations(path, pages)
+    result = []
+    for index, info in informations:
+        result.append(ZippedImageInfo(index, info, img[index]))
+    return result
+
+
+def select_images(items, page):
+    if not items:
+        return []
+    return [item for item in items if item[1].page == page]
+
+
+def number(item: str) -> int:
+    return int(item.split('.')[0])
