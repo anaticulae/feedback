@@ -32,11 +32,13 @@ def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621
 
 def test_load_image_informations():
     source = tests.resources.LEFTRIGHT_GENERATED
+    source = os.path.join(source, 'rawmaker__images_images')
     informations = feedback.renderer.images.load_image_informations(source)
     assert len(informations) == 5, str(informations)
 
 
 def test_load_image():
     source = tests.resources.LEFTRIGHT_GENERATED
+    source = os.path.join(source, 'rawmaker__images_images')
     images = feedback.renderer.images.load_images(source)
     assert len(images) == 5

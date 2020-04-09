@@ -32,7 +32,6 @@ def load_image_informations(
         path: str,
         pages: tuple = None,
 ) -> ImageInformations:
-    path = os.path.join(path, 'rawmaker__images_images')
     if not os.path.exists(path):
         return []
     result = []
@@ -49,7 +48,6 @@ def load_image_informations(
 
 
 def load_images(path: str) -> list:
-    path = os.path.join(path, 'rawmaker__images_images')
     if not os.path.exists(path):
         return []
     result = []
@@ -67,7 +65,6 @@ def load_images(path: str) -> list:
 
 
 def images(path: str) -> list:
-    path = os.path.join(path, 'rawmaker__images_images')
     if not os.path.exists(path):
         return []
     result = []

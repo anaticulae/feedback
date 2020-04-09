@@ -239,7 +239,7 @@ def from_path(
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None
     boxes = boxes if os.path.exists(boxes) else None
-    images = path if os.path.exists(path) else None
+    images = os.path.join(path, 'rawmaker__images_images')
     loaded = load(
         text,
         textposition,
