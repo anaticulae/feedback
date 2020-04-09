@@ -59,3 +59,21 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
 
     if utila.single_execution():
         webbrowser.open(first_file)
+
+
+def test_run_feedback_view(testdir, monkeypatch):
+    root = testdir.tmpdir
+    cmd = f'-i {tests.resources.LEFTRIGHT_GENERATED} -o .'
+
+    utila.run_command(
+        cmd,
+        monkeypatch=monkeypatch,
+        process=feedback.PACKAGE,
+        main=feedback.cli.main,
+        success=True,
+    )
+
+    first_file = os.path.join(root, 'feedback__view_pages/0.html')
+    assert os.path.exists(first_file), str(first_file)
+    if utila.single_execution():
+        webbrowser.open(first_file)

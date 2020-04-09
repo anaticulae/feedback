@@ -40,11 +40,19 @@ WORKPLAN = [
         [
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
+            utila.Directory('rawmaker__images_images'),
             ResultFile(producer='rawmaker', name='boxes_boxes'),
             ResultFile(producer='decider_border', name='detection_hits'),
             Pattern(name='*_user', ext='yaml'),
         ],
         (outhtml('pages/*'),),
+    ),
+    step(
+        'images',
+        [
+            utila.Directory('rawmaker__images_images'),
+        ],
+        (utila.File('feedback__view_pages/*', ext='???'),),
     ),
 ]
 

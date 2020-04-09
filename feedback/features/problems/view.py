@@ -26,6 +26,7 @@ import feedback.renderer.shape
 def work(
         text: str,
         textpositions: str,
+        images: str,
         boxes: str,
         hits: str,
         *linters: list,
@@ -48,6 +49,7 @@ def work(
     html = feedback.renderer.html.load(
         text,
         textpositions,
+        images=images,
         boxes=boxes,
         hits=hits,
         pages=pages,
