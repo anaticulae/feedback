@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.10.1
+
+### Fix
+
+* add support for multiple inputs -i (06d00ce021d4)
+
 ## v0.10.0
 
 ### Feature
