@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.10.0
+
+### Feature
+
+* add step to copy extracted images to generated html view (a959568f4a00)
+* add image renderer to feedback view (420080d24202)
+* extend image loader (2157d53d6300)
+* add image raw loader (8e732007602a)
+* add image information loader (fbf61dbe3014)
+* add render multiline text feature (0db4bb24fc55)
+
 ## v0.9.0
 
 ### Feature
