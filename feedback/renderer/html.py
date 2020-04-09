@@ -189,7 +189,7 @@ def load(  # pylint:disable=R0914
         textposition: str,
         boxes: str = None,
         hits: str = None,
-        images: str = None,
+        images: list = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     text = serializeraw.load_document(text, pages=pages)
@@ -197,7 +197,10 @@ def load(  # pylint:disable=R0914
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
     hits = serializeraw.load_hits(hits, pages=pages) if hits else None
     if images:
-        images = feedback.renderer.images.zip_images(images, pages)
+        images = [
+            feedback.renderer.images.zip_images(item, pages) for item in images
+        ]
+        images = utila.flatten(images)
     result = []
     for current in text.pages:
         page = current.page
@@ -239,7 +242,7 @@ def from_path(
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None
     boxes = boxes if os.path.exists(boxes) else None
-    images = os.path.join(path, 'rawmaker__images_images')
+    images = [os.path.join(path, 'rawmaker__images_images')]
     loaded = load(
         text,
         textposition,

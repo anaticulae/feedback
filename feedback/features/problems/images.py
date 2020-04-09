@@ -10,14 +10,17 @@
 import feedback.renderer.images
 
 
-def work(source, pages: tuple = None) -> list:  # pylint:disable=W0613
+def work(source: list, pages: tuple = None) -> list:  # pylint:disable=W0613
     result = []
     # TODO: SUPPORT SELECTIVE OUTPUT, REQUIRE START INDEX IN *.???
     # NOTE: WE EXTRACT FROM START TO END PAGES IS IGNORED
-    images = feedback.renderer.images.load_images(source)
     result = []
-    for name, image in images:
-        result.append((image, ext(name)))
+    for item in source:
+        images = feedback.renderer.images.load_images(item)
+        if not images:
+            continue
+        for name, image in images:
+            result.append((image, ext(name)))
     return result
 
 

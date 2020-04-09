@@ -66,5 +66,6 @@ def main():
             name=feedback.PROCESS,
             description=DESCRIPTION,
             version=feedback.__version__,
+            pages=True,
         ),
     )

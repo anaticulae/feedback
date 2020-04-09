@@ -49,9 +49,9 @@ def work(
     html = feedback.renderer.html.load(
         text,
         textpositions,
-        images=images,
         boxes=boxes,
         hits=hits,
+        images=images,
         pages=pages,
     )
     findings = load_linters(linters)

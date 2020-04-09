@@ -28,6 +28,7 @@ def work(
         boxed: str,
         pagenumbers: str,
         userlinting: str,
+        pages: tuple = None,
 ) -> str:
     """Render problem view."""
     sections, text, headlines, lists, boxed, pagenumbers, problems = prepare_input(
