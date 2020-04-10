@@ -142,9 +142,16 @@ def load(  # pylint:disable=R0914
         boxes: str = None,
         hits: str = None,
         images: list = None,
-        horizontals: list = None,
+        horizontals: str = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
+    """Load data to present as html view.
+
+    images: there are more than one images folder possible
+    """
+    assert all((isinstance(item, str) or item is None)
+               for item in [text, textposition, boxes, hits, horizontals])
+
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
@@ -203,6 +210,7 @@ def from_path(
     hits = hits if os.path.exists(hits) else None
     boxes = boxes if os.path.exists(boxes) else None
     horizontals = horizontals if os.path.exists(horizontals) else None
+    # TODO: INVESTIGATE HERE
     images = [os.path.join(path, 'rawmaker__images_images')]
     loaded = load(
         boxes=boxes,
