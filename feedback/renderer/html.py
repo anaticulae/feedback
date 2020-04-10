@@ -15,6 +15,7 @@ References
 * page_{number}_border_content: access content border to change
                                 appereance, show/hide etc.
 """
+
 import os
 
 import iamraw
@@ -48,8 +49,8 @@ def render_page(
     linemarker = feedback.renderer.mark.LineMarker(page.page, marks.linemarks)
 
     lines = []
-    lines.extend(render_pageborder(page))
-    lines.extend(render_boxes(page))
+    lines.extend(feedback.renderer.boxes.render_pageborder(page))
+    lines.extend(feedback.renderer.boxes.render_boxes(page))
 
     for textcontainer in page.content:
         text = textcontainer.text
@@ -77,20 +78,6 @@ def render_page(
     return result
 
 
-def render_pageborder(page):
-    if not page.border:
-        return []
-    # TODO: CREATE BORDER TO RECTANGLE METHOD
-    rectangle = (page.border[0], page.border[2], page.border[1], page.border[3])
-    # TODO: Think about style concept, USE HOLY VALUE?
-    border = feedback.renderer.shape.render_rectangle(
-        rectangle,
-        border='1px dotted gray',
-        reference=f'page_{page.page}_border_content',
-    )
-    return [border]
-
-
 def render_images(images):
     result = []
     for _, info, fileimage in images:
@@ -102,20 +89,6 @@ def render_images(images):
                  f' width:{width}px;height:{height}px"')
         img = (f'<img src="{fileimage}" {style}/>')
         result.append(img)
-    return result
-
-
-def render_boxes(page):
-    if not page.boxes:
-        return []
-    result = []
-    for index, item in enumerate(page.boxes):
-        box = feedback.renderer.shape.render_rectangle(
-            item.box,
-            border='1px solid black',
-            reference=f'page_{page.page}_boxed_{index}',
-        )
-        result.append(box)
     return result
 
 
