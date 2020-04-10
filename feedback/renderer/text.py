@@ -18,7 +18,13 @@ def render_inline(line) -> feedback.utils.multiple_styles.Styles:
     chars = line.chars
     grouped = [[chars[0]]]
     for item in chars[1:]:
-        if item.size != grouped[-1][-1].size:
+        last = grouped[-1][-1]
+        if any((
+                item.size != last.size,
+                item.rise != last.rise,
+                item.font != last.font,
+                item.flags != last.flags,
+        )):
             grouped.append([item])
         else:
             grouped[-1].append(item)
@@ -27,15 +33,15 @@ def render_inline(line) -> feedback.utils.multiple_styles.Styles:
     for chunk in grouped:
         start = index
         end = start + len(chunk)
-        style = styles(last.flags)
+        style = styles(chunk[0].flags)
         first = f'<span style="font-size:{chunk[0].size}px;{style}">'
-        last = '</span>'
+        close = '</span>'
         result.append(
             feedback.utils.multiple_styles.Style(
                 start,
                 end,
                 first,
-                last,
+                close,
             ))
         index += len(chunk)
     return result
