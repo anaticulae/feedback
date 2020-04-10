@@ -24,3 +24,10 @@ def leftright():
     path = tests.resources.LEFTRIGHT_GENERATED
     loaded = feedback.renderer.html.from_path(path)
     return loaded
+
+
+@pytest.fixture
+def bachelor56():
+    path = tests.resources.BACHELOR56
+    loaded = feedback.renderer.html.from_path(path)
+    return loaded
