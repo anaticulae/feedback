@@ -29,37 +29,15 @@ with open(REQUIREMENTS_PATH, mode='rt', encoding=UTF8) as fp:
         line for line in fp.readlines() if line and '#' not in line
     ]
 
-
-def datafiles():
-    return [
-        ('.', [
-            'CHANGELOG.md',
-            'README.md',
-            'requirements.txt',
-        ]),
-        ('feedback/templates/statistica', [
-            'feedback/templates/statistica/chapter.html',
-            'feedback/templates/statistica/words.html',
-        ]),
-        ('feedback/templates/fonts', [
-            'feedback/templates/fonts/fonts_used.html',
-            'feedback/templates/fonts/fonts_ugly_badfont.html',
-        ]),
-        ('feedback/templates/problems', [
-            'feedback/templates/problems/index.html',
-        ]),
-    ]
-
-
 if __name__ == "__main__":
     # allow setup.py to run from another directory
     os.chdir(ROOT)
     setuptools.setup(
         author='Helmut Konrad Fahrendholz',
         author_email='info@checkitweg.de',
-        data_files=datafiles(),
         description='It\'s important!',
         include_package_data=True,
+        tests_require=REQUIREMENTS_DEV,
         install_requires=INSTALL_REQUIRES,
         long_description=README,
         name='feedback',
@@ -81,7 +59,6 @@ if __name__ == "__main__":
             'feedback.features.statistica',
             'feedback.problems',
             'feedback.renderer',
-            'feedback.templates',
             'feedback.utils',
         ],
         entry_points={
