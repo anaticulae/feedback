@@ -23,7 +23,7 @@ import feedback.renderer.mark
 import feedback.renderer.shape
 
 
-def work(
+def work(  # pylint:disable=R0914
         text: str,
         textpositions: str,
         images: str,
@@ -39,6 +39,7 @@ def work(
     Args:
         text(str): path to extract text
         textpositions(str): path to extracted text positions
+        images: path to load extracted images and information from
         hits(str): path to hits extracted from decider_border-hits
         boxes(str): path to extracted boxes
         linters(str): path to folder with linter results

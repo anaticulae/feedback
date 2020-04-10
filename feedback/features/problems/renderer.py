@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import contextlib
 import dataclasses
 import typing
@@ -39,8 +40,8 @@ def work(
         sections=sections,
         text=text,
         userlinting=userlinting,
+        pages=pages,
     )
-
     result = process_content(
         boxed=boxed,
         headlines=headlines,
@@ -50,7 +51,6 @@ def work(
         sections=sections,
         text=text,
     )
-
     return result
 
 
@@ -142,23 +142,23 @@ def prepare_input(
         sections: str,
         text: str,
         userlinting: str,
+        pages: tuple = None,
 ):
-    sections = serializeraw.load_sections(sections)
-    headlines = serializeraw.load_headlines(headlines)
-    text = serializeraw.load_text(text, headlines)
+    sections = serializeraw.load_sections(sections, pages=pages)
+    headlines = serializeraw.load_headlines(headlines, pages=pages)
+    text = serializeraw.load_text(text, headlines, pages=pages)
 
-    loaded = serializeraw.load_lists(lists)
+    loaded = serializeraw.load_lists(lists, pages=pages)
     listlookup = words.feature.word.ListLookUp(loaded)
 
-    boxed = serializeraw.load_boxedcontent(boxed)
-    pagenumbers = serializeraw.load_pagenumbers(pagenumbers)
+    boxed = serializeraw.load_boxedcontent(boxed, pages=pages)
+    pagenumbers = serializeraw.load_pagenumbers(pagenumbers, pages=pages)
     pagenumbers = PageNumbersLookup(pagenumbers)
 
     result: typing.List[protocol.Finding] = protocol.load_result(userlinting)
     problems = feedback.problems.linter.group_finding_bypage(result)
 
     text = {item[0]: item[1] for item in text}
-
     return sections, text, headlines, listlookup, boxed, pagenumbers, problems
 
 
