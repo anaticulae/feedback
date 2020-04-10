@@ -29,6 +29,7 @@ import feedback.renderer.images
 import feedback.renderer.lines
 import feedback.renderer.mark
 import feedback.renderer.shape
+import feedback.renderer.text
 import feedback.utils.multiple_styles
 
 
@@ -111,48 +112,17 @@ def create_line(textcontainer, marked_line) -> str:
         location = f'position:absolute;{position}'
         line_style = []
         line_style.extend(marked_line)
-        fontstyle = render_inline(line)
+        fontstyle = feedback.renderer.text.render_inline(line)
         line_style.extend(fontstyle)
-
         rendered = feedback.utils.multiple_styles.tostring(
             line.text,
             line_style,
         )
         rendered = rendered.replace('\n', '<br>')
-
         raw = f'<span style="{location}">{rendered}</span>'
         result.append(raw)
-
     html = ''.join(result)
     return html
-
-
-def render_inline(line) -> feedback.utils.multiple_styles.Styles:
-    assert isinstance(line, iamraw.Line), type(line)
-    # TODO: SUPPORT FONT SIZE AND RISE
-    chars = line.chars
-    grouped = [[chars[0]]]
-    for item in chars[1:]:
-        if item.size != grouped[-1][-1].size:
-            grouped.append([item])
-        else:
-            grouped[-1].append(item)
-    result = []
-    index = 0
-    for chunk in grouped:
-        start = index
-        end = start + len(chunk)
-        first = f'<span style="font-size:{chunk[0].size}px">'
-        last = '</span>'
-        result.append(
-            feedback.utils.multiple_styles.Style(
-                start,
-                end,
-                first,
-                last,
-            ))
-        index += len(chunk)
-    return result
 
 
 def create_pagebox(html: str, page: int, dimension) -> str:
