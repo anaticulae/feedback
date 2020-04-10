@@ -27,17 +27,18 @@ def sync_resources():
 
 
 def extract_examples():
+    utila.log('extract examples')
     # ensure that generation folder exists
     if os.path.exists(tests.resources.GENERATED):
         # generate only once, to reduce required test time
         return
-
     os.makedirs(tests.resources.GENERATED, exist_ok=True)
-
     files = [
-        tests.resources.RESTRUCTED_PDF,
-        tests.resources.PORTING_PYTHON3_PDF,
-        tests.resources.MASTER72_PDF,
+        tests.resources.BACHELOR56_PDF,
         tests.resources.LEFTRIGHT,
+        tests.resources.MASTER72_PDF,
+        tests.resources.PORTING_PYTHON3_PDF,
+        tests.resources.RESTRUCTED_PDF,
     ]
     decider.example.extract(files, tests.resources.GENERATED)
+    utila.log('extract examples: complete')

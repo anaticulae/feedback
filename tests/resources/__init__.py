@@ -14,6 +14,7 @@ from feedback import ROOT
 
 RESOURCES = join(ROOT, 'tests/resources')
 
+BACHELOR = os.path.join(RESOURCES, 'bachelor')
 BOOK = os.path.join(RESOURCES, 'book')
 DOCU = os.path.join(RESOURCES, 'docu')
 MASTER = os.path.join(RESOURCES, 'master')
@@ -37,12 +38,18 @@ MASTER72_PDF = join(MASTER, 'page_72_noimages_toc.pdf')
 LEFTRIGHT = join(BOOK, 'leftright.pdf')
 LEFTRIGHT_GENERATED = os.path.join(GENERATED, 'book_leftright')
 
+BACHELOR56 = os.path.join(GENERATED, 'bachelor_page_56_hard_to_read')
+BACHELOR56_PDF = os.path.join(BACHELOR, 'page_56_hard_to_read.pdf')
+
 MASTER72_GENERATED = os.path.join(GENERATED, 'master_page_72_noimages_toc')
 GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules') # yapf:disable
 GENERATED_RESTRUCTED = RESTRUCTED
 
 # test after running generation step in update.py
 REQUIRED_RESOURCES = [
+    BACHELOR,
+    BACHELOR56,
+    BACHELOR56_PDF,
     GENERATED,
     GENERATED_PORTING_PYTHON3,
     GENERATED_RESTRUCTED,
