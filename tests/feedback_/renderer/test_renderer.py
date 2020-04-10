@@ -127,3 +127,16 @@ def test_render_bachelor56_title_page(tmpdir, bachelor56):  # pylint:disable=W06
 
     if utila.single_execution():
         webbrowser.open(outpath)
+
+
+def test_render_bachelor56_italic_style(tmpdir, bachelor56):  # pylint:disable=W0621
+    outpath = os.path.join(tmpdir, 'index.html')
+    titlepage = utila.select_page(bachelor56, 5)
+
+    rendered = feedback.renderer.html.render_page(titlepage)
+    assert len(rendered) > 300, str(rendered)
+
+    utila.file_create(outpath, rendered)
+
+    if utila.single_execution():
+        webbrowser.open(outpath)
