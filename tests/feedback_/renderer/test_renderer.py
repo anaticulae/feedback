@@ -23,8 +23,8 @@ def test_renderer_load(masterpage72):  # pylint:disable=W0621
     assert masterpage72
 
 
-def test_renderer_firstpage(testdir, masterpage72):  # pylint:disable=W0621
-    outpath = os.path.join(str(testdir), 'firstpage.html')
+def test_renderer_firstpage(tmpdir, masterpage72):  # pylint:disable=W0621
+    outpath = os.path.join(tmpdir, 'firstpage.html')
     firstpage = utila.select_page(masterpage72, 0)
 
     rendered = feedback.renderer.html.render_page(firstpage)
@@ -36,9 +36,9 @@ def test_renderer_firstpage(testdir, masterpage72):  # pylint:disable=W0621
         webbrowser.open(outpath)
 
 
-def test_renderer_secondpage_mark_line_and_words(testdir, masterpage72):  # pylint:disable=W0621
+def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):  # pylint:disable=W0621
     # TODO: VERIFY WITH SELENIUM
-    outpath = os.path.join(str(testdir), 'secondpage.html')
+    outpath = os.path.join(tmpdir, 'secondpage.html')
     secondpage = utila.select_page(masterpage72, 1)
 
     marks = feedback.renderer.mark.PageMarkConfiguration(
@@ -64,10 +64,10 @@ def test_renderer_secondpage_mark_line_and_words(testdir, masterpage72):  # pyli
         webbrowser.open(outpath)
 
 
-def test_renderer_shapes_mark_bounding(testdir, leftright):  # pylint:disable=W0621
+def test_renderer_shapes_mark_bounding(tmpdir, leftright):  # pylint:disable=W0621
     """Render first page of `leftright` example and add a red rectangle
     in the top center of the page."""
-    outpath = os.path.join(str(testdir), 'firstpage.html')
+    outpath = os.path.join(tmpdir, 'firstpage.html')
     firstpage = utila.select_page(leftright, 0)
 
     shapes = [
@@ -86,10 +86,10 @@ def test_renderer_shapes_mark_bounding(testdir, leftright):  # pylint:disable=W0
         webbrowser.open(outpath)
 
 
-def test_renderer_toc(testdir, masterpage72):  # pylint:disable=W0621
+def test_renderer_toc(tmpdir, masterpage72):  # pylint:disable=W0621
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
-    outpath = os.path.join(testdir.tmpdir, 'tocpage.html')
+    outpath = os.path.join(tmpdir, 'tocpage.html')
     tocpage = utila.select_page(masterpage72, 1)
 
     rendered = feedback.renderer.html.render_page(tocpage)
@@ -101,9 +101,9 @@ def test_renderer_toc(testdir, masterpage72):  # pylint:disable=W0621
         webbrowser.open(outpath)
 
 
-def test_render_page_with_horizontals(testdir, masterpage72):  # pylint:disable=W0621
+def test_render_page_with_horizontals(tmpdir, masterpage72):  # pylint:disable=W0621
     """Render footnote separator."""
-    outpath = os.path.join(testdir.tmpdir, 'index.html')
+    outpath = os.path.join(tmpdir, 'index.html')
     footnote_separator = utila.select_page(masterpage72, 3)
 
     rendered = feedback.renderer.html.render_page(footnote_separator)
@@ -116,8 +116,8 @@ def test_render_page_with_horizontals(testdir, masterpage72):  # pylint:disable=
         webbrowser.open(outpath)
 
 
-def test_render_bachelor56_title_page(testdir, bachelor56):  # pylint:disable=W0621
-    outpath = os.path.join(testdir.tmpdir, 'index.html')
+def test_render_bachelor56_title_page(tmpdir, bachelor56):  # pylint:disable=W0621
+    outpath = os.path.join(tmpdir, 'index.html')
     titlepage = utila.select_page(bachelor56, 0)
 
     rendered = feedback.renderer.html.render_page(titlepage)
