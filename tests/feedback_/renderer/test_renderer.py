@@ -98,3 +98,17 @@ def test_renderer_toc(testdir, masterpage72):  # pylint:disable=W0621
 
     if utila.single_execution():
         webbrowser.open(outpath)
+
+
+def test_render_page_with_horizontals(testdir, masterpage72):  # pylint:disable=W0621
+    """Render footnote separator."""
+    outpath = os.path.join(testdir.tmpdir, 'index.html')
+    footnote_separator = utila.select_page(masterpage72, 3)
+
+    rendered = feedback.renderer.html.render_page(footnote_separator)
+    assert len(rendered) > 300, str(rendered)
+
+    utila.file_create(outpath, rendered)
+
+    if utila.single_execution():
+        webbrowser.open(outpath)
