@@ -23,6 +23,7 @@ class HTMLPageContent:
     content: iamraw.TextContainers = dataclasses.field(default_factory=list)
     dimension: iamraw.PageSize = None
     images: fri.ZippedImageInfos = dataclasses.field(default_factory=list)
+    horizontals: utila.Rectangles = dataclasses.field(default_factory=list)
     page: int = None
 
 

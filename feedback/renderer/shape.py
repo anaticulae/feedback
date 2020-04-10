@@ -79,7 +79,6 @@ width:{width}px;height:{height}px;pointer-events: none; {more}" fill="none">
 
 def render_line(
         bounding: iamraw.BoundingBox,
-        border: str = '1px solid black',
         more: str = '',
         reference: str = None,
 ) -> str:
@@ -92,7 +91,6 @@ def render_line(
     height = max([height, 1])
     width = max([width, 1])
     rendered = RECTANGLE.format(
-        border=border,
         height=height,
         more=more,
         reference=reference,

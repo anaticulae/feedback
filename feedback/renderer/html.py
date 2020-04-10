@@ -23,8 +23,10 @@ import iamraw.path
 import serializeraw
 import utila
 
+import feedback.renderer.boxes
 import feedback.renderer.content
 import feedback.renderer.images
+import feedback.renderer.lines
 import feedback.renderer.mark
 import feedback.renderer.shape
 import feedback.utils.multiple_styles
@@ -71,6 +73,10 @@ def render_page(
 
     if page.images:
         rendered = render_images(page.images)
+        lines.extend(rendered)
+
+    if page.horizontals:
+        rendered = feedback.renderer.lines.render(page.horizontals)
         lines.extend(rendered)
 
     content = '\n'.join(lines)
