@@ -26,6 +26,8 @@ import feedback.renderer.shape
 def work(  # pylint:disable=R0914
         text: str,
         textpositions: str,
+        fontheader: str,
+        fontcontent: str,
         images: str,
         boxes: str,
         hits: str,
@@ -39,6 +41,8 @@ def work(  # pylint:disable=R0914
     Args:
         text(str): path to extract text
         textpositions(str): path to extracted text positions
+        fontheader: path to extracted font header
+        fontcontent: path to extracted font content
         images: path to load extracted images and information from
         hits(str): path to hits extracted from decider_border-hits
         boxes(str): path to extracted boxes
@@ -51,6 +55,8 @@ def work(  # pylint:disable=R0914
         text,
         textpositions,
         boxes=boxes,
+        fontcontent=fontcontent,
+        fontheader=fontheader,
         hits=hits,
         images=images,
         pages=pages,

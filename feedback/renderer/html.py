@@ -139,6 +139,8 @@ def create_pagebox(html: str, page: int, dimension) -> str:
 def load(  # pylint:disable=R0914
         text: str,
         textposition: str,
+        fontheader: str = None,
+        fontcontent: str = None,
         boxes: str = None,
         hits: str = None,
         images: list = None,
@@ -164,6 +166,13 @@ def load(  # pylint:disable=R0914
         ]
         images = utila.flatten(images)
     result = []
+    fontstore = None
+    if fontheader:
+        fontstore = serializeraw.create_fontstore(
+            fontheader,
+            fontcontent,
+            pages=pages,
+        )
     for current in text.pages:
         page = current.page
         position = utila.select_page(textposition, page)
@@ -178,6 +187,7 @@ def load(  # pylint:disable=R0914
             item for item in current.children
             if isinstance(item, iamraw.TextContainer)
         ]
+        fill_fonts(selected, page, fontstore)
         for index, children in enumerate(selected):
             # update with loaded text position
             children.box = position.content[index][0]
@@ -203,10 +213,14 @@ def from_path(
     assert os.path.exists(path), str(path)
     text = iamraw.path.text(path)
     textposition = iamraw.path.textposition(path)
+    fontheader = iamraw.path.fontheader(path)
+    fontcontent = iamraw.path.fontcontent(path)
     boxes = iamraw.path.boxed(path)
     horizontals = iamraw.path.horizontals(path)
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border rendere optional
+    fontheader = fontheader if os.path.exists(fontheader) else None
+    fontcontent = fontcontent if os.path.exists(fontcontent) else None
     hits = hits if os.path.exists(hits) else None
     boxes = boxes if os.path.exists(boxes) else None
     horizontals = horizontals if os.path.exists(horizontals) else None
@@ -214,6 +228,8 @@ def from_path(
     images = [os.path.join(path, 'rawmaker__images_images')]
     loaded = load(
         boxes=boxes,
+        fontcontent=fontcontent,
+        fontheader=fontheader,
         hits=hits,
         horizontals=horizontals,
         images=images,
@@ -222,3 +238,19 @@ def from_path(
         pages=pages,
     )
     return loaded
+
+
+def fill_fonts(text, page, fontstore: iamraw.FontStore):
+    # TODO: MOVE THIS HACK/ IS THIS A HACK?
+    if not fontstore:
+        return
+    for container_id, container in enumerate(text):
+        for line_id, line in enumerate(container):
+            for char_id, char in enumerate(line):
+                fontid = fontstore.fontid(page, container_id, line_id, char_id)
+                font = fontstore[fontid]
+                flags = list(font.flags)
+                if font.style == iamraw.Style.ITALIC:
+                    flags.append(iamraw.FontFlag.Italic)
+                char.flags = tuple(flags)
+                char.font = font.name

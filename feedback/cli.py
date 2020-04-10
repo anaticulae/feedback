@@ -40,6 +40,8 @@ WORKPLAN = [
         [
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
+            ResultFile(producer='rawmaker', name='fonts_header'),
+            ResultFile(producer='rawmaker', name='fonts_content'),
             utila.Directory('rawmaker__images_images'),
             ResultFile(producer='rawmaker', name='boxes_boxes'),
             ResultFile(producer='decider_border', name='detection_hits'),
