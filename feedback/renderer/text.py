@@ -27,7 +27,8 @@ def render_inline(line) -> feedback.utils.multiple_styles.Styles:
     for chunk in grouped:
         start = index
         end = start + len(chunk)
-        first = f'<span style="font-size:{chunk[0].size}px">'
+        style = styles(last.flags)
+        first = f'<span style="font-size:{chunk[0].size}px;{style}">'
         last = '</span>'
         result.append(
             feedback.utils.multiple_styles.Style(
@@ -37,4 +38,21 @@ def render_inline(line) -> feedback.utils.multiple_styles.Styles:
                 last,
             ))
         index += len(chunk)
+    return result
+
+
+def styles(flags: iamraw.FontFlags) -> str:
+    if not flags:
+        return ''
+    result = ''
+    if iamraw.FontFlag.Italic in flags:
+        result += 'font-style:italic;'
+    if iamraw.FontFlag.ForceBold in flags:
+        result += 'font-weight:bold;'
+    if iamraw.FontFlag.Serif in flags:
+        result += 'font-family:sans-serif;'
+    if iamraw.FontFlag.Symbolic in flags:
+        result += 'font-family:Consolas;'
+    if iamraw.FontFlag.SmallCap in flags:
+        result += 'font-variant:small-caps;'
     return result
