@@ -1,3 +1,12 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2020 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+
 # External packages
 Jinja2==2.10
 PyYAML==5.1
@@ -9,7 +18,3 @@ utila==1.18.1
 
 # required feedback/linter result
 decider==0.11.3
-
-
-# ensure version of test data generator
-hey==2.0.8
