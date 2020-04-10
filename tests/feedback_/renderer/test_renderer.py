@@ -14,6 +14,7 @@ import utila
 
 import feedback.renderer.html
 import feedback.renderer.mark
+from tests.feedback_.fixtures import bachelor56  # pylint:disable=W0611
 from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
 from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
 
@@ -108,6 +109,19 @@ def test_render_page_with_horizontals(testdir, masterpage72):  # pylint:disable=
     rendered = feedback.renderer.html.render_page(footnote_separator)
     assert len(rendered) > 300, str(rendered)
     assert '<hr' in rendered, str(rendered)
+
+    utila.file_create(outpath, rendered)
+
+    if utila.single_execution():
+        webbrowser.open(outpath)
+
+
+def test_render_bachelor56_title_page(testdir, bachelor56):  # pylint:disable=W0621
+    outpath = os.path.join(testdir.tmpdir, 'index.html')
+    titlepage = utila.select_page(bachelor56, 0)
+
+    rendered = feedback.renderer.html.render_page(titlepage)
+    assert len(rendered) > 300, str(rendered)
 
     utila.file_create(outpath, rendered)
 
