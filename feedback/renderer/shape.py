@@ -99,3 +99,19 @@ def render_line(
         y0=y0,
     )
     return rendered
+
+
+HORIZONTAL = """\
+<hr {reference} style="position:absolute;
+top:{y0}px;left:{x0}px;width:{width}px; />"
+"""
+
+
+def render_horizontal(x0, y0, width, reference='') -> str:
+    rendered = RECTANGLE.format(
+        reference=reference,
+        width=width,
+        x0=x0,
+        y0=y0,
+    )
+    return rendered
