@@ -29,6 +29,12 @@ with open(REQUIREMENTS_PATH, mode='rt', encoding=UTF8) as fp:
         line for line in fp.readlines() if line and '#' not in line
     ]
 
+REQUIREMENTS_DEV = os.path.join(ROOT, 'requirements.txt')
+with open(REQUIREMENTS_DEV, mode='rt', encoding=UTF8) as fp:
+    REQUIREMENTS_DEV = [
+        line for line in fp.readlines() if line and '#' not in line
+    ]
+
 if __name__ == "__main__":
     # allow setup.py to run from another directory
     os.chdir(ROOT)
