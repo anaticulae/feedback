@@ -107,6 +107,7 @@ def test_render_page_with_horizontals(testdir, masterpage72):  # pylint:disable=
 
     rendered = feedback.renderer.html.render_page(footnote_separator)
     assert len(rendered) > 300, str(rendered)
+    assert '<hr' in rendered, str(rendered)
 
     utila.file_create(outpath, rendered)
 

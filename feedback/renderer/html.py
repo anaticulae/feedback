@@ -76,7 +76,10 @@ def render_page(
         lines.extend(rendered)
 
     if page.horizontals:
-        rendered = feedback.renderer.lines.render(page.horizontals)
+        rendered = feedback.renderer.lines.render_horizontals(
+            horizontals=page.horizontals,
+            page=page.page,
+        )
         lines.extend(rendered)
 
     content = '\n'.join(lines)
@@ -169,11 +172,14 @@ def load(  # pylint:disable=R0914
         boxes: str = None,
         hits: str = None,
         images: list = None,
+        horizontals: list = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
+    if horizontals:
+        horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
     hits = serializeraw.load_hits(hits, pages=pages) if hits else None
     if images:
         images = [
@@ -187,6 +193,9 @@ def load(  # pylint:disable=R0914
         page_boxes = utila.select_page(boxes, page) if boxes else None
         # expected border which are violated by hits
         border = utila.select_page(hits, page).border if hits else None
+        hori = utila.select_page(horizontals, page) if horizontals else None
+        if hori:
+            hori = hori.content
         # skip non TextContainer boxes - for example LTRect
         selected = [
             item for item in current.children
@@ -197,11 +206,12 @@ def load(  # pylint:disable=R0914
             children.box = position.content[index][0]
         pageimages = feedback.renderer.images.select_images(images, page)
         item = feedback.renderer.content.HTMLPageContent(
-            page=page,
-            dimension=text.dimension,
-            content=selected,
-            images=pageimages,
             border=border,
+            content=selected,
+            dimension=text.dimension,
+            horizontals=hori,
+            images=pageimages,
+            page=page,
         )
         if page_boxes:
             item.boxes.extend(page_boxes.content)  # pylint:disable=E1101
@@ -217,17 +227,20 @@ def from_path(
     text = iamraw.path.text(path)
     textposition = iamraw.path.textposition(path)
     boxes = iamraw.path.boxed(path)
+    horizontals = iamraw.path.horizontals(path)
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border rendere optional
     hits = hits if os.path.exists(hits) else None
     boxes = boxes if os.path.exists(boxes) else None
+    horizontals = horizontals if os.path.exists(horizontals) else None
     images = [os.path.join(path, 'rawmaker__images_images')]
     loaded = load(
-        text,
-        textposition,
         boxes=boxes,
         hits=hits,
+        horizontals=horizontals,
         images=images,
+        text=text,
+        textposition=textposition,
         pages=pages,
     )
     return loaded

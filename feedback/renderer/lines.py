@@ -10,14 +10,20 @@
 import feedback.renderer.shape
 
 
-def render_lines(page):
-    if not page.horizontals:
+def render_horizontals(horizontals, page):
+    if not horizontals:
         return []
     result = []
-    for index, item in enumerate(page.horizontals):
-        line = feedback.renderer.shape.render_line(
-            item.box,
-            reference=f'page_{page.page}_line_{index}',
+    for index, item in enumerate(horizontals):
+        x0, y0 = item.box[0], item.box[1]
+        # TODO: FIX THIS OFFSET?
+        y0 = y0 - 10
+        width = item.box[2] - item.box[0]
+        line = feedback.renderer.shape.render_horizontal(
+            x0=x0,
+            y0=y0,
+            width=width,
+            reference=f'page_{page}_line_{index}',
         )
         result.append(line)
     return result
