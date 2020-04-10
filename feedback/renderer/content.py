@@ -13,17 +13,16 @@ import typing
 import iamraw
 import utila
 
-import feedback.renderer.images
+import feedback.renderer.images as fri
 
 
 @dataclasses.dataclass
 class HTMLPageContent:
     border: tuple = None
-    content: iamraw.TextContainers = dataclasses.field(default_factory=list)
     boxes: utila.Rectangles = dataclasses.field(default_factory=list)
-    images: feedback.renderer.images.ZippedImageInfos = dataclasses.field(
-        default_factory=list)
+    content: iamraw.TextContainers = dataclasses.field(default_factory=list)
     dimension: iamraw.PageSize = None
+    images: fri.ZippedImageInfos = dataclasses.field(default_factory=list)
     page: int = None
 
 
