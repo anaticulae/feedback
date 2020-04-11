@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.11.1
+
+### Feature
+
+* add horizontals and lines as input resource to render (60fbc4f48496)
+
 ## v0.11.0
 
 ### Feature
