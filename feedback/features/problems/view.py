@@ -19,6 +19,7 @@ import utila
 
 import feedback.problems.shapy
 import feedback.renderer.html
+import feedback.renderer.loader
 import feedback.renderer.mark
 import feedback.renderer.shape
 
@@ -51,7 +52,7 @@ def work(  # pylint:disable=R0914
     Returns:
         List of extracted html view per page.
     """
-    html = feedback.renderer.html.load(
+    html = feedback.renderer.loader.load(
         text,
         textpositions,
         boxes=boxes,

@@ -12,12 +12,13 @@ import webbrowser
 import utila
 
 import feedback.renderer.html
+import feedback.renderer.loader
 import tests.resources
 
 
 def test_render_boxes(testdir):
     source = tests.resources.GENERATED_PORTING_PYTHON3
-    data = feedback.renderer.html.from_path(source, pages=1)[0]
+    data = feedback.renderer.loader.from_path(source, pages=1)[0]
     html = feedback.renderer.html.render_page(data)
 
     root = str(testdir)
