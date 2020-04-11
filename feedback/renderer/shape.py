@@ -73,14 +73,14 @@ def render_rectangle(
 LINE = """\
 <svg {reference} style="position:absolute; top:{y0}px;left:{x0}px;
 width:{width}px;height:{height}px;pointer-events: none; {more}" fill="none">
-<line x1="0" y1="0" x2="{width}" y2="{height}" stroke="black"></line></svg>
+<line x1="1" y1="1" x2="{width}" y2="{height}" stroke="black"></line></svg>
 """
 
 
 def render_line(
         bounding: iamraw.BoundingBox,
         more: str = '',
-        reference: str = None,
+        reference: str = '',
 ) -> str:
     bounding = utila.roundme(*bounding)  # reduce digits in html output
     x0, y0, x1, y1 = bounding
@@ -90,7 +90,7 @@ def render_line(
     width = x1 - x0
     height = max([height, 1])
     width = max([width, 1])
-    rendered = RECTANGLE.format(
+    rendered = LINE.format(
         height=height,
         more=more,
         reference=reference,
