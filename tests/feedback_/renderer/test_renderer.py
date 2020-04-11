@@ -10,11 +10,12 @@
 import os
 import webbrowser
 
+import pytest
 import utila
 
 import feedback.renderer.html
 import feedback.renderer.mark
-import tests.feedback_.renderer
+import tests.feedback_.renderer as tfr
 from tests.feedback_.fixtures import bachelor56  # pylint:disable=W0611
 from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
 from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
@@ -24,17 +25,10 @@ def test_renderer_load(masterpage72):  # pylint:disable=W0621
     assert masterpage72
 
 
+@pytest.mark.xfail(reason='duplicated horizontal line rendering')
 def test_renderer_firstpage(tmpdir, masterpage72):  # pylint:disable=W0621
-    outpath = os.path.join(tmpdir, 'firstpage.html')
-    firstpage = utila.select_page(masterpage72, 0)
-
-    rendered = feedback.renderer.html.render_page(firstpage)
-    assert len(rendered) > 300, str(rendered)
-
-    utila.file_create(outpath, rendered)
-
-    if utila.single_execution():
-        webbrowser.open(outpath)
+    with tfr.render_and_open(tmpdir, masterpage72, 0) as html:
+        assert '<hr' not in html, html
 
 
 def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):  # pylint:disable=W0621
@@ -68,9 +62,6 @@ def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):  # pylin
 def test_renderer_shapes_mark_bounding(tmpdir, leftright):  # pylint:disable=W0621
     """Render first page of `leftright` example and add a red rectangle
     in the top center of the page."""
-    outpath = os.path.join(tmpdir, 'firstpage.html')
-    firstpage = utila.select_page(leftright, 0)
-
     shapes = [
         {
             'type': 'rectangle',
@@ -78,67 +69,33 @@ def test_renderer_shapes_mark_bounding(tmpdir, leftright):  # pylint:disable=W06
             'border': '1px solid red',
         },
     ]
-
-    rendered = feedback.renderer.html.render_page(firstpage, shapes=shapes)
-    assert len(rendered) > 300, str(rendered)
-    utila.file_create(outpath, rendered)
-
-    if utila.single_execution():
-        webbrowser.open(outpath)
+    with tfr.render_and_open(tmpdir, leftright, page=0, shapes=shapes) as html:
+        pass
 
 
 def test_renderer_toc(tmpdir, masterpage72):  # pylint:disable=W0621
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
-    outpath = os.path.join(tmpdir, 'tocpage.html')
-    tocpage = utila.select_page(masterpage72, 1)
-
-    rendered = feedback.renderer.html.render_page(tocpage)
-    assert len(rendered) > 300, str(rendered)
-
-    utila.file_create(outpath, rendered)
-
-    if utila.single_execution():
-        webbrowser.open(outpath)
+    with tfr.render_and_open(tmpdir, masterpage72, page=1) as html:
+        pass
 
 
 def test_render_page_with_horizontals(tmpdir, masterpage72):  # pylint:disable=W0621
     """Render footnote separator."""
-    outpath = os.path.join(tmpdir, 'index.html')
-    footnote_separator = utila.select_page(masterpage72, 3)
-
-    rendered = feedback.renderer.html.render_page(footnote_separator)
-    assert len(rendered) > 300, str(rendered)
-    assert '<hr' in rendered, str(rendered)
-
-    utila.file_create(outpath, rendered)
-
-    if utila.single_execution():
-        webbrowser.open(outpath)
+    with tfr.render_and_open(tmpdir, masterpage72, page=3) as html:
+        assert '<hr' in html, str(html)
 
 
 def test_render_bachelor56_title_page(tmpdir, bachelor56):  # pylint:disable=W0621
-    outpath = os.path.join(tmpdir, 'index.html')
-    titlepage = utila.select_page(bachelor56, 0)
-
-    rendered = feedback.renderer.html.render_page(titlepage)
-    assert len(rendered) > 300, str(rendered)
-
-    utila.file_create(outpath, rendered)
-
-    if utila.single_execution():
-        webbrowser.open(outpath)
+    with tfr.render_and_open(tmpdir, bachelor56, page=0) as html:
+        pass
 
 
 def test_render_bachelor56_italic_style(tmpdir, bachelor56):  # pylint:disable=W0621
-    outpath = os.path.join(tmpdir, 'index.html')
-    titlepage = utila.select_page(bachelor56, 5)
+    with tfr.render_and_open(tmpdir, bachelor56, page=5) as html:
+        assert 'font-style:italic;' in html, str(html)
 
-    rendered = feedback.renderer.html.render_page(titlepage)
-    assert len(rendered) > 300, str(rendered)
-    assert 'font-style:italic;' in rendered, str(rendered)
 
-    utila.file_create(outpath, rendered)
-
-    if utila.single_execution():
-        webbrowser.open(outpath)
+def test_render_bachelor56_render_table(tmpdir, bachelor56):  # pylint:disable=W0621
+    with tfr.render_and_open(tmpdir, bachelor56, page=15) as html:
+        pass
