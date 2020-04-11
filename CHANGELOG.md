@@ -2,6 +2,29 @@
 
 Every noteable change is logged here.
 
+## v0.11.0
+
+### Feature
+
+* add first simple approach of a table renderer (e53664b14996)
+* load lines in html view data (b4f03a683ac2)
+* add text style renderer (e306c67f7e4f)
+* include change of text rise, flag and font to text printer (f5924e5fdee0)
+* use simple hr renderer instead of generic line renderer (e769501edd57)
+* add horizontal line renderer (8b5a605d136c)
+* render horizontal lines in feedback view (38b5fd3df273)
+* add method to render lines (081876130063)
+
+### Fix
+
+* use correct layout template and render line more clear (5db43f51535b)
+* solve linter warnings (54714467c2cd)
+
+### Documentation
+
+* extend interface documentation (f4da2a840369)
+* extend interface documentation (8a3e577ce99a)
+
 ## v0.10.1
 
 ### Fix
