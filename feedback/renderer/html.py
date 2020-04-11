@@ -52,9 +52,9 @@ def render_page(
     wordmarker = feedback.renderer.mark.WordMarker(page.page, marks.wordmarks)
     linemarker = feedback.renderer.mark.LineMarker(page.page, marks.linemarks)
 
-    lines = []
-    lines.extend(feedback.renderer.boxes.render_pageborder(page))
-    lines.extend(feedback.renderer.boxes.render_boxes(page))
+    raw = []
+    raw.extend(feedback.renderer.boxes.render_pageborder(page))
+    raw.extend(feedback.renderer.boxes.render_boxes(page))
 
     for textcontainer in page.content:
         text = textcontainer.text
@@ -67,24 +67,24 @@ def render_page(
         if marked_words:
             styles.extend(marked_words)
         html = create_line(textcontainer, styles)
-        lines.append(html)
+        raw.append(html)
 
     if shapes:
         rendered = feedback.renderer.shape.render(shapes)
-        lines.extend(rendered)
+        raw.extend(rendered)
 
     if page.images:
         rendered = render_images(page.images)
-        lines.extend(rendered)
+        raw.extend(rendered)
 
     if page.horizontals:
         rendered = feedback.renderer.lines.render_horizontals(
             horizontals=page.horizontals,
             page=page.page,
         )
-        lines.extend(rendered)
+        raw.extend(rendered)
 
-    content = '\n'.join(lines)
+    content = '\n'.join(raw)
     result = create_pagebox(content, page.page, page.dimension)
     return result
 
