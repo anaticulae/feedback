@@ -62,7 +62,7 @@ def render_page(
             styles.append(marked_lines)
         if marked_words:
             styles.extend(marked_words)
-        html = create_line(textcontainer, styles)
+        html = create_textline(textcontainer, styles)
         raw.append(html)
 
     if shapes:
@@ -99,7 +99,7 @@ def render_images(images):
     return result
 
 
-def create_line(textcontainer, marked_line) -> str:
+def create_textline(textcontainer, marked_line) -> str:
     bounding = textcontainer.box
     result = []
     for index, line in enumerate(textcontainer):
