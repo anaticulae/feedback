@@ -31,6 +31,8 @@ def work(  # pylint:disable=R0914
         fontcontent: str,
         images: str,
         boxes: str,
+        horizontals: str,
+        lines: str,
         hits: str,
         *linters: list,
         pages: tuple = None,
@@ -59,7 +61,9 @@ def work(  # pylint:disable=R0914
         fontcontent=fontcontent,
         fontheader=fontheader,
         hits=hits,
+        horizontals=horizontals,
         images=images,
+        lines=lines,
         pages=pages,
     )
     findings = load_linters(linters)
