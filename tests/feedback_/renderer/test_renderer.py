@@ -101,4 +101,5 @@ def test_render_bachelor56_italic_style(tmpdir, bachelor56):  # pylint:disable=W
 
 def test_render_bachelor56_render_table(tmpdir, bachelor56):  # pylint:disable=W0621
     with tfr.render_and_open(tmpdir, bachelor56, page=15) as html:
-        pass
+        # ensure that table lines are rendered
+        assert html.count('<svg  style') > 20, html

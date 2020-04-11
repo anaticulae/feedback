@@ -25,6 +25,7 @@ import feedback.renderer.images
 import feedback.renderer.lines
 import feedback.renderer.mark
 import feedback.renderer.shape
+import feedback.renderer.table
 import feedback.renderer.text
 import feedback.utils.multiple_styles
 
@@ -79,6 +80,11 @@ def render_page(
             page=page.page,
         )
         raw.extend(rendered)
+
+    if page.lines:
+        rendered = feedback.renderer.table.render(page.lines)
+        if rendered:
+            raw.extend(rendered)
 
     content = '\n'.join(raw)
     result = create_pagebox(content, page.page, page.dimension)
