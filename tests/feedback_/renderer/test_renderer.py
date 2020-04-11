@@ -70,13 +70,15 @@ def test_renderer_shapes_mark_bounding(tmpdir, leftright):  # pylint:disable=W06
         },
     ]
     with tfr.render_and_open(tmpdir, leftright, page=0, shapes=shapes) as html:
-        pass
+        assert '1px solid red' in html  # ensure to render red box
 
 
+@utila.todo(major=3, minor=2, description='verify with selenium')
 def test_renderer_toc(tmpdir, masterpage72):  # pylint:disable=W0621
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
-    with tfr.render_and_open(tmpdir, masterpage72, page=1) as html:
+    with tfr.render_and_open(tmpdir, masterpage72, page=1):
+        # check that page number are on vertical line
         pass
 
 
@@ -88,7 +90,8 @@ def test_render_page_with_horizontals(tmpdir, masterpage72):  # pylint:disable=W
 
 def test_render_bachelor56_title_page(tmpdir, bachelor56):  # pylint:disable=W0621
     with tfr.render_and_open(tmpdir, bachelor56, page=0) as html:
-        pass
+        # ensure to render university logo
+        assert '<img src=' in html, html
 
 
 def test_render_bachelor56_italic_style(tmpdir, bachelor56):  # pylint:disable=W0621
