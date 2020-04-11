@@ -40,5 +40,5 @@ def extract_examples():
         tests.resources.PORTING_PYTHON3_PDF,
         tests.resources.RESTRUCTED_PDF,
     ]
-    decider.example.extract(files, tests.resources.GENERATED)
+    decider.example.extract(files, tests.resources.GENERATED, '0:20')
     utila.log('extract examples: complete')
