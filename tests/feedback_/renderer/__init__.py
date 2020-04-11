@@ -7,6 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
+import inspect
+import os
+import sys
+import webbrowser
+
+import utila
+
+import feedback.renderer.html
+
 PATTERN = """\
 <!DOCTYPE html>
 <html lang="en">
@@ -25,3 +35,41 @@ PATTERN = """\
 
 def html(content: str, title: str = 'no title'):
     return PATTERN.format(content=content, title=title)
+
+
+@contextlib.contextmanager
+def render_and_open(
+        directory: int,
+        content,
+        page: int,
+        marks=None,
+        shapes=None,
+):
+    outpath = os.path.join(directory, 'index.html')
+    content = utila.select_page(content, page)
+
+    rendered = feedback.renderer.html.render_page(
+        content,
+        marks=marks,
+        shapes=shapes,
+    )
+    rendered = html(rendered)
+    assert len(rendered) > 300, str(rendered)
+
+    yield rendered
+
+    utila.file_create(outpath, rendered)
+
+    if single_execution():
+        webbrowser.open(outpath)
+
+
+def single_execution():
+    # TODO: MOVE TO UTILA
+    """Check that test method is executed as single test. You can use
+    this method to open the result in a web browser if test is executed
+    with a human in front of the machine eg. as a single test."""
+    utila.refactor(major=2, description='replace with utila code')
+    frame = inspect.currentframe()
+    caller = [item.function for item in inspect.getouterframes(frame)[0:5]]
+    return any([item in sys.argv for item in caller])
