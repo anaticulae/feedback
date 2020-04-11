@@ -128,6 +128,7 @@ def create_line(textcontainer, marked_line) -> str:
 
 def create_pagebox(html: str, page: int, dimension) -> str:
     # pointer-events:none - do not effect mouse cursor handling
+    assert dimension, dimension
     result = (f'<div id="page{page}" '
               f'style="position:relative; width:{dimension[0]}px; '
               f'height:{dimension[1]}px; border:1px solid black; '
@@ -166,7 +167,6 @@ def load(  # pylint:disable=R0914
             feedback.renderer.images.zip_images(item, pages) for item in images
         ]
         images = utila.flatten(images)
-    result = []
     fontstore = None
     if fontheader:
         fontstore = serializeraw.create_fontstore(
@@ -174,36 +174,62 @@ def load(  # pylint:disable=R0914
             fontcontent,
             pages=pages,
         )
-    for current in text.pages:
-        page = current.page
-        position = utila.select_page(textposition, page)
-        page_boxes = utila.select_page(boxes, page) if boxes else None
-        # expected border which are violated by hits
-        border = utila.select_page(hits, page).border if hits else None
-        hori = utila.select_page(horizontals, page) if horizontals else None
-        if hori:
-            hori = hori.content
-        # skip non TextContainer boxes - for example LTRect
-        selected = [
-            item for item in current.children
-            if isinstance(item, iamraw.TextContainer)
-        ]
-        fill_fonts(selected, page, fontstore)
-        for index, children in enumerate(selected):
-            # update with loaded text position
-            children.box = position.content[index][0]
-        pageimages = feedback.renderer.images.select_images(images, page)
-        item = feedback.renderer.content.HTMLPageContent(
-            border=border,
-            content=selected,
-            dimension=text.dimension,
-            horizontals=hori,
-            images=pageimages,
-            page=page,
-        )
-        if page_boxes:
-            item.boxes.extend(page_boxes.content)  # pylint:disable=E1101
-        result.append(item)
+    result = [
+        load_page(
+            text.dimension,
+            fontstore,
+            boxes=boxes,
+            hits=hits,
+            horizontals=horizontals,
+            images=images,
+            text=page,
+            textposition=textposition,
+        ) for page in text
+    ]
+    return result
+
+
+def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):
+    text = kwargs.pop('text')
+    # TODO: DETECT DIMENSION OUT OF TEXT
+    page = text.page
+    textposition = utila.select_page(kwargs.pop('textposition'), page=page)
+
+    try:
+        hits = utila.select_page(kwargs['hits'], page=page)
+        border = hits.border if hits else []
+    except ValueError:
+        border = []
+    try:
+        boxes = utila.select_page(kwargs['boxes'], page=page)
+        boxes = boxes.content if boxes else []
+    except ValueError:
+        boxes = []
+    try:
+        horizontals = utila.select_page(kwargs['horizontals'], page=page)
+        horizontals = horizontals.content if horizontals else []
+    except ValueError:
+        horizontals = []
+
+    images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
+
+    # skip non TextContainer boxes - for example LTRect
+    selected = [
+        item for item in text.children if isinstance(item, iamraw.TextContainer)
+    ]
+    fill_fonts(selected, page, fontstore)
+    for index, children in enumerate(text):
+        # update with loaded text position
+        children.box = textposition.content[index][0]
+    result = feedback.renderer.content.HTMLPageContent(
+        border=border,
+        boxes=boxes,
+        content=selected,
+        dimension=dimension,
+        horizontals=horizontals,
+        images=images,
+        page=page,
+    )
     return result
 
 
