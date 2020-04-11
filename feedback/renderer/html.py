@@ -44,8 +44,9 @@ def render_page(
     reference to access these rectangle is added (see referece).
 
     If page.boxes contains some rectangles, there are rendered as black
-    boxes.
+    thin rectangles.
     """
+    assert page, 'page is none, require page to render'
     if marks is None:
         marks = feedback.renderer.mark.PageMarkConfiguration()
     wordmarker = feedback.renderer.mark.WordMarker(page.page, marks.wordmarks)
