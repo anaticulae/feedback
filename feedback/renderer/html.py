@@ -131,9 +131,10 @@ def create_textline(textcontainer, marked_line) -> str:
 def create_pagebox(html: str, page: int, dimension) -> str:
     # pointer-events:none - do not effect mouse cursor handling
     assert dimension, dimension
+    dimension = utila.roundme(*dimension)
     result = (f'<div id="page{page}" '
-              f'style="position:relative; width:{dimension[0]}px; '
-              f'height:{dimension[1]}px; border:1px solid black; '
+              f'style="position:relative;width:{dimension[0]}px;'
+              f'height:{dimension[1]}px;border:1px solid black;'
               'pointer-events:none;">\n'
               f'{html}\n'
               '</div>')

@@ -37,7 +37,7 @@ def render(items: list) -> list:
 RECTANGLE = """\
 <span {reference} style="position:absolute;
 top:{y0}px;left:{x0}px;width:{width}px;height:{height}px;
-border:{border}; background:{background}; pointer-events: none;
+border:{border};background:{background};pointer-events:none;
 {more}"></span>"""
 
 
