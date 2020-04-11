@@ -26,12 +26,13 @@ import feedback.utils.multiple_styles
 def load(  # pylint:disable=R0914
         text: str,
         textposition: str,
-        fontheader: str = None,
-        fontcontent: str = None,
         boxes: str = None,
+        fontcontent: str = None,
+        fontheader: str = None,
         hits: str = None,
-        images: list = None,
         horizontals: str = None,
+        images: list = None,
+        lines: str = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     """Load data to present as html view.
@@ -46,6 +47,8 @@ def load(  # pylint:disable=R0914
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
     if horizontals:
         horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
+    if lines:
+        lines = serializeraw.load_lines(lines, pages=pages)
     hits = serializeraw.load_hits(hits, pages=pages) if hits else None
     if images:
         images = [
@@ -67,6 +70,7 @@ def load(  # pylint:disable=R0914
             hits=hits,
             horizontals=horizontals,
             images=images,
+            lines=lines,
             text=page,
             textposition=textposition,
         ) for page in text
@@ -74,7 +78,7 @@ def load(  # pylint:disable=R0914
     return result
 
 
-def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):
+def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=R0914
     text = kwargs.pop('text')
     # TODO: DETECT DIMENSION OUT OF TEXT
     page = text.page
@@ -95,6 +99,11 @@ def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):
         horizontals = horizontals.content if horizontals else []
     except ValueError:
         horizontals = []
+    try:
+        lines = utila.select_page(kwargs['lines'], page=page)
+        lines = lines.content if lines else []
+    except ValueError:
+        lines = []
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
 
@@ -113,6 +122,7 @@ def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):
         dimension=dimension,
         horizontals=horizontals,
         images=images,
+        lines=lines,
         page=page,
     )
     return result
@@ -129,6 +139,7 @@ def from_path(
     fontcontent = iamraw.path.fontcontent(path)
     boxes = iamraw.path.boxed(path)
     horizontals = iamraw.path.horizontals(path)
+    lines = iamraw.path.line(path)
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border renderer optional
     fontheader = fontheader if os.path.exists(fontheader) else None
@@ -136,6 +147,7 @@ def from_path(
     hits = hits if os.path.exists(hits) else None
     boxes = boxes if os.path.exists(boxes) else None
     horizontals = horizontals if os.path.exists(horizontals) else None
+    lines = lines if os.path.exists(lines) else None
     # TODO: INVESTIGATE HERE
     images = [os.path.join(path, 'rawmaker__images_images')]
     loaded = load(
@@ -145,6 +157,7 @@ def from_path(
         hits=hits,
         horizontals=horizontals,
         images=images,
+        lines=lines,
         text=text,
         textposition=textposition,
         pages=pages,
