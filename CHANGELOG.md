@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.11.2
+
+### Fix
+
+* sort required test resources (1c0e05129509)
+* reduce digits and white spaces in output (9d833a9fe17c)
+
 ## v0.11.1
 
 ### Feature
