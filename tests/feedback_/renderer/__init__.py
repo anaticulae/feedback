@@ -60,16 +60,5 @@ def render_and_open(
 
     utila.file_create(outpath, rendered)
 
-    if single_execution():
+    if utila.single_execution():
         webbrowser.open(outpath)
-
-
-def single_execution():
-    # TODO: MOVE TO UTILA
-    """Check that test method is executed as single test. You can use
-    this method to open the result in a web browser if test is executed
-    with a human in front of the machine eg. as a single test."""
-    utila.refactor(major=2, description='replace with utila code')
-    frame = inspect.currentframe()
-    caller = [item.function for item in inspect.getouterframes(frame)[0:5]]
-    return any([item in sys.argv for item in caller])

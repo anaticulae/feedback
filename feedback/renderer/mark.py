@@ -56,7 +56,6 @@ import typing
 import protocol
 import utila
 
-import feedback.problems.linter
 import feedback.renderer.content
 import feedback.utils.multiple_styles
 
@@ -225,5 +224,5 @@ def collect(path: str) -> dict:
             protocol.load_result(item) for item in glob.glob('*_user.yaml')
         ]
     findings = utila.flatten(findings)
-    result = feedback.problems.linter.group_finding_bypage(findings)
+    result = protocol.bypage(findings)
     return result

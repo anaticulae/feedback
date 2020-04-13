@@ -156,7 +156,7 @@ def prepare_input(
     pagenumbers = PageNumbersLookup(pagenumbers)
 
     result: typing.List[protocol.Finding] = protocol.load_result(userlinting)
-    problems = feedback.problems.linter.group_finding_bypage(result)
+    problems = protocol.bypage(result)
 
     text = {item[0]: item[1] for item in text}
     return sections, text, headlines, listlookup, boxed, pagenumbers, problems
