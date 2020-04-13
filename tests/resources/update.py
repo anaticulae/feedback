@@ -26,6 +26,7 @@ def sync_resources():
     assert completed.returncode == utila.SUCCESS, str(completed)
 
 
+@utila.todo(major=1, minor=20, description='remove file sort')
 def extract_examples():
     utila.log('extract examples')
     # ensure that generation folder exists
@@ -40,5 +41,6 @@ def extract_examples():
         tests.resources.PORTING_PYTHON3_PDF,
         tests.resources.RESTRUCTED_PDF,
     ]
+    files = sorted(files, key=lambda x: x.lower())
     decider.example.extract(files, tests.resources.GENERATED, '0:20')
     utila.log('extract examples: complete')
