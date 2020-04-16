@@ -9,3 +9,5 @@
 
 # ensure version of test data generator
 hey==2.0.14
+
+power==0.7.4

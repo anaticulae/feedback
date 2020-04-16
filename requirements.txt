@@ -18,3 +18,6 @@ utila==1.20.1
 
 # required feedback/linter result
 decider==0.12.2
+
+# required to load images
+rawmaker==1.17.13

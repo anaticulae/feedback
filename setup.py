@@ -29,7 +29,7 @@ with open(REQUIREMENTS_PATH, mode='rt', encoding=UTF8) as fp:
         line for line in fp.readlines() if line and '#' not in line
     ]
 
-REQUIREMENTS_DEV = os.path.join(ROOT, 'requirements.txt')
+REQUIREMENTS_DEV = os.path.join(ROOT, 'requirements.dev')
 with open(REQUIREMENTS_DEV, mode='rt', encoding=UTF8) as fp:
     REQUIREMENTS_DEV = [
         line for line in fp.readlines() if line and '#' not in line
