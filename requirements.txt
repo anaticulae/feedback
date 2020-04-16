@@ -12,9 +12,9 @@ Jinja2==2.10
 PyYAML==5.1
 
 # Internal packages
-iamraw==1.22.1
-protocol==0.8.15
-utila==1.19.0
+iamraw==1.22.3
+protocol==0.8.17
+utila==1.20.1
 
 # required feedback/linter result
-decider==0.11.4
+decider==0.12.2
