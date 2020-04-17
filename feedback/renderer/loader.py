@@ -89,21 +89,10 @@ def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):  # pylint:disab
         border = hits.border if hits else []
     except ValueError:
         border = []
-    try:
-        boxes = utila.select_page(kwargs['boxes'], page=page)
-        boxes = boxes.content if boxes else []
-    except ValueError:
-        boxes = []
-    try:
-        horizontals = utila.select_page(kwargs['horizontals'], page=page)
-        horizontals = horizontals.content if horizontals else []
-    except ValueError:
-        horizontals = []
-    try:
-        lines = utila.select_page(kwargs['lines'], page=page)
-        lines = lines.content if lines else []
-    except ValueError:
-        lines = []
+
+    boxes = select_page(kwargs, 'boxes', page)
+    horizontals = select_page(kwargs, 'horizontals', page)
+    lines = select_page(kwargs, 'lines', page)
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
 
@@ -125,6 +114,15 @@ def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):  # pylint:disab
         lines=lines,
         page=page,
     )
+    return result
+
+
+def select_page(args, key, page):
+    try:
+        result = utila.select_page(args[key], page=page)
+        result = result.content if result else []
+    except ValueError:
+        result = []
     return result
 
 
