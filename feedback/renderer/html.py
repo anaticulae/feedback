@@ -17,6 +17,7 @@ References
 """
 
 import iamraw
+import textflow.alignment.style
 import utila
 
 import feedback.renderer.boxes
@@ -113,11 +114,10 @@ def create_textline(textcontainer, marked_line, alignments=None) -> str:  # pyli
         box = iamraw.split_y(bounding, index, len(textcontainer))
         alignment = 'justify'
         if alignments:
-            # alignment = alignments(bounding=box)
-            pass
+            alignment = alignments(bounding=box)
         alignment = create_alignment(alignment)
         width = utila.roundme((box.x1 - box.x0) * 1.01)
-        position = f'top:{box.y0}px;left:{box.x0}px;width:{width}px;'
+        position = f'top:{box.y0}px;left:{box.x0}px;min-width:{width}px;'
         location = f'position:absolute;{position}'
         line_style = []
         line_style.extend(marked_line)
@@ -134,8 +134,15 @@ def create_textline(textcontainer, marked_line, alignments=None) -> str:  # pyli
     return html
 
 
-def create_alignment(alignment: str):
-    return f'text-align:{alignment};text-align-last:{alignment};'
+def create_alignment(alignment: textflow.alignment.style.TextAlignment):
+    raw = 'justify'
+    if alignment and len(alignment) == 1:
+        alignment = alignment[0]
+        if alignment == textflow.alignment.style.TextAlignment.LEFT:
+            raw = 'left'
+        if alignment == textflow.alignment.style.TextAlignment.RIGHT:
+            raw = 'right'
+    return f'text-align:{raw};text-align-last:{raw};'
 
 
 def create_pagebox(html: str, page: int, dimension) -> str:
