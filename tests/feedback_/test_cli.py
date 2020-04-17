@@ -49,6 +49,7 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     # TODO: UNIT THIS PATTERN AFTER UPGRADING UTILA
     utila.copy_content(source, root, pattern='rawmaker__*.yaml')
     utila.copy_content(source, root, pattern='groupme__*.yaml')
+    utila.copy_content(source, root, pattern='textflow__*.yaml')
     completed = utila.run('decider_border')
     assert completed.returncode == utila.SUCCESS, str(completed)
 

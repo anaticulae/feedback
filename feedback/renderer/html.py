@@ -63,7 +63,7 @@ def render_page(
             styles.append(marked_lines)
         if marked_words:
             styles.extend(marked_words)
-        html = create_textline(textcontainer, styles)
+        html = create_textline(textcontainer, styles, page.alignment)
         raw.append(html)
 
     if shapes:
@@ -105,7 +105,7 @@ def render_images(images):
     return result
 
 
-def create_textline(textcontainer, marked_line, alignments=None) -> str:
+def create_textline(textcontainer, marked_line, alignments=None) -> str:  # pylint:disable=R0914
     bounding = textcontainer.box
     result = []
     for index, line in enumerate(textcontainer):

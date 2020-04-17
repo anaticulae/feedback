@@ -7,11 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import functools
 import os
 
 import iamraw
 import iamraw.path
 import serializeraw
+import texmex
+import textflow.features.alignment
+import textflow.path
 import utila
 
 import feedback.renderer.boxes
@@ -23,9 +27,12 @@ import feedback.renderer.text
 import feedback.utils.multiple_styles
 
 
-def load(  # pylint:disable=R0914
+def load(  # pylint:disable=R0914,too-many-arguments
         text: str,
         textposition: str,
+        oneline_text: str,
+        oneline_textposition: str,
+        alignment: str = None,
         boxes: str = None,
         fontcontent: str = None,
         fontheader: str = None,
@@ -44,6 +51,19 @@ def load(  # pylint:disable=R0914
 
     text = serializeraw.load_document(text, pages=pages)
     textposition = serializeraw.load_textpositions(textposition, pages=pages)
+    oneline_navigators = serializeraw.create_pagetextnavigators_fromfile(
+        oneline_text,
+        oneline_textposition,
+        mode=texmex.PageTextNavigatorMode.HORIZONTAL,
+        pages=pages,
+    )
+
+    alignment = load_alignment(alignment, pages=pages) if alignment else None  # pylint:disable=E1123
+    if alignment:
+        alignment = textflow.alignment.info.AlignmentInfo(
+            oneline_navigators,
+            alignment,
+        )
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
     if horizontals:
         horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
@@ -66,6 +86,7 @@ def load(  # pylint:disable=R0914
         load_page(
             text.dimension,
             fontstore,
+            alignment=alignment,
             boxes=boxes,
             hits=hits,
             horizontals=horizontals,
@@ -83,7 +104,9 @@ def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):  # pylint:disab
     # TODO: DETECT DIMENSION OUT OF TEXT
     page = text.page
     textposition = utila.select_page(kwargs.pop('textposition'), page=page)
-
+    alignment = kwargs.pop('alignment', None)
+    if alignment:
+        alignment = functools.partial(alignment.alignment, page=page)
     try:
         hits = utila.select_page(kwargs['hits'], page=page)
         border = hits.border if hits else []
@@ -105,6 +128,7 @@ def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):  # pylint:disab
         # update with loaded text position
         children.box = textposition.content[index][0]
     result = feedback.renderer.content.HTMLPageContent(
+        alignment=alignment,
         border=border,
         boxes=boxes,
         content=selected,
@@ -133,8 +157,11 @@ def from_path(
     assert os.path.exists(path), str(path)
     text = iamraw.path.text(path)
     textposition = iamraw.path.textposition(path)
+    oneline_text = iamraw.path.text(path, prefix='oneline')
+    oneline_textposition = iamraw.path.textposition(path, prefix='oneline')
     fontheader = iamraw.path.fontheader(path)
     fontcontent = iamraw.path.fontcontent(path)
+    alignment = textflow.path.alignment(path)
     boxes = iamraw.path.boxed(path)
     horizontals = iamraw.path.horizontals(path)
     lines = iamraw.path.line(path)
@@ -146,9 +173,11 @@ def from_path(
     boxes = boxes if os.path.exists(boxes) else None
     horizontals = horizontals if os.path.exists(horizontals) else None
     lines = lines if os.path.exists(lines) else None
+    alignment = alignment if os.path.exists(alignment) else None
     # TODO: INVESTIGATE HERE
     images = [os.path.join(path, 'rawmaker__images_images')]
     loaded = load(
+        alignment=alignment,
         boxes=boxes,
         fontcontent=fontcontent,
         fontheader=fontheader,
@@ -156,6 +185,8 @@ def from_path(
         horizontals=horizontals,
         images=images,
         lines=lines,
+        oneline_text=oneline_text,
+        oneline_textposition=oneline_textposition,
         text=text,
         textposition=textposition,
         pages=pages,
@@ -177,3 +208,18 @@ def fill_fonts(text, page, fontstore: iamraw.FontStore):
                     flags.append(iamraw.FontFlag.Italic)
                 char.flags = tuple(flags)
                 char.font = font.name
+
+
+@textflow.serialize.loadme
+def load_alignment(items):
+    # TODO: MOVE TO WORDS
+
+    def load_raw(item):
+        item = item.replace('TextAlignment.', '')
+        return textflow.alignment.style.TextAlignment[item]
+
+    if isinstance(items, str):
+        alignments = load_raw(items)
+    else:
+        alignments = [load_raw(item) for item in items]
+    return alignments

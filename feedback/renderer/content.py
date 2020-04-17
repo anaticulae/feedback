@@ -11,6 +11,7 @@ import dataclasses
 import typing
 
 import iamraw
+import textflow.alignment.info
 import utila
 
 import feedback.renderer.images as fri
@@ -18,6 +19,7 @@ import feedback.renderer.images as fri
 
 @dataclasses.dataclass
 class HTMLPageContent:
+    alignment: textflow.alignment.info.AlignmentInfo = None
     border: tuple = None
     boxes: utila.Rectangles = dataclasses.field(default_factory=list)
     content: iamraw.TextContainers = dataclasses.field(default_factory=list)
