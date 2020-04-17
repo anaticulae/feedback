@@ -105,13 +105,19 @@ def render_images(images):
     return result
 
 
-def create_textline(textcontainer, marked_line) -> str:
+def create_textline(textcontainer, marked_line, alignments=None) -> str:
     bounding = textcontainer.box
     result = []
     for index, line in enumerate(textcontainer):
         # render multiline text lines
         box = iamraw.split_y(bounding, index, len(textcontainer))
-        position = f'top:{box.y0}px;left:{box.x0}px;'
+        alignment = 'justify'
+        if alignments:
+            # alignment = alignments(bounding=box)
+            pass
+        alignment = create_alignment(alignment)
+        width = utila.roundme((box.x1 - box.x0) * 1.01)
+        position = f'top:{box.y0}px;left:{box.x0}px;width:{width}px;'
         location = f'position:absolute;{position}'
         line_style = []
         line_style.extend(marked_line)
@@ -122,10 +128,14 @@ def create_textline(textcontainer, marked_line) -> str:
             line_style,
         )
         rendered = rendered.replace('\n', '<br>')
-        raw = f'<span style="{location}">{rendered}</span>'
+        raw = f'<div style="{location}{alignment}">{rendered}</div>'
         result.append(raw)
     html = ''.join(result)
     return html
+
+
+def create_alignment(alignment: str):
+    return f'text-align:{alignment};text-align-last:{alignment};'
 
 
 def create_pagebox(html: str, page: int, dimension) -> str:
