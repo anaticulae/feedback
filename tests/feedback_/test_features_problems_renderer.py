@@ -67,8 +67,10 @@ def feedback_result(request):
 
 def test_report_view_main(feedback_result, testdir, monkeypatch):  # pylint:disable=W0621
     inpath = feedback_result
-    root = str(testdir)
-    tests.feedback_.run(f'-i {inpath} -o {root}', monkeypatch=monkeypatch)
+    tests.feedback_.run(
+        f'-i {inpath} -o {testdir.tmpdir}',
+        monkeypatch=monkeypatch,
+    )
 
 
 def test_find_bounding_box():
