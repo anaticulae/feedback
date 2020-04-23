@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.11.4
+
+### Feature
+
+* select alignment depending on extracted (8db73eeadfb0)
+* add alignment loader (f5d718fdaa9b)
+* add justified text as default (82731910775c)
+
+### Fix
+
+* add missing bounding rendering (5cc2d2b6cfd1)
+
 ## v0.11.3
 
 ## v0.11.2
