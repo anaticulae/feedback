@@ -43,7 +43,6 @@ def sort_style(items):
 def merge(items, current):
     result = sort_style(items)
     candiate = should_split(result, current)
-
     if len(candiate) == 1:
         merged = merge_two(*sort_style([candiate[0], current]))
         result.remove(candiate[0])
@@ -79,27 +78,48 @@ def merge_two(first, second):
     second_new = (max([first.end, second.start]), second.end)
     middle_new = first_new[1], second_new[0]
 
+    if first.end > second.end:
+        # first overlaps seconds
+        first_new = first.start, second.start
+        middle_new = second.start, second.end
+        second_new = second.end, first.end
+
     middle_merged_style_first = first.first
     if second.first:
-        middle_merged_style_first = first.first + STYLE_SEPARATOR + second.first
+        if first.first:
+            middle_merged_style_first = first.first + STYLE_SEPARATOR + second.first
+        else:
+            middle_merged_style_first = second.first
+
     middle_merged_style_last = first.last
     if second.last:
-        middle_merged_style_last = first.last + STYLE_SEPARATOR + second.last
+        if first.last:
+            middle_merged_style_last = first.last + STYLE_SEPARATOR + second.last
+        else:
+            middle_merged_style_last = second.last
 
     middle = Style(
         *middle_new,
         middle_merged_style_first,
         middle_merged_style_last,
     )
+    if first.end > second.end:
+        second = Style(
+            *second_new,
+            first.first,
+            first.last,
+        )
+
+    else:
+        second = Style(
+            *second_new,
+            second.first,
+            second.last,
+        )
     first = Style(
         *first_new,
         first.first,
         first.last,
-    )
-    second = Style(
-        *second_new,
-        second.first,
-        second.last,
     )
     result = []
     if first[0] != first[1]:
@@ -147,6 +167,8 @@ def should_split(items, current):
                 item.start < current.start < item.end,
                 item.start < current.end < item.end,
         )):
+            result.append(item)
+        elif item.start == current.start and item.end == current.end:
             result.append(item)
     return result
 

@@ -41,3 +41,26 @@ def test_merge_two_styles():
     ]
     # yapf:enable
     assert merged == expected
+
+
+def test_merge_multiple_overlapping():
+    text = '0123456789'
+    styles = [
+        fums.Style(start=0, end=10, first='<A>', last='</A>'),
+        fums.Style(start=3, end=6, first='<B>', last='</B>'),
+    ]
+    exepected = '<A>012</A><A><B>345</B></A><A>6789</A>'
+    result = fums.merger(text, styles)
+    assert result == exepected, str(result)
+
+
+def test_merge_multiple_overlapping_tripple():
+    text = '01234567891012'
+    styles = [
+        fums.Style(start=0, end=10, first='<A>', last='</A>'),
+        fums.Style(start=3, end=6, first='<B>', last='</B>'),
+        fums.Style(start=8, end=10, first='<C>', last='</C>'),
+    ]
+    exepected = '<A>012</A><A><B>345</B></A><A>67</A><A><C>89</C></A>1012'
+    result = fums.merger(text, styles)
+    assert result == exepected, str(result)
