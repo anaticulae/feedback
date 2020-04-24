@@ -20,6 +20,7 @@ STYLE_SEPARATOR = '{*}'
 
 
 def merger(text: str, styles: Styles) -> str:
+    validate_range(styles, len(text))
     merged = [create_raw(text)]
     styles = sort_style(styles)
 
@@ -27,6 +28,12 @@ def merger(text: str, styles: Styles) -> str:
         merged = merge(merged, style)
     result = tostring(text, merged)
     return result
+
+
+def validate_range(styles, length):
+    for item in styles:
+        assert item.start <= item.end, str(item)
+        assert item.end <= length, str(item)
 
 
 def sort_style(items):
