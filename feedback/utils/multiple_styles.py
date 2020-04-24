@@ -156,7 +156,7 @@ def create_raw(text: str):
 
 
 def tostring(raw: str, items: Styles) -> str:
-    """Merge style decorator intro `raw` text.
+    """Merge style decorator into `raw` text.
 
     >>> tostring('Helm hier', [Style(0,4,'<h1>','</h1>'), Style(4,9,'','')])
     '<h1>Helm</h1> hier'
