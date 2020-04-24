@@ -103,3 +103,14 @@ def test_render_bachelor56_render_table(tmpdir, bachelor56):  # pylint:disable=W
     with tfr.render_and_open(tmpdir, bachelor56, page=15) as html:
         # ensure that table lines are rendered
         assert html.count('<svg  style') > 20, html
+
+
+def test_render_bachelor56_page20(tmpdir, bachelor56):  # pylint:disable=W0621
+    page = 10
+    wordmarks = {15, 16, 17, 18, 19, 20, 21, 22}
+    mark = feedback.renderer.mark.PageMarkConfiguration(
+        page=page,
+        wordmarks=wordmarks,
+    )
+    with tfr.render_and_open(tmpdir, bachelor56, marks=mark, page=page) as html:
+        assert html.count('id="word10_') == len(wordmarks)
