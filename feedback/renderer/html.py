@@ -123,10 +123,7 @@ def create_textline(textcontainer, marked_line, alignments=None) -> str:  # pyli
         line_style.extend(marked_line)
         fontstyle = feedback.renderer.text.render_inline(line)
         line_style.extend(fontstyle)
-        rendered = feedback.utils.multiple_styles.tostring(
-            line.text,
-            line_style,
-        )
+        rendered = feedback.utils.multiple_styles.merger(line.text, line_style)
         rendered = rendered.replace('\n', '<br>')
         raw = f'<div style="{location}{alignment}">{rendered}</div>'
         result.append(raw)

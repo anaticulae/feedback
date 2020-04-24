@@ -37,7 +37,10 @@ def validate_range(styles, length):
 
 
 def sort_style(items):
-    return sorted(items, key=operator.itemgetter(0, 1))
+    """Sort by `start` index and `end` reversed."""
+    items = sorted(items, key=operator.itemgetter(1), reverse=True)
+    items = sorted(items, key=operator.itemgetter(0))
+    return items
 
 
 def merge(items, current):
