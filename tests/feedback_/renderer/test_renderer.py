@@ -114,3 +114,26 @@ def test_render_bachelor56_page20(tmpdir, bachelor56):  # pylint:disable=W0621
     )
     with tfr.render_and_open(tmpdir, bachelor56, marks=mark, page=page) as html:
         assert html.count('id="word10_') == len(wordmarks)
+
+
+def test_sentence_selector(bachelor56):  # pylint:disable=W0621
+    content = bachelor56
+    selected = utila.select_page(content, 10)
+    matched = (
+        'Dieser Effekt wird umso effektiver, umso häufiger Alkohol '
+        'konsumiert wird. Voraussetzung, um solche Reaktionen zu zeigen, sind '
+        'jedoch verlässliche Hinweisreize und die Erfahrung von positiven '
+        'Konsequenzen, wenn die Beeinträchtigung durch den Alkohol '
+        'kompensiert werden können.')
+
+    generator = feedback.renderer.mark.WordGenerator()
+    left = []
+    for line in selected.content:
+        for _, item in generator.words(line.text):
+            left.append(item)
+
+    generator = feedback.renderer.mark.WordGenerator()
+    right = [item for _, item in generator.words(matched)]
+
+    items = feedback.renderer.mark.best_sync(left, right)
+    assert len(items) > 20

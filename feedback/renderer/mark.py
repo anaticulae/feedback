@@ -140,6 +140,37 @@ def split_token(text: str, normalize: bool = True):
     return tokens
 
 
+class WordGenerator:
+
+    def __init__(self):
+        self.index = 0
+
+    def words(self, line):
+        splitted = split_token(line, normalize=False)
+        for item in splitted:
+            if not item or not item.strip():
+                continue
+            yield self.index, item
+            self.index += 1
+
+
+def best_sync(left, right) -> utila.Numbers:
+    result = []
+    rightlength = len(right)
+    rightside = set(right)
+    for index in range(len(left)):
+        leftside = set(left[index:index + rightlength])
+        common = len(rightside & leftside)
+        result.append(common)
+    max_equal = max(result)
+    try:
+        start = result.index(max_equal)
+    except ValueError:
+        return None
+    words = [item for item in range(start, start + rightlength)]
+    return words
+
+
 class WordMarker:
     """The word marker is used to mark selected words with an unique id
     to define the style in an external stylesheet later. This is used to
