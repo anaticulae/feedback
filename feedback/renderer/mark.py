@@ -128,6 +128,18 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     return result
 
 
+# TODO: MOVE TO WORDS MODULE
+def split_token(text: str, normalize: bool = True):
+    # replace text division -
+    text = text.replace('-\n', '')
+    # support multi line text
+    text = text.replace('\n', ' ')
+    tokens = text.split(' ')
+    if normalize:
+        tokens = [token for token in tokens if token]
+    return tokens
+
+
 class WordMarker:
     """The word marker is used to mark selected words with an unique id
     to define the style in an external stylesheet later. This is used to
@@ -161,29 +173,28 @@ class WordMarker:
         Returns:
             `line` with marked words
         """
-        # TODO: USE SENTENCE ALGO TO SPLIT WORDS?
         result = []
-        current = ''
-        for index, char in enumerate(line):
-            if char == ' ':
-                if current.strip():
-                    result.append(self.decide_mark(current, index))
-                    current = ''
-            else:
-                current = current + char
-        if current:
-            result.append(self.decide_mark(current, len(line)))
+        startpos = 0
+        splitted = split_token(line, normalize=False)
+        for word in splitted:
+            result.append(self.decide_mark(word, startpos))
+            # TODO: ADD OPTION TO INCLUDE WHITESPACE INTO WORD
+            startpos += len(word) + 1  # +1 for whitespace
         result = [item for item in result if item]
         return result
 
-    def decide_mark(self, item, endpos) -> feedback.utils.multiple_styles.Style:
+    def decide_mark(
+            self,
+            item,
+            startpos,
+    ) -> feedback.utils.multiple_styles.Style:
         if not item.strip():
             # add only white spaces
             return None
         if self.index not in self.marks:
             self.index += 1
             return None
-        startpos = endpos - len(item)
+        endpos = startpos + len(item)
         result = feedback.utils.multiple_styles.Style(
             startpos,
             endpos,
