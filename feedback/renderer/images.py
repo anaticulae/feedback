@@ -15,10 +15,9 @@ import glob
 import os
 import typing
 
-import utila
-
 # TODO: REPLACE WITH UTILA CODE
 import rawmaker.images.info
+import utila
 
 ImageInformations = typing.List[rawmaker.images.info.ImageInformation]
 
