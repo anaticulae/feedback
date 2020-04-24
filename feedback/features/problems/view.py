@@ -12,6 +12,7 @@ in user document.
 
 In the current state text and horizontal lines are printed.
 """
+import collections
 import os
 
 import protocol
@@ -81,7 +82,18 @@ def work(  # pylint:disable=R0914,too-many-arguments
     # collect marks from current working directory
     # TODO: IS THIS A DUPLICATION WITH *linters?
     root = str(os.getcwd())
-    marks = feedback.renderer.mark.collect(root)
+    collected = feedback.renderer.mark.collect(root)
+
+    sentences = {}
+    words = []
+    sentence_marks = convert_sentence_to_word_mark(collected, sentences, words)
+
+    marks = {}
+    if sentence_marks:
+        marks.update(sentence_marks)
+    if collected:
+        # TODO: REMOVE SENTENCE MARKS
+        marks.update(collected)
 
     result = []
     for page in html:
@@ -105,3 +117,37 @@ def load_linters(paths: str):
     for index, item in enumerate(loaded):
         item.number = index
     return loaded
+
+
+def convert_sentence_to_word_mark(marks: dict, sentences, words: list) -> dict:
+    assert isinstance(marks, dict), type(marks)
+    # TODO: REPLACE WITH protocol.sentences()
+    marks = {
+        page: protocol.filter_mark(values, shortcut='s')
+        for page, values in marks.items()
+    }
+    result = collections.defaultdict(list)
+    for page, pagemarks in marks.items():
+        for sentence_mark in pagemarks:
+            # print(sentence_mark)
+            # page = sentence_mark.page
+            sentence_id = sentence_mark.value
+            try:
+                content = sentences[sentence_id]
+            except IndexError:
+                utila.error(f'could not locatate sentence: {sentence_id}')
+                continue
+
+            selected = feedback.renderer.mark.best_sync(words, content)
+            if selected is None:
+                utila.error(f'could not sync sentence: {sentence_id}')
+                continue
+            # TODO: REPLACE WITH PROTOCL
+            selected = [
+                protocol.Location.fromstr(f'w{item}p{page}')
+                for item in selected
+            ]
+            result[page].append(selected)
+    # enable KeyError
+    result = dict(result)  # pylint:disable=R0204
+    return result
