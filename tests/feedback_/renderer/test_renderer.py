@@ -13,9 +13,11 @@ import webbrowser
 import pytest
 import utila
 
+import feedback.features.problems.view
 import feedback.renderer.html
 import feedback.renderer.mark
 import tests.feedback_.renderer as tfr
+import tests.resources
 from tests.feedback_.fixtures import bachelor56  # pylint:disable=W0611
 from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
 from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
@@ -137,3 +139,12 @@ def test_sentence_selector(bachelor56):  # pylint:disable=W0621
 
     items = feedback.renderer.mark.best_sync(left, right)
     assert len(items) > 20
+
+
+def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
+    """Ensure to load sentences marks."""
+    source = tests.resources.BACHELOR56
+    sentences = {}
+    words = {}
+    marks = feedback.features.problems.view.load_marks(source, sentences, words)
+    assert marks

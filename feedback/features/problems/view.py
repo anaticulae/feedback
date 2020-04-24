@@ -82,18 +82,10 @@ def work(  # pylint:disable=R0914,too-many-arguments
     # collect marks from current working directory
     # TODO: IS THIS A DUPLICATION WITH *linters?
     root = str(os.getcwd())
-    collected = feedback.renderer.mark.collect(root)
 
     sentences = {}
-    words = []
-    sentence_marks = convert_sentence_to_word_mark(collected, sentences, words)
-
-    marks = {}
-    if sentence_marks:
-        marks.update(sentence_marks)
-    if collected:
-        # TODO: REMOVE SENTENCE MARKS
-        marks.update(collected)
+    words = {}
+    marks = load_marks(root, sentences, words)
 
     result = []
     for page in html:
@@ -111,6 +103,20 @@ def work(  # pylint:disable=R0914,too-many-arguments
     return result
 
 
+def load_marks(path: str, sentences: dict, words: dict):
+    collected = feedback.renderer.mark.collect(path)
+
+    sentence_marks = convert_sentence_to_word_mark(collected, sentences, words)
+
+    marks = {}
+    if sentence_marks:
+        marks.update(sentence_marks)
+    if collected:
+        # TODO: REMOVE SENTENCE MARKS
+        marks.update(collected)
+    return marks
+
+
 def load_linters(paths: str):
     loaded = [protocol.load_result(path) for path in paths]
     loaded = utila.flatten(loaded)
@@ -119,8 +125,9 @@ def load_linters(paths: str):
     return loaded
 
 
-def convert_sentence_to_word_mark(marks: dict, sentences, words: list) -> dict:
+def convert_sentence_to_word_mark(marks: dict, sentences, words: dict) -> dict:
     assert isinstance(marks, dict), type(marks)
+    assert isinstance(sentences, dict), type(sentences)
     # TODO: REPLACE WITH protocol.sentences()
     marks = {
         page: protocol.filter_mark(values, shortcut='s')
@@ -131,16 +138,23 @@ def convert_sentence_to_word_mark(marks: dict, sentences, words: list) -> dict:
         for sentence_mark in pagemarks:
             # print(sentence_mark)
             # page = sentence_mark.page
-            sentence_id = sentence_mark.value
+            sentence_id = sentence_mark.location.value
             try:
-                content = sentences[sentence_id]
-            except IndexError:
-                utila.error(f'could not locatate sentence: {sentence_id}')
+                content = sentences[page][sentence_id]
+            except (IndexError, KeyError):
+                utila.error(f'could not locatate sentence: {sentence_id}'
+                            f' on page {page}')
                 continue
-
-            selected = feedback.renderer.mark.best_sync(words, content)
+            try:
+                pagewords = words[page]
+            except KeyError:
+                utila.error(f'could not sync sentence: {sentence_id}'
+                            f' on page {page}')
+                continue
             if selected is None:
-                utila.error(f'could not sync sentence: {sentence_id}')
+                selected = feedback.renderer.mark.best_sync(pagewords, content)
+                utila.error(f'could not sync sentence: {sentence_id}'
+                            f' on page {page}')
                 continue
             # TODO: REPLACE WITH PROTOCL
             selected = [
