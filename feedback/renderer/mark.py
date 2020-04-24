@@ -57,7 +57,7 @@ import protocol
 import utila
 
 import feedback.renderer.content
-import feedback.utils.multiple_styles
+import feedback.utils.multiple_styles as fums
 
 
 @dataclasses.dataclass
@@ -164,7 +164,7 @@ class WordMarker:
         self.page = page
         self.index = 0
 
-    def markme(self, line: str) -> feedback.utils.multiple_styles.Styles:
+    def markme(self, line: str) -> fums.Styles:
         """Add marker of defined `self.marks` words. Add for selected
         word with <span id="word{page}_{index}">word</span>.
 
@@ -183,11 +183,7 @@ class WordMarker:
         result = [item for item in result if item]
         return result
 
-    def decide_mark(
-            self,
-            item,
-            startpos,
-    ) -> feedback.utils.multiple_styles.Style:
+    def decide_mark(self, item, startpos) -> fums.Style:
         if not item.strip():
             # add only white spaces
             return None
@@ -195,7 +191,7 @@ class WordMarker:
             self.index += 1
             return None
         endpos = startpos + len(item)
-        result = feedback.utils.multiple_styles.Style(
+        result = fums.Style(
             startpos,
             endpos,
             f'<span id="word{self.page}_{self.index}">',
@@ -214,7 +210,7 @@ class LineMarker:
         self.page = page
         self.index = 0
 
-    def markme(self, line) -> feedback.utils.multiple_styles.Style:
+    def markme(self, line) -> fums.Style:
         if not line:
             # white space line
             return None
@@ -223,7 +219,7 @@ class LineMarker:
             return None
         start = f'<span id="line{self.page}_{self.index}">'
         end = '</span>'
-        result = feedback.utils.multiple_styles.Style(0, len(line), start, end)
+        result = fums.Style(0, len(line), start, end)
         self.index += 1
         return result
 
