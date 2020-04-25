@@ -13,6 +13,7 @@ in user document.
 In the current state text and horizontal lines are printed.
 """
 import collections
+import copy
 import os
 
 import protocol
@@ -176,17 +177,19 @@ def convert_sentence_to_word_mark(marks: dict, sentences, words: dict) -> dict:
                 utila.error(f'could not sync sentence: {sentence_id}'
                             f' on page {page}')
                 continue
+            selected = feedback.renderer.mark.best_sync(pagewords, content)
             if selected is None:
-                selected = feedback.renderer.mark.best_sync(pagewords, content)
                 utila.error(f'could not sync sentence: {sentence_id}'
                             f' on page {page}')
                 continue
             # TODO: REPLACE WITH PROTOCL
-            selected = [
-                protocol.Location.fromstr(f'w{item}p{page}')
-                for item in selected
-            ]
-            result[page].append(selected)
+            word_findings = []
+            for item in selected:
+                # TODO: IS COPY NECESSARY?
+                new = copy.deepcopy(sentence_mark)
+                new.location = protocol.Location.fromstr(f'w{item}p{page}')
+                word_findings.append(new)
+            result[page].extend(word_findings)
     # enable KeyError
     result = dict(result)  # pylint:disable=R0204
     return result

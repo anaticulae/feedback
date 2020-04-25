@@ -118,8 +118,9 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     except KeyError:
         pagemarks = {}
     wordmarks = protocol.words(pagemarks)
+    # require seletecd word only, reason etc. is not important here
+    wordmarks = [item.location.value for item in wordmarks]
     linemarks = protocol.lines(pagemarks)
-
     result = PageMarkConfiguration(
         page=page,
         wordmarks=wordmarks,
