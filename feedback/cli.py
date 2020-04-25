@@ -50,6 +50,7 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='boxes_horizontal'),
             ResultFile(producer='rawmaker', name='line_line'),
             ResultFile(producer='decider_border', name='detection_hits'),
+            ResultFile(producer='words', name='word_result'),
             Pattern(name='*_user', ext='yaml'),
         ],
         (outhtml('pages/*'),),

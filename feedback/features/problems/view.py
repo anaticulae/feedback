@@ -16,6 +16,7 @@ import collections
 import os
 
 import protocol
+import serializeraw
 import utila
 
 import feedback.problems.shapy
@@ -38,6 +39,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         horizontals: str,
         lines: str,
         hits: str,
+        words: str,
         *linters: list,
         pages: tuple = None,
 ) -> list:
@@ -82,11 +84,9 @@ def work(  # pylint:disable=R0914,too-many-arguments
     # collect marks from current working directory
     # TODO: IS THIS A DUPLICATION WITH *linters?
     root = str(os.getcwd())
-
-    sentences = {}
-    words = {}
-    marks = load_marks(root, sentences, words)
-
+    pagesentences = load_sentences(words)
+    pagewords = load_single_words(html)
+    marks = load_marks(root, pagesentences, pagewords)
     result = []
     for page in html:
         pagemarks = feedback.renderer.mark.create_configuration(
@@ -103,17 +103,44 @@ def work(  # pylint:disable=R0914,too-many-arguments
     return result
 
 
+def load_sentences(path: str) -> dict:
+    words = serializeraw.load_text(path)
+    pagesentences = collections.defaultdict(list)
+    for page, pagecontent in words:
+        for _, sentences in pagecontent:
+            for sentence in sentences:
+                pagesentences[page].append(sentence)
+    # enable KeyError
+    pagesentences = dict(pagesentences)  # pylint:disable=R0204
+    return pagesentences
+
+
+def load_single_words(navigators):
+    result = {}
+    for htmlpage in navigators:
+        generator = feedback.renderer.mark.WordGenerator()
+        collected = []
+        for line in htmlpage.content:
+            for _, word in generator.words(line.text):
+                collected.append(word)
+        result[htmlpage.page] = collected
+    return result
+
+
 def load_marks(path: str, sentences: dict, words: dict):
     collected = feedback.renderer.mark.collect(path)
-
     sentence_marks = convert_sentence_to_word_mark(collected, sentences, words)
 
-    marks = {}
-    if sentence_marks:
-        marks.update(sentence_marks)
+    marks = collections.defaultdict(list)
     if collected:
         # TODO: REMOVE SENTENCE MARKS
-        marks.update(collected)
+        for page, values in collected.items():
+            marks[page].extend(values)
+    if sentence_marks:
+        for page, values in sentence_marks.items():
+            marks[page].extend(values)
+    # enable KeyError
+    marks = dict(marks)  # pylint:disable=R0204
     return marks
 
 
@@ -136,8 +163,6 @@ def convert_sentence_to_word_mark(marks: dict, sentences, words: dict) -> dict:
     result = collections.defaultdict(list)
     for page, pagemarks in marks.items():
         for sentence_mark in pagemarks:
-            # print(sentence_mark)
-            # page = sentence_mark.page
             sentence_id = sentence_mark.location.value
             try:
                 content = sentences[page][sentence_id]
