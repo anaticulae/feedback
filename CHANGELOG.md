@@ -2,6 +2,28 @@
 
 Every noteable change is logged here.
 
+## v0.12.0
+
+### Feature
+
+* change test to check marked words (497bdeda3e37)
+* add word selection processor to cli (b529cc1b718e)
+* load sentence marks and combine with selected text (5e07a7a3df06)
+* add method to convert sentence findings to single words (c06c6f8164ac)
+* add sentence matcher to match words to sentence (871cc76a8c09)
+* use new style merger (930f93677999)
+* validate style order (ae1d0e9eeef4)
+* use words algorithm to split token (4f358bfaf830)
+
+### Fix
+
+* load word position correctly (d9e1ef6abab5)
+* merge overlapping sections correctly (fbd17f971662)
+
+### Documentation
+
+* fix spelling error (9ea0193b33e0)
+
 ## v0.11.4
 
 ### Feature
