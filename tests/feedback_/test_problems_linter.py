@@ -29,5 +29,6 @@ def findings():
 
 
 def test_report_linter_group_bypage(findings):  # pylint:disable=W0621
+    # TODO: MOVE TO PROTOCOL?
     grouped = protocol.bypage(findings)
     assert grouped
