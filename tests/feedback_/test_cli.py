@@ -77,7 +77,13 @@ def test_run_feedback_view(testdir, monkeypatch):
         )
 
     # TODO: RENAME TO 9 AFTER FIXING GENERATOR
-    first_file = os.path.join(root, 'feedback__view_pages/0.html')
-    assert os.path.exists(first_file), str(first_file)
+    page9 = os.path.join(root, 'feedback__view_pages/0.html')
+    assert os.path.exists(page9), str(page9)
+
+    # ensure that word marks are set on page9
+    content = utila.file_read(page9)
+    counted = content.count('id="word9')
+    assert counted >= 20, counted
+
     if utila.single_execution():
-        webbrowser.open(first_file)
+        webbrowser.open(page9)
