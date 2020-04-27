@@ -56,6 +56,7 @@ def render_rectangle(
     assert x0 <= bounding[2], str(bounding)
     width = bounding[2] - bounding[0]
     height = bounding[3] - bounding[1]
+    x0, y0, width, height = utila.roundme(x0, y0, width, height)
     reference = '' if reference is None else f'id="{reference}"'
     rendered = RECTANGLE.format(
         background=background,
