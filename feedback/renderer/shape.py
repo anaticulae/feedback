@@ -103,8 +103,7 @@ def render_line(
 
 
 HORIZONTAL = """\
-<hr {reference} style="position:absolute;
-top:{y0}px;left:{x0}px;width:{width}px; />"
+<hr {reference} style="position:absolute;top:{y0}px;left:{x0}px;width:{width}px;"/>
 """
 
 
