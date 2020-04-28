@@ -49,6 +49,7 @@ def render_rectangle(
         reference: str = None,
 ) -> str:
     """Render html rectangle represented as `<span>`."""
+    reference = html_reference(reference)
     bounding = utila.roundme(*bounding)  # reduce digits in html output
     x0 = bounding[0]
     y0 = bounding[1]
@@ -57,7 +58,6 @@ def render_rectangle(
     width = bounding[2] - bounding[0]
     height = bounding[3] - bounding[1]
     x0, y0, width, height = utila.roundme(x0, y0, width, height)
-    reference = '' if reference is None else f'id="{reference}"'
     rendered = RECTANGLE.format(
         background=background,
         border=border,
@@ -83,6 +83,7 @@ def render_line(
         more: str = '',
         reference: str = '',
 ) -> str:
+    reference = html_reference(reference)
     bounding = utila.roundme(*bounding)  # reduce digits in html output
     x0, y0, x1, y1 = bounding
     assert y0 <= y1, str(bounding)
@@ -108,6 +109,7 @@ HORIZONTAL = """\
 
 
 def render_horizontal(x0, y0, width, reference='') -> str:
+    reference = html_reference(reference)
     rendered = HORIZONTAL.format(
         reference=reference,
         width=width,
@@ -115,3 +117,9 @@ def render_horizontal(x0, y0, width, reference='') -> str:
         y0=y0,
     )
     return rendered
+
+
+def html_reference(reference: str) -> str:
+    if not reference or not reference.strip():
+        return ''
+    return f'id="{reference}" '
