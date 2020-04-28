@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.12.1
+
+### Feature
+
+* load marks depending on given `linters` (2b594d047794)
+
+### Fix
+
+* ensure to avoid unnecessary digits (daeebc9a4ac9)
+
 ## v0.12.0
 
 ### Feature
