@@ -82,12 +82,9 @@ def work(  # pylint:disable=R0914,too-many-arguments
         pages=pages,
     )
     findings = load_linters(linters)
-    # collect marks from current working directory
-    # TODO: IS THIS A DUPLICATION WITH *linters?
-    root = str(os.getcwd())
     pagesentences = load_sentences(words)
     pagewords = load_single_words(html)
-    marks = load_marks(root, pagesentences, pagewords)
+    marks = load_marks(findings, pagesentences, pagewords)
     result = []
     for page in html:
         pagemarks = feedback.renderer.mark.create_configuration(
@@ -128,15 +125,14 @@ def load_single_words(navigators):
     return result
 
 
-def load_marks(path: str, sentences: dict, words: dict):
-    collected = feedback.renderer.mark.collect(path)
-    sentence_marks = convert_sentence_to_word_mark(collected, sentences, words)
-
+def load_marks(findings: dict, sentences: dict, words: dict) -> dict:
     marks = collections.defaultdict(list)
-    if collected:
+    if findings:
         # TODO: REMOVE SENTENCE MARKS
-        for page, values in collected.items():
+        for page, values in findings.items():
             marks[page].extend(values)
+
+    sentence_marks = convert_sentence_to_word_mark(findings, sentences, words)
     if sentence_marks:
         for page, values in sentence_marks.items():
             marks[page].extend(values)
@@ -146,6 +142,7 @@ def load_marks(path: str, sentences: dict, words: dict):
 
 
 def load_linters(paths: str) -> dict:
+    # TODO: MOVE TO PROTOCOL
     """Load findings and group them by pages."""
     loaded = [protocol.load_result(path) for path in paths]
     loaded = utila.flatten(loaded)

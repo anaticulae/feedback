@@ -146,5 +146,19 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
     source = tests.resources.BACHELOR56
     sentences = {}
     words = {}
-    marks = feedback.features.problems.view.load_marks(source, sentences, words)
+
+    # load findings
+    # TODO: REMOVE AFTER UPGRADING UTILA
+    files = [
+        os.path.join(source, item)
+        for item in utila.file_list(source, include='yaml')
+        if utila.file_name(item).endswith('_user')
+    ]
+    findings = feedback.features.problems.view.load_linters(files)
+
+    marks = feedback.features.problems.view.load_marks(
+        findings,
+        sentences,
+        words,
+    )
     assert marks
