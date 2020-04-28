@@ -7,24 +7,25 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import utila
+
 SHAPY = {}
 
 
-def determine_shapes(findings, page):
+def determine_shapes(findings, page) -> list:
     if not findings:
         return []
-    # select findings on `page`
-    findings = [
-        item for item in findings
-        if item.location and item.location.page == page
-    ]
+    selected = utila.select_page(findings, page)
+    if not selected:
+        return []
     result = []
-    for item in findings:
+    for item in selected:
         try:
             renderer = SHAPY[item.msgid]
             rendered = renderer(item)
             result.append(rendered)
         except KeyError:
+            # no special renderer available
             continue
     return result
 

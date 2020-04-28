@@ -145,12 +145,15 @@ def load_marks(path: str, sentences: dict, words: dict):
     return marks
 
 
-def load_linters(paths: str):
+def load_linters(paths: str) -> dict:
+    """Load findings and group them by pages."""
     loaded = [protocol.load_result(path) for path in paths]
     loaded = utila.flatten(loaded)
     for index, item in enumerate(loaded):
+        # TODO: INTRODUCE CORRECT/UNIQUE NUMBERS WHILE LINTING
         item.number = index
-    return loaded
+    result = protocol.bypage(loaded)
+    return result
 
 
 def convert_sentence_to_word_mark(marks: dict, sentences, words: dict) -> dict:
