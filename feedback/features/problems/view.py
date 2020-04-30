@@ -14,7 +14,6 @@ In the current state text and horizontal lines are printed.
 """
 import collections
 import copy
-import os
 
 import protocol
 import serializeraw
@@ -125,12 +124,13 @@ def load_single_words(navigators):
     return result
 
 
-def load_marks(findings: dict, sentences: dict, words: dict) -> dict:
+def load_marks(findings: protocol.PageFindings, sentences: dict,
+               words: dict) -> dict:
     marks = collections.defaultdict(list)
     if findings:
         # TODO: REMOVE SENTENCE MARKS
-        for page, values in findings.items():
-            marks[page].extend(values)
+        for grouped in findings:
+            marks[grouped.page].extend(grouped.content)
 
     sentence_marks = convert_sentence_to_word_mark(findings, sentences, words)
     if sentence_marks:
@@ -141,7 +141,7 @@ def load_marks(findings: dict, sentences: dict, words: dict) -> dict:
     return marks
 
 
-def load_linters(paths: str) -> dict:
+def load_linters(paths: str) -> protocol.PageFindings:
     # TODO: MOVE TO PROTOCOL
     """Load findings and group them by pages."""
     loaded = [protocol.load_result(path) for path in paths]
@@ -153,13 +153,16 @@ def load_linters(paths: str) -> dict:
     return result
 
 
-def convert_sentence_to_word_mark(marks: dict, sentences, words: dict) -> dict:
-    assert isinstance(marks, dict), type(marks)
+def convert_sentence_to_word_mark(
+        marks: protocol.PageFindings,
+        sentences,
+        words: dict,
+) -> dict:
     assert isinstance(sentences, dict), type(sentences)
     # TODO: REPLACE WITH protocol.sentences()
     marks = {
-        page: protocol.filter_mark(values, shortcut='s')
-        for page, values in marks.items()
+        grouped.page: protocol.filter_mark(grouped.content, shortcut='s')
+        for grouped in marks
     }
     result = collections.defaultdict(list)
     for page, pagemarks in marks.items():
