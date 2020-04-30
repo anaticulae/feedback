@@ -60,6 +60,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         boxes(str): path to extracted boxes
         horizontals(str): path to extracted horizontals
         lines(str): path to extracted lines
+        words(path): path to extracted sentences
         linters(str): path to folder with linter results
         pages(tuple): selected pages to process
     Returns:

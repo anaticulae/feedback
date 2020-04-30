@@ -30,7 +30,7 @@ def merger(text: str, styles: Styles) -> str:
     return result
 
 
-def validate_range(styles, length):
+def validate_range(styles, length):  # pylint:disable=W0613
     for item in styles:
         assert item.start <= item.end, str(item)
         # TODO: ENABLE LATER
