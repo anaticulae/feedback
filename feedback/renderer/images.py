@@ -11,21 +11,18 @@ printing.
 """
 
 import collections
-import glob
 import os
 import typing
 
-# TODO: REPLACE WITH UTILA CODE
 import rawmaker.images.info
 import utila
 
+# TODO REPLCAE LATER
 ImageInformations = typing.List[rawmaker.images.info.ImageInformation]
 
 ZippedImageInfo = collections.namedtuple('ZippedImageInfo',
                                          'number, info, filename')
 ZippedImageInfos = typing.List[ZippedImageInfo]
-
-# TODO: VERY COMPLEX, REFACTOR
 
 
 def load_image_informations(
@@ -34,48 +31,45 @@ def load_image_informations(
 ) -> ImageInformations:
     if not os.path.exists(path):
         return []
+
+    files = utila.file_list(path, include='yaml')
+    files = utila.files_sort(files)  # pylint:disable=R0204
+
     result = []
-    # TODO: REPLACE WITH UTILA CODE
-    with utila.chdir(path):
-        files = glob.glob('*.yaml')
-        for index, item in enumerate(sorted(files, key=number)):
-            source = os.path.join(path, item)
-            loaded = rawmaker.images.info.load_info(source)
-            if utila.should_skip(loaded.page, pages):
-                continue
-            result.append((index, loaded))
+    for index, item in enumerate(files):
+        source = os.path.join(path, item)
+        loaded = rawmaker.images.info.load_info(source)
+        if utila.should_skip(loaded.page, pages):
+            continue
+        result.append((index, loaded))  # TODO: CHECK INDEX WHEN SKIPPING PAGES
     return result
 
 
 def load_images(path: str) -> list:
     if not os.path.exists(path):
         return []
+
+    files = utila.file_list(path, include='yaml')
+    files = utila.files_sort(files)  # pylint:disable=R0204
+
     result = []
-    # TODO: REPLACE WITH UTILA CODE
-    with utila.chdir(path):
-        files = os.scandir(path)
-        # TODO: REPLACE WITH UTILA SORT METHOD
-        for item in sorted(files, key=lambda x: number(x.name)):
-            if item.name.endswith('.yaml'):
-                continue
-            source = os.path.join(path, item)
-            loaded = utila.file_read_binary(source)
-            result.append((item.name, loaded))
+    for item in files:
+        source = os.path.join(path, item)
+        loaded = utila.file_read_binary(source)
+        filename = utila.file_name(item)
+        fileext = utila.file_ext(item)
+        result.append(((filename, fileext), loaded))
     return result
 
 
 def images(path: str) -> list:
     if not os.path.exists(path):
         return []
-    result = []
-    # TODO: REPLACE WITH UTILA CODE
-    with utila.chdir(path):
-        files = os.scandir(path)
-        # TODO: REPLACE WITH UTILA SORT METHOD
-        for item in sorted(files, key=lambda x: number(x.name)):
-            if item.name.endswith('.yaml'):
-                continue
-            result.append(item.name)
+
+    files = utila.file_list(path, include='yaml')
+    files = utila.files_sort(files)  # pylint:disable=R0204
+
+    result = [utila.file_name(item) for item in files]
     return result
 
 
@@ -92,7 +86,3 @@ def select_images(items, page):
     if not items:
         return []
     return [item for item in items if item[1].page == page]
-
-
-def number(item: str) -> int:
-    return int(item.split('.')[0])
