@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.12.2
+
+### Fix
+
+* fix style closing (8e4e1f4d47d4)
+* do not fail on missing font flags (77bf7bbe3954)
+
 ## v0.12.1
 
 ### Feature
