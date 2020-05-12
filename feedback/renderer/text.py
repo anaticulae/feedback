@@ -37,6 +37,9 @@ def render_inline(line) -> feedback.utils.multiple_styles.Styles:
         font = f'font-family:{chunk[0].font};'
         first = f'<span style="font-size:{chunk[0].size}px;{style}{font}">'
         close = '</span>'
+        if chunk[0].rise:
+            first = f'{first}<sup>'
+            close = f'</sup>{close}'
         result.append(
             feedback.utils.multiple_styles.Style(
                 start,
