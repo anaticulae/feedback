@@ -63,6 +63,7 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
         webbrowser.open(first_file)
 
 
+@pytest.mark.xfail(reason='broken data generator')
 def test_run_feedback_view(testdir, monkeypatch):
     root = testdir.tmpdir
     cmd = f'-i {tests.resources.BACHELOR56} -o {root} --pages=9'

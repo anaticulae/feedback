@@ -27,8 +27,14 @@ def render_boxes(page):
 def render_pageborder(page):
     if not page.border:
         return []
+    width, height = page.pagesize
     # TODO: CREATE BORDER TO RECTANGLE METHOD
-    rectangle = (page.border[0], page.border[2], page.border[1], page.border[3])
+    rectangle = (
+        page.border[0],
+        page.border[2],
+        width - page.border[1],
+        height - page.border[3],
+    )
     # TODO: Think about style concept, USE HOLY VALUE?
     border = feedback.renderer.shape.render_rectangle(
         rectangle,

@@ -254,6 +254,7 @@ def prepare_headlinecontent(  # pylint:disable=R1260,R0914
                 boxedcontentindex(item),
                 box_open,
             )
+            # TODO: SEEMS TO BE A BUG. CONVERTING MUST NOT BE REQUIRED
             boxedcontent = escape_content(boxedcontent)
             result.append('%s<br/>' % boxedcontent)
             box_open += 1

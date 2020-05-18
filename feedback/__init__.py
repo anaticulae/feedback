@@ -6,7 +6,11 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
+
+import contextlib
 import os
+
+import protocol
 
 __version__ = '0.12.3'
 
@@ -14,3 +18,49 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 PACKAGE = 'feedback'
 PROCESS = 'feedback'
+
+
+# TODO: REMOVE AFTER UPGRADING
+def filter_mark(items: protocol.Findings, shortcut: str) -> protocol.Findings:
+    """Filter `Findings` by shortcut and sort them by `location.value`
+    afterwards.
+
+    Args:
+        items(protocol.Findings): list of findings
+        shortcut(str): shortcut of finding.location, w word, p page,
+                       ol oneline, etc.
+    Returns:
+        filtered, sorted list of `Findings`
+    """
+    assert all([item.location for item in items]), f'require location: {items}'
+    selected = []
+    for item in items:
+        with contextlib.suppress(AttributeError):
+            if item.location.shortcut == shortcut:
+                selected.append(item)
+    items = sorted(selected, key=lambda x: x.location.value)
+    return items
+
+
+protocol.filter_mark = filter_mark
+
+
+def words(items: protocol.Findings) -> protocol.Findings:
+    return filter_mark(items, shortcut='w')
+
+
+protocol.words = words
+
+
+def lines(items: protocol.Findings) -> protocol.Findings:
+    return filter_mark(items, shortcut='ol')
+
+
+protocol.lines = lines
+
+
+def sentences(items: protocol.Findings) -> protocol.Findings:
+    return filter_mark(items, shortcut='s')
+
+
+protocol.sentences = sentences
