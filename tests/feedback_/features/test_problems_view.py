@@ -20,3 +20,4 @@ def test_report_problems_view(testdir, monkeypatch):
     outpath = os.path.join(root, 'feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
+    # TODO: REMOVE THIS TEST
