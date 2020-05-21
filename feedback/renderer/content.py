@@ -23,11 +23,15 @@ class HTMLPageContent:
     border: tuple = None
     boxes: utila.Rectangles = dataclasses.field(default_factory=list)
     content: iamraw.TextContainers = dataclasses.field(default_factory=list)
-    dimension: iamraw.PageSize = None
+    pagesize: iamraw.PageSize = None
     images: fri.ZippedImageInfos = dataclasses.field(default_factory=list)
     horizontals: utila.Rectangles = dataclasses.field(default_factory=list)
     lines: utila.Rectangles = dataclasses.field(default_factory=list)
     page: int = None
+
+    def __repr__(self):
+        result = f'HTMLPageContent(border={self.border}, pagesize={self.pagesize})'
+        return result
 
 
 HTMLPageContents = typing.List[HTMLPageContent]

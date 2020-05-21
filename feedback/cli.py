@@ -42,6 +42,7 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='text_positions'),
             ResultFile(producer='rawmaker', name='oneline_text_text'),
             ResultFile(producer='rawmaker', name='oneline_text_positions'),
+            ResultFile(producer='rawmaker', name='border_pages'),
             ResultFile(producer='textflow', name='alignment_current'),
             ResultFile(producer='rawmaker', name='fonts_header'),
             ResultFile(producer='rawmaker', name='fonts_content'),

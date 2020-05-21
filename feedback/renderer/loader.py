@@ -32,6 +32,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
         textposition: str,
         oneline_text: str,
         oneline_textposition: str,
+        borders: str,
         alignment: str = None,
         boxes: str = None,
         fontcontent: str = None,
@@ -57,6 +58,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
         mode=texmex.PageTextNavigatorMode.HORIZONTAL,
         pages=pages,
     )
+    borders = serializeraw.load_pageborders(borders, pages=pages)
 
     alignment = load_alignment(alignment, pages=pages) if alignment else None  # pylint:disable=E1123
     if alignment:
@@ -84,7 +86,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
         )
     result = [
         load_page(
-            text.dimension,
+            borders,
             fontstore,
             alignment=alignment,
             boxes=boxes,
@@ -99,10 +101,11 @@ def load(  # pylint:disable=R0914,too-many-arguments
     return result
 
 
-def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=R0914
+def load_page(border, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=R0914
     text = kwargs.pop('text')
     # TODO: DETECT DIMENSION OUT OF TEXT
     page = text.page
+    pagesize = utila.select_page(border, page).size
     textposition = utila.select_page(kwargs.pop('textposition'), page=page)
     alignment = kwargs.pop('alignment', None)
     if alignment:
@@ -132,7 +135,7 @@ def load_page(dimension, fontstore: iamraw.FontStore, **kwargs):  # pylint:disab
         border=border,
         boxes=boxes,
         content=selected,
-        dimension=dimension,
+        pagesize=pagesize,
         horizontals=horizontals,
         images=images,
         lines=lines,
@@ -150,7 +153,7 @@ def select_page(args, key, page):
     return result
 
 
-def from_path(
+def from_path(  # pylint:disable=R0914
         path: str,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
@@ -159,6 +162,7 @@ def from_path(
     textposition = iamraw.path.textposition(path)
     oneline_text = iamraw.path.text(path, prefix='oneline')
     oneline_textposition = iamraw.path.textposition(path, prefix='oneline')
+    borders = iamraw.path.sizeandborder(path)
     fontheader = iamraw.path.fontheader(path)
     fontcontent = iamraw.path.fontcontent(path)
     alignment = textflow.path.alignment(path)
@@ -177,6 +181,7 @@ def from_path(
     # TODO: INVESTIGATE HERE
     images = [os.path.join(path, 'rawmaker__images_images')]
     loaded = load(
+        borders=borders,
         alignment=alignment,
         boxes=boxes,
         fontcontent=fontcontent,

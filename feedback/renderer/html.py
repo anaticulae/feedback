@@ -88,7 +88,7 @@ def render_page(
             raw.extend(rendered)
 
     content = '\n'.join(raw)
-    result = create_pagebox(content, page.page, page.dimension)
+    result = create_pagebox(content, page.page, page.pagesize)
     return result
 
 

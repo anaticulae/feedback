@@ -31,6 +31,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         textpositions: str,
         oneline_text: str,
         oneline_textposition: str,
+        sizeandborders: str,
         alignment: str,
         fontheader: str,
         fontcontent: str,
@@ -52,6 +53,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         textpositions(str): path to extracted text positions
         oneline_text(str): extracted text oneline layout
         oneline_textposition(str): extracted text positions oneline layout
+        sizeandborders: path to page size information
         alignment: path to expected text alignment
         fontheader: path to extracted font header
         fontcontent: path to extracted font content
@@ -71,6 +73,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         textpositions,
         oneline_text,
         oneline_textposition,
+        borders=sizeandborders,
         alignment=alignment,
         boxes=boxes,
         fontcontent=fontcontent,

@@ -21,3 +21,16 @@ def test_report_problems_view(testdir, monkeypatch):
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
     # TODO: REMOVE THIS TEST
+
+
+def test_view_master116_border_size(testdir, monkeypatch):
+    inpath = os.path.join(tests.resources.MASTER116)
+    root = str(testdir)
+    cmd = f'-i {inpath} -o {root} --view '
+    tests.feedback_.run(cmd, monkeypatch=monkeypatch)
+
+    outpath = os.path.join(root, 'feedback__view_pages')
+    written = list(os.listdir(outpath))
+    assert len(written) >= 10, written
+
+    # TODO: ADD CHECK FOR CHANGING PAGE DIMENSION
