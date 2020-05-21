@@ -41,6 +41,9 @@ LEFTRIGHT_GENERATED = os.path.join(GENERATED, 'book_leftright')
 BACHELOR56 = os.path.join(GENERATED, 'bachelor_page_56_hard_to_read')
 BACHELOR56_PDF = os.path.join(BACHELOR, 'page_56_hard_to_read.pdf')
 
+MASTER116 = os.path.join(GENERATED, 'master_page_116_images_toc_formular')
+MASTER116_PDF = os.path.join(MASTER, 'page_116_images_toc_formular.pdf')
+
 MASTER72_GENERATED = os.path.join(GENERATED, 'master_page_72_noimages_toc')
 GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules') # yapf:disable
 GENERATED_RESTRUCTED = RESTRUCTED
@@ -55,6 +58,8 @@ REQUIRED_RESOURCES = [
     GENERATED_RESTRUCTED,
     LEFTRIGHT,
     LEFTRIGHT_GENERATED,
+    MASTER116,
+    MASTER116_PDF,
     MASTER72_GENERATED,
     MASTER72_PDF,
     RESOURCES,
