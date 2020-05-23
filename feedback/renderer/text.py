@@ -11,6 +11,8 @@ import iamraw
 
 import feedback.utils.multiple_styles
 
+THRESHOLD_RISE = 1.0  # TODO HOLY VALUE
+
 
 def render_inline(line) -> feedback.utils.multiple_styles.Styles:
     assert isinstance(line, iamraw.Line), type(line)
@@ -37,7 +39,10 @@ def render_inline(line) -> feedback.utils.multiple_styles.Styles:
         font = f'font-family:{chunk[0].font};'
         first = f'<span style="font-size:{chunk[0].size}px;{style}{font}">'
         close = '</span>'
-        if chunk[0].rise:
+        if chunk[0].rise > THRESHOLD_RISE:
+            # Threshold is required cause some text is raises a little bit
+            # cause of font styling. For example: MARWICK, Alice `!ARWICK`
+            # is set a little bit higher than the rest.
             first = f'{first}<sup>'
             close = f'</sup>{close}'
         result.append(
