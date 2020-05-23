@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.12.4
+
+### Feature
+
+* use different page sizes to display rotated (db69dcfcc169)
+* add font rise to text renderer (acc1e7208b34)
+
 ## v0.12.3
 
 ## v0.12.2
