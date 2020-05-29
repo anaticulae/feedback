@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.12.5
+
+### Fix
+
+* introduce threshold to avoid miss printing (78c6eb6ec1c0)
+
 ## v0.12.4
 
 ### Feature

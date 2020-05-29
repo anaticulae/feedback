@@ -12,7 +12,7 @@ import os
 
 import protocol
 
-__version__ = '0.12.4'
+__version__ = '0.12.5'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
