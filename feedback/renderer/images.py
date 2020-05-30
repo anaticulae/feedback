@@ -58,12 +58,15 @@ def load_image_informations(
     return result
 
 
+IMAGE_EXT = ['png', 'jpg', 'jpeg']
+
+
 def load_images(path: str) -> RawImages:
     if not os.path.exists(path):
         return []
 
     # TODO: EXTEND FILE EXT?
-    files = utila.file_list(path, include=['png', 'jpeg', 'jpg'])
+    files = utila.file_list(path, include=IMAGE_EXT)
     files = utila.files_sort(files)  # pylint:disable=R0204
 
     result = []
@@ -75,19 +78,17 @@ def load_images(path: str) -> RawImages:
     return result
 
 
-def images(path: str) -> list:
+def raw_image_names(path: str) -> list:
     if not os.path.exists(path):
         return []
-
-    files = utila.file_list(path, include='yaml')
+    files = utila.file_list(path, include=IMAGE_EXT)
     files = utila.files_sort(files)  # pylint:disable=R0204
-
-    result = [utila.file_name(item) for item in files]
+    result = [os.path.split(item)[1] for item in files]
     return result
 
 
 def zip_images(path: str, pages: tuple = None) -> ZippedImageInfos:
-    img = images(path)
+    img = raw_image_names(path)
     informations = load_image_informations(path, pages)
     result = []
     for index, info in informations:
