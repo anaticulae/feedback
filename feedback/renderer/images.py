@@ -21,8 +21,10 @@ import utila
 # TODO REPLCAE LATER
 ImageInformations = typing.List[rawmaker.images.info.ImageInformation]
 
-ZippedImageInfo = collections.namedtuple('ZippedImageInfo',
-                                         'number, info, filename')
+ZippedImageInfo = collections.namedtuple(
+    'ZippedImageInfo',
+    'number, info, filename',
+)
 ZippedImageInfos = typing.List[ZippedImageInfo]
 
 
