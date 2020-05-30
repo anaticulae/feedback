@@ -11,6 +11,7 @@ printing.
 """
 
 import collections
+import dataclasses
 import os
 import typing
 
@@ -23,6 +24,16 @@ ImageInformations = typing.List[rawmaker.images.info.ImageInformation]
 ZippedImageInfo = collections.namedtuple('ZippedImageInfo',
                                          'number, info, filename')
 ZippedImageInfos = typing.List[ZippedImageInfo]
+
+
+@dataclasses.dataclass
+class RawImage:
+    name: str = None
+    ext: str = None
+    raw: bytes = None
+
+
+RawImages = typing.List[RawImage]
 
 
 def load_image_informations(
@@ -45,20 +56,20 @@ def load_image_informations(
     return result
 
 
-def load_images(path: str) -> list:
+def load_images(path: str) -> RawImages:
     if not os.path.exists(path):
         return []
 
-    files = utila.file_list(path, include='yaml')
+    # TODO: EXTEND FILE EXT?
+    files = utila.file_list(path, include=['png', 'jpeg', 'jpg'])
     files = utila.files_sort(files)  # pylint:disable=R0204
 
     result = []
     for item in files:
-        source = os.path.join(path, item)
-        loaded = utila.file_read_binary(source)
-        filename = utila.file_name(item)
-        fileext = utila.file_ext(item)
-        result.append(((filename, fileext), loaded))
+        filename, fileext = utila.file_name(item), utila.file_ext(item)
+        loaded = utila.file_read_binary(os.path.join(path, item))
+        raw = RawImage(name=filename, ext=fileext, raw=loaded)
+        result.append(raw)
     return result
 
 

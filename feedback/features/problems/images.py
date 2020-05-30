@@ -19,6 +19,6 @@ def work(source: list, pages: tuple = None) -> list:  # pylint:disable=W0613
         images = feedback.renderer.images.load_images(item)
         if not images:
             continue
-        for (_, ext), image in images:
-            result.append((image, ext))
+        for image in images:
+            result.append((image.raw, image.ext))
     return result

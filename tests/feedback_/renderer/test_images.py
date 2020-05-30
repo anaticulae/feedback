@@ -42,3 +42,6 @@ def test_load_image():
     source = os.path.join(source, 'rawmaker__images_images')
     images = feedback.renderer.images.load_images(source)
     assert len(images) == 5
+    exts = [item.ext for item in images]
+    expected = ['jpg', 'jpg', 'jpg', 'jpg', 'jpg']
+    assert exts == expected
