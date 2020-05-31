@@ -53,6 +53,7 @@ import dataclasses
 import glob
 import typing
 
+import german
 import protocol
 import utila
 
@@ -129,25 +130,13 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     return result
 
 
-# TODO: MOVE TO WORDS MODULE
-def split_token(text: str, normalize: bool = True):
-    # replace text division -
-    text = text.replace('-\n', '')
-    # support multi line text
-    text = text.replace('\n', ' ')
-    tokens = text.split(' ')
-    if normalize:
-        tokens = [token for token in tokens if token]
-    return tokens
-
-
 class WordGenerator:
 
     def __init__(self):
         self.index = 0
 
     def words(self, line):
-        splitted = split_token(line, normalize=False)
+        splitted = german.split_token(line, normalize=False)
         for item in splitted:
             if not item or not item.strip():
                 continue
@@ -207,7 +196,7 @@ class WordMarker:
         """
         result = []
         startpos = 0
-        splitted = split_token(line, normalize=False)
+        splitted = german.split_token(line, normalize=False)
         for word in splitted:
             result.append(self.decide_mark(word, startpos))
             # TODO: ADD OPTION TO INCLUDE WHITESPACE INTO WORD

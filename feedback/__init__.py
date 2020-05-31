@@ -10,6 +10,7 @@
 import contextlib
 import os
 
+import german
 import protocol
 
 __version__ = '0.12.5'
@@ -64,3 +65,18 @@ def sentences(items: protocol.Findings) -> protocol.Findings:
 
 
 protocol.sentences = sentences
+
+
+def split_token(text: str, normalize: bool = True):
+    # replace text division -
+    text = text.replace('-\n', '')
+    # support multi line text
+    text = text.replace('\n', ' ')
+    tokens = text.split(' ')
+    if normalize:
+        tokens = [token for token in tokens if token]
+    return tokens
+
+
+# TODO: REMOVE AFTER UPGRADING GERMAN
+german.split_token = split_token
