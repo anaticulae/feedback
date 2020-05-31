@@ -39,7 +39,15 @@ def filter_mark(items: protocol.Findings, shortcut: str) -> protocol.Findings:
         with contextlib.suppress(AttributeError):
             if item.location.shortcut == shortcut:
                 selected.append(item)
-    items = sorted(selected, key=lambda x: x.location.value)
+
+    def line_key(item):
+        # TODO: REMOVE LATER
+        try:
+            return item.location.value
+        except AttributeError:
+            return item.location.line
+
+    items = sorted(selected, key=line_key)
     return items
 
 

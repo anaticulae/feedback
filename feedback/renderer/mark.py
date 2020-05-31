@@ -121,12 +121,29 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     # require selected word only, reason etc. is not important here
     wordmarks = [item.location.value for item in wordmarks]
     linemarks = protocol.lines(pagemarks)
+    ranges = ranged(pagemarks)
+
+    lines = []
+    for item in linemarks:
+        lines.append(item.location.value)
+    for item in ranges:
+        # TODO: SUPPORT MULTILINE
+        start, end = item.location.line, item.location.line_end
+        if end is None:
+            end = start
+        # TODO: REPLACE WITH UTILA CODE
+        lines.extend([line_index for line_index in range(start, end + 1)])
+
     result = PageMarkConfiguration(
         page=page,
         wordmarks=wordmarks,
-        linemarks=linemarks,
+        linemarks=lines,
     )
     return result
+
+
+def ranged(items: protocol.Findings) -> protocol.Findings:
+    return protocol.filter_mark(items, shortcut='r')
 
 
 class WordGenerator:
