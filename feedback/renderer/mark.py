@@ -50,7 +50,6 @@ ater we need ImageMark, TableMark, DiagramMark
 
 import contextlib
 import dataclasses
-import glob
 import typing
 
 import german
@@ -243,14 +242,3 @@ class LineMarker:
         result = fums.Style(0, len(line), start, end)
         self.index += 1
         return result
-
-
-def collect(path: str) -> dict:
-    """Collect marks from `path` and sort them by page."""
-    with utila.chdir(path):
-        findings = [
-            protocol.load_result(item) for item in glob.glob('*_user.yaml')
-        ]
-    findings = utila.flatten(findings)
-    result = protocol.bypage(findings)
-    return result
