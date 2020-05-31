@@ -115,6 +115,7 @@ def create_textline(textcontainer, marked_line, alignments=None) -> str:  # pyli
         alignment = 'justify'
         if alignments:
             alignment = alignments(bounding=box)
+        alignment = 'left'  # TODO: DISABLE FEATURE
         alignment = create_alignment(alignment)
         width = utila.roundme((box.x1 - box.x0) * 1.01)
         position = f'top:{box.y0}px;left:{box.x0}px;min-width:{width}px;'
@@ -139,6 +140,7 @@ def create_alignment(alignment: textflow.alignment.style.TextAlignment):
             raw = 'left'
         if alignment == textflow.alignment.style.TextAlignment.RIGHT:
             raw = 'right'
+    raw = 'left'  # TODO: DISABLE FEATURE
     return f'text-align:{raw};text-align-last:{raw};'
 
 
