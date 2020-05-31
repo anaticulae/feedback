@@ -41,6 +41,9 @@ LEFTRIGHT_GENERATED = os.path.join(GENERATED, 'book_leftright')
 BACHELOR56 = os.path.join(GENERATED, 'bachelor_page_56_hard_to_read')
 BACHELOR56_PDF = os.path.join(BACHELOR, 'page_56_hard_to_read.pdf')
 
+BACHELOR90 = os.path.join(GENERATED, 'bachelor_bachelor90')
+BACHELOR90_PDF = os.path.join(BACHELOR, 'bachelor90.pdf')
+
 MASTER116 = os.path.join(GENERATED, 'master_page_116_images_toc_formular')
 MASTER116_PDF = os.path.join(MASTER, 'page_116_images_toc_formular.pdf')
 
@@ -53,6 +56,8 @@ REQUIRED_RESOURCES = [
     BACHELOR,
     BACHELOR56,
     BACHELOR56_PDF,
+    BACHELOR90,
+    BACHELOR90_PDF,
     GENERATED,
     GENERATED_PORTING_PYTHON3,
     GENERATED_RESTRUCTED,

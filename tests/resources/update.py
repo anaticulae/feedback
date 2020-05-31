@@ -35,6 +35,7 @@ def extract_examples():
     os.makedirs(tests.resources.GENERATED, exist_ok=True)
     files = [
         (tests.resources.MASTER116_PDF, '0:20,100:117'),
+        tests.resources.BACHELOR90_PDF,
         tests.resources.BACHELOR56_PDF,
         tests.resources.LEFTRIGHT,
         tests.resources.MASTER72_PDF,
