@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.12.6
+
+### Feature
+
+* support RangedLocations (9db49687d05c)
+
+### Fix
+
+* fix spelling error (c7fbca5abdf4)
+* disable justified alignment (e3d70e6789f8)
+* fix image path name (eea522621163)
+
 ## v0.12.5
 
 ### Fix
