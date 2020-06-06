@@ -232,6 +232,8 @@ def prepare_headlinecontent(  # pylint:disable=R1260,R0914
         if listcontent:
             # listitem = listlookup.
             listitem = find_list(listlookup, page, listindex(item), list_open)
+            if not listitem:
+                continue
             _, listtext = listitem
             result.append('<li>%s</li>' % listtext)
             list_open += 1
@@ -308,7 +310,10 @@ def find_list(listlookup, page, item, index):
     for content, _index in lists:
         if _index != item:
             continue
-        return content[2].data[index]
+        try:
+            return content[2].data[index]
+        except IndexError:
+            utila.error(f'could not find list item: {page} {item} {index}')
     return None
 
 
