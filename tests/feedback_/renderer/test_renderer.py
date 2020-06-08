@@ -10,6 +10,7 @@
 import os
 import webbrowser
 
+import protocol
 import pytest
 import utila
 
@@ -148,13 +149,7 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
     words = {}
 
     # load findings
-    # TODO: REMOVE AFTER UPGRADING UTILA
-    files = [
-        os.path.join(source, item)
-        for item in utila.file_list(source, include='yaml')
-        if utila.file_name(item).endswith('_user')
-    ]
-    findings = feedback.features.problems.view.load_linters(files)
+    findings = protocol.findings_from_path(source)
     assert len(findings) == 17  # no proved but data/algo had changed if broken
 
     marks = feedback.features.problems.view.load_marks(
