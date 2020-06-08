@@ -19,19 +19,6 @@ import tests.feedback_
 import tests.resources
 
 
-# pylint:disable=unused-argument
-def test_run_feedback(testdir, monkeypatch):
-    cmd = ['-i', tests.resources.RESTRUCTED, '-o', '.']
-
-    utila.run_command(
-        cmd,
-        monkeypatch=monkeypatch,
-        process=feedback.PACKAGE,
-        main=feedback.cli.main,
-        success=True,
-    )
-
-
 def test_run_feedback_help():
     """Ensure that installing process works correctly."""
     completed = utila.run('feedback --help')
