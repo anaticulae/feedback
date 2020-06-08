@@ -128,8 +128,11 @@ def load_single_words(navigators):
     return result
 
 
-def load_marks(findings: protocol.PageFindings, sentences: dict,
-               words: dict) -> dict:
+def load_marks(
+        findings: protocol.PageFindings,
+        sentences: dict,
+        words: dict,
+) -> dict:
     marks = collections.defaultdict(list)
     if findings:
         # TODO: REMOVE SENTENCE MARKS
