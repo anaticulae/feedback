@@ -155,6 +155,7 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
         if utila.file_name(item).endswith('_user')
     ]
     findings = feedback.features.problems.view.load_linters(files)
+    assert len(findings) == 17  # no proved but data/algo had changed if broken
 
     marks = feedback.features.problems.view.load_marks(
         findings,
