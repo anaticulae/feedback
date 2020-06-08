@@ -18,6 +18,7 @@ import copy
 import protocol
 import serializeraw
 import utila
+import words.path
 
 import feedback.problems.shapy
 import feedback.renderer.html
@@ -146,6 +147,20 @@ def load_marks(
     # enable KeyError
     marks = dict(marks)  # pylint:disable=R0204
     return marks
+
+
+def load_marks_from_path(source, page: int):
+    html = feedback.renderer.loader.from_path(source)
+    findings = protocol.findings_from_path(source)
+    pagesentences = load_sentences(words.path.text(source))
+    pagewords = load_single_words(html)
+    marks = load_marks(findings, pagesentences, pagewords)
+
+    pagemarks = feedback.renderer.mark.create_configuration(
+        marks=marks,
+        page=page,
+    )
+    return pagemarks
 
 
 def load_linters(paths: str) -> protocol.PageFindings:
