@@ -13,9 +13,11 @@ import webbrowser
 import protocol
 import pytest
 import utila
+import words.path
 
-import feedback.features.problems.view
+import feedback.features.problems.view as ffpv
 import feedback.renderer.html
+import feedback.renderer.loader
 import feedback.renderer.mark
 import tests.feedback_.renderer as tfr
 import tests.resources
@@ -146,16 +148,36 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
     """Ensure to load sentences marks."""
     source = tests.resources.BACHELOR56
     sentences = {}
-    words = {}
+    words_ = {}
 
     # load findings
     findings = protocol.findings_from_path(source)
     assert len(findings) == 17  # no proved but data/algo had changed if broken
 
-    marks = feedback.features.problems.view.load_marks(
-        findings,
-        sentences,
-        words,
-    )
+    marks = ffpv.load_marks(findings, sentences, words_)
     assert marks
     # TODO: GIVE THIS TEST A PURPOSE
+
+
+def test_render_master72_marked_lines(tmpdir, masterpage72):  # pylint:disable=W0621
+    """This test aims to generate and view a toc very fast to check
+    develop new html renderings."""
+    source = tests.resources.MASTER72_GENERATED
+    pagemarks = ffpv.load_marks_from_path(source, page=3)
+
+    css = """\
+        #line3_19, #line3_16, #line3_0{
+            background:red;
+        }
+    """
+    with tfr.render_and_open(
+            tmpdir,
+            masterpage72,
+            page=3,
+            marks=pagemarks,
+            css=css,
+    ) as source:
+        # three lines are marked
+        assert '#line3_19' in source
+        assert '#line3_16' in source
+        assert '#line3_0' in source

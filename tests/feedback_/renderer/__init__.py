@@ -25,6 +25,7 @@ PATTERN = """\
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{title}</title>
+<style>{css}</style>
 </head>
 <body>
 {content}
@@ -33,8 +34,9 @@ PATTERN = """\
 """
 
 
-def html(content: str, title: str = 'no title'):
-    return PATTERN.format(content=content, title=title)
+def html(content: str, title: str = 'no title', css: str = None):
+    css = css if css else ''
+    return PATTERN.format(content=content, title=title, css=css)
 
 
 @contextlib.contextmanager
@@ -44,6 +46,7 @@ def render_and_open(
         page: int,
         marks=None,
         shapes=None,
+        css=None,
 ):
     outpath = os.path.join(directory, 'index.html')
     content = utila.select_page(content, page)
@@ -53,7 +56,7 @@ def render_and_open(
         marks=marks,
         shapes=shapes,
     )
-    rendered = html(rendered)
+    rendered = html(rendered, css=css)
     assert len(rendered) > 300, str(rendered)
 
     yield rendered
