@@ -85,7 +85,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         lines=lines,
         pages=pages,
     )
-    findings = load_linters(linters)
+    findings = load_findings(linters)
     pagesentences = load_sentences(words)
     pagewords = load_single_words(html)
     marks = load_marks(findings, pagesentences, pagewords)
@@ -163,14 +163,11 @@ def load_marks_from_path(source, page: int):
     return pagemarks
 
 
-def load_linters(paths: str) -> protocol.PageFindings:
-    # TODO: MOVE TO PROTOCOL
+def load_findings(paths: str) -> protocol.PageFindings:
     """Load findings and group them by pages."""
+    # TODO: MOVE TO PROTOCOL
     loaded = [protocol.load_result(path) for path in paths]
     loaded = utila.flatten(loaded)
-    for index, item in enumerate(loaded):
-        # TODO: INTRODUCE CORRECT/UNIQUE NUMBERS WHILE LINTING
-        item.number = index
     result = protocol.bypage(loaded)
     return result
 
