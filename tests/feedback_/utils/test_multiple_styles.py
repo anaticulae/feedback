@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import pytest
+
 import feedback.utils.multiple_styles as fums
 
 
@@ -64,3 +66,45 @@ def test_merge_multiple_overlapping_tripple():
     exepected = '<A>012</A><A><B>345</B></A><A>67</A><A><C>89</C></A>1012'
     result = fums.merger(text, styles)
     assert result == exepected, str(result)
+
+
+@pytest.mark.xfail(reason='improve optimizer')
+def test_optimize_merger():
+    styles = [
+        fums.Style(
+            start=0,
+            end=93,
+            first='<span id="line3_16">',
+            last='</span>',
+        ),
+        fums.Style(
+            start=0,
+            end=44,
+            first='<span style="font-size:12.0px;font-family:TimesNewRoman;">',
+            last='</span>',
+        ),
+        fums.Style(
+            start=44,
+            end=50,
+            first=
+            '<span style="font-size:12.0px;font-style:italic;font-family:TimesNewRoman;">',
+            last='</span>',
+        ),
+        fums.Style(
+            start=50,
+            end=93,
+            first='<span style="font-size:12.0px;font-family:TimesNewRoman;">',
+            last='</span>',
+        ),
+    ]
+    text = 'X' * 93
+    result = fums.merger(text, styles)
+
+    better = 'span id="line3_16"><span'\
+        'style="font-size:12.0px;font-family:TimesNewRoman;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span'\
+        'style="font-size:12.0px;font-style:italic;font-family:TimesNewRoman;">XXXXXX</span><span'\
+        'style="font-size:12.0px;font-family:TimesNewRoman;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span></span>'
+    assert result == better
+
+    # TODO: ADD BEST TO OPTIMIZE FONT FAMILIY AND FONT SIZE
+    # IDEA: USE A SPAN FIELD FOR EVERY STYLE TO IMPROVE OPTIMIZING POSSIBILITIES
