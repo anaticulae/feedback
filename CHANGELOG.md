@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.13.0
+
+### Feature
+
+* add method to load page marks from path (7b396fffd8ab)
+
+### Fix
+
+* solve linter warning (6444cf39c385)
+* do not overwrite findings ids (dd56908a3f2e)
+
 ## v0.12.7
 
 ## v0.12.6
