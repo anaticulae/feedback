@@ -15,11 +15,9 @@ import dataclasses
 import os
 import typing
 
-import rawmaker.images.info
+import iamraw
+import serializeraw
 import utila
-
-# TODO REPLCAE LATER
-ImageInformations = typing.List[rawmaker.images.info.ImageInformation]
 
 ZippedImageInfo = collections.namedtuple(
     'ZippedImageInfo',
@@ -41,7 +39,7 @@ RawImages = typing.List[RawImage]
 def load_image_informations(
         path: str,
         pages: tuple = None,
-) -> ImageInformations:
+) -> iamraw.ImageInformations:
     if not os.path.exists(path):
         return []
 
@@ -51,7 +49,7 @@ def load_image_informations(
     result = []
     for index, item in enumerate(files):
         source = os.path.join(path, item)
-        loaded = rawmaker.images.info.load_info(source)
+        loaded = serializeraw.load_image_info(source)
         if utila.should_skip(loaded.page, pages):
             continue
         result.append((index, loaded))  # TODO: CHECK INDEX WHEN SKIPPING PAGES
