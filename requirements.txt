@@ -17,7 +17,7 @@ protocol==0.10.3
 utila==1.24.0
 
 # required feedback/linter result
-decider==0.20.1
+decider==0.20.2
 
 # required to load images
 rawmaker==1.21.5
