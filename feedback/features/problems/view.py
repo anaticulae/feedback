@@ -178,10 +178,8 @@ def convert_sentence_to_word_mark(
         words: dict,
 ) -> dict:
     assert isinstance(sentences, dict), type(sentences)
-    # TODO: REPLACE WITH protocol.sentences()
     marks = {
-        grouped.page: protocol.filter_mark(grouped.content, shortcut='s')
-        for grouped in marks
+        grouped.page: protocol.sentences(grouped.content) for grouped in marks
     }
     result = collections.defaultdict(list)
     for page, pagemarks in marks.items():
