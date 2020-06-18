@@ -152,7 +152,7 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
 
     # load findings
     findings = protocol.findings_from_path(source)
-    assert len(findings) == 17  # no proved but data/algo had changed if broken
+    assert len(findings) == 19  # not proved but data/algo had changed if broken
 
     marks = ffpv.load_marks(findings, sentences, words_)
     assert marks
