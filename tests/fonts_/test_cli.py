@@ -9,7 +9,7 @@
 
 from os import listdir
 
-from utila import run_command
+import utilatest
 
 from feedback.command.decider.fonts import PROCESS_NAME
 from feedback.command.decider.fonts import main
@@ -20,7 +20,7 @@ from tests.fonts_ import FONTS_UGLY_DATA
 def test_fonts_run_main(testdir, monkeypatch):
     cmd = ['-i', FONTS_UGLY_DATA, '-o', '.']
 
-    run_command(
+    utilatest.run_command(
         cmd,
         monkeypatch=monkeypatch,
         process=PROCESS_NAME,

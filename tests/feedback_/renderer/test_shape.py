@@ -10,6 +10,7 @@ import os
 import webbrowser
 
 import utila
+import utilatest
 
 from feedback.renderer.shape import render_rectangle
 
@@ -35,5 +36,5 @@ def test_render_overlapping_shapes(testdir):
     html += '</div>'
     utila.file_create(outpath, html)
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open(outpath)

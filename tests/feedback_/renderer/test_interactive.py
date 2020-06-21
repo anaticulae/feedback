@@ -11,6 +11,7 @@ import os
 import webbrowser
 
 import utila
+import utilatest
 
 import feedback.renderer.content
 import feedback.renderer.html
@@ -33,5 +34,5 @@ def test_renderer_interactive_showhide(testdir):
 
     utila.file_create(outpath, content)
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open(outpath)

@@ -12,6 +12,7 @@ import webbrowser
 
 import pytest
 import utila
+import utilatest
 
 import feedback
 import feedback.cli
@@ -46,7 +47,7 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     first_file = os.path.join(root, 'feedback__view_pages/0.html')
     assert os.path.exists(first_file), str(first_file)
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open(first_file)
 
 
@@ -56,7 +57,7 @@ def test_run_feedback_view(testdir, monkeypatch):
     cmd = f'-i {tests.resources.BACHELOR56} -o {root} --pages=9'
 
     with utila.chdir(tests.resources.BACHELOR56):
-        utila.run_command(
+        utilatest.run_command(
             cmd,
             monkeypatch=monkeypatch,
             process=feedback.PACKAGE,
@@ -73,5 +74,5 @@ def test_run_feedback_view(testdir, monkeypatch):
     counted = content.count('id="word9')
     assert counted >= 20, counted
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open(page9)

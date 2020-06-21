@@ -14,6 +14,7 @@ import sys
 import webbrowser
 
 import utila
+import utilatest
 
 import feedback.renderer.html
 
@@ -63,5 +64,5 @@ def render_and_open(
 
     utila.file_create(outpath, rendered)
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open(outpath)

@@ -6,10 +6,12 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import os
 import webbrowser
 
 import utila
+import utilatest
 
 import feedback.renderer.html
 import feedback.renderer.loader
@@ -26,5 +28,5 @@ def test_render_boxes(testdir):
 
     utila.file_create(outpath, html)
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open_new(outpath)

@@ -8,14 +8,14 @@
 # =============================================================================
 """The feedback generates the central document view"""
 
-import utila
+import utilatest
 
 import feedback
 import feedback.cli
 
 
 def run(cmd: str, monkeypatch):
-    utila.run_command(
+    utilatest.run_command(
         cmd,
         process=feedback.PACKAGE,
         main=feedback.cli.main,

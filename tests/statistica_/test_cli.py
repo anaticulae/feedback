@@ -11,6 +11,7 @@ from os import listdir
 
 import pytest
 import utila
+import utilatest
 
 from feedback.command.statistica import PROCESS_NAME
 from feedback.command.statistica import main
@@ -38,7 +39,7 @@ def test_run_generation_to_output(testdir, monkeypatch):  #pylint:disable=W0613
 
 
 def run_statistica(command, monkeypatch, success=True):
-    utila.run_command(
+    utilatest.run_command(
         command,
         PROCESS_NAME,
         main,

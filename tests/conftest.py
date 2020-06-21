@@ -10,6 +10,7 @@
 import os
 
 import utila
+import utilatest
 
 from tests.resources import REQUIRED_RESOURCES
 from tests.resources.update import extract_examples
@@ -23,7 +24,7 @@ def pytest_sessionstart(session):  # pylint:disable=W0613
     if 'PYTEST_XDIST_WORKER' in os.environ:
         return
     # install or use rawmaker
-    if 'GENERATE' in os.environ or utila.test.LONGRUN:
+    if 'GENERATE' in os.environ or utilatest.LONGRUN:
         utila.log('install requirements')
         install_requirements()
 

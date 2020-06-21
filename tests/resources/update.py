@@ -11,6 +11,7 @@ import os
 
 import decider.example
 import utila
+import utilatest
 
 import feedback
 import feedback.utils
@@ -18,7 +19,7 @@ import tests.resources
 
 
 def install_requirements():
-    utila.clean_install(feedback.ROOT, feedback.PACKAGE)
+    utilatest.clean_install(feedback.ROOT, feedback.PACKAGE)
 
 
 def sync_resources():

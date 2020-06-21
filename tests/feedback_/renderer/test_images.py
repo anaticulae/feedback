@@ -11,6 +11,7 @@ import os
 import webbrowser
 
 import utila
+import utilatest
 
 import feedback.renderer.images
 import tests.resources
@@ -26,7 +27,7 @@ def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621
 
     utila.file_create(outpath, rendered)
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open(outpath)
 
 

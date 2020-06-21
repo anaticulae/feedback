@@ -13,7 +13,7 @@ import webbrowser
 import protocol
 import pytest
 import utila
-import words.path
+import utilatest
 
 import feedback.features.problems.view as ffpv
 import feedback.renderer.html
@@ -60,7 +60,7 @@ def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):  # pylin
     output = style + rendered
     utila.file_create(outpath, output)
 
-    if utila.single_execution():
+    if utilatest.single_execution():
         webbrowser.open(outpath)
 
 
