@@ -16,6 +16,7 @@ import utilatest
 import feedback.renderer.images
 import tests.resources
 from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
+from tests.feedback_.fixtures import master116  # pylint:disable=W0611
 
 
 def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621
@@ -46,3 +47,16 @@ def test_load_image():
     exts = [item.ext for item in images]
     expected = ['jpg', 'jpg', 'jpg', 'jpg', 'jpg']
     assert exts == expected
+
+
+def test_renderer_figures_as_image(tmpdir, master116):  # pylint:disable=W0612
+    outpath = os.path.join(tmpdir.strpath, 'index.html')
+    titlepage = utila.select_page(master116, 2)
+
+    rendered = feedback.renderer.html.render_page(titlepage)
+    assert len(rendered) > 300, str(rendered)
+
+    utila.file_create(outpath, rendered)
+
+    if utilatest.single_execution():
+        webbrowser.open(outpath)

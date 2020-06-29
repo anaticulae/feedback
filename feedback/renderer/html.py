@@ -31,7 +31,7 @@ import feedback.renderer.text
 import feedback.utils.multiple_styles
 
 
-def render_page(
+def render_page(  # pylint:disable=R1260
         page: feedback.renderer.content.HTMLPageContent,
         marks: feedback.renderer.mark.PageMarkConfiguration = None,
         shapes: list = None,
@@ -75,6 +75,10 @@ def render_page(
         rendered = render_images(page.images)
         raw.extend(rendered)
 
+    if page.figures:
+        rendered = render_figures(page.figures)
+        raw.extend(rendered)
+
     if page.horizontals:
         rendered = feedback.renderer.lines.render_horizontals(
             horizontals=page.horizontals,
@@ -102,6 +106,21 @@ def render_images(images):
                  f'top:{bounding[1]}px;left:{bounding[0]}px;'
                  f' width:{width}px;height:{height}px"')
         img = (f'<img src="{fileimage}" {style}/>')
+        result.append(img)
+    return result
+
+
+def render_figures(figures):
+    result = []
+    for _, info, fileimage in figures:
+        bounding = info.bounding
+        width = utila.roundme(info.bounding[2] - info.bounding[0])
+        height = utila.roundme(info.bounding[3] - info.bounding[1])
+        style = (f'style="position:absolute;border:1px solid black;'
+                 f'top:{bounding[1]}px;left:{bounding[0]}px;'
+                 f' width:{width}px;height:{height}px"')
+        # TODO: FIX FIG_ HACK LATER
+        img = (f'<img src="fig_{fileimage}" {style}/>')
         result.append(img)
     return result
 

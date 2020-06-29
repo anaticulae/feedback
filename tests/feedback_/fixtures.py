@@ -31,3 +31,10 @@ def bachelor56():
     path = tests.resources.BACHELOR56
     loaded = feedback.renderer.loader.from_path(path)
     return loaded
+
+
+@pytest.fixture
+def master116():
+    path = tests.resources.MASTER116
+    loaded = feedback.renderer.loader.from_path(path)
+    return loaded

@@ -40,6 +40,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
         hits: str = None,
         horizontals: str = None,
         images: list = None,
+        figures: list = None,
         lines: str = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
@@ -77,6 +78,12 @@ def load(  # pylint:disable=R0914,too-many-arguments
             feedback.renderer.images.zip_images(item, pages) for item in images
         ]
         images = utila.flatten(images)
+    if figures:
+        figures = [
+            feedback.renderer.images.zip_images(item, pages) for item in figures
+        ]
+        figures = utila.flatten(figures)
+
     fontstore = None
     if fontheader:
         fontstore = serializeraw.create_fontstore(
@@ -93,6 +100,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
             hits=hits,
             horizontals=horizontals,
             images=images,
+            figures=figures,
             lines=lines,
             text=page,
             textposition=textposition,
@@ -121,6 +129,8 @@ def load_page(border, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=
     lines = select_page(kwargs, 'lines', page)
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
+    figures = feedback.renderer.images.select_images(
+        kwargs.pop('figures'), page)
 
     # skip non TextContainer boxes - for example LTRect
     selected = [
@@ -138,6 +148,7 @@ def load_page(border, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=
         pagesize=pagesize,
         horizontals=horizontals,
         images=images,
+        figures=figures,
         lines=lines,
         page=page,
     )
@@ -180,6 +191,7 @@ def from_path(  # pylint:disable=R0914
     alignment = alignment if os.path.exists(alignment) else None
     # TODO: INVESTIGATE HERE
     images = [os.path.join(path, 'rawmaker__images_images')]
+    figures = [os.path.join(path, 'rawmaker__figures_figures')]
     loaded = load(
         borders=borders,
         alignment=alignment,
@@ -189,6 +201,7 @@ def from_path(  # pylint:disable=R0914
         hits=hits,
         horizontals=horizontals,
         images=images,
+        figures=figures,
         lines=lines,
         oneline_text=oneline_text,
         oneline_textposition=oneline_textposition,
