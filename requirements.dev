@@ -10,6 +10,6 @@
 utilatest==0.1.2
 
 # ensure version of test data generator
-hey==3.4.0
+hey==3.5.0
 
-power==0.10.6
+power==0.10.7
