@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.14.0
+
+### Feature
+
+* add hacky figure renderer (400e9d7ca580)
+
 ## v0.13.4
 
 ## v0.13.3
