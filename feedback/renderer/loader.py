@@ -39,8 +39,8 @@ def load(  # pylint:disable=R0914,too-many-arguments
         fontheader: str = None,
         hits: str = None,
         horizontals: str = None,
-        images: list = None,
-        figures: list = None,
+        images: str = None,
+        figures: str = None,
         lines: str = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
@@ -67,6 +67,12 @@ def load(  # pylint:disable=R0914,too-many-arguments
             oneline_navigators,
             alignment,
         )
+
+    if isinstance(images, str):
+        images = [images]
+    if isinstance(figures, str):
+        figures = [figures]
+
     boxes = serializeraw.load_boxes(boxes, pages=pages) if boxes else None
     if horizontals:
         horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
@@ -83,6 +89,12 @@ def load(  # pylint:disable=R0914,too-many-arguments
             feedback.renderer.images.zip_images(item, pages) for item in figures
         ]
         figures = utila.flatten(figures)
+        if images:
+            # add loaded figures to images
+            images.extend(figures)
+        else:
+            # not image are loaded
+            images = figures
 
     fontstore = None
     if fontheader:
@@ -100,7 +112,6 @@ def load(  # pylint:disable=R0914,too-many-arguments
             hits=hits,
             horizontals=horizontals,
             images=images,
-            figures=figures,
             lines=lines,
             text=page,
             textposition=textposition,
@@ -129,8 +140,6 @@ def load_page(border, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=
     lines = select_page(kwargs, 'lines', page)
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
-    figures = feedback.renderer.images.select_images(
-        kwargs.pop('figures'), page)
 
     # skip non TextContainer boxes - for example LTRect
     selected = [
@@ -148,7 +157,6 @@ def load_page(border, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=
         pagesize=pagesize,
         horizontals=horizontals,
         images=images,
-        figures=figures,
         lines=lines,
         page=page,
     )

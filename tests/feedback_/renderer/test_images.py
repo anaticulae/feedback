@@ -49,7 +49,7 @@ def test_load_image():
     assert exts == expected
 
 
-def test_renderer_figures_as_image(tmpdir, master116):  # pylint:disable=W0612
+def test_renderer_figures_as_image(tmpdir, master116):  # pylint:disable=W0621
     outpath = os.path.join(tmpdir.strpath, 'index.html')
     titlepage = utila.select_page(master116, 2)
 

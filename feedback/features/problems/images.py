@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import typing
+
 import feedback.renderer.images
 
 
-def work(source: list, pages: tuple = None) -> list:  # pylint:disable=W0613
-    result = []
-    # TODO: SUPPORT SELECTIVE OUTPUT, REQUIRE START INDEX IN *.???
-    # NOTE: WE EXTRACT FROM START TO END PAGES IS IGNORED
+def work(source: list, pages: tuple = None) -> typing.List[bytes]:  # pylint:disable=W0613
     result = []
     for item in source:
         images = feedback.renderer.images.load_images(item)

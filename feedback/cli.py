@@ -33,6 +33,7 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='fonts_header'),
             ResultFile(producer='rawmaker', name='fonts_content'),
             utila.Directory('rawmaker__images_images'),
+            utila.Directory('rawmaker__figures_figures'),
             ResultFile(producer='rawmaker', name='boxes_boxes'),
             ResultFile(producer='rawmaker', name='horizontals_horizontals'),
             ResultFile(producer='rawmaker', name='line_line'),
@@ -47,7 +48,14 @@ WORKPLAN = [
         [
             utila.Directory('rawmaker__images_images'),
         ],
-        (utila.File('feedback__view_pages/*', ext='???'),),
+        (utila.File('feedback__view_pages/{FILEHASH}', ext='???'),),
+    ),
+    step(
+        'figures',
+        [
+            utila.Directory('rawmaker__figures_figures'),
+        ],
+        (utila.File('feedback__view_pages/{FILEHASH}', ext='png'),),
     ),
 ]
 
