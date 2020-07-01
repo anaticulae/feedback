@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.0.0
+
+### Fix
+
+* add missing package definition (5080e7371874)
+
 ## v0.14.1
 
 ### Feature
