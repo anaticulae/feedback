@@ -57,12 +57,7 @@ if __name__ == "__main__":
         ],
         packages=[
             'feedback',
-            'feedback.command',
-            'feedback.command.decider',
             'feedback.features',
-            'feedback.features.fonts',
-            'feedback.features.problems',
-            'feedback.features.statistica',
             'feedback.problems',
             'feedback.renderer',
             'feedback.utils',
@@ -70,8 +65,6 @@ if __name__ == "__main__":
         entry_points={
             'console_scripts': [
                 'feedback = feedback.cli:main',
-                'feedback_decider_fonts = feedback.command.decider.fonts:main',
-                'feedback_statistica = feedback.command.statistica:main',
             ],
         },
     )

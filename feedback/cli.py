@@ -15,7 +15,6 @@ from utila import featurepack
 
 import feedback
 import feedback.utils
-from feedback.command.utils import outhtml
 
 FEATURE_NAME = 'problems'
 DESCRIPTION = 'generate central result view'
@@ -41,7 +40,7 @@ WORKPLAN = [
             ResultFile(producer='words', name='word_result'),
             Pattern(name='*_user', ext='yaml'),
         ],
-        (outhtml('pages/*'),),
+        (utila.File('feedback__view_pages/*', ext='html'),),
     ),
     step(
         'images',
@@ -64,7 +63,7 @@ def main():
     featurepack(
         workplan=WORKPLAN,
         root=feedback.ROOT,
-        featurepackage='feedback.features.problems',
+        featurepackage='feedback.features',
         config=utila.FeaturePackConfig(
             name=feedback.PROCESS,
             description=DESCRIPTION,

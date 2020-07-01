@@ -15,7 +15,7 @@ import pytest
 import utila
 import utilatest
 
-import feedback.features.problems.view as ffpv
+import feedback.features.view as ffpv
 import feedback.renderer.html
 import feedback.renderer.loader
 import feedback.renderer.mark
