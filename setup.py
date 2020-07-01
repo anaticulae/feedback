@@ -61,6 +61,7 @@ if __name__ == "__main__":
             'feedback.command.decider',
             'feedback.features',
             'feedback.features.fonts',
+            'feedback.features.problems',
             'feedback.features.statistica',
             'feedback.problems',
             'feedback.renderer',
