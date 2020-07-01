@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.14.1
+
+### Feature
+
+* use {FILEHASH} to avoid file collisions (a5ccab233ece)
+
 ## v0.14.0
 
 ### Feature
