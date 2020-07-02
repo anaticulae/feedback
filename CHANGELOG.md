@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.0.1
+
+### Fix
+
+* use new multiple file hashs pattern (d09de12c4d68)
+
 ## v1.0.0
 
 ### Fix
