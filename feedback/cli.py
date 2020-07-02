@@ -47,14 +47,14 @@ WORKPLAN = [
         [
             utila.Directory('rawmaker__images_images'),
         ],
-        (utila.File('feedback__view_pages/{FILEHASH}', ext='???'),),
+        (utila.File('feedback__view_pages/{FILEHASHS}', ext='???'),),
     ),
     step(
         'figures',
         [
             utila.Directory('rawmaker__figures_figures'),
         ],
-        (utila.File('feedback__view_pages/{FILEHASH}', ext='png'),),
+        (utila.File('feedback__view_pages/{FILEHASHS}', ext='png'),),
     ),
 ]
 
