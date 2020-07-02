@@ -47,7 +47,8 @@ WORKPLAN = [
         [
             utila.Directory('rawmaker__images_images'),
         ],
-        (utila.File('feedback__view_pages/{FILEHASHS}', ext='???'),),
+        (  # TODO: REPLACE THIS HACK LATER
+            utila.File('feedback__view_pages/{FILEHASH}', ext='???'),),
     ),
     step(
         'figures',
