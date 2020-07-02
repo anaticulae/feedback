@@ -12,12 +12,12 @@ Jinja2==2.10
 PyYAML==5.1
 
 # Internal packages
-iamraw==1.31.2
-protocol==1.0.3
-utila==2.3.0
+iamraw==1.31.3
+protocol==1.0.4
+utila==2.4.0
 
 # required feedback/linter result
-decider==0.22.3
+decider==0.22.4
 
 # required to load images
-rawmaker==2.1.1
+rawmaker==2.1.2
