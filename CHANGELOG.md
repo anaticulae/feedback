@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.0.2
+
+### Fix
+
+* add workaround to solve problem with utila (04192ef4986d)
+
 ## v1.0.1
 
 ### Fix
