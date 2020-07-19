@@ -111,10 +111,10 @@ def work(  # pylint:disable=R0914,too-many-arguments
 def load_sentences(path: str) -> dict:
     words = serializeraw.load_text(path)
     pagesentences = collections.defaultdict(list)
-    for page, pagecontent in words:
-        for _, sentences in pagecontent:
+    for item in words:
+        for _, sentences in item.content:
             for sentence in sentences:
-                pagesentences[page].append(sentence)
+                pagesentences[item.page].append(sentence)
     # enable KeyError
     pagesentences = dict(pagesentences)  # pylint:disable=R0204
     return pagesentences
