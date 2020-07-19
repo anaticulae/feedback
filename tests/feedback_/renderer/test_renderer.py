@@ -159,11 +159,15 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
     # TODO: GIVE THIS TEST A PURPOSE
 
 
+@pytest.mark.xfail(reason='adjust unit test to correct behavior')
 def test_render_master72_marked_lines(tmpdir, masterpage72):  # pylint:disable=W0621
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
-    source = tests.resources.MASTER72_GENERATED
-    pagemarks = ffpv.load_marks_from_path(source, page=3)
+    pagemarks = feedback.renderer.mark.PageMarkConfiguration(
+        page=3,
+        wordmarks=[],
+        linemarks=[0, 16, 19],
+    )
 
     css = """\
         #line3_19, #line3_16, #line3_0{
@@ -178,6 +182,6 @@ def test_render_master72_marked_lines(tmpdir, masterpage72):  # pylint:disable=W
             css=css,
     ) as source:
         # three lines are marked
-        assert '#line3_19' in source
-        assert '#line3_16' in source
-        assert '#line3_0' in source
+        assert source.count('id="line3_0"') == 1
+        assert source.count('id="line3_16"') == 1
+        assert source.count('id="line3_19"') == 1
