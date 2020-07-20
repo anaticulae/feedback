@@ -7,11 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
 import iamraw
 
 import feedback.utils.multiple_styles
 
-THRESHOLD_RISE = 1.0  # TODO HOLY VALUE
+# threshold to avoid invalid sups as a result of bad pdf printing.
+THRESHOLD_RISE = configo.HV_FLOAT_PLUS(2.0).value
 
 
 def render_inline(line) -> feedback.utils.multiple_styles.Styles:
