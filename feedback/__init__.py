@@ -13,7 +13,7 @@ import os
 import german
 import protocol
 
-__version__ = '1.0.2'
+__version__ = '1.1.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 

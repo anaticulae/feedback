@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.1.0
+
+### Feature
+
+* improve and fix style merger (c9c0223d0ef3)
+
+### Fix
+
+* increase sub threshold to avoid bad sub detection (7b69621383da)
+* adjust unit test to correct behavior (30464aae309d)
+* use new data structure (8a7f21afd39b)
+
 ## v1.0.2
 
 ### Fix
