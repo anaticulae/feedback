@@ -100,11 +100,17 @@ def test_optimize_merger():
     text = 'X' * 93
     result = fums.merger(text, styles)
 
-    better = 'span id="line3_16"><span'\
-        'style="font-size:12.0px;font-family:TimesNewRoman;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span'\
-        'style="font-size:12.0px;font-style:italic;font-family:TimesNewRoman;">XXXXXX</span><span'\
+    better = '<span id="line3_16"><span'\
+        'style="font-size:12.0px;font-family:TimesNewRoman;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span '\
+        'style="font-size:12.0px;font-style:italic;font-family:TimesNewRoman;">XXXXXX</span><span '\
         'style="font-size:12.0px;font-family:TimesNewRoman;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span></span>'
     assert result == better
+
+    best = ('<span id="line3_16"><span style="font-family:TimesNewRoman;'
+            'font-size:12px">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+            '<span style="italic;">XXXXXX</span>XXXXXXXXXXXXXXXXXXXXXXXX'
+            'XXXXXXXXXXXXXXXXXXX</span></span>')
+    assert result == best
 
     # TODO: ADD BEST TO OPTIMIZE FONT FAMILIY AND FONT SIZE
     # IDEA: USE A SPAN FIELD FOR EVERY STYLE TO IMPROVE OPTIMIZING POSSIBILITIES
