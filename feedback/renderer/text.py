@@ -19,6 +19,7 @@ THRESHOLD_RISE = configo.HV_FLOAT_PLUS(2.0).value
 def render_inline(line) -> feedback.utils.multiple_styles.Styles:
     assert isinstance(line, iamraw.Line), type(line)
     # TODO: SUPPORT FONT SIZE AND RISE
+    # TODO: CHECK FONT RISE TOLERANCE TO AVOID TO MANY GROUPS
     chars = line.chars
     grouped = [[chars[0]]]
     for item in chars[1:]:
