@@ -23,6 +23,7 @@ import tests.feedback_.renderer as tfr
 import tests.resources
 from tests.feedback_.fixtures import bachelor56  # pylint:disable=W0611
 from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
+from tests.feedback_.fixtures import master116  # pylint:disable=W0611
 from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
 
 
@@ -185,3 +186,33 @@ def test_render_master72_marked_lines(tmpdir, masterpage72):  # pylint:disable=W
         assert source.count('id="line3_0"') == 1
         assert source.count('id="line3_16"') == 1
         assert source.count('id="line3_19"') == 1
+
+
+def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # pylint:disable=W0621
+    """This test aims to generate and view a toc very fast to check
+    develop new html renderings."""
+    page = 12
+    source = tests.resources.MASTER116
+    pagemarks = ffpv.load_marks_from_path(source, page=page)
+
+    css = """\
+        #line12_4{
+            background:blue;
+        }
+        #line12_5{
+            background:red;
+        }
+    """
+    with tfr.render_and_open(
+            tmpdir,
+            master116,
+            page=page,
+            marks=pagemarks,
+            css=css,
+    ) as source:
+        # regression test after improving merger
+        assert source.count('Abb. 2.2.: ') == 1
+
+        # TODO: REPLACE LATER
+        assert source.count('id="line12_5"') == 3
+        # assert source.count('id="line12_5"') == 1
