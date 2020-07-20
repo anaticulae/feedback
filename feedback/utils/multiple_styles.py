@@ -21,12 +21,39 @@ STYLE_SEPARATOR = '{*}'
 
 def merger(text: str, styles: Styles) -> str:
     validate_range(styles, len(text))
-    merged = [create_raw(text)]
+    # determine max length if defined style is longer than given text
+    # TODO: ADD LOG INFO?
+    length = utila.maxs([item.end for item in styles], len(text))
+    merged = [create_raw(' ' * length)]
+
     styles = sort_style(styles)
+    styles = simplify(styles)
 
     for style in styles:
         merged = merge(merged, style)
+
     result = tostring(text, merged)
+    return result
+
+
+def simplify(items):
+    """\
+    >>> simplify([Style(start=0, end=5, first='ABC', last='/ABC'),
+    ... Style(start=5, end=10, first='ABC', last='/ABC')])
+    [Style(start=0, end=10, first='ABC', last='/ABC')]
+    """
+    if not items:
+        return []
+    result = [items[0]]
+    for item in items[1:]:
+        before = result[-1]
+        if before.end != item.start or before.first != item.first or before.last != item.last:
+            result.append(item)
+        else:
+            # unite style
+            # before.end = item.end
+            replaced = before._replace(end=item.end)  # pylint:disable=W0212
+            result[-1] = replaced
     return result
 
 
@@ -113,7 +140,6 @@ def merge_two(first, second):
             first.first,
             first.last,
         )
-
     else:
         second = Style(
             *second_new,
@@ -197,6 +223,10 @@ def tostring(raw: str, items: Styles) -> str:
             starting = ''.join(item.first.split('{*}'))
             # reverse to ensure that tags does not overlap
             ending = ''.join(reversed(item.last.split('{*}')))
+            if not chunk:
+                # skip empty, style without content
+                # TODO: THIS IS A HINT FOR WRONG STYLING?
+                continue
             merged += f'{starting}{chunk}{ending}'
         else:
             # raw chunk

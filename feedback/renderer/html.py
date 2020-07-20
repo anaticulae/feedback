@@ -53,7 +53,6 @@ def render_page(  # pylint:disable=R1260
     raw = []
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
     raw.extend(feedback.renderer.boxes.render_boxes(page))
-
     for textcontainer in page.content:
         text = textcontainer.text
         styles = []

@@ -114,3 +114,31 @@ def test_optimize_merger():
 
     # TODO: ADD BEST TO OPTIMIZE FONT FAMILIY AND FONT SIZE
     # IDEA: USE A SPAN FIELD FOR EVERY STYLE TO IMPROVE OPTIMIZING POSSIBILITIES
+
+
+def test_optimize_abb_regression():
+    text = 'Abb. 2.2.: Topologie Paralleler Hybrid - 1 Batterie, 2 Kraftstofftank, 3 Getriebe, 4'
+    styles = [
+        fums.Style(
+            start=0, end=181, first='<span id="line12_5">', last='</span>'),
+        fums.Style(
+            start=0,
+            end=11,
+            first=
+            '<span style="font-size:9.96px;font-family:Consolas;font-family:LMRoman10;">',
+            last='</span>',
+        ),
+        fums.Style(
+            start=11,
+            end=85,
+            first=
+            '<span style="font-size:9.96px;font-family:Consolas;font-family:LMRoman10;">',
+            last='</span>',
+        )
+    ]
+    result = fums.merger(text, styles)
+    expected = ('<span id="line12_5"><span style="font-size:9.96px;'
+                'font-family:Consolas;font-family:LMRoman10;">Abb. 2.2.: '
+                'Topologie Paralleler Hybrid - 1 Batterie, 2 Kraftstofftank,'
+                ' 3 Getriebe, 4</span></span>')
+    assert result == expected
