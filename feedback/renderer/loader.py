@@ -246,30 +246,6 @@ def from_path(  # pylint:disable=R0914
     return loaded
 
 
-def fill_fonts(text, page, fontstore: iamraw.FontStore):
-    # TODO: MOVE THIS HACK/ IS THIS A HACK?
-    if not fontstore:
-        return
-    fontflag_errors = 0
-    for container_id, container in enumerate(text):
-        for line_id, line in enumerate(container):
-            for char_id, char in enumerate(line):
-                fontid = fontstore.fontid(page, container_id, line_id, char_id)
-                font = fontstore[fontid]
-                if font.flags is None:  # none is important, not empty
-                    flags = []
-                    fontflag_errors += 1
-                else:
-                    # TODO: REMOVE LIST, REPLACE WITH *-Tuple-Approach
-                    flags = list(font.flags)
-                if font.style == iamraw.Style.ITALIC:
-                    flags.append(iamraw.FontFlag.Italic)
-                char.flags = tuple(flags)
-                char.font = font.name
-    if fontflag_errors:
-        utila.error(f'no font flags {fontflag_errors}')
-
-
 @textflow.serialize.loadme
 def load_alignment(items):
     # TODO: MOVE TO WORDS
