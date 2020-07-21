@@ -31,7 +31,7 @@ import feedback.renderer.text
 import feedback.utils.multiple_styles
 
 
-def render_page(  # pylint:disable=R1260
+def render_page(
         page: feedback.renderer.content.HTMLPageContent,
         marks: feedback.renderer.mark.PageMarkConfiguration = None,
         shapes: list = None,
@@ -54,15 +54,11 @@ def render_page(  # pylint:disable=R1260
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
     raw.extend(feedback.renderer.boxes.render_boxes(page))
     for textcontainer in page.navigator:
-        text = textcontainer.text
-        styles = []
-        marked_words: list = wordmarker.markme(text)
-        # feedback.utils.multiple_styles.Style
-        marked_lines = linemarker.markme(text)
-        if marked_lines:
-            styles.append(marked_lines)
-        if marked_words:
-            styles.extend(marked_words)
+        styles = create_textstyle(
+            textcontainer,
+            wordmarker,
+            linemarker,
+        )
         html = create_textline(
             textcontainer,
             styles,
@@ -107,6 +103,18 @@ def render_images(images):
                  f' width:{width}px;height:{height}px"')
         img = (f'<img src="{fileimage}" {style}/>')
         result.append(img)
+    return result
+
+
+def create_textstyle(container, wordmarker, linemarker) -> list:
+    result = []
+    # feedback.utils.multiple_styles.Style
+    marked_lines = linemarker.markme(container.text)
+    if marked_lines:
+        result.append(marked_lines)
+    marked_words: list = wordmarker.markme(container.text)
+    if marked_words:
+        result.extend(marked_words)
     return result
 
 
