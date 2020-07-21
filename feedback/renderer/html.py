@@ -53,7 +53,7 @@ def render_page(  # pylint:disable=R1260
     raw = []
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
     raw.extend(feedback.renderer.boxes.render_boxes(page))
-    for textcontainer in page.content:
+    for textcontainer in page.navigator:
         text = textcontainer.text
         styles = []
         marked_words: list = wordmarker.markme(text)
@@ -63,7 +63,12 @@ def render_page(  # pylint:disable=R1260
             styles.append(marked_lines)
         if marked_words:
             styles.extend(marked_words)
-        html = create_textline(textcontainer, styles, page.alignment)
+        html = create_textline(
+            textcontainer,
+            styles,
+            page.alignment,
+            fontstore=page.fontstore,
+        )
         raw.append(html)
 
     if shapes:
@@ -105,12 +110,26 @@ def render_images(images):
     return result
 
 
-def create_textline(textcontainer, marked_line, alignments=None) -> str:  # pylint:disable=R0914
-    bounding = textcontainer.box
+def create_textline(  # pylint:disable=R0914
+        textcontainer,
+        marked_line,
+        alignments=None,
+        fontstore=None,
+) -> str:
+    bounding = textcontainer.bounding
     result = []
-    for index, line in enumerate(textcontainer):
+    lines = textcontainer.text.splitlines()
+    start = 0
+    for index, line in enumerate(lines):
+        end = start + len(line)
+        ranged = feedback.renderer.text.style_range(
+            textcontainer,
+            start,
+            end,
+            fontstore,
+        )
         # render multiline text lines
-        box = iamraw.split_y(bounding, index, len(textcontainer))
+        box = iamraw.split_y(bounding, index, len(lines))
         alignment = 'justify'
         if alignments:
             alignment = alignments(bounding=box)
@@ -121,12 +140,13 @@ def create_textline(textcontainer, marked_line, alignments=None) -> str:  # pyli
         location = f'position:absolute;{position}'
         line_style = []
         line_style.extend(marked_line)
-        fontstyle = feedback.renderer.text.render_inline(line)
+        fontstyle = feedback.renderer.text.render_inline(ranged)
         line_style.extend(fontstyle)
-        rendered = feedback.utils.multiple_styles.merger(line.text, line_style)
+        rendered = feedback.utils.multiple_styles.merger(line, line_style)
         rendered = rendered.replace('\n', '<br>')
         raw = f'<div style="{location}{alignment}">{rendered}</div>'
         result.append(raw)
+        start += len(line)
     html = ''.join(result)
     return html
 

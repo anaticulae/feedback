@@ -9,6 +9,7 @@
 
 import configo
 import iamraw
+import utila
 
 import feedback.utils.multiple_styles
 
@@ -16,33 +17,16 @@ import feedback.utils.multiple_styles
 THRESHOLD_RISE = configo.HV_FLOAT_PLUS(2.0).value
 
 
-def render_inline(line) -> feedback.utils.multiple_styles.Styles:
-    assert isinstance(line, iamraw.Line), type(line)
-    # TODO: SUPPORT FONT SIZE AND RISE
-    # TODO: CHECK FONT RISE TOLERANCE TO AVOID TO MANY GROUPS
-    chars = line.chars
-    grouped = [[chars[0]]]
-    for item in chars[1:]:
-        last = grouped[-1][-1]
-        if any((
-                item.size != last.size,
-                item.rise != last.rise,
-                item.font != last.font,
-                item.flags != last.flags,
-        )):
-            grouped.append([item])
-        else:
-            grouped[-1].append(item)
+def render_inline(styles) -> feedback.utils.multiple_styles.Styles:
+
     result = []
-    index = 0
-    for chunk in grouped:
-        start = index
-        end = start + len(chunk)
-        style = styles(chunk[0].flags)
-        font = f'font-family:{chunk[0].font};'
-        first = f'<span style="font-size:{chunk[0].size}px;{style}{font}">'
+    for style in styles:
+        start, end, size, rise, family, flags = style
+        fontstyle = style_fromflags(flags)
+        fontfamily = f'font-family:{family};'
+        first = f'<span style="font-size:{size}px;{fontfamily}{fontstyle}">'
         close = '</span>'
-        if chunk[0].rise > THRESHOLD_RISE:
+        if rise > THRESHOLD_RISE:
             # Threshold is required cause some text is raises a little bit
             # cause of font styling. For example: MARWICK, Alice `!ARWICK`
             # is set a little bit higher than the rest.
@@ -55,11 +39,35 @@ def render_inline(line) -> feedback.utils.multiple_styles.Styles:
                 first,
                 close,
             ))
-        index += len(chunk)
     return result
 
 
-def styles(flags: iamraw.FontFlags) -> str:
+def style_range(textcontainer, start, end, fontstore: iamraw.FontStore):
+    # start, end, size, rise, font = style
+    result = []
+    for item in textcontainer.style.content:
+        (start_, end_, size_, rise_, font_) = (
+            item.start,
+            item.end,
+            item.size,
+            item.rise,
+            item.font,
+        )
+        if start_ < start:
+            continue
+        if start_ >= end:
+            continue
+        end_ = utila.mins(end_, end)  # shrink upper border
+        font = fontstore[font_]
+        flags = list(font.flags)
+        if font.style == iamraw.Style.ITALIC:
+            flags.append(iamraw.FontFlag.Italic)
+        style = (start_, end_, size_, rise_, font.name, tuple(flags))
+        result.append(style)
+    return result
+
+
+def style_fromflags(flags: iamraw.FontFlags) -> str:
     if not flags:
         return ''
     result = ''
@@ -69,8 +77,8 @@ def styles(flags: iamraw.FontFlags) -> str:
         result += 'font-weight:bold;'
     if iamraw.FontFlag.Serif in flags:
         result += 'font-family:sans-serif;'
-    if iamraw.FontFlag.Symbolic in flags:
-        result += 'font-family:Consolas;'
+    # if iamraw.FontFlag.Symbolic in flags:
+    #     result += 'font-family:Consolas;'
     if iamraw.FontFlag.SmallCap in flags:
         result += 'font-variant:small-caps;'
     return result

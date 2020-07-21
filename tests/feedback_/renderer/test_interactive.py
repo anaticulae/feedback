@@ -27,6 +27,7 @@ def test_renderer_interactive_showhide(testdir):
         border=(50, 700, 50, 800),
         page=10,
         pagesize=(800, 1024),
+        navigator=[],
     )
     content = feedback.renderer.html.render_page(page=html)
 

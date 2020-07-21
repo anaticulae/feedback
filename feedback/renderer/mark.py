@@ -81,9 +81,9 @@ class WordAccess:
             return self.cache[page]
 
         result = []
-        for container in self.content[page].content:
-            for line in container:
-                result.extend(line.text.strip().split())
+        for container in self.content[page].navigator:
+            for line in container.text.splitlines():
+                result.extend(line.strip().split())
         self.cache[page] = result
         return result
 

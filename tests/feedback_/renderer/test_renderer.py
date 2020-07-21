@@ -134,7 +134,7 @@ def test_sentence_selector(bachelor56):  # pylint:disable=W0621
 
     generator = feedback.renderer.mark.WordGenerator()
     left = []
-    for line in selected.content:
+    for line in selected.navigator:
         for _, item in generator.words(line.text):
             left.append(item)
 
@@ -214,5 +214,4 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # 
         assert source.count('Abb. 2.2.: ') == 1
 
         # TODO: REPLACE LATER
-        assert source.count('id="line12_5"') == 3
-        # assert source.count('id="line12_5"') == 1
+        assert source.count('id="line12_5"') == 1

@@ -51,8 +51,15 @@ def load(  # pylint:disable=R0914,too-many-arguments
     assert all((isinstance(item, str) or item is None)
                for item in [text, textposition, boxes, hits, horizontals])
 
-    text = serializeraw.load_document(text, pages=pages)
-    textposition = serializeraw.load_textpositions(textposition, pages=pages)
+    navigators = serializeraw.create_pagetextnavigators_fromfile(
+        text=text,
+        textpositions=textposition,
+        fontheader=fontheader,
+        fontcontent=fontcontent,
+        fill_empty=False,  # required if only some pages are selected
+        pages=pages,
+    )
+
     oneline_navigators = serializeraw.create_pagetextnavigators_fromfile(
         oneline_text,
         oneline_textposition,
@@ -96,36 +103,32 @@ def load(  # pylint:disable=R0914,too-many-arguments
             # not image are loaded
             images = figures
 
-    fontstore = None
     if fontheader:
         fontstore = serializeraw.create_fontstore(
             fontheader,
             fontcontent,
             pages=pages,
         )
+
     result = [
         load_page(
-            borders,
-            fontstore,
             alignment=alignment,
+            border=borders,
             boxes=boxes,
+            fontstore=fontstore,
             hits=hits,
             horizontals=horizontals,
             images=images,
             lines=lines,
-            text=page,
-            textposition=textposition,
-        ) for page in text
+            navigator=content,
+            page=content.page,
+        ) for content in navigators
     ]
     return result
 
 
-def load_page(border, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=R0914
-    text = kwargs.pop('text')
-    # TODO: DETECT DIMENSION OUT OF TEXT
-    page = text.page
+def load_page(border, page, navigator, fontstore, **kwargs):  # pylint:disable=R0914
     pagesize = utila.select_page(border, page).size
-    textposition = utila.select_page(kwargs.pop('textposition'), page=page)
     alignment = kwargs.pop('alignment', None)
     if alignment:
         alignment = functools.partial(alignment.alignment, page=page)
@@ -141,19 +144,12 @@ def load_page(border, fontstore: iamraw.FontStore, **kwargs):  # pylint:disable=
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
 
-    # skip non TextContainer boxes - for example LTRect
-    selected = [
-        item for item in text.children if isinstance(item, iamraw.TextContainer)
-    ]
-    fill_fonts(selected, page, fontstore)
-    for index, children in enumerate(text):
-        # update with loaded text position
-        children.box = textposition.content[index][0]
     result = feedback.renderer.content.HTMLPageContent(
         alignment=alignment,
         border=border,
         boxes=boxes,
-        content=selected,
+        fontstore=fontstore,
+        navigator=navigator,
         pagesize=pagesize,
         horizontals=horizontals,
         images=images,
