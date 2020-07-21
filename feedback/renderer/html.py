@@ -151,7 +151,8 @@ def create_textline(  # pylint:disable=R0914
         fontstyle = feedback.renderer.text.render_inline(ranged)
         line_style.extend(fontstyle)
         rendered = feedback.utils.multiple_styles.merger(line, line_style)
-        rendered = rendered.replace('\n', '<br>')
+        # remove newline, every line is rendered separately due div container
+        rendered = rendered.replace('\n', '')
         raw = f'<div style="{location}{alignment}">{rendered}</div>'
         result.append(raw)
         start += len(line)
