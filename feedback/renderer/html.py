@@ -92,20 +92,6 @@ def render_page(
     return result
 
 
-def render_images(images):
-    result = []
-    for _, info, fileimage in images:
-        bounding = info.bounding
-        width = utila.roundme(info.bounding[2] - info.bounding[0])
-        height = utila.roundme(info.bounding[3] - info.bounding[1])
-        style = (f'style="position:absolute;border:1px solid black;'
-                 f'top:{bounding[1]}px;left:{bounding[0]}px;'
-                 f' width:{width}px;height:{height}px"')
-        img = (f'<img src="{fileimage}" {style}/>')
-        result.append(img)
-    return result
-
-
 def create_textstyle(container, wordmarker, linemarker) -> list:
     result = []
     # feedback.utils.multiple_styles.Style
@@ -118,7 +104,7 @@ def create_textstyle(container, wordmarker, linemarker) -> list:
     return result
 
 
-def create_textline(  # pylint:disable=R0914
+def create_textline(
         textcontainer,
         marked_line,
         alignments=None,
@@ -138,26 +124,31 @@ def create_textline(  # pylint:disable=R0914
         )
         # render multiline text lines
         box = iamraw.split_y(bounding, index, len(lines))
-        alignment = 'justify'
-        if alignments:
-            alignment = alignments(bounding=box)
-        alignment = 'left'  # TODO: DISABLE FEATURE
-        alignment = create_alignment(alignment)
-        width = utila.roundme((box.x1 - box.x0) * 1.01)
-        position = f'top:{box.y0}px;left:{box.x0}px;min-width:{width}px;'
-        location = f'position:absolute;{position}'
-        line_style = []
-        line_style.extend(marked_line)
-        fontstyle = feedback.renderer.text.render_inline(ranged)
-        line_style.extend(fontstyle)
-        rendered = feedback.utils.multiple_styles.merger(line, line_style)
-        # remove newline, every line is rendered separately due div container
-        rendered = rendered.replace('\n', '')
-        raw = f'<div style="{location}{alignment}">{rendered}</div>'
+        raw = create_div(line, box, ranged, marked_line, alignments)
         result.append(raw)
         start += len(line)
     html = ''.join(result)
     return html
+
+
+DEFAULT_ALIGNMENT = 'justify'
+
+
+def create_div(line, box, ranged, marked_line, alignments) -> str:
+    alignment = alignments(bounding=box) if alignments else DEFAULT_ALIGNMENT
+    alignment = create_alignment(alignment)
+    width = utila.roundme((box.x1 - box.x0) * 1.01)
+    position = f'top:{box.y0}px;left:{box.x0}px;min-width:{width}px;'
+    location = f'position:absolute;{position}'
+    line_style = []
+    line_style.extend(marked_line)
+    fontstyle = feedback.renderer.text.render_inline(ranged)
+    line_style.extend(fontstyle)
+    rendered = feedback.utils.multiple_styles.merger(line, line_style)
+    # remove newline, every line is rendered separately due div container
+    rendered = rendered.replace('\n', '')
+    raw = f'<div style="{location}{alignment}">{rendered}</div>'
+    return raw
 
 
 def create_alignment(alignment: textflow.alignment.style.TextAlignment):
@@ -170,6 +161,20 @@ def create_alignment(alignment: textflow.alignment.style.TextAlignment):
             raw = 'right'
     raw = 'left'  # TODO: DISABLE FEATURE
     return f'text-align:{raw};text-align-last:{raw};'
+
+
+def render_images(images):
+    result = []
+    for _, info, fileimage in images:
+        bounding = info.bounding
+        width = utila.roundme(info.bounding[2] - info.bounding[0])
+        height = utila.roundme(info.bounding[3] - info.bounding[1])
+        style = (f'style="position:absolute;border:1px solid black;'
+                 f'top:{bounding[1]}px;left:{bounding[0]}px;'
+                 f' width:{width}px;height:{height}px"')
+        img = (f'<img src="{fileimage}" {style}/>')
+        result.append(img)
+    return result
 
 
 def create_pagebox(html: str, page: int, dimension) -> str:
