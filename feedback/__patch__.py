@@ -8,6 +8,7 @@
 # =============================================================================
 
 import iamraw
+import iamraw.path
 import texmex
 import utila
 
@@ -118,3 +119,16 @@ def select_textcontainer(content, mode: texmex.PageTextNavigatorMode):
         ]
         return content
     return content
+
+
+def sections_(path: str, prefix: str = '') -> str:
+    # TODO: REPLACE WITH IAMRAW CODE
+    return utila.pathconnector(
+        path,
+        'sections',
+        'section_result',
+        prefix,
+    )
+
+
+iamraw.path.sections_ = sections_

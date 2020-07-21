@@ -38,6 +38,7 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='line_line'),
             ResultFile(producer='decider_border', name='detection_hits'),
             ResultFile(producer='words', name='word_result'),
+            ResultFile(producer='sections', name='section_result'),
             Pattern(name='*_user', ext='yaml'),
         ],
         (utila.File('feedback__view_pages/*', ext='html'),),

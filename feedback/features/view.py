@@ -12,8 +12,10 @@ in user document.
 
 In the current state text and horizontal lines are printed.
 """
+
 import collections
 import copy
+import os
 
 import protocol
 import serializeraw
@@ -43,6 +45,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         lines: str,
         hits: str,
         words: str,
+        sections: str,
         *linters: list,
         pages: tuple = None,
 ) -> list:
@@ -66,11 +69,13 @@ def work(  # pylint:disable=R0914,too-many-arguments
         horizontals(str): path to extracted horizontals
         lines(str): path to extracted lines
         words(path): path to extracted sentences
+        sections(path): path to extracted sections
         linters(str): path to folder with linter results
         pages(tuple): selected pages to process
     Returns:
         List of extracted html view per page.
     """
+    sections = sections if os.path.exists(sections) else None
     html = feedback.renderer.loader.load(
         text,
         textpositions,
@@ -86,6 +91,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         images=images,
         figures=figures,
         lines=lines,
+        sections=sections,
         pages=pages,
     )
     findings = load_findings(linters)

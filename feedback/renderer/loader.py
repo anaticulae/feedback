@@ -44,6 +44,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
         images: str = None,
         figures: str = None,
         lines: str = None,
+        sections: str = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     """Load data to present as html view.
@@ -124,6 +125,11 @@ def load(  # pylint:disable=R0914,too-many-arguments
         pages=pages,
     ) if oneline_fontheader else None
 
+    sections = serializeraw.load_sections(
+        sections,
+        pages=pages,
+    ) if sections else None
+
     result = [
         load_page(
             alignment=alignment,
@@ -137,6 +143,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
             images=images,
             lines=lines,
             navigator=content,
+            sections=sections,
             page=content.page,
         ) for content in navigators
     ]
@@ -150,6 +157,7 @@ def load_page(
         fontstore,
         oneline,
         oneline_fontstore,
+        sections,
         **kwargs,
 ):  # pylint:disable=R0914
     pagesize = utila.select_page(border, page).size
@@ -212,6 +220,7 @@ def from_path(  # pylint:disable=R0914
     boxes = iamraw.path.boxed(path)
     horizontals = iamraw.path.horizontals(path)
     lines = iamraw.path.line(path)
+    sections_ = iamraw.path.sections_(path)  # pylint:disable=E1101
     hits = os.path.join(path, 'decider_border__detection_hits.yaml')
     # make border renderer optional
     fontheader = fontheader if os.path.exists(fontheader) else None
@@ -221,6 +230,7 @@ def from_path(  # pylint:disable=R0914
     horizontals = horizontals if os.path.exists(horizontals) else None
     lines = lines if os.path.exists(lines) else None
     alignment = alignment if os.path.exists(alignment) else None
+    sections_ = sections_ if os.path.exists(sections_) else None
     # TODO: INVESTIGATE HERE
     images = [os.path.join(path, 'rawmaker__images_images')]
     figures = [os.path.join(path, 'rawmaker__figures_figures')]
@@ -241,6 +251,7 @@ def from_path(  # pylint:disable=R0914
         oneline_textposition=oneline_textposition,
         oneline_fontheader=oneline_fontheader,
         oneline_fontcontent=oneline_fontcontent,
+        sections=sections_,
         pages=pages,
     )
     return loaded
