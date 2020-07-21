@@ -12,6 +12,7 @@ import os
 
 import iamraw
 import iamraw.path
+import iamraw.sections
 import serializeraw
 import texmex
 import textflow.features.alignment
@@ -136,13 +137,13 @@ def load(  # pylint:disable=R0914,too-many-arguments
             border=borders,
             boxes=boxes,
             fontstore=fontstore,
-            oneline=oneline,
+            onelines=oneline,
             oneline_fontstore=oneline_fontstore,
             hits=hits,
             horizontals=horizontals,
             images=images,
             lines=lines,
-            navigator=content,
+            navigators=navigators,
             sections=sections,
             page=content.page,
         ) for content in navigators
@@ -153,13 +154,16 @@ def load(  # pylint:disable=R0914,too-many-arguments
 def load_page(
         border,
         page,
-        navigator,
+        navigators,
         fontstore,
-        oneline,
+        onelines,
         oneline_fontstore,
         sections,
         **kwargs,
 ):  # pylint:disable=R0914
+    navigator = utila.select_page(navigators, page)
+    oneline = utila.select_page(onelines, page)
+
     pagesize = utila.select_page(border, page).size
     alignment = kwargs.pop('alignment', None)
     if alignment:
@@ -173,6 +177,14 @@ def load_page(
     boxes = select_page(kwargs, 'boxes', page)
     horizontals = select_page(kwargs, 'horizontals', page)
     lines = select_page(kwargs, 'lines', page)
+
+    if select_layout(page, sections) == 'oneline':
+        if oneline_fontstore:
+            navigator = oneline
+            fontstore = oneline_fontstore
+        else:
+            utila.error('could not select oneline layout, '
+                        'there is not oneline fontstore available')
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
 
@@ -191,6 +203,26 @@ def load_page(
         page=page,
     )
     return result
+
+
+def select_layout(page: int, sections: iamraw.Section) -> str:
+    """\
+    Note; This is a first weak approach.
+    """
+    if not sections:
+        utila.log('require sections to perform layout selection - use default')
+        return 'default'
+    flat = utila.flatten(sections)
+    for item in flat:
+        if item.start != page or item.end != page:
+            continue
+        if isinstance(item, (
+                iamraw.sections.TableOfContent,
+                iamraw.sections.FigureTable,
+                iamraw.sections.SymbolTable,
+        )):
+            return 'oneline'
+    return 'default'
 
 
 def select_page(args, key, page):
