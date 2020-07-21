@@ -22,9 +22,11 @@ import feedback.renderer.images as fri
 class HTMLPageContent:
     alignment: textflow.alignment.info.AlignmentInfo = None
     border: tuple = None
-    fontstore: iamraw.FontStore = None
     boxes: utila.Rectangles = dataclasses.field(default_factory=list)
     navigator: texmex.PageTextNavigator = None
+    fontstore: iamraw.FontStore = None
+    oneline: texmex.PageTextNavigator = None
+    oneline_fontstore: iamraw.FontStore = None
     pagesize: iamraw.PageSize = None
     images: fri.ZippedImageInfos = dataclasses.field(default_factory=list)
     horizontals: utila.Rectangles = dataclasses.field(default_factory=list)

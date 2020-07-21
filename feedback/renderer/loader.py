@@ -35,8 +35,10 @@ def load(  # pylint:disable=R0914,too-many-arguments
         borders: str,
         alignment: str = None,
         boxes: str = None,
-        fontcontent: str = None,
         fontheader: str = None,
+        fontcontent: str = None,
+        oneline_fontheader: str = None,
+        oneline_fontcontent: str = None,
         hits: str = None,
         horizontals: str = None,
         images: str = None,
@@ -60,9 +62,12 @@ def load(  # pylint:disable=R0914,too-many-arguments
         pages=pages,
     )
 
-    oneline_navigators = serializeraw.create_pagetextnavigators_fromfile(
+    oneline = serializeraw.create_pagetextnavigators_fromfile(
         oneline_text,
         oneline_textposition,
+        oneline_fontheader,
+        oneline_fontcontent,
+        fill_empty=False,
         mode=texmex.PageTextNavigatorMode.HORIZONTAL,
         pages=pages,
     )
@@ -70,8 +75,12 @@ def load(  # pylint:disable=R0914,too-many-arguments
 
     alignment = load_alignment(alignment, pages=pages) if alignment else None  # pylint:disable=E1123
     if alignment:
+        # TODO: REMOVE AFTER FIXING DUMPING/LOADER
+        alignment = [
+            utila.select_page(alignment, page=item.page) for item in oneline
+        ]
         alignment = textflow.alignment.info.AlignmentInfo(
-            oneline_navigators,
+            oneline,
             alignment,
         )
 
@@ -100,15 +109,20 @@ def load(  # pylint:disable=R0914,too-many-arguments
             # add loaded figures to images
             images.extend(figures)
         else:
-            # not image are loaded
+            # no images are loaded
             images = figures
 
-    if fontheader:
-        fontstore = serializeraw.create_fontstore(
-            fontheader,
-            fontcontent,
-            pages=pages,
-        )
+    fontstore = serializeraw.create_fontstore(
+        fontheader,
+        fontcontent,
+        pages=pages,
+    ) if fontheader else None
+
+    oneline_fontstore = serializeraw.create_fontstore(
+        oneline_fontheader,
+        oneline_fontcontent,
+        pages=pages,
+    ) if oneline_fontheader else None
 
     result = [
         load_page(
@@ -116,6 +130,8 @@ def load(  # pylint:disable=R0914,too-many-arguments
             border=borders,
             boxes=boxes,
             fontstore=fontstore,
+            oneline=oneline,
+            oneline_fontstore=oneline_fontstore,
             hits=hits,
             horizontals=horizontals,
             images=images,
@@ -127,7 +143,15 @@ def load(  # pylint:disable=R0914,too-many-arguments
     return result
 
 
-def load_page(border, page, navigator, fontstore, **kwargs):  # pylint:disable=R0914
+def load_page(
+        border,
+        page,
+        navigator,
+        fontstore,
+        oneline,
+        oneline_fontstore,
+        **kwargs,
+):  # pylint:disable=R0914
     pagesize = utila.select_page(border, page).size
     alignment = kwargs.pop('alignment', None)
     if alignment:
@@ -150,6 +174,8 @@ def load_page(border, page, navigator, fontstore, **kwargs):  # pylint:disable=R
         boxes=boxes,
         fontstore=fontstore,
         navigator=navigator,
+        oneline_fontstore=oneline_fontstore,
+        oneline=oneline,
         pagesize=pagesize,
         horizontals=horizontals,
         images=images,
@@ -180,6 +206,8 @@ def from_path(  # pylint:disable=R0914
     borders = iamraw.path.sizeandborder(path)
     fontheader = iamraw.path.fontheader(path)
     fontcontent = iamraw.path.fontcontent(path)
+    oneline_fontheader = iamraw.path.fontheader(path, prefix='oneline')
+    oneline_fontcontent = iamraw.path.fontcontent(path, prefix='oneline')
     alignment = textflow.path.alignment(path)
     boxes = iamraw.path.boxed(path)
     horizontals = iamraw.path.horizontals(path)
@@ -200,6 +228,8 @@ def from_path(  # pylint:disable=R0914
         borders=borders,
         alignment=alignment,
         boxes=boxes,
+        text=text,
+        textposition=textposition,
         fontcontent=fontcontent,
         fontheader=fontheader,
         hits=hits,
@@ -209,8 +239,8 @@ def from_path(  # pylint:disable=R0914
         lines=lines,
         oneline_text=oneline_text,
         oneline_textposition=oneline_textposition,
-        text=text,
-        textposition=textposition,
+        oneline_fontheader=oneline_fontheader,
+        oneline_fontcontent=oneline_fontcontent,
         pages=pages,
     )
     return loaded
