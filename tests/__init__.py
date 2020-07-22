@@ -6,10 +6,3 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-
-import os
-
-import feedback
-
-TEST_PATH = os.path.join(feedback.ROOT, 'tests')
-assert os.path.exists(TEST_PATH)

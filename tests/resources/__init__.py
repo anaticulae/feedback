@@ -7,47 +7,38 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
+import power
 
 import feedback
 
-RESOURCES = os.path.join(feedback.ROOT, 'tests/resources')
+power.setup(feedback.ROOT)
 
-BACHELOR = os.path.join(RESOURCES, 'bachelor')
-BOOK = os.path.join(RESOURCES, 'book')
-DOCU = os.path.join(RESOURCES, 'docu')
-MASTER = os.path.join(RESOURCES, 'master')
+RESTRUCTED_PDF = power.DOCU27_PDF
+PORTING_PYTHON3_PDF = power.DOCU09_PDF
+MASTER72_PDF = power.MASTER072_PDF
 
-GENERATED = os.path.join(RESOURCES, 'generated')
+LEFTRIGHT = power.BOOK007_PDF
+LEFTRIGHT_GENERATED = power.link(power.BOOK007_PDF)
 
-RESTRUCTED_PDF = os.path.join(DOCU, 'restructuredtext.pdf')
-PORTING_PYTHON3_PDF = os.path.join(DOCU, 'porting_extension_modules.pdf')
-MASTER72_PDF = os.path.join(MASTER, 'page_72_noimages_toc.pdf')
+BACHELOR56 = power.link(power.BACHELOR056_PDF)
+BACHELOR56_PDF = power.BACHELOR056_PDF
 
-LEFTRIGHT = os.path.join(BOOK, 'leftright.pdf')
-LEFTRIGHT_GENERATED = os.path.join(GENERATED, 'book_leftright')
+BACHELOR90 = power.link(power.BACHELOR090_PDF)
+BACHELOR90_PDF = power.BACHELOR090_PDF
 
-BACHELOR56 = os.path.join(GENERATED, 'bachelor_page_56_hard_to_read')
-BACHELOR56_PDF = os.path.join(BACHELOR, 'page_56_hard_to_read.pdf')
+MASTER116 = power.link(power.MASTER116_PDF)
+MASTER116_PDF = power.MASTER116_PDF
 
-BACHELOR90 = os.path.join(GENERATED, 'bachelor_bachelor90')
-BACHELOR90_PDF = os.path.join(BACHELOR, 'bachelor90.pdf')
+MASTER72_GENERATED = power.link(power.MASTER072_PDF)
 
-MASTER116 = os.path.join(GENERATED, 'master_page_116_images_toc_formular')
-MASTER116_PDF = os.path.join(MASTER, 'page_116_images_toc_formular.pdf')
-
-MASTER72_GENERATED = os.path.join(GENERATED, 'master_page_72_noimages_toc')
-
-GENERATED_PORTING_PYTHON3 = os.path.join(GENERATED, 'docu_porting_extension_modules') # yapf:disable
+GENERATED_PORTING_PYTHON3 = power.link(power.DOCU09_PDF)
 
 # test after running generation step in update.py
 REQUIRED_RESOURCES = [
-    BACHELOR,
     BACHELOR56,
     BACHELOR56_PDF,
     BACHELOR90,
     BACHELOR90_PDF,
-    GENERATED,
     GENERATED_PORTING_PYTHON3,
     LEFTRIGHT,
     LEFTRIGHT_GENERATED,
@@ -55,6 +46,4 @@ REQUIRED_RESOURCES = [
     MASTER116_PDF,
     MASTER72_GENERATED,
     MASTER72_PDF,
-    RESOURCES,
-    RESTRUCTED_PDF,
 ]
