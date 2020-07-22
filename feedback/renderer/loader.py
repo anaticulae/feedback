@@ -15,6 +15,7 @@ import iamraw.path
 import iamraw.sections
 import serializeraw
 import texmex
+import textflow.alignment.style
 import textflow.features.alignment
 import textflow.path
 import utila
@@ -182,6 +183,10 @@ def load_page(
         if oneline_fontstore:
             navigator = oneline
             fontstore = oneline_fontstore
+            # justify all text
+            alignment = lambda bounding: [
+                textflow.alignment.style.TextAlignment.BLOCK
+            ]
         else:
             utila.error('could not select oneline layout, '
                         'there is not oneline fontstore available')

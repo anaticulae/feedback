@@ -159,7 +159,6 @@ def create_alignment(alignment: textflow.alignment.style.TextAlignment):
             raw = 'left'
         if alignment == textflow.alignment.style.TextAlignment.RIGHT:
             raw = 'right'
-    raw = 'left'  # TODO: DISABLE FEATURE
     return f'text-align:{raw};text-align-last:{raw};'
 
 
