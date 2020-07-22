@@ -59,16 +59,21 @@ def load_image_informations(
 IMAGE_EXT = ['png', 'jpg', 'jpeg']
 
 
-def load_images(path: str) -> RawImages:
+def load_images(path: str, pages: tuple = None) -> RawImages:
     if not os.path.exists(path):
         return []
+
+    informations = load_image_informations(path, pages=pages)
+    todo = {item[0] for item in informations}
 
     # TODO: EXTEND FILE EXT?
     files = utila.file_list(path, include=IMAGE_EXT)
     files = utila.files_sort(files)  # pylint:disable=R0204
 
     result = []
-    for item in files:
+    for index, item in enumerate(files):
+        if index not in todo:
+            continue
         filename, fileext = utila.file_name(item), utila.file_ext(item)
         loaded = utila.file_read_binary(os.path.join(path, item))
         raw = RawImage(name=filename, ext=fileext, raw=loaded)

@@ -15,7 +15,7 @@ import feedback.renderer.images
 def work(source: list, pages: tuple = None) -> typing.List[bytes]:  # pylint:disable=W0613
     result = []
     for item in source:
-        images = feedback.renderer.images.load_images(item)
+        images = feedback.renderer.images.load_images(item, pages=pages)
         if not images:
             continue
         for image in images:
