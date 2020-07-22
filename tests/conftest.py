@@ -26,6 +26,7 @@ RESOURCES = [
     tests.resources.MASTER72_PDF,
     tests.resources.PORTING_PYTHON3_PDF,
     tests.resources.RESTRUCTED_PDF,
+    (power.HOMEWORK025_PDF, '0:10'),
 ]
 
 WORKER = 6
@@ -37,6 +38,7 @@ def pytest_sessionstart():
 
 
 def extract(files):
+    # TODO: ENABLE SIMPLE PATH REPOSITORY PATTERN LATER
     decider.example.extract(
         files,
         power.generated(),
