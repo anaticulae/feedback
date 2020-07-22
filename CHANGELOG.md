@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.2.0
+
+### Feature
+
+* use simple approach to select rendering layout source (a30611e49083)
+* add section resource to decide which printing layout to use (68921d7e48d7)
+* remove none required headline (6d9c19b0d411)
+* load additional oneline navigator (ad2d5622b926)
+
 ## v1.1.0
 
 ### Feature
