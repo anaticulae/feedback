@@ -46,6 +46,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         hits: str,
         words: str,
         sections: str,
+        headerfooter: str,
         *linters: list,
         pages: tuple = None,
 ) -> list:

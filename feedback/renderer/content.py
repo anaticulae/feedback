@@ -31,6 +31,7 @@ class HTMLPageContent:
     images: fri.ZippedImageInfos = dataclasses.field(default_factory=list)
     horizontals: utila.Rectangles = dataclasses.field(default_factory=list)
     lines: utila.Rectangles = dataclasses.field(default_factory=list)
+    navigator_soc: int = None
     page: int = None
 
     def __repr__(self):

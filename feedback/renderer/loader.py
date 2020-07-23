@@ -47,6 +47,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
         figures: str = None,
         lines: str = None,
         sections: str = None,
+        headerfooter: str = None,
         pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     """Load data to present as html view.
@@ -132,6 +133,11 @@ def load(  # pylint:disable=R0914,too-many-arguments
         pages=pages,
     ) if sections else None
 
+    headerfooter = serializeraw.load_headerfooter(
+        headerfooter,
+        pages=pages,
+    ) if headerfooter else None
+
     result = [
         load_page(
             alignment=alignment,
@@ -146,6 +152,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
             lines=lines,
             navigators=navigators,
             sections=sections,
+            headerfooter=headerfooter,
             page=content.page,
         ) for content in navigators
     ]
@@ -160,10 +167,17 @@ def load_page(
         onelines,
         oneline_fontstore,
         sections,
+        headerfooter,
         **kwargs,
 ):  # pylint:disable=R0914
     navigator = utila.select_page(navigators, page)
     oneline = utila.select_page(onelines, page)
+
+    if headerfooter:
+        headerfooter = utila.select_page(headerfooter, page)
+
+    navigator_soc = soc(navigator, headerfooter)
+    oneline_soc = soc(oneline, headerfooter)
 
     pagesize = utila.select_page(border, page).size
     alignment = kwargs.pop('alignment', None)
@@ -187,6 +201,7 @@ def load_page(
             alignment = lambda bounding: [
                 textflow.alignment.style.TextAlignment.BLOCK
             ]
+            navigator_soc = oneline_soc
         else:
             utila.error('could not select oneline layout, '
                         'there is not oneline fontstore available')
@@ -205,9 +220,22 @@ def load_page(
         horizontals=horizontals,
         images=images,
         lines=lines,
+        navigator_soc=navigator_soc,
         page=page,
     )
     return result
+
+
+def soc(navigator, header):
+    """Start of Content"""
+    if not header:
+        return None
+    header = header.header
+    if not header:
+        return None
+    end = header.end
+    before = len(navigator.before(end))
+    return before
 
 
 def select_layout(page: int, sections: iamraw.Section) -> str:
@@ -251,6 +279,7 @@ def from_path(  # pylint:disable=R0914
     borders = iamraw.path.sizeandborder(path)
     fontheader = iamraw.path.fontheader(path)
     fontcontent = iamraw.path.fontcontent(path)
+    headerfooter = iamraw.path.headerfooters(path)
     oneline_fontheader = iamraw.path.fontheader(path, prefix='oneline')
     oneline_fontcontent = iamraw.path.fontcontent(path, prefix='oneline')
     alignment = textflow.path.alignment(path)
@@ -266,6 +295,7 @@ def from_path(  # pylint:disable=R0914
     boxes = boxes if os.path.exists(boxes) else None
     horizontals = horizontals if os.path.exists(horizontals) else None
     lines = lines if os.path.exists(lines) else None
+    headerfooter = headerfooter if os.path.exists(headerfooter) else None
     alignment = alignment if os.path.exists(alignment) else None
     sections_ = sections_ if os.path.exists(sections_) else None
     # TODO: INVESTIGATE HERE
@@ -289,6 +319,7 @@ def from_path(  # pylint:disable=R0914
         oneline_fontheader=oneline_fontheader,
         oneline_fontcontent=oneline_fontcontent,
         sections=sections_,
+        headerfooter=headerfooter,
         pages=pages,
     )
     return loaded
