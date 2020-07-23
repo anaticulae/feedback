@@ -240,12 +240,10 @@ class WordMarker:
 
 class LineMarker:
 
-    def __init__(self, page, marks=None):
-        if marks is None:
-            marks = set()
-        self.marks = marks
+    def __init__(self, page, marks=None, startofcontent: int = None):
         self.page = page
-        self.index = 0
+        self.index = 0 if startofcontent is None else 0 - startofcontent
+        self.marks = marks if marks is not None else set()
 
     def markme(self, line) -> fums.Style:
         if not line:

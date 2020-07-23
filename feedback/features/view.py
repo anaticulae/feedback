@@ -71,6 +71,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         lines(str): path to extracted lines
         words(path): path to extracted sentences
         sections(path): path to extracted sections
+        headerfooter(path): path to extracted headerfooter
         linters(str): path to folder with linter results
         pages(tuple): selected pages to process
     Returns:
@@ -93,6 +94,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         figures=figures,
         lines=lines,
         sections=sections,
+        headerfooter=headerfooter,
         pages=pages,
     )
     findings = load_findings(linters)

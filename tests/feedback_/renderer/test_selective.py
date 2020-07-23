@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import feedback.renderer.mark
 import tests.feedback_.renderer as tfr
 from tests.feedback_.fixtures import master116  # pylint:disable=W0611
 
@@ -23,3 +24,25 @@ def test_renderer_select_source_master116_toc(tmpdir, master116):  # pylint:disa
 
         toc_lines = source.count('text-align-last:justify')
         assert toc_lines >= 30, toc_lines
+
+
+def test_renderer_select_source_master116_startofcontent(tmpdir, master116):  # pylint:disable=W0621
+    """Ensure that `start of content/soc` which means the offset between
+    pagetextnavigator and pagetextcontentnavigator is handled properly
+    and `1. Einleitung` is marked with red background."""
+    page = 8
+    marks = feedback.renderer.mark.PageMarkConfiguration(page=8, linemarks={0})
+    with tfr.render_and_open(
+            tmpdir,
+            master116,
+            marks=marks,
+            css=r'#line8_0{background:red};',
+            page=page,
+    ) as source:
+        lines = source.splitlines()
+        # ensure that `1 .Einleitung` is marked with `line8_0`
+        match = [
+            '<span id="line8_0">' in line and '1. Einleitung' in line
+            for line in lines
+        ]
+        assert any(match), source

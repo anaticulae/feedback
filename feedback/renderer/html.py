@@ -48,7 +48,11 @@ def render_page(
     if marks is None:
         marks = feedback.renderer.mark.PageMarkConfiguration()
     wordmarker = feedback.renderer.mark.WordMarker(page.page, marks.wordmarks)
-    linemarker = feedback.renderer.mark.LineMarker(page.page, marks.linemarks)
+    linemarker = feedback.renderer.mark.LineMarker(
+        page.page,
+        marks.linemarks,
+        startofcontent=page.navigator_soc,
+    )
 
     raw = []
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
