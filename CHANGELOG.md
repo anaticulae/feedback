@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.3.0
+
+### Feature
+
+* use `start of content` to align lines properly (a050d92d9705)
+* add navigator start of content as content offset (59513c55ec35)
+* use pages flag to copy only required images and figures (edcc01ad32d4)
+* enable justify selector (14d93f039b40)
+
 ## v1.2.0
 
 ### Feature
