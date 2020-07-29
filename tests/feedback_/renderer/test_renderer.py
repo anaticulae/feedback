@@ -160,7 +160,6 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
     # TODO: GIVE THIS TEST A PURPOSE
 
 
-@pytest.mark.xfail(reason='adjust unit test to correct behavior')
 def test_render_master72_marked_lines(tmpdir, masterpage72):  # pylint:disable=W0621
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
