@@ -18,6 +18,7 @@ import texmex
 import textflow.alignment.style
 import textflow.features.alignment
 import textflow.path
+import textflow.serialize
 import utila
 
 import feedback.renderer.boxes
@@ -78,15 +79,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
     borders = serializeraw.load_pageborders(borders, pages=pages)
 
     alignment = load_alignment(alignment, pages=pages) if alignment else None  # pylint:disable=E1123
-    if alignment:
-        # TODO: REMOVE AFTER FIXING DUMPING/LOADER
-        alignment = [
-            utila.select_page(alignment, page=item.page) for item in oneline
-        ]
-        alignment = textflow.alignment.info.AlignmentInfo(
-            oneline,
-            alignment,
-        )
+    alignment = fix_alignment(alignment, oneline)
 
     if isinstance(images, str):
         images = [images]
@@ -338,3 +331,30 @@ def load_alignment(items):
     else:
         alignments = [load_raw(item) for item in items]
     return alignments
+
+
+def fix_alignment(alignment, oneline) -> textflow.alignment.info.AlignmentInfo:
+    """Set none alignment pages to empty list.
+
+    TODO: INVESTIGATE WHY ALIGNMENT CAN BE EMPTY.
+    """
+    if not alignment:
+        return None
+    # TODO: REMOVE AFTER FIXING DUMPING/LOADER
+    alignment = [(item.page, utila.select_page(alignment, page=item.page))
+                 for item in oneline]
+    for page, content in alignment:
+        if content is None:
+            utila.error(f'no alignment for page: {page}')
+    alignment = [
+        item if item is not None else textflow.serialize.PageContent(
+            page=page,
+            content=[],
+        ) for page, item in alignment
+    ]
+
+    result = textflow.alignment.info.AlignmentInfo(
+        oneline,
+        alignment,
+    )
+    return result
