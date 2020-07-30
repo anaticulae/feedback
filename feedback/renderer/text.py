@@ -59,7 +59,7 @@ def style_range(textcontainer, start, end, fontstore: iamraw.FontStore):
             continue
         end_ = utila.mins(end_, end)  # shrink upper border
         font = fontstore[font_]
-        flags = list(font.flags)
+        flags = list(font.flags) if font.flags else []
         if font.style == iamraw.Style.ITALIC:
             flags.append(iamraw.FontFlag.Italic)
         style = (start_, end_, size_, rise_, font.name, tuple(flags))
