@@ -48,4 +48,10 @@ def error_2020(item) -> dict:
 SHAPY[2020] = error_2020
 SHAPY[3030] = error_2020
 SHAPY[3031] = error_2020
+SHAPY[4000] = error_2020
+SHAPY[4001] = error_2020
+SHAPY[4002] = error_2020
+SHAPY[4003] = error_2020
+SHAPY[4004] = error_2020
+SHAPY[4005] = error_2020
 SHAPY[7000] = error_2020
