@@ -39,7 +39,7 @@ def error_2020(item) -> dict:
     result = {
         'type': 'rectangle',
         'bounding': bounding_reverse,
-        'border': '1px solid orange',
+        'border': '1px solid red',
         'reference': f'finding_{item.number}'
     }
     return result
