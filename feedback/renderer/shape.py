@@ -35,7 +35,7 @@ def render(items: list) -> list:
 # Hint: a negative z-index is no option, cause the backgrounds of parent
 # element hides this z-negative content.
 RECTANGLE = """\
-<span {reference} style="position:absolute;
+<span {reference} style="position:absolute;z-index:{zindex};
 top:{y0}px;left:{x0}px;width:{width}px;height:{height}px;
 border:{border};background:{background};pointer-events:none;
 {more}"></span>"""
@@ -47,6 +47,7 @@ def render_rectangle(
         background: str = 'transparent',
         more: str = '',
         reference: str = None,
+        zindex: int = 10,
 ) -> str:
     """Render html rectangle represented as `<span>`."""
     reference = html_reference(reference)
@@ -67,6 +68,7 @@ def render_rectangle(
         width=width,
         x0=x0,
         y0=y0,
+        zindex=zindex,
     )
     return rendered
 
