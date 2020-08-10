@@ -7,9 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-utilatest==0.1.2
+utilatest==0.1.3
 
 # ensure version of test data generator
-hey==3.9.0
+hey==3.10.0
 
-power==0.14.2
+power==0.14.3
