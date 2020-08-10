@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v1.4.0
+
+### Feature
+
+* extend rendered shaped lintings (271eec130ad4)
+* add option to print rectangle with different zindex (c313cb6d6b74)
+
+### Fix
+
+* use red to ease looking (a216c289ba5c)
+* fix empty page alignments (f346a5114c71)
+* ignore non initialized font flags (d1014d77bed1)
+
 ## v1.3.0
 
 ### Feature
