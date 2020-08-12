@@ -143,6 +143,7 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
 
 
 def ranged(items: protocol.Findings) -> protocol.Findings:
+    # TODO: REPLACE WITH PROTOCOL CODE
     return protocol.filter_mark(items, shortcut='r')
 
 
