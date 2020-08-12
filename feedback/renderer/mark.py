@@ -98,10 +98,12 @@ class WordAccess:
 class PageMarkConfiguration:
     page: int = None
     wordmarks: set = dataclasses.field(default_factory=set)
-    linemarks: set = dataclasses.field(default_factory=set)
+    linemarks: dict = dataclasses.field(default_factory=dict)
 
 
 PageMarkConfigurations = typing.List[PageMarkConfiguration]
+
+COMPLETE_LINE = None
 
 
 def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
@@ -123,17 +125,25 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     linemarks = protocol.lines(pagemarks)
     ranges = ranged(pagemarks)
 
-    lines = []
+    lines = {}
     for item in linemarks:
-        lines.append(item.location.value)
+        lines[item.location.value] = COMPLETE_LINE
     for item in ranges:
         # TODO: SUPPORT MULTILINE
         start, end = item.location.line, item.location.line_end
+        # TODO: CHANGE TO CHAR
+        charstart, charend = item.location.token, item.location.token_end
         if end is None:
             end = start
         # TODO: REPLACE WITH UTILA CODE
-        lines.extend([line_index for line_index in range(start, end + 1)])
-
+        for number in utila.ranged_tuple(start, end + 1):
+            if charstart is None:
+                lines[number] = COMPLETE_LINE
+            else:
+                # TODO: CHECK FOR MULTILINE ENVIRONMENT
+                # TODO-CONCEPT: charstart in first line, middle lines complete,
+                # charend for last line.
+                lines[number] = (charstart, charend)
     result = PageMarkConfiguration(
         page=page,
         wordmarks=wordmarks,
@@ -241,12 +251,18 @@ class WordMarker:
 
 class LineMarker:
 
-    def __init__(self, page, marks=None, startofcontent: int = None):
+    def __init__(self, page, marks: dict = None, startofcontent: int = None):
         self.page = page
         self.index = 0 if startofcontent is None else 0 - startofcontent
-        self.marks = marks if marks is not None else set()
+        if isinstance(marks, dict):
+            self.marks = marks
+        elif isinstance(marks, (set, list)):
+            # take complete line
+            self.marks = {item: None for item in set(marks)}
+        else:
+            self.marks = dict()
 
-    def markme(self, line) -> fums.Style:
+    def markme(self, line: str) -> fums.Style:
         if not line:
             # white space line
             return None
@@ -255,6 +271,12 @@ class LineMarker:
             return None
         start = f'<span id="line{self.page}_{self.index}">'
         end = '</span>'
-        result = fums.Style(0, len(line), start, end)
+        try:
+            # check if added marks contains char start and char end
+            charstart, charend = self.marks[self.index]
+        except (KeyError, TypeError):
+            # no additional styling information available, use whole line
+            charstart, charend = 0, len(line)
+        result = fums.Style(charstart, charend, start, end)
         self.index += 1
         return result

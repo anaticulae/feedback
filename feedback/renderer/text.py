@@ -18,7 +18,6 @@ THRESHOLD_RISE = configo.HV_FLOAT_PLUS(2.0).value
 
 
 def render_inline(styles) -> feedback.utils.multiple_styles.Styles:
-
     result = []
     for style in styles:
         start, end, size, rise, family, flags = style
