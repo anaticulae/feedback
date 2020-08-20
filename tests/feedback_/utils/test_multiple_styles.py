@@ -120,7 +120,11 @@ def test_optimize_abb_regression():
     text = 'Abb. 2.2.: Topologie Paralleler Hybrid - 1 Batterie, 2 Kraftstofftank, 3 Getriebe, 4'
     styles = [
         fums.Style(
-            start=0, end=181, first='<span id="line12_5">', last='</span>'),
+            start=0,
+            end=181,
+            first='<span id="line12_5">',
+            last='</span>',
+        ),
         fums.Style(
             start=0,
             end=11,
