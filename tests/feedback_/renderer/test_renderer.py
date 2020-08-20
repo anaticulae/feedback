@@ -210,6 +210,7 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # 
             css=css,
     ) as source:
         # regression test after improving merger
+        assert source.count('Abb. 2.1.: ') == 1
         assert source.count('Abb. 2.2.: ') == 1
 
         # TODO: REPLACE LATER

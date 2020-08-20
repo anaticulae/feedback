@@ -28,6 +28,7 @@ def merger(text: str, styles: Styles) -> str:
 
     styles = sort_style(styles)
     styles = simplify(styles)
+    styles = sort_style(styles)  # TODO: HACK?
 
     for style in styles:
         merged = merge(merged, style)

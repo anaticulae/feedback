@@ -146,3 +146,35 @@ def test_optimize_abb_regression():
                 'Topologie Paralleler Hybrid - 1 Batterie, 2 Kraftstofftank,'
                 ' 3 Getriebe, 4</span></span>')
     assert result == expected
+
+
+def test_optimize_style_abb_regression():
+    text = 'Abb. 2.1.: Topologie Serieller Hybrid - 1 Elektrischer Fahrmotor, 2 Kraftstofftank, 3 Leistungs­-'
+    styles = [
+        fums.Style(
+            start=0,
+            end=11,
+            first='<span id="line12_4">',
+            last='</span>',
+        ),
+        fums.Style(
+            start=0,
+            end=11,
+            first='<span style="font-size:9.96px;font-family:LMRoman10;">',
+            last='</span>',
+        ),
+        fums.Style(
+            start=11,
+            end=96,
+            first='<span style="font-size:9.96px;font-family:LMRoman10;">',
+            last='</span>',
+        ),
+    ]
+    result = fums.merger(text, styles)
+    # TODO: NOT PERFECT, BUT WORKS AT THE MOMENT. PLEASE REPLEASE IF NECESSARY
+    expected = (
+        '<span style="font-size:9.96px;font-family:LMRoman10;"><span id="line12_4">'
+        'Abb. 2.1.: </span></span><span style="font-size:9.96px;font-family:LMRoman10;">'
+        'Topologie Serieller Hybrid - 1 Elektrischer Fahrmotor, 2 Kraftstofftank, '
+        '3 Leistungs­</span>-')
+    assert result == expected
