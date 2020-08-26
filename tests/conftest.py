@@ -40,7 +40,7 @@ def pytest_sessionstart():
 def extract(files):
     # TODO: ENABLE SIMPLE PATH REPOSITORY PATTERN LATER
     decider.example.extract(
-        files,
+        files + [power.REPOSITORY],
         power.generated(),
         '0:20',
         worker=WORKER,
