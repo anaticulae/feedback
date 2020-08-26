@@ -8,12 +8,13 @@
 # =============================================================================
 import os
 
+import power
+
 import tests.feedback_
-import tests.resources
 
 
 def test_report_problems_view(testdir, monkeypatch):
-    inpath = os.path.join(tests.resources.MASTER72_GENERATED)
+    inpath = power.link(power.MASTER072_PDF)
     root = str(testdir)
     tests.feedback_.run(f'-i {inpath} -o {root} --view', monkeypatch=monkeypatch) # yapf:disable
 
@@ -24,7 +25,7 @@ def test_report_problems_view(testdir, monkeypatch):
 
 
 def test_view_master116_border_size(testdir, monkeypatch):
-    inpath = os.path.join(tests.resources.MASTER116)
+    inpath = power.link(power.MASTER116_PDF)
     root = str(testdir)
     cmd = f'-i {inpath} -o {root} --view '
     tests.feedback_.run(cmd, monkeypatch=monkeypatch)

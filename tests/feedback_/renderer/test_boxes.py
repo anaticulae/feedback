@@ -10,16 +10,16 @@
 import os
 import webbrowser
 
+import power
 import utila
 import utilatest
 
 import feedback.renderer.html
 import feedback.renderer.loader
-import tests.resources
 
 
 def test_render_boxes(testdir):
-    source = tests.resources.GENERATED_PORTING_PYTHON3
+    source = power.link(power.DOCU09_PDF)
     data = feedback.renderer.loader.from_path(source, pages=1)[0]
     html = feedback.renderer.html.render_page(data)
 

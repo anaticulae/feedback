@@ -10,6 +10,7 @@
 import os
 import webbrowser
 
+import power
 import pytest
 import utila
 import utilatest
@@ -17,7 +18,6 @@ import utilatest
 import feedback
 import feedback.cli
 import tests.feedback_
-import tests.resources
 
 
 def test_run_feedback_help():
@@ -27,8 +27,8 @@ def test_run_feedback_help():
 
 
 @pytest.mark.parametrize('source', [
-    pytest.param(tests.resources.LEFTRIGHT_GENERATED, id='leftright'),
-    pytest.param(tests.resources.MASTER72_GENERATED, id='master72'),
+    pytest.param(power.link(power.BOOK007_PDF), id='leftright'),
+    pytest.param(power.link(power.MASTER072_PDF), id='master72'),
 ])
 def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     """Run linted example where findings are converted to shapes to
@@ -54,9 +54,9 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
 @pytest.mark.xfail(reason='broken data generator')
 def test_run_feedback_view(testdir, monkeypatch):
     root = testdir.tmpdir
-    cmd = f'-i {tests.resources.BACHELOR56} -o {root} --pages=9'
+    cmd = f'-i {power.link(power.BACHELOR056_PDF)} -o {root} --pages=9'
 
-    with utila.chdir(tests.resources.BACHELOR56):
+    with utila.chdir(power.link(power.BACHELOR056_PDF)):
         utilatest.run_command(
             cmd,
             monkeypatch=monkeypatch,

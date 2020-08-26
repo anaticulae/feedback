@@ -10,11 +10,11 @@
 import os
 import webbrowser
 
+import power
 import utila
 import utilatest
 
 import feedback.renderer.images
-import tests.resources
 from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
 from tests.feedback_.fixtures import master116  # pylint:disable=W0611
 
@@ -33,14 +33,14 @@ def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621
 
 
 def test_load_image_informations():
-    source = tests.resources.LEFTRIGHT_GENERATED
+    source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')
     informations = feedback.renderer.images.load_image_informations(source)
     assert len(informations) == 5, str(informations)
 
 
 def test_load_image():
-    source = tests.resources.LEFTRIGHT_GENERATED
+    source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')
     images = feedback.renderer.images.load_images(source)
     assert len(images) == 5

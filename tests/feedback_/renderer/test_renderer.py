@@ -10,6 +10,7 @@
 import os
 import webbrowser
 
+import power
 import protocol
 import pytest
 import utila
@@ -20,7 +21,6 @@ import feedback.renderer.html
 import feedback.renderer.loader
 import feedback.renderer.mark
 import tests.feedback_.renderer as tfr
-import tests.resources
 from tests.feedback_.fixtures import bachelor56  # pylint:disable=W0611
 from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
 from tests.feedback_.fixtures import master116  # pylint:disable=W0611
@@ -147,7 +147,7 @@ def test_sentence_selector(bachelor56):  # pylint:disable=W0621
 
 def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
     """Ensure to load sentences marks."""
-    source = tests.resources.BACHELOR56
+    source = power.link(power.BACHELOR056_PDF)
     sentences = {}
     words_ = {}
 
@@ -191,7 +191,7 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # 
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
     page = 12
-    source = tests.resources.MASTER116
+    source = power.link(power.MASTER116_PDF)
     pagemarks = ffpv.load_marks_from_path(source, page=page)
 
     css = """\
