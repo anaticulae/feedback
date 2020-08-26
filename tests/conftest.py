@@ -21,6 +21,7 @@ PACKAGE = feedback.PACKAGE
 RESOURCES = [
     (tests.resources.MASTER116_PDF, '0:20,100:117'),
     tests.resources.BACHELOR90_PDF,
+    (power.DISS264_PDF, '0:30'),
     tests.resources.BACHELOR56_PDF,
     tests.resources.LEFTRIGHT,
     tests.resources.MASTER72_PDF,
