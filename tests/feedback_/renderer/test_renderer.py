@@ -215,3 +215,14 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # 
 
         # TODO: REPLACE LATER
         assert source.count('id="line12_5"') == 1
+
+
+def test_regression_render_diss264_page21(testdir):  # pylint:disable=W0621
+    """This test aims to generate and view a toc very fast to check
+    develop new html renderings."""
+    path = power.link(power.DISS264_PDF)
+    loaded = feedback.renderer.loader.from_path(path)
+
+    page = 21
+    with tfr.render_and_open(testdir.tmpdir, loaded, page=page) as source:
+        assert source.count('transform:') == 18  # adjust later

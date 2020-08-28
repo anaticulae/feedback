@@ -112,7 +112,7 @@ def create_textstyle(container, wordmarker, linemarker) -> list:
     return result
 
 
-def create_textline(
+def create_textline(  # pylint:disable=R0914
         textcontainer,
         marked_line,
         alignments=None,
@@ -122,6 +122,7 @@ def create_textline(
     result = []
     lines = textcontainer.text.splitlines()
     start = 0
+    rotated = textcontainer.style.rotation > 0.0
     for index, line in enumerate(lines):
         end = start + len(line)
         ranged = feedback.renderer.text.style_range(
@@ -132,7 +133,14 @@ def create_textline(
         )
         # render multiline text lines
         box = iamraw.split_y(bounding, index, len(lines))
-        raw = create_div(line, box, ranged, marked_line, alignments)
+        raw = create_div(
+            line,
+            box,
+            ranged,
+            marked_line,
+            alignments,
+            rotated=rotated,
+        )
         result.append(raw)
         start += len(line)
     html = ''.join(result)
@@ -142,7 +150,14 @@ def create_textline(
 DEFAULT_ALIGNMENT = 'justify'
 
 
-def create_div(line, box, ranged, marked_line, alignments) -> str:
+def create_div(
+        line,
+        box,
+        ranged,
+        marked_line,
+        alignments,
+        rotated: bool = False,
+) -> str:
     alignment = alignments(bounding=box) if alignments else DEFAULT_ALIGNMENT
     alignment = create_alignment(alignment)
     width = utila.roundme((box.x1 - box.x0) * 1.01)
@@ -153,9 +168,10 @@ def create_div(line, box, ranged, marked_line, alignments) -> str:
     fontstyle = feedback.renderer.text.render_inline(ranged)
     line_style.extend(fontstyle)
     rendered = feedback.utils.multiple_styles.merger(line, line_style)
+    rotated = 'transform: rotate(-90deg);' if rotated else ''
     # remove newline, every line is rendered separately due div container
     rendered = rendered.replace('\n', '')
-    raw = f'<div style="{location}{alignment}">{rendered}</div>'
+    raw = f'<div style="{location}{alignment}{rotated}">{rendered}</div>'
     return raw
 
 
