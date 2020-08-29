@@ -35,7 +35,7 @@ class HTMLPageContent:
     page: int = None
 
     def __repr__(self):
-        result = f'HTMLPageContent(border={self.border}, pagesize={self.pagesize})'
+        result = f'HTMLPageContent(page={self.page}, border={self.border}, pagesize={self.pagesize})'
         return result
 
 
