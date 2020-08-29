@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v1.5.0
+
+### Feature
+
+* extend debugging information (24fe2829bd2a)
+* add rotated text to renderer (6d8664f429ff)
+* use char/token information for shrinking line styling (629d38a9a7f2)
+
+### Fix
+
+* render empty text pages correctly (e4b0500631cf)
+* improve merging equal styles (adad58db3e9f)
+
 ## v1.4.0
 
 ### Feature
