@@ -146,8 +146,8 @@ def load(  # pylint:disable=R0914,too-many-arguments
             navigators=navigators,
             sections=sections,
             headerfooter=headerfooter,
-            page=content.page,
-        ) for content in navigators
+            page=page.page,
+        ) for page in borders
     ]
     return result
 

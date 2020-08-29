@@ -134,9 +134,10 @@ def load_single_words(navigators):
     for htmlpage in navigators:
         generator = feedback.renderer.mark.WordGenerator()
         collected = []
-        for line in htmlpage.navigator:
-            for _, word in generator.words(line.text):
-                collected.append(word)
+        if htmlpage.navigator:
+            for line in htmlpage.navigator:
+                for _, word in generator.words(line.text):
+                    collected.append(word)
         result[htmlpage.page] = collected
     return result
 

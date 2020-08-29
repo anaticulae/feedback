@@ -57,19 +57,23 @@ def render_page(
     raw = []
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
     raw.extend(feedback.renderer.boxes.render_boxes(page))
-    for textcontainer in page.navigator:
-        styles = create_textstyle(
-            textcontainer,
-            wordmarker,
-            linemarker,
-        )
-        html = create_textline(
-            textcontainer,
-            styles,
-            page.alignment,
-            fontstore=page.fontstore,
-        )
-        raw.append(html)
+
+    if page.navigator:
+        # some pages does not have any text content. Some pages are
+        # whitepages or contain a single huge images.
+        for textcontainer in page.navigator:
+            styles = create_textstyle(
+                textcontainer,
+                wordmarker,
+                linemarker,
+            )
+            html = create_textline(
+                textcontainer,
+                styles,
+                page.alignment,
+                fontstore=page.fontstore,
+            )
+            raw.append(html)
 
     if shapes:
         rendered = feedback.renderer.shape.render(shapes)
