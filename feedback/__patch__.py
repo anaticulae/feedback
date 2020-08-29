@@ -15,64 +15,6 @@ import utila
 # TODO: MOVE TO TEXMEX
 
 
-def create_pagetextnavigators(  # pylint:disable=R0914
-        text: iamraw.Document,
-        text_positions,
-        fontstore: iamraw.FontStore = None,
-        fill_empty: bool = True,
-        mode=texmex.PageTextNavigatorMode.BOTH,
-) -> texmex.PageTextNavigators:
-    result = []
-    for textpage in text:
-        page = textpage.page
-        navigator = texmex.PageTextNavigator(
-            size=text.dimension,
-            page=page,
-        )
-        textid = 0
-        textposition = utila.select_page(text_positions, page)
-        # remove horizontal or vertical text container
-        content = select_textcontainer(textpage, mode=mode)
-
-        for item in content:
-            try:
-                lines = item.lines
-            except AttributeError:
-                continue
-            pos, mean = textposition.content[textid]
-            for index, line in enumerate(lines):
-                bounding = iamraw.split_y(pos, index, len(lines))
-                if fontstore:
-                    for char_number, char in enumerate(line.chars):
-                        fontid = fontstore.fontid(
-                            page,
-                            textid,
-                            index,
-                            char_number,
-                        )
-                        char.font = fontid
-                style = texmex.style.create_textstyle(line.chars)
-                # TODO: Remove strip after container is fixed
-                if not line.text.strip():
-                    # skip bad removed rawmaker extraction
-                    continue
-                navigator.insert(
-                    text=line.text,
-                    style=style,
-                    bounding=bounding,
-                    bounding_mean=mean,
-                )
-            textid += 1
-        result.append(navigator)
-
-    if fill_empty:
-        result = fill_empty_navigators(result, dimension=text.dimension)
-    return result
-
-
-texmex.create_pagetextnavigators = create_pagetextnavigators
-
-
 def fill_empty_navigators(
         navigators: texmex.PageTextNavigators,
         dimension: iamraw.PageSize,
@@ -100,25 +42,6 @@ def fill_empty_navigators(
             filled.append(navigator)
         filled.append(item)
     return filled
-
-
-def select_textcontainer(content, mode: texmex.PageTextNavigatorMode):
-    if not content:
-        return content
-
-    if mode == texmex.PageTextNavigatorMode.HORIZONTAL:
-        content = [
-            item for item in content if isinstance(item, iamraw.TextContainer)
-        ]
-        return content
-
-    if mode == texmex.PageTextNavigatorMode.VERTICAL:
-        content = [
-            item for item in content
-            if isinstance(item, iamraw.VerticalTextContainer)
-        ]
-        return content
-    return content
 
 
 def sections_(path: str, prefix: str = '') -> str:
