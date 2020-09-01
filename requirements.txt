@@ -18,7 +18,7 @@ utila==2.8.0
 
 
 # required feedback/linter result
-decider==0.28.1
+decider==0.28.2
 
 # required to load images
 rawmaker==2.4.1
