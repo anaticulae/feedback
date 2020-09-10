@@ -17,6 +17,7 @@ import collections
 import copy
 import os
 
+import iamraw
 import protocol
 import serializeraw
 import utila
@@ -143,7 +144,7 @@ def load_single_words(navigators):
 
 
 def load_marks(
-        findings: protocol.PageFindings,
+        findings: iamraw.PageFindings,
         sentences: dict,
         words: dict,
 ) -> dict:
@@ -176,17 +177,17 @@ def load_marks_from_path(source, page: int):
     return pagemarks
 
 
-def load_findings(paths: str) -> protocol.PageFindings:
+def load_findings(paths: str) -> iamraw.PageFindings:
     """Load findings and group them by pages."""
     # TODO: MOVE TO PROTOCOL
-    loaded = [protocol.load_result(path) for path in paths]
+    loaded = [serializeraw.load_findings(path) for path in paths]
     loaded = utila.flatten(loaded)
     result = protocol.bypage(loaded)
     return result
 
 
 def convert_sentence_to_word_mark(
-        marks: protocol.PageFindings,
+        marks: iamraw.PageFindings,
         sentences,
         words: dict,
 ) -> dict:
@@ -220,7 +221,7 @@ def convert_sentence_to_word_mark(
             for item in selected:
                 # TODO: IS COPY NECESSARY?
                 new = copy.deepcopy(sentence_mark)
-                new.location = protocol.Location.fromstr(f'w{item}p{page}')
+                new.location = iamraw.Location.fromstr(f'w{item}p{page}')
                 word_findings.append(new)
             result[page].extend(word_findings)
     # enable KeyError

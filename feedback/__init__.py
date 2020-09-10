@@ -11,6 +11,7 @@ import contextlib
 import os
 
 import german
+import iamraw
 import protocol
 
 import feedback.__patch__
@@ -24,12 +25,12 @@ PROCESS = 'feedback'
 
 
 # TODO: REMOVE AFTER UPGRADING
-def filter_mark(items: protocol.Findings, shortcut: str) -> protocol.Findings:
+def filter_mark(items: iamraw.Findings, shortcut: str) -> iamraw.Findings:
     """Filter `Findings` by shortcut and sort them by `location.value`
     afterwards.
 
     Args:
-        items(protocol.Findings): list of findings
+        items(iamraw.Findings): list of findings
         shortcut(str): shortcut of finding.location, w word, p page,
                        ol oneline, etc.
     Returns:
@@ -56,21 +57,21 @@ def filter_mark(items: protocol.Findings, shortcut: str) -> protocol.Findings:
 protocol.filter_mark = filter_mark
 
 
-def words(items: protocol.Findings) -> protocol.Findings:
+def words(items: iamraw.Findings) -> iamraw.Findings:
     return filter_mark(items, shortcut='w')
 
 
 protocol.words = words
 
 
-def lines(items: protocol.Findings) -> protocol.Findings:
+def lines(items: iamraw.Findings) -> iamraw.Findings:
     return filter_mark(items, shortcut='ol')
 
 
 protocol.lines = lines
 
 
-def sentences(items: protocol.Findings) -> protocol.Findings:
+def sentences(items: iamraw.Findings) -> iamraw.Findings:
     return filter_mark(items, shortcut='s')
 
 

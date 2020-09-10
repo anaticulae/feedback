@@ -53,6 +53,7 @@ import dataclasses
 import typing
 
 import german
+import iamraw
 import protocol
 import utila
 
@@ -152,7 +153,7 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     return result
 
 
-def ranged(items: protocol.Findings) -> protocol.Findings:
+def ranged(items: iamraw.Findings) -> iamraw.Findings:
     # TODO: REPLACE WITH PROTOCOL CODE
     return protocol.filter_mark(items, shortcut='r')
 
