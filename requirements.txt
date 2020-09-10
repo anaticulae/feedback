@@ -7,18 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-# External packages
-Jinja2==2.10
-PyYAML==5.1
-
 # Internal packages
 iamraw==3.1.1
 protocol==2.0.0
 utila==2.9.0
-
-
-# required feedback/linter result
-decider==0.29.0
 
 # required to load images
 rawmaker==2.5.0
