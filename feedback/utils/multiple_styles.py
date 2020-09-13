@@ -102,9 +102,8 @@ def merge_two(first, second):
          Style(start=4, end=5, first='<bat>{*}<cat>', last='</bat>{*}</cat>')]
     >>> merge_two(Style(0,5,'<h1>','</h1>'), Style(3,10,'<b>','</b>')) # doctest: +NORMALIZE_WHITESPACE
     [Style(start=0, end=3, first='<h1>', last='</h1>'), \
-        Style(start=3, end=5, first='<h1>{*}<b>', last='</h1>{*}</b>'), \
-            Style(start=5, end=10, first='<b>', last='</b>')]
-
+    Style(start=3, end=5, first='<h1>{*}<b>', last='</h1>{*}</b>'), \
+    Style(start=5, end=10, first='<b>', last='</b>')]
     """
     first_new = (first.start, min([first.end, second.start]))
     second_new = (max([first.end, second.start]), second.end)
