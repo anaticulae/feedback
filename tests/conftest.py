@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import genex
+import decider.example
 import power
 import pytest
 
@@ -40,7 +40,7 @@ def pytest_sessionstart():
 
 
 def extract(files):
-    genex.extract(
+    decider.example.extract(
         files + [power.REPOSITORY],
         power.generated(),
         '0:20',
