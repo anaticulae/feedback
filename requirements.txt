@@ -8,11 +8,11 @@
 # =============================================================================
 
 # Internal packages
-iamraw==3.2.0
-protocol==2.1.0
-utila==2.10.0
+iamraw==4.0.1
+protocol==2.1.2
+utila==2.11.0
 
 # required to load images
-rawmaker==2.5.1
+rawmaker==2.6.0
 
-german==0.8.5
+german==0.8.6
