@@ -7,12 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-utilatest==0.1.4
+utilatest==0.1.5
 
 # ensure version of test data generator
-hey==5.1.1
+hey==5.2.0
 
-power==0.15.2
+power==0.16.1
 
 # required feedback/linter result
-decider==0.31.0
+decider==0.31.1
