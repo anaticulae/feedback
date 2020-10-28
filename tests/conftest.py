@@ -28,7 +28,7 @@ RESOURCES = [
     power.MASTER072_PDF,
     power.DOCU09_PDF,
     power.DOCU27_PDF,
-    (power.HOMEWORK025_PDF, '0:10'),
+    (power.HOME025_PDF, '0:10'),
 ]
 
 WORKER = 6
