@@ -16,7 +16,7 @@ import protocol
 
 import feedback.__patch__
 
-__version__ = '1.5.10'
+__version__ = '1.5.11'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
