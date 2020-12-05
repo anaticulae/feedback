@@ -10,15 +10,14 @@
 import pytest
 
 import feedback.renderer.mark
-import tests.feedback_.renderer as tfr
-from tests.feedback_.fixtures import master116  # pylint:disable=W0611
+import tests.feedback_.renderer
 
 
-def test_renderer_select_source_master116_toc(tmpdir, master116):  # pylint:disable=W0621
+def test_renderer_select_source_master116_toc(tmpdir, master116):
     """Ensure that toc lines are printed justifieded and as a result of
     this, the dots are printed over the whole line."""
     page = 4
-    with tfr.render_and_open(
+    with tests.feedback_.renderer.render_and_open(
             tmpdir,
             master116,
             page=page,
@@ -29,13 +28,13 @@ def test_renderer_select_source_master116_toc(tmpdir, master116):  # pylint:disa
 
 
 @pytest.mark.xfail(reason='broken header parser')
-def test_renderer_select_source_master116_startofcontent(tmpdir, master116):  # pylint:disable=W0621
+def test_renderer_select_source_master116_startofcontent(tmpdir, master116):
     """Ensure that `start of content/soc` which means the offset between
     pagetextnavigator and pagetextcontentnavigator is handled properly
     and `1. Einleitung` is marked with red background."""
     page = 8
     marks = feedback.renderer.mark.PageMarkConfiguration(page=8, linemarks={0})
-    with tfr.render_and_open(
+    with tests.feedback_.renderer.render_and_open(
             tmpdir,
             master116,
             marks=marks,

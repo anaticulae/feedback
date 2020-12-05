@@ -21,23 +21,19 @@ import feedback.renderer.html
 import feedback.renderer.loader
 import feedback.renderer.mark
 import tests.feedback_.renderer as tfr
-from tests.feedback_.fixtures import bachelor56  # pylint:disable=W0611
-from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
-from tests.feedback_.fixtures import master116  # pylint:disable=W0611
-from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
 
 
-def test_renderer_load(masterpage72):  # pylint:disable=W0621
+def test_renderer_load(masterpage72):
     assert masterpage72
 
 
 @pytest.mark.xfail(reason='duplicated horizontal line rendering')
-def test_renderer_firstpage(tmpdir, masterpage72):  # pylint:disable=W0621
+def test_renderer_firstpage(tmpdir, masterpage72):
     with tfr.render_and_open(tmpdir, masterpage72, 0) as html:
         assert '<hr' not in html, html
 
 
-def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):  # pylint:disable=W0621
+def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):
     # TODO: VERIFY WITH SELENIUM
     outpath = os.path.join(tmpdir, 'secondpage.html')
     secondpage = utila.select_page(masterpage72, 1)
@@ -65,7 +61,7 @@ def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):  # pylin
         webbrowser.open(outpath)
 
 
-def test_renderer_shapes_mark_bounding(tmpdir, leftright):  # pylint:disable=W0621
+def test_renderer_shapes_mark_bounding(tmpdir, leftright):
     """Render first page of `leftright` example and add a red rectangle
     in the top center of the page."""
     shapes = [
@@ -80,7 +76,7 @@ def test_renderer_shapes_mark_bounding(tmpdir, leftright):  # pylint:disable=W06
 
 
 @utila.todo(major=3, minor=2, description='verify with selenium')
-def test_renderer_toc(tmpdir, masterpage72):  # pylint:disable=W0621
+def test_renderer_toc(tmpdir, masterpage72):
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
     with tfr.render_and_open(tmpdir, masterpage72, page=1):
@@ -88,30 +84,30 @@ def test_renderer_toc(tmpdir, masterpage72):  # pylint:disable=W0621
         pass
 
 
-def test_render_page_with_horizontals(tmpdir, masterpage72):  # pylint:disable=W0621
+def test_render_page_with_horizontals(tmpdir, masterpage72):
     """Render footnote separator."""
     with tfr.render_and_open(tmpdir, masterpage72, page=3) as html:
         assert '<hr' in html, str(html)
 
 
-def test_render_bachelor56_title_page(tmpdir, bachelor56):  # pylint:disable=W0621
+def test_render_bachelor56_title_page(tmpdir, bachelor56):
     with tfr.render_and_open(tmpdir, bachelor56, page=0) as html:
         # ensure to render university logo
         assert '<img src=' in html, html
 
 
-def test_render_bachelor56_italic_style(tmpdir, bachelor56):  # pylint:disable=W0621
+def test_render_bachelor56_italic_style(tmpdir, bachelor56):
     with tfr.render_and_open(tmpdir, bachelor56, page=5) as html:
         assert 'font-style:italic;' in html, str(html)
 
 
-def test_render_bachelor56_render_table(tmpdir, bachelor56):  # pylint:disable=W0621
+def test_render_bachelor56_render_table(tmpdir, bachelor56):
     with tfr.render_and_open(tmpdir, bachelor56, page=15) as html:
         # ensure that table lines are rendered
         assert html.count('<svg  style') > 20, html
 
 
-def test_render_bachelor56_page20(tmpdir, bachelor56):  # pylint:disable=W0621
+def test_render_bachelor56_page20(tmpdir, bachelor56):
     page = 10
     wordmarks = {15, 16, 17, 18, 19, 20, 21, 22}
     mark = feedback.renderer.mark.PageMarkConfiguration(
@@ -122,7 +118,7 @@ def test_render_bachelor56_page20(tmpdir, bachelor56):  # pylint:disable=W0621
         assert html.count('id="word10_') == len(wordmarks)
 
 
-def test_sentence_selector(bachelor56):  # pylint:disable=W0621
+def test_sentence_selector(bachelor56):
     content = bachelor56
     selected = utila.select_page(content, 10)
     matched = (
@@ -145,7 +141,7 @@ def test_sentence_selector(bachelor56):  # pylint:disable=W0621
     assert len(items) > 20
 
 
-def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
+def test_render_bachelor56_page9_with_quotation_error():
     """Ensure to load sentences marks."""
     source = power.link(power.BACHELOR056_PDF)
     sentences = {}
@@ -160,7 +156,7 @@ def test_render_bachelor56_page9_with_quotation_error():  # pylint:disable=W0621
     # TODO: GIVE THIS TEST A PURPOSE
 
 
-def test_render_master72_marked_lines(tmpdir, masterpage72):  # pylint:disable=W0621
+def test_render_master72_marked_lines(tmpdir, masterpage72):
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
     pagemarks = feedback.renderer.mark.PageMarkConfiguration(
@@ -187,7 +183,7 @@ def test_render_master72_marked_lines(tmpdir, masterpage72):  # pylint:disable=W
         assert source.count('id="line3_19"') == 1
 
 
-def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # pylint:disable=W0621
+def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
     page = 12
@@ -217,7 +213,7 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # 
         assert source.count(f'id="line{page}_{expected}"') == 1
 
 
-def test_regression_render_diss264_page21(testdir):  # pylint:disable=W0621
+def test_regression_render_diss264_page21(testdir):
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
     path = power.link(power.DISS264_PDF)
