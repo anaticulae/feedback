@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.5.13
+
+### Fix
+
+* replace None reference with minus one line (a20bece20208)
+
 ## v1.5.12
 
 ## v1.5.11
