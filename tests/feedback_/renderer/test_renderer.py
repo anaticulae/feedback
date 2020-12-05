@@ -193,7 +193,7 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # 
     page = 12
     source = power.link(power.MASTER116_PDF)
     pagemarks = ffpv.load_marks_from_path(source, page=page)
-
+    expected = list(pagemarks.linemarks.keys())[0]  # pylint:disable=E1101
     css = """\
         #line12_4{
             background:blue;
@@ -214,7 +214,7 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):  # 
         assert source.count('Abb. 2.2.: ') == 1
 
         # TODO: REPLACE LATER
-        assert source.count('id="line12_5"') == 1
+        assert source.count(f'id="line{page}_{expected}"') == 1
 
 
 def test_regression_render_diss264_page21(testdir):  # pylint:disable=W0621
