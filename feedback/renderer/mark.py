@@ -137,14 +137,15 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
         if end is None:
             end = start
         # TODO: REPLACE WITH UTILA CODE
-        for number in utila.ranged_tuple(start, end + 1):
-            if charstart is None:
-                lines[number] = COMPLETE_LINE
-            else:
-                # TODO: CHECK FOR MULTILINE ENVIRONMENT
-                # TODO-CONCEPT: charstart in first line, middle lines complete,
-                # charend for last line.
-                lines[number] = (charstart, charend)
+        if start is not None and end is not None:  # no line is defined
+            for number in utila.ranged_tuple(start, end + 1):
+                if charstart is None:
+                    lines[number] = COMPLETE_LINE
+                else:
+                    # TODO: CHECK FOR MULTILINE ENVIRONMENT
+                    # TODO-CONCEPT: charstart in first line, middle lines complete,
+                    # charend for last line.
+                    lines[number] = (charstart, charend)
     result = PageMarkConfiguration(
         page=page,
         wordmarks=wordmarks,

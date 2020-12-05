@@ -48,7 +48,9 @@ def filter_mark(items: iamraw.Findings, shortcut: str) -> iamraw.Findings:
         try:
             return item.location.value
         except AttributeError:
-            return item.location.line
+            # If line is not defined, return -1 instead. This can happen
+            # if only page number is defined.
+            return item.location.line or -1  # return -1 instead of None
 
     items = sorted(selected, key=line_key)
     return items
