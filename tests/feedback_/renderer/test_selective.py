@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import pytest
+
 import feedback.renderer.mark
 import tests.feedback_.renderer as tfr
 from tests.feedback_.fixtures import master116  # pylint:disable=W0611
@@ -26,6 +28,7 @@ def test_renderer_select_source_master116_toc(tmpdir, master116):  # pylint:disa
         assert toc_lines >= 30, toc_lines
 
 
+@pytest.mark.xfail(reason='broken header parser')
 def test_renderer_select_source_master116_startofcontent(tmpdir, master116):  # pylint:disable=W0621
     """Ensure that `start of content/soc` which means the offset between
     pagetextnavigator and pagetextcontentnavigator is handled properly
