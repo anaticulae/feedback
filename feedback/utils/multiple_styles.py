@@ -38,7 +38,8 @@ def merger(text: str, styles: Styles) -> str:
 
 
 def simplify(items):
-    """\
+    """Unite two overlapping our connected groups of the same type.
+
     >>> simplify([Style(start=0, end=5, first='ABC', last='/ABC'),
     ... Style(start=5, end=10, first='ABC', last='/ABC')])
     [Style(start=0, end=10, first='ABC', last='/ABC')]
