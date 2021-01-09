@@ -10,9 +10,9 @@
 utilatest==0.2.2
 
 # ensure version of test data generator
-hey==5.5.4
+hey==5.6.3
 
-power==1.1.0
+power==1.1.2
 
 # required feedback/linter result
-decider==1.0.1
+decider==1.0.3
