@@ -197,7 +197,7 @@ def load_page(
             navigator_soc = oneline_soc
         else:
             utila.error('could not select oneline layout, '
-                        'there is not oneline fontstore available')
+                        'there is no oneline fontstore available')
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
 
