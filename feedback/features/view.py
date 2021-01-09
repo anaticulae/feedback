@@ -79,47 +79,53 @@ def work(  # pylint:disable=R0914,too-many-arguments
         List of extracted html view per page.
     """
     sections = sections if os.path.exists(sections) else None
-    html = feedback.renderer.loader.load(
-        text,
-        textpositions,
-        oneline_text,
-        oneline_textposition,
-        borders=sizeandborders,
-        alignment=alignment,
-        boxes=boxes,
-        fontcontent=fontcontent,
-        fontheader=fontheader,
-        hits=hits,
-        horizontals=horizontals,
-        images=images,
-        figures=figures,
-        lines=lines,
-        sections=sections,
-        headerfooter=headerfooter,
-        pages=pages,
-    )
-    findings = load_findings(linters)
-    pagesentences = load_sentences(words)
-    pagewords = load_single_words(html)
-    marks = load_marks(findings, pagesentences, pagewords)
+    with utila.profile('load resources'):
+        html = feedback.renderer.loader.load(
+            text,
+            textpositions,
+            oneline_text,
+            oneline_textposition,
+            borders=sizeandborders,
+            alignment=alignment,
+            boxes=boxes,
+            fontcontent=fontcontent,
+            fontheader=fontheader,
+            hits=hits,
+            horizontals=horizontals,
+            images=images,
+            figures=figures,
+            lines=lines,
+            sections=sections,
+            headerfooter=headerfooter,
+            pages=pages,
+        )
+    with utila.profile('load findings'):
+        findings = load_findings(linters)
+
+    with utila.profile('prepare data'):
+        pagesentences = load_sentences(words, pages=pages)
+        pagewords = load_single_words(html)
+        marks = load_marks(findings, pagesentences, pagewords)
     result = []
-    for page in html:
-        pagemarks = feedback.renderer.mark.create_configuration(
-            marks=marks,
-            page=page.page,
-        )
-        shapes = feedback.problems.shapy.determine_shapes(findings, page.page)
-        rendered = feedback.renderer.html.render_page(
-            page,
-            pagemarks,
-            shapes=shapes,
-        )
-        result.append(rendered)
+    with utila.profile('render result'):
+        for page in html:
+            pagemarks = feedback.renderer.mark.create_configuration(
+                marks=marks,
+                page=page.page,
+            )
+            shapes = feedback.problems.shapy.determine_shapes(
+                findings, page.page)
+            rendered = feedback.renderer.html.render_page(
+                page,
+                pagemarks,
+                shapes=shapes,
+            )
+            result.append(rendered)
     return result
 
 
-def load_sentences(path: str) -> dict:
-    words = serializeraw.load_text(path)
+def load_sentences(path: str, pages: tuple = None) -> dict:
+    words = serializeraw.load_text(path, pages=pages)
     pagesentences = collections.defaultdict(list)
     for item in words:
         for _, sentences in item.content:
