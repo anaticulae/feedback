@@ -22,12 +22,12 @@ power.setup(feedback.ROOT)
 RESOURCES = [
     (power.MASTER116_PDF, '0:20,100:117'),
     power.BACHELOR090_PDF,
-    (power.DISS264_PDF, '0:30'),
-    power.BACHELOR056_PDF,
-    power.BOOK007_PDF,
     power.MASTER072_PDF,
-    power.DOCU09_PDF,
+    power.BACHELOR056_PDF,
+    (power.DISS264_PDF, '0:30'),
     power.DOCU27_PDF,
+    power.DOCU09_PDF,
+    power.BOOK007_PDF,
     (power.HOME025_PDF, '0:10'),
 ]
 
