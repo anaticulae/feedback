@@ -178,3 +178,26 @@ def test_optimize_style_abb_regression():
         'Topologie Serieller Hybrid - 1 Elektrischer Fahrmotor, 2 Kraftstofftank, '
         '3 Leistungs­</span>-')
     assert result == expected
+
+
+@pytest.mark.xfail(reason='regression test which is not solved')
+def test_regression_merge_style():
+    text = 'of language which is independent in meaning and form.“65'
+    # yapf:disable
+    style = [
+        fums.Style(start=46, end=80, first='<span id="line35_5">', last='</span>'),
+        fums.Style(start=0, end=2, first='<span id="word35_49">', last='</span>'),
+        fums.Style(start=3, end=11, first='<span id="word35_50">', last='</span>'),
+        fums.Style(start=12, end=17, first='<span id="word35_51">', last='</span>'),
+        fums.Style(start=18, end=20, first='<span id="word35_52">', last='</span>'),
+        fums.Style(start=21, end=32, first='<span id="word35_53">', last='</span>'),
+        fums.Style(start=33, end=35, first='<span id="word35_54">', last='</span>'),
+        fums.Style(start=36, end=43, first='<span id="word35_55">', last='</span>'),
+        fums.Style(start=44, end=47, first='<span id="word35_56">', last='</span>'),
+        fums.Style(start=48, end=56, first='<span id="word35_57">', last='</span>'),
+        fums.Style(start=0, end=52, first='<span style="font-size:12.0px;font-family:Times;font-style:italic;">', last='</span>'),
+        fums.Style(start=52, end=54, first='<span style="font-size:12.0px;font-family:Times-Roman;">', last='</span>'),
+        fums.Style(start=54, end=56, first='<span style="font-size:8.04px;font-family:Times-Roman;"><sup>', last='</sup></span>'),
+    ]
+    # yapf:enable
+    merged = fums.merger(text, style)
