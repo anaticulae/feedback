@@ -180,7 +180,6 @@ def test_optimize_style_abb_regression():
     assert result == expected
 
 
-@pytest.mark.xfail(reason='regression test which is not solved')
 def test_regression_merge_style():
     text = 'of language which is independent in meaning and form.“65'
     # yapf:disable
@@ -201,3 +200,4 @@ def test_regression_merge_style():
     ]
     # yapf:enable
     merged = fums.merger(text, style)
+    assert len(merged) == 2014  # NOT VALIDATED

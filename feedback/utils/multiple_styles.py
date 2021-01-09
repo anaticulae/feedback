@@ -85,8 +85,19 @@ def merge(items, current):
         result.remove(candiate[0])
         result.remove(candiate[1])
         result.extend(merged)
+    elif len(candiate) == 3:
+        # TODO: VERIFY LATER, DON'T KNOW IF CORRECT
+        result.remove(candiate[0])
+        result.remove(candiate[1])
+        result.remove(candiate[2])
+        merged = merge_three(candiate[0], candiate[1], candiate[2])
+        merged = merge(merged, current)
+        result.extend(merged)
     else:
-        assert not candiate, candiate
+        if candiate:
+            utila.error('should not happen')
+            utila.error(candiate)
+        assert not candiate, len(candiate)
         result.append(current)
     result = sort_style(result)
     return result
