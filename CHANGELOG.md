@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v1.6.0
+
+### Feature
+
+* render rectangle for word linting (f15f8634137c)
+* add profiling information (b729bedfe02f)
+
+### Fix
+
+* add workaround for three style merge (5b6c89b9f085)
+
+### Documentation
+
+* extend style merged documentation (21d90a6f9058)
+
 ## v1.5.15
 
 ## v1.5.14
