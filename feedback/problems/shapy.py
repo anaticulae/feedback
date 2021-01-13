@@ -55,3 +55,4 @@ SHAPY[4003] = error_2020
 SHAPY[4004] = error_2020
 SHAPY[4005] = error_2020
 SHAPY[7000] = error_2020
+SHAPY[7770] = error_2020
