@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.6.1
+
+### Feature
+
+* enable multiprocessing (9ef4674e5277)
+
 ## v1.6.0
 
 ### Feature
