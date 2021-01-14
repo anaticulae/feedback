@@ -72,5 +72,6 @@ def main():
             description=DESCRIPTION,
             version=feedback.__version__,
             pages=True,
+            multiprocessed=True,
         ),
     )
