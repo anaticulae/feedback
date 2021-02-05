@@ -59,6 +59,16 @@ WORKPLAN = [
         ],
         (utila.File('feedback__view_pages/{FILEHASHS}', ext='png'),),
     ),
+    utila.create_step(
+        name='plot',
+        inputs=[
+            ResultFile(producer='rawmaker', name='border_pages'),
+            Pattern(name='*_user', ext='yaml'),
+        ],
+        output=[
+            ('findings_histogram', 'png'),
+        ],
+    ),
 ]
 
 

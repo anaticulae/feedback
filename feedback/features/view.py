@@ -100,7 +100,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
             pages=pages,
         )
     with utila.profile('load findings'):
-        findings = load_findings(linters)
+        findings = load_findings(linters, pages=pages)
 
     with utila.profile('prepare data'):
         pagesentences = load_sentences(words, pages=pages)
@@ -183,10 +183,10 @@ def load_marks_from_path(source, page: int):
     return pagemarks
 
 
-def load_findings(paths: str) -> iamraw.PageFindings:
+def load_findings(paths: str, pages: tuple = None) -> iamraw.PageFindings:
     """Load findings and group them by pages."""
     # TODO: MOVE TO PROTOCOL
-    loaded = [serializeraw.load_findings(path) for path in paths]
+    loaded = [serializeraw.load_findings(path, pages=pages) for path in paths]
     loaded = utila.flatten(loaded)
     result = protocol.bypage(loaded)
     return result
