@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.7.0
+
+### Feature
+
+* add render finding count step (9221e5334093)
+
+### Documentation
+
+* Happy New Year! (ff04e5087189)
+
 ## v1.6.1
 
 ### Feature
