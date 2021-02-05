@@ -42,7 +42,7 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     completed = utila.run('decider_border')
     assert completed.returncode == utila.SUCCESS, str(completed)
 
-    tests.feedback_.run('--view', monkeypatch)
+    tests.feedback_.run('--view', monkeypatch=monkeypatch)
 
     first_file = os.path.join(root, 'feedback__view_pages/0.html')
     assert os.path.exists(first_file), str(first_file)

@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import os
 
 import power
@@ -15,10 +16,10 @@ import tests.feedback_
 
 def test_report_problems_view(testdir, monkeypatch):
     inpath = power.link(power.MASTER072_PDF)
-    root = str(testdir)
-    tests.feedback_.run(f'-i {inpath} -o {root} --view', monkeypatch=monkeypatch) # yapf:disable
+    cmd = f'-i {inpath} -o {testdir.tmpdir} --view'
+    tests.feedback_.run(cmd, monkeypatch=monkeypatch)
 
-    outpath = os.path.join(root, 'feedback__view_pages')
+    outpath = os.path.join(testdir.tmpdir, 'feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
     # TODO: REMOVE THIS TEST
@@ -26,11 +27,10 @@ def test_report_problems_view(testdir, monkeypatch):
 
 def test_view_master116_border_size(testdir, monkeypatch):
     inpath = power.link(power.MASTER116_PDF)
-    root = str(testdir)
-    cmd = f'-i {inpath} -o {root} --view '
+    cmd = f'-i {inpath} -o {testdir.tmpdir} --view '
     tests.feedback_.run(cmd, monkeypatch=monkeypatch)
 
-    outpath = os.path.join(root, 'feedback__view_pages')
+    outpath = os.path.join(testdir.tmpdir, 'feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
 

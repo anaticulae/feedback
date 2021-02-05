@@ -8,17 +8,23 @@
 # =============================================================================
 """The feedback generates the central document view"""
 
+import functools
+
 import utilatest
 
 import feedback
 import feedback.cli
 
-
-def run(cmd: str, monkeypatch):
-    utilatest.run_command(
-        cmd,
-        process=feedback.PACKAGE,
-        main=feedback.cli.main,
-        success=True,
-        monkeypatch=monkeypatch,
-    )
+# pylint:disable=C0103
+run = functools.partial(
+    utilatest.run_command,
+    main=feedback.cli.main,
+    process=feedback.PROCESS,
+    success=True,
+)
+fail = functools.partial(
+    utilatest.run_command,
+    main=feedback.cli.main,
+    process=feedback.PROCESS,
+    success=False,
+)
