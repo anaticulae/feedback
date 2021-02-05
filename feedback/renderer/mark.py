@@ -53,7 +53,6 @@ import dataclasses
 import typing
 
 import german
-import iamraw
 import protocol
 import utila
 
@@ -124,7 +123,7 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     # require selected word only, reason etc. is not important here
     wordmarks = [item.location.value for item in wordmarks]
     linemarks = protocol.lines(pagemarks)
-    ranges = ranged(pagemarks)
+    ranges = protocol.ranged(pagemarks)
 
     lines = {}
     for item in linemarks:
@@ -152,11 +151,6 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
         linemarks=lines,
     )
     return result
-
-
-def ranged(items: iamraw.Findings) -> iamraw.Findings:
-    # TODO: REPLACE WITH PROTOCOL CODE
-    return protocol.filter_mark(items, shortcut='r')
 
 
 class WordGenerator:
