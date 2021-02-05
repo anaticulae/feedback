@@ -41,8 +41,9 @@ def pytest_sessionstart():
 
 def extract(files):
     decider.example.extract(
-        files + [power.REPOSITORY],
+        files,
         power.generated(),
         '0:20',
         worker=WORKER,
+        base=power.REPOSITORY,
     )
