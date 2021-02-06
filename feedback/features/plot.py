@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import typing
+
 import painter
 import serializeraw
 import utila
@@ -18,17 +20,17 @@ def work(
         sizeandborder: str,
         *linters: list,
         pages: tuple = None,
-) -> bytes:
+) -> typing.Tuple[bytes, bytes]:
     sizeandborder = serializeraw.load_pageborders(sizeandborder, pages)
     maxpage = max([page.page for page in sizeandborder])
 
     with utila.profile('load findings'):
         findings = feedback.features.view.load_findings(linters, pages=pages)
-    rendered = render_findings_overview(findings, maxpage)
-    if not rendered:
-        # no findings available
-        return utila.NO_RESULT
-    return rendered
+
+    findings_histogram = render_findings_overview(findings, maxpage)
+    findings_pie = render_findings_types(findings)
+
+    return findings_histogram, findings_pie
 
 
 def render_findings_overview(findings, maxpage: int) -> bytes:
@@ -42,7 +44,7 @@ def render_findings_overview(findings, maxpage: int) -> bytes:
     ]
     if not pages:
         utila.debug('no findings given, skip plotting findings')
-        return None
+        return utila.NO_RESULT
     rendered = painter.bar_render(
         x=pages,
         y=counted,
@@ -55,6 +57,10 @@ def render_findings_overview(findings, maxpage: int) -> bytes:
     )
     raw = painter.png(rendered)
     return raw
+
+
+def render_findings_types(findings) -> bytes:
+    return utila.NO_RESULT
 
 
 def golden(longest: float) -> float:

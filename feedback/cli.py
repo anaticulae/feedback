@@ -67,6 +67,7 @@ WORKPLAN = [
         ],
         output=[
             ('findings_histogram', 'png'),
+            ('findings_types_pie', 'png'),
         ],
     ),
 ]
