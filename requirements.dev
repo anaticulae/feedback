@@ -16,3 +16,4 @@ power==1.2.0
 
 # required feedback/linter result
 decider==2.4.3
+decider_lay==0.5.0
