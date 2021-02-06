@@ -11,6 +11,8 @@ import typing
 
 import iamraw
 import painter
+import protocol
+import protocol.group
 import serializeraw
 import utila
 
@@ -67,7 +69,38 @@ def render_findings_overview(
 
 
 def render_findings_types(findings: iamraw.PageFindings) -> bytes:
-    return utila.NO_RESULT
+    # TODO: REFACTOR IMPORT AFTER UPGRADING
+    findings = protocol.group.flat(findings)
+    typed = bytype(findings)
+
+    labels = ['Fehler', 'Warnung', 'Vorschlag']
+    counted = [len(typed[item]) for item in 'EWI']
+
+    labels = [item for item, count in zip(labels, counted) if count]
+    counted = [item for item in counted if item]
+
+    rendered = painter.pie_render(
+        x=counted,
+        labels=labels,
+        absolute=True,
+        width=7.15,
+        height=4.15,
+    )
+    raw = painter.png(rendered)
+    return raw
+
+
+def bytype(items: iamraw.Findings) -> dict:
+    """Group findings by `finding.msgid`."""
+    # TODO: REPLACE WITH PROTOCOL CODE
+    result = {'E': [], 'W': [], 'I': []}
+    for item in items:
+        msgid = str(item.solution.msgid)[0].upper()
+        try:
+            result[msgid].append(item)
+        except KeyError:
+            result['I'].append(item)
+    return result
 
 
 def golden(longest: float) -> float:

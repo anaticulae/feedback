@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import painter
 import power
 import utila
 
@@ -19,3 +20,12 @@ def test_render_findings_histogram(testdir, monkeypatch):
     tests.feedback_.run(cmd, monkeypatch=monkeypatch)
     rendered = utila.file_read_binary('feedback__plot_findings_histogram.png')
     assert len(rendered) > 1000
+
+
+def test_render_findings_pie(testdir, monkeypatch):
+    source = power.link(power.BACHELOR090_PDF)
+    cmd = f'-i {source} --plot'
+    tests.feedback_.run(cmd, monkeypatch=monkeypatch)
+    rendered = utila.file_read_binary('feedback__plot_findings_types_pie.png')
+    assert len(rendered) > 1000
+    painter.show_figure(rendered)
