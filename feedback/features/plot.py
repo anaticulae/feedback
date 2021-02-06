@@ -9,6 +9,7 @@
 
 import typing
 
+import iamraw
 import painter
 import serializeraw
 import utila
@@ -25,7 +26,10 @@ def work(
     maxpage = max([page.page for page in sizeandborder])
 
     with utila.profile('load findings'):
-        findings = feedback.features.view.load_findings(linters, pages=pages)
+        findings: iamraw.PageFindings = feedback.features.view.load_findings(
+            linters,
+            pages=pages,
+        )
 
     findings_histogram = render_findings_overview(findings, maxpage)
     findings_pie = render_findings_types(findings)
@@ -33,7 +37,10 @@ def work(
     return findings_histogram, findings_pie
 
 
-def render_findings_overview(findings, maxpage: int) -> bytes:
+def render_findings_overview(
+        findings: iamraw.PageFindings,
+        maxpage: int,
+) -> bytes:
     pages = utila.ranged_list(maxpage)
     counted = [
         len(utila.select_page(
@@ -59,7 +66,7 @@ def render_findings_overview(findings, maxpage: int) -> bytes:
     return raw
 
 
-def render_findings_types(findings) -> bytes:
+def render_findings_types(findings: iamraw.PageFindings) -> bytes:
     return utila.NO_RESULT
 
 
