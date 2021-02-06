@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.8.0
+
+### Feature
+
+* add findings pie plot (8c2f80eb8465)
+* extend interface to render findings pie plot (a0779fc4e123)
+
+### Documentation
+
+* extend interface documentation (c9012d843e16)
+
 ## v1.7.0
 
 ### Feature
