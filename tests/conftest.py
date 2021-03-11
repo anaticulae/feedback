@@ -46,4 +46,7 @@ def extract(files):
         '0:20',
         worker=WORKER,
         base=power.REPOSITORY,
+        morefeatures=[
+            'decider_border',
+        ],
     )
