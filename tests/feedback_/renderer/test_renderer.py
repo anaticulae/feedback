@@ -222,4 +222,4 @@ def test_regression_render_diss264_page21(testdir):
 
     page = 21
     with tfr.render_and_open(testdir.tmpdir, loaded, page=page) as source:
-        assert source.count('transform:') == 18  # adjust later
+        assert source.count('transform:') == 12  # adjust later
