@@ -8,14 +8,14 @@
 # =============================================================================
 
 # Internal packages
-iamraw>=4.12.1<5.0.0
+iamraw>=4.14.2<5.0.0
 protocol>=3.6.2<4.0.0
-utila>=2.23.0<3.0.0
+utila>=2.27.0<3.0.0
 
 # required to load images
-rawmaker>=2.13.2<3.0.0
+rawmaker>=2.15.0<3.0.0
 
-german>=1.2.0<2.0.0
+german>=1.2.3<2.0.0
 
 # render findings overview
 painter>=0.9.1<1.0.0
