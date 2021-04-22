@@ -95,7 +95,10 @@ def zip_images(path: str, pages: tuple = None) -> ZippedImageInfos:
     informations = load_image_informations(path, pages)
     result = []
     for index, info in informations:
-        result.append(ZippedImageInfo(index, info, img[index]))
+        try:
+            result.append(ZippedImageInfo(index, info, img[index]))
+        except IndexError:
+            utila.error(f'skip image {index} {len(informations)} {len(img)}')
     return result
 
 
