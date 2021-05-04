@@ -52,10 +52,13 @@ def render_rectangle(
     """Render html rectangle represented as `<span>`."""
     reference = html_reference(reference)
     bounding = utila.roundme(*bounding)  # reduce digits in html output
+    if not bounding[1] <= bounding[3]:
+        utila.error(f'invalid bounding: {bounding}')
+    if not bounding[0] <= bounding[2]:
+        utila.error(f'invalid bounding: {bounding}')
+    bounding = utila.rectangle_ensure_bounding(bounding)
     x0 = bounding[0]
     y0 = bounding[1]
-    assert y0 <= bounding[3], str(bounding)
-    assert x0 <= bounding[2], str(bounding)
     width = bounding[2] - bounding[0]
     height = bounding[3] - bounding[1]
     x0, y0, width, height = utila.roundme(x0, y0, width, height)
