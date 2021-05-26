@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.8.2
+
+### Feature
+
+* add 2025 bounding renderer (893993e93cdb)
+
+### Fix
+
+* do not fail on invalid rectangle (048fb0bf3684)
+* skip invalid image extraction bug (ff87e6f4ebcb)
+
 ## v1.8.1
 
 ## v1.8.0
