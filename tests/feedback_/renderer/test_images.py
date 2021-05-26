@@ -36,16 +36,16 @@ def test_load_image_informations():
     source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')
     informations = feedback.renderer.images.load_image_informations(source)
-    assert len(informations) == 5, str(informations)
+    assert len(informations) == 4, str(informations)
 
 
 def test_load_image():
     source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')
     images = feedback.renderer.images.load_images(source)
-    assert len(images) == 5
+    assert len(images) == 4
     exts = [item.ext for item in images]
-    expected = ['jpg', 'jpg', 'jpg', 'jpg', 'jpg']
+    expected = ['jpg', 'jpg', 'jpg', 'jpg']
     assert exts == expected
 
 

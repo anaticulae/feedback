@@ -60,7 +60,7 @@ def style_range(textcontainer, start, end, fontstore: iamraw.FontStore):
         font = fontstore[font_]
         flags = list(font.flags) if font.flags else []
         if font.style == iamraw.Style.ITALIC:
-            flags.append(iamraw.FontFlag.Italic)
+            flags.append(iamraw.FontFlag.ITALIC)
         style = (start_, end_, size_, rise_, font.name, tuple(flags))
         result.append(style)
     return result
@@ -70,14 +70,14 @@ def style_fromflags(flags: iamraw.FontFlags) -> str:
     if not flags:
         return ''
     result = ''
-    if iamraw.FontFlag.Italic in flags:
+    if iamraw.FontFlag.ITALIC in flags:
         result += 'font-style:italic;'
-    if iamraw.FontFlag.ForceBold in flags:
+    if iamraw.FontFlag.FORCEBOLD in flags:
         result += 'font-weight:bold;'
-    if iamraw.FontFlag.Serif in flags:
+    if iamraw.FontFlag.SERIF in flags:
         result += 'font-family:sans-serif;'
     # if iamraw.FontFlag.Symbolic in flags:
     #     result += 'font-family:Consolas;'
-    if iamraw.FontFlag.SmallCap in flags:
+    if iamraw.FontFlag.SMALLCAP in flags:
         result += 'font-variant:small-caps;'
     return result
