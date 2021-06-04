@@ -15,5 +15,5 @@ hey==5.11.3
 power==1.4.6
 
 # required feedback/linter result
-decider==2.7.3
+decider==2.8.0
 decider_lay==0.5.1
