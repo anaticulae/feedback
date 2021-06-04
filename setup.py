@@ -63,8 +63,6 @@ if __name__ == "__main__":
             'feedback.utils',
         ],
         entry_points={
-            'console_scripts': [
-                'feedback = feedback.cli:main',
-            ],
+            'console_scripts': ['feedback = feedback.cli:main',],
         },
     )

@@ -20,9 +20,9 @@ import feedback.features.view
 
 
 def work(
-        sizeandborder: str,
-        *linters: list,
-        pages: tuple = None,
+    sizeandborder: str,
+    *linters: list,
+    pages: tuple = None,
 ) -> typing.Tuple[bytes, bytes]:
     sizeandborder = serializeraw.load_pageborders(sizeandborder, pages)
     maxpage = max([page.page for page in sizeandborder])
@@ -40,8 +40,8 @@ def work(
 
 
 def render_findings_overview(
-        findings: iamraw.PageFindings,
-        maxpage: int,
+    findings: iamraw.PageFindings,
+    maxpage: int,
 ) -> bytes:
     pages = utila.ranged_list(maxpage)
     counted = [

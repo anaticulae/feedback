@@ -31,25 +31,25 @@ import feedback.utils.multiple_styles
 
 
 def load(  # pylint:disable=R0914,too-many-arguments
-        text: str,
-        textposition: str,
-        oneline_text: str,
-        oneline_textposition: str,
-        borders: str,
-        alignment: str = None,
-        boxes: str = None,
-        fontheader: str = None,
-        fontcontent: str = None,
-        oneline_fontheader: str = None,
-        oneline_fontcontent: str = None,
-        hits: str = None,
-        horizontals: str = None,
-        images: str = None,
-        figures: str = None,
-        lines: str = None,
-        sections: str = None,
-        headerfooter: str = None,
-        pages: tuple = None,
+    text: str,
+    textposition: str,
+    oneline_text: str,
+    oneline_textposition: str,
+    borders: str,
+    alignment: str = None,
+    boxes: str = None,
+    fontheader: str = None,
+    fontcontent: str = None,
+    oneline_fontheader: str = None,
+    oneline_fontcontent: str = None,
+    hits: str = None,
+    horizontals: str = None,
+    images: str = None,
+    figures: str = None,
+    lines: str = None,
+    sections: str = None,
+    headerfooter: str = None,
+    pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     """Load data to present as html view.
 
@@ -153,15 +153,15 @@ def load(  # pylint:disable=R0914,too-many-arguments
 
 
 def load_page(
-        border,
-        page,
-        navigators,
-        fontstore,
-        onelines,
-        oneline_fontstore,
-        sections,
-        headerfooter,
-        **kwargs,
+    border,
+    page,
+    navigators,
+    fontstore,
+    onelines,
+    oneline_fontstore,
+    sections,
+    headerfooter,
+    **kwargs,
 ):  # pylint:disable=R0914
     navigator = utila.select_page(navigators, page)
     oneline = utila.select_page(onelines, page)
@@ -261,8 +261,8 @@ def select_page(args, key, page):
 
 
 def from_path(  # pylint:disable=R0914
-        path: str,
-        pages: tuple = None,
+    path: str,
+    pages: tuple = None,
 ) -> feedback.renderer.content.HTMLPageContents:
     assert os.path.exists(path), str(path)
     text = iamraw.path.text(path)

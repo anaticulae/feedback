@@ -32,9 +32,9 @@ import feedback.utils.multiple_styles
 
 
 def render_page(
-        page: feedback.renderer.content.HTMLPageContent,
-        marks: feedback.renderer.mark.PageMarkConfiguration = None,
-        shapes: list = None,
+    page: feedback.renderer.content.HTMLPageContent,
+    marks: feedback.renderer.mark.PageMarkConfiguration = None,
+    shapes: list = None,
 ) -> str:
     """Convert `page`-data to raw html data.
 
@@ -113,10 +113,10 @@ def create_textstyle(container, wordmarker, linemarker) -> list:
 
 
 def create_textline(  # pylint:disable=R0914
-        textcontainer,
-        marked_line,
-        alignments=None,
-        fontstore=None,
+    textcontainer,
+    marked_line,
+    alignments=None,
+    fontstore=None,
 ) -> str:
     bounding = textcontainer.bounding
     result = []
@@ -151,12 +151,12 @@ DEFAULT_ALIGNMENT = 'justify'
 
 
 def create_div(
-        line,
-        box,
-        ranged,
-        marked_line,
-        alignments,
-        rotated: bool = False,
+    line,
+    box,
+    ranged,
+    marked_line,
+    alignments,
+    rotated: bool = False,
 ) -> str:
     alignment = alignments(bounding=box) if alignments else DEFAULT_ALIGNMENT
     alignment = create_alignment(alignment)

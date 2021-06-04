@@ -42,12 +42,12 @@ border:{border};background:{background};pointer-events:none;
 
 
 def render_rectangle(
-        bounding: iamraw.BoundingBox,
-        border: str = '1px solid black',
-        background: str = 'transparent',
-        more: str = '',
-        reference: str = None,
-        zindex: int = 10,
+    bounding: iamraw.BoundingBox,
+    border: str = '1px solid black',
+    background: str = 'transparent',
+    more: str = '',
+    reference: str = None,
+    zindex: int = 10,
 ) -> str:
     """Render html rectangle represented as `<span>`."""
     reference = html_reference(reference)
@@ -84,9 +84,9 @@ width:{width}px;height:{height}px;pointer-events: none; {more}" fill="none">
 
 
 def render_line(
-        bounding: iamraw.BoundingBox,
-        more: str = '',
-        reference: str = '',
+    bounding: iamraw.BoundingBox,
+    more: str = '',
+    reference: str = '',
 ) -> str:
     reference = html_reference(reference)
     bounding = utila.roundme(*bounding)  # reduce digits in html output

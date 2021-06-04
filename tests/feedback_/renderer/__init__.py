@@ -42,12 +42,12 @@ def html(content: str, title: str = 'no title', css: str = None):
 
 @contextlib.contextmanager
 def render_and_open(
-        directory: int,
-        content,
-        page: int,
-        marks=None,
-        shapes=None,
-        css=None,
+    directory: int,
+    content,
+    page: int,
+    marks=None,
+    shapes=None,
+    css=None,
 ):
     outpath = os.path.join(directory, 'index.html')
     content = utila.select_page(content, page)

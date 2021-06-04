@@ -37,8 +37,8 @@ RawImages = typing.List[RawImage]
 
 
 def load_image_informations(
-        path: str,
-        pages: tuple = None,
+    path: str,
+    pages: tuple = None,
 ) -> iamraw.ImageInformations:
     if not os.path.exists(path):
         return []

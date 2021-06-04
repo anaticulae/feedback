@@ -31,25 +31,25 @@ import feedback.renderer.shape
 
 
 def work(  # pylint:disable=R0914,too-many-arguments
-        text: str,
-        textpositions: str,
-        oneline_text: str,
-        oneline_textposition: str,
-        sizeandborders: str,
-        alignment: str,
-        fontheader: str,
-        fontcontent: str,
-        images: list,
-        figures: list,
-        boxes: str,
-        horizontals: str,
-        lines: str,
-        hits: str,
-        words: str,
-        sections: str,
-        headerfooter: str,
-        *linters: list,
-        pages: tuple = None,
+    text: str,
+    textpositions: str,
+    oneline_text: str,
+    oneline_textposition: str,
+    sizeandborders: str,
+    alignment: str,
+    fontheader: str,
+    fontcontent: str,
+    images: list,
+    figures: list,
+    boxes: str,
+    horizontals: str,
+    lines: str,
+    hits: str,
+    words: str,
+    sections: str,
+    headerfooter: str,
+    *linters: list,
+    pages: tuple = None,
 ) -> list:
     """Generate html view for selected `pages`.
 
@@ -150,9 +150,9 @@ def load_single_words(navigators):
 
 
 def load_marks(
-        findings: iamraw.PageFindings,
-        sentences: dict,
-        words: dict,
+    findings: iamraw.PageFindings,
+    sentences: dict,
+    words: dict,
 ) -> dict:
     marks = collections.defaultdict(list)
     if findings:
@@ -193,9 +193,9 @@ def load_findings(paths: str, pages: tuple = None) -> iamraw.PageFindings:
 
 
 def convert_sentence_to_word_mark(
-        marks: iamraw.PageFindings,
-        sentences,
-        words: dict,
+    marks: iamraw.PageFindings,
+    sentences,
+    words: dict,
 ) -> dict:
     assert isinstance(sentences, dict), type(sentences)
     marks = {
