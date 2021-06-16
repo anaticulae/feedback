@@ -12,10 +12,9 @@ import protocol
 
 import feedback.renderer.mark
 import feedback.utils.multiple_styles
-from tests.feedback_.fixtures import masterpage72  # pylint:disable=W0611
 
 
-def test_renderer_mark_access_words(masterpage72):  # pylint:disable=W0621
+def test_renderer_mark_access_words(masterpage72):
     access = feedback.renderer.mark.WordAccess(masterpage72)
     assert access.word(12, 0) == 'Studiengang:'
 
