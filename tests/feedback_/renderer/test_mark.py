@@ -27,10 +27,10 @@ def test_renderer_mark_word_marker():
     line = '  Hier spricht super Helmut. Wie gehts    es dir mein Freund?    '
     # yapf:disable
     expected = [
-        feedback.utils.multiple_styles.Style(21, 28, '<span id="word2_3">', '</span>'),
-        feedback.utils.multiple_styles.Style(29, 32, '<span id="word2_4">', '</span>'),
-        feedback.utils.multiple_styles.Style(33, 38, '<span id="word2_5">', '</span>'),
-        feedback.utils.multiple_styles.Style(45, 48, '<span id="word2_7">', '</span>'),
+        feedback.utils.multiple_styles.Style(19, 26, '<span id="word2_3">', '</span>'),
+        feedback.utils.multiple_styles.Style(27, 30, '<span id="word2_4">', '</span>'),
+        feedback.utils.multiple_styles.Style(31, 36, '<span id="word2_5">', '</span>'),
+        feedback.utils.multiple_styles.Style(40, 43, '<span id="word2_7">', '</span>'),
     ]
     # yapf:enable
     result = marker.markme(line)

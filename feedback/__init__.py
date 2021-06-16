@@ -7,14 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-import contextlib
 import os
-
-import german
-import iamraw
-import protocol
-
-import feedback.__patch__
 
 __version__ = '1.8.4'
 
@@ -22,74 +15,3 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 PACKAGE = 'feedback'
 PROCESS = 'feedback'
-
-
-# TODO: REMOVE AFTER UPGRADING
-def filter_mark(items: iamraw.Findings, shortcut: str) -> iamraw.Findings:
-    """Filter `Findings` by shortcut and sort them by `location.value`
-    afterwards.
-
-    Args:
-        items(iamraw.Findings): list of findings
-        shortcut(str): shortcut of finding.location, w word, p page,
-                       ol oneline, etc.
-    Returns:
-        filtered, sorted list of `Findings`
-    """
-    assert all([item.location for item in items]), f'require location: {items}'
-    selected = []
-    for item in items:
-        with contextlib.suppress(AttributeError):
-            if item.location.shortcut == shortcut:
-                selected.append(item)
-
-    def line_key(item):
-        # TODO: REMOVE LATER
-        try:
-            return item.location.value
-        except AttributeError:
-            # If line is not defined, return -1 instead. This can happen
-            # if only page number is defined.
-            return item.location.line or -1  # return -1 instead of None
-
-    items = sorted(selected, key=line_key)
-    return items
-
-
-protocol.filter_mark = filter_mark
-
-
-def words(items: iamraw.Findings) -> iamraw.Findings:
-    return filter_mark(items, shortcut='w')
-
-
-protocol.words = words
-
-
-def lines(items: iamraw.Findings) -> iamraw.Findings:
-    return filter_mark(items, shortcut='ol')
-
-
-protocol.lines = lines
-
-
-def sentences(items: iamraw.Findings) -> iamraw.Findings:
-    return filter_mark(items, shortcut='s')
-
-
-protocol.sentences = sentences
-
-
-def split_token(text: str, normalize: bool = True):
-    # replace text division -
-    text = text.replace('-\n', '')
-    # support multi line text
-    text = text.replace('\n', ' ')
-    tokens = text.split(' ')
-    if normalize:
-        tokens = [token for token in tokens if token]
-    return tokens
-
-
-# TODO: REMOVE AFTER UPGRADING GERMAN
-german.split_token = split_token
