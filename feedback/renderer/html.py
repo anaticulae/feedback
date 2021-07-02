@@ -60,7 +60,7 @@ def render_page(
 
     if page.navigator:
         # some pages does not have any text content. Some pages are
-        # whitepages or contain a single huge images.
+        # whitepages or contain a single huge image.
         for textcontainer in page.navigator:
             styles = create_textstyle(
                 textcontainer,
