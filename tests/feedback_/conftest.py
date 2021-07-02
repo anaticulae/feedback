@@ -9,6 +9,7 @@
 
 # pylint:disable=W0611
 from tests.feedback_.fixtures import bachelor56
+from tests.feedback_.fixtures import bachelor128page10
 from tests.feedback_.fixtures import leftright
 from tests.feedback_.fixtures import master116
 from tests.feedback_.fixtures import masterpage72

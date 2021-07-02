@@ -23,6 +23,14 @@ def masterpage72():
 
 
 @pytest.fixture
+def bachelor128page10():
+    path = power.link(power.BACHELOR128_PDF)
+    utilatest.fixture_requires(path)
+    loaded = feedback.renderer.loader.from_path(path, pages=10)
+    return loaded
+
+
+@pytest.fixture
 def leftright():
     path = power.link(power.BOOK007_PDF)
     utilatest.fixture_requires(path)
