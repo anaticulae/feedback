@@ -190,11 +190,12 @@ def load_page(
         if oneline_fontstore:
             navigator = oneline
             fontstore = oneline_fontstore
-            # justify all text
-            alignment = lambda bounding: [
-                textflow.alignment.style.TextAlignment.BLOCK
-            ]
             navigator_soc = oneline_soc
+
+            def alignment(bounding):  # pylint:disable=W0613,function-redefined
+                # justify all text
+                return [textflow.alignment.style.TextAlignment.BLOCK]
+
         else:
             utila.error('could not select oneline layout, '
                         'there is no oneline fontstore available')
