@@ -9,6 +9,7 @@
 
 import power
 import pytest
+import utilatest
 
 import feedback.renderer.loader
 
@@ -16,6 +17,7 @@ import feedback.renderer.loader
 @pytest.fixture
 def masterpage72():
     path = power.link(power.MASTER072_PDF)
+    utilatest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded
 
@@ -23,6 +25,7 @@ def masterpage72():
 @pytest.fixture
 def leftright():
     path = power.link(power.BOOK007_PDF)
+    utilatest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded
 
@@ -30,6 +33,7 @@ def leftright():
 @pytest.fixture
 def bachelor56():
     path = power.link(power.BACHELOR056_PDF)
+    utilatest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded
 
@@ -37,5 +41,6 @@ def bachelor56():
 @pytest.fixture
 def master116():
     path = power.link(power.MASTER116_PDF)
+    utilatest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded

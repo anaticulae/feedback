@@ -141,6 +141,7 @@ def test_sentence_selector(bachelor56):
     assert len(items) > 20
 
 
+@utilatest.requires(power.BACHELOR056_PDF)
 def test_render_bachelor56_page9_with_quotation_error():
     """Ensure to load sentences marks."""
     source = power.link(power.BACHELOR056_PDF)
@@ -183,6 +184,7 @@ def test_render_master72_marked_lines(tmpdir, masterpage72):
         assert source.count('id="line3_19"') == 1
 
 
+@utilatest.requires(power.MASTER116_PDF)
 def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
@@ -213,6 +215,7 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
         assert source.count(f'id="line{page}_{expected}"') == 1
 
 
+@utilatest.requires(power.DISS264_PDF)
 def test_regression_render_diss264_page21(testdir):
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""

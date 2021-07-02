@@ -32,6 +32,7 @@ def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621
         webbrowser.open(outpath)
 
 
+@utilatest.requires(power.BOOK007_PDF)
 def test_load_image_informations():
     source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')
@@ -39,6 +40,7 @@ def test_load_image_informations():
     assert len(informations) == 4, str(informations)
 
 
+@utilatest.requires(power.BOOK007_PDF)
 def test_load_image():
     source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')

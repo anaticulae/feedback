@@ -10,10 +10,12 @@
 import painter
 import power
 import utila
+import utilatest
 
 import tests.feedback_
 
 
+@utilatest.requires(power.BACHELOR090_PDF)
 def test_render_findings_histogram(testdir, monkeypatch):
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
@@ -22,6 +24,7 @@ def test_render_findings_histogram(testdir, monkeypatch):
     assert len(rendered) > 1000
 
 
+@utilatest.requires(power.BACHELOR090_PDF)
 def test_render_findings_pie(testdir, monkeypatch):
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'

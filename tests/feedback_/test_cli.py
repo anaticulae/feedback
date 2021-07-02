@@ -30,6 +30,8 @@ def test_run_feedback_help():
     pytest.param(power.link(power.BOOK007_PDF), id='leftright'),
     pytest.param(power.link(power.MASTER072_PDF), id='master72'),
 ])
+@utilatest.requires(power.BOOK007_PDF)
+@utilatest.requires(power.MASTER072_PDF)
 def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     """Run linted example where findings are converted to shapes to
     display more information to the user."""
@@ -52,6 +54,7 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
 
 
 @pytest.mark.xfail(reason='broken data generator')
+@utilatest.requires(power.BACHELOR056_PDF)
 def test_run_feedback_view(testdir, monkeypatch):
     root = testdir.tmpdir
     cmd = f'-i {power.link(power.BACHELOR056_PDF)} -o {root} --pages=9'

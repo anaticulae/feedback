@@ -10,10 +10,12 @@
 import os
 
 import power
+import utilatest
 
 import tests.feedback_
 
 
+@utilatest.requires(power.MASTER072_PDF)
 def test_report_problems_view(testdir, monkeypatch):
     inpath = power.link(power.MASTER072_PDF)
     cmd = f'-i {inpath} -o {testdir.tmpdir} --view'
@@ -25,6 +27,7 @@ def test_report_problems_view(testdir, monkeypatch):
     # TODO: REMOVE THIS TEST
 
 
+@utilatest.requires(power.MASTER116_PDF)
 def test_view_master116_border_size(testdir, monkeypatch):
     inpath = power.link(power.MASTER116_PDF)
     cmd = f'-i {inpath} -o {testdir.tmpdir} --view '
