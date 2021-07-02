@@ -19,10 +19,7 @@ import feedback.renderer.html
 
 def test_renderer_interactive_showhide(testdir):
     """Ensure that `border-reference` is addet to html element."""
-    root = str(testdir)
-
-    outpath = os.path.join(root, 'index.html')
-
+    outpath = os.path.join(testdir.tmpdir, 'index.html')
     html = feedback.renderer.content.HTMLPageContent(
         border=(50, 700, 50, 800),
         page=10,
@@ -30,9 +27,7 @@ def test_renderer_interactive_showhide(testdir):
         navigator=[],
     )
     content = feedback.renderer.html.render_page(page=html)
-
     assert 'page_10_border_content' in content
-
     utila.file_create(outpath, content)
 
     if utilatest.single_execution():

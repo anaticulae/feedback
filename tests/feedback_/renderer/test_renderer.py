@@ -127,16 +127,12 @@ def test_sentence_selector(bachelor56):
         'jedoch verlässliche Hinweisreize und die Erfahrung von positiven '
         'Konsequenzen, wenn die Beeinträchtigung durch den Alkohol '
         'kompensiert werden können.')
-
     generator = feedback.renderer.mark.WordGenerator()
     left = []
     for line in selected.navigator:
-        for _, item in generator.words(line.text):
-            left.append(item)
-
+        left.extend([item[1] for item in generator.words(line.text)])
     generator = feedback.renderer.mark.WordGenerator()
     right = [item for _, item in generator.words(matched)]
-
     items = feedback.renderer.mark.best_sync(left, right)
     assert len(items) > 20
 
@@ -145,14 +141,11 @@ def test_sentence_selector(bachelor56):
 def test_render_bachelor56_page9_with_quotation_error():
     """Ensure to load sentences marks."""
     source = power.link(power.BACHELOR056_PDF)
-    sentences = {}
-    words_ = {}
-
+    sentences, wordx = {}, {}
     # load findings
     findings = protocol.findings_from_path(source)
     assert len(findings) == 19  # not proved but data/algo had changed if broken
-
-    marks = ffpv.load_marks(findings, sentences, words_)
+    marks = ffpv.load_marks(findings, sentences, wordx)
     assert marks
     # TODO: GIVE THIS TEST A PURPOSE
 
