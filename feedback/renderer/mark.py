@@ -180,7 +180,7 @@ def best_sync(left, right) -> utila.Numbers:
         start = result.index(max_equal)
     except ValueError:
         return None
-    words = [item for item in range(start, start + rightlength)]
+    words = list(range(start, start + rightlength))
     return words
 
 
@@ -262,7 +262,7 @@ class LineMarker:
         if not line:
             # white space line
             return None
-        if not self.index in self.marks:
+        if self.index not in self.marks:
             self.index += 1
             return None
         start = f'<span id="line{self.page}_{self.index}">'
