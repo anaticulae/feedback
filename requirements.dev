@@ -19,4 +19,6 @@ power>=1.6.0<2.0.0
 decider>=2.10.0<3.0.0
 decider_lay>=0.7.0<1.0.0
 
+# required to load images?
+rawmaker>=2.22.0<3.0.0
 figureo>=0.3.0<1.0.0

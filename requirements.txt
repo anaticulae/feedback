@@ -12,9 +12,6 @@ iamraw>=4.23.0<5.0.0
 protocol>=3.8.4<4.0.0
 utila>=2.42.0<3.0.0
 
-# required to load images
-rawmaker>=2.22.0<3.0.0
-
 german>=1.9.0<2.0.0
 words>=1.0.1<2.0.0
 texas>=0.2.2<1.0.0
