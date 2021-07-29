@@ -37,7 +37,8 @@ def test_load_image_informations():
     source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')
     informations = feedback.renderer.images.load_image_informations(source)
-    assert len(informations) == 4, str(informations)
+    # figures are merged into images
+    assert len(informations) in (4, 8), str(informations)
 
 
 @utilatest.requires(power.BOOK007_PDF)
@@ -45,10 +46,12 @@ def test_load_image():
     source = power.link(power.BOOK007_PDF)
     source = os.path.join(source, 'rawmaker__images_images')
     images = feedback.renderer.images.load_images(source)
-    assert len(images) == 4
+    # figures are merged into images
+    assert len(images) in (4, 8)
     exts = [item.ext for item in images]
     expected = ['jpg', 'jpg', 'jpg', 'jpg']
-    assert exts == expected
+    expected2 = ['png', 'png', 'jpg', 'png', 'jpg', 'jpg', 'jpg', 'png']
+    assert exts in (expected, expected2)
 
 
 def test_renderer_figures_as_image(tmpdir, master116):  # pylint:disable=W0621
