@@ -58,6 +58,7 @@ def style_range(textcontainer, start, end, fontstore: iamraw.FontStore):
             continue
         end_ = utila.mins(end_, end)  # shrink upper border
         font = fontstore[font_]
+        assert font is not None, 'HINT: regenerate resources'
         flags = list(font.flags) if font.flags else []
         if font.style == iamraw.Style.ITALIC:
             flags.append(iamraw.FontFlag.ITALIC)
