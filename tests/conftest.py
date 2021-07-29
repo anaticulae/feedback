@@ -41,6 +41,7 @@ def pytest_sessionstart():
 
 
 def extract(files):
+    decider.example.SELECTED['figureo'] = True
     decider.example.extract(
         files,
         power.generated(),
