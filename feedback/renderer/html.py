@@ -190,8 +190,8 @@ def render_images(images):
     result = []
     for _, info, fileimage in images:
         bounding = info.bounding
-        width = utila.roundme(info.bounding[2] - info.bounding[0])
-        height = utila.roundme(info.bounding[3] - info.bounding[1])
+        width = utila.rectangle_width(info.bounding)
+        height = utila.rectangle_height(info.bounding)
         style = (f'style="position:absolute;border:1px solid black;'
                  f'top:{bounding[1]}px;left:{bounding[0]}px;'
                  f' width:{width}px;height:{height}px"')
