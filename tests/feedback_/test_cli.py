@@ -8,7 +8,6 @@
 # =============================================================================
 
 import os
-import webbrowser
 
 import power
 import pytest
@@ -49,8 +48,8 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     first_file = os.path.join(root, 'feedback__view_pages/0.html')
     assert os.path.exists(first_file), str(first_file)
 
-    if utilatest.single_execution():
-        webbrowser.open(first_file)
+    with utilatest.open_webbrowser(first_file):
+        pass
 
 
 @pytest.mark.xfail(reason='broken data generator')
@@ -77,5 +76,5 @@ def test_run_feedback_view(testdir, monkeypatch):
     counted = content.count('id="word9')
     assert counted >= 20, counted
 
-    if utilatest.single_execution():
-        webbrowser.open(page9)
+    with utilatest.open_webbrowser(page9):
+        pass

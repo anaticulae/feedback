@@ -11,7 +11,6 @@ import contextlib
 import inspect
 import os
 import sys
-import webbrowser
 
 import utila
 import utilatest
@@ -65,5 +64,5 @@ def render_and_open(
 
     utila.file_create(outpath, rendered)
 
-    if utilatest.single_execution():
-        webbrowser.open(outpath)
+    with utilatest.open_webbrowser(outpath):
+        pass

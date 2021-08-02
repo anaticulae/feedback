@@ -8,7 +8,6 @@
 # =============================================================================
 
 import os
-import webbrowser
 
 import utila
 import utilatest
@@ -28,7 +27,6 @@ def test_renderer_interactive_showhide(testdir):
     )
     content = feedback.renderer.html.render_page(page=html)
     assert 'page_10_border_content' in content
-    utila.file_create(outpath, content)
 
-    if utilatest.single_execution():
-        webbrowser.open(outpath)
+    with utilatest.open_webbrowser(outpath):
+        utila.file_create(outpath, content)

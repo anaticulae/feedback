@@ -8,7 +8,6 @@
 # =============================================================================
 
 import os
-import webbrowser
 
 import power
 import protocol
@@ -55,10 +54,8 @@ def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):
         </style>
         """
     output = style + rendered
-    utila.file_create(outpath, output)
-
-    if utilatest.single_execution():
-        webbrowser.open(outpath)
+    with utilatest.open_webbrowser(outpath):
+        utila.file_create(outpath, output)
 
 
 def test_renderer_shapes_mark_bounding(tmpdir, leftright):

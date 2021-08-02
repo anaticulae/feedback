@@ -6,8 +6,8 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import os
-import webbrowser
 
 import utila
 import utilatest
@@ -34,7 +34,6 @@ def test_render_overlapping_shapes(testdir):
     html += render_rectangle((100, 20, 200, 300), background='blue')
     html += render_rectangle((33, 33, 199, 99), background='transparent')
     html += '</div>'
-    utila.file_create(outpath, html)
 
-    if utilatest.single_execution():
-        webbrowser.open(outpath)
+    with utilatest.open_webbrowser(outpath):
+        utila.file_create(outpath, html)

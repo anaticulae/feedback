@@ -8,7 +8,6 @@
 # =============================================================================
 
 import os
-import webbrowser
 
 import power
 import utila
@@ -24,10 +23,6 @@ def test_render_boxes(testdir):
     data = feedback.renderer.loader.from_path(source, pages=1)[0]
     html = feedback.renderer.html.render_page(data)
 
-    root = str(testdir)
-    outpath = os.path.join(root, 'index.html')
-
-    utila.file_create(outpath, html)
-
-    if utilatest.single_execution():
-        webbrowser.open_new(outpath)
+    outpath = os.path.join(testdir.tmpdir, 'index.html')
+    with utilatest.open_webbrowser(outpath):
+        utila.file_create(outpath, html)

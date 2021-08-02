@@ -8,7 +8,6 @@
 # =============================================================================
 
 import os
-import webbrowser
 
 import power
 import utila
@@ -28,8 +27,8 @@ def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621
 
     utila.file_create(outpath, rendered)
 
-    if utilatest.single_execution():
-        webbrowser.open(outpath)
+    with utilatest.open_webbrowser(outpath):
+        pass
 
 
 @utilatest.requires(power.BOOK007_PDF)
@@ -61,7 +60,5 @@ def test_renderer_figures_as_image(tmpdir, master116):  # pylint:disable=W0621
     rendered = feedback.renderer.html.render_page(titlepage)
     assert len(rendered) > 300, str(rendered)
 
-    utila.file_create(outpath, rendered)
-
-    if utilatest.single_execution():
-        webbrowser.open(outpath)
+    with utilatest.open_webbrowser(outpath):
+        utila.file_create(outpath, rendered)
