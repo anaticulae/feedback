@@ -45,9 +45,9 @@ def test_load_image():
     images = feedback.renderer.images.load_images(source)
     # figures are merged into images
     assert len(images) in (4, 8)
-    exts = [item.ext for item in images]
+    exts = sorted([item.ext for item in images])
     expected = ['jpg', 'jpg', 'jpg', 'jpg']
-    expected2 = ['png', 'png', 'jpg', 'png', 'jpg', 'jpg', 'jpg', 'png']
+    expected2 = ['jpg', 'jpg', 'jpg', 'jpg', 'png', 'png', 'png', 'png']
     assert exts in (expected, expected2)
 
 
