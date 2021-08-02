@@ -218,3 +218,14 @@ def test_regression_render_diss264_page21(testdir):
     page = 21
     with tfr.render_and_open(testdir.tmpdir, loaded, page=page) as source:
         assert source.count('transform:') == 12  # adjust later
+
+
+@utilatest.requires(power.BACHELOR090_PDF)
+def test_figure_notext(testdir):
+    """Do not render text in figure area twice."""
+    path = power.link(power.BACHELOR090_PDF)
+    page = 23
+    loaded = feedback.renderer.loader.from_path(path, pages=page)
+    with tfr.render_and_open(testdir.tmpdir, loaded, page=page) as source:
+        # figure content
+        assert 'RTR' not in source
