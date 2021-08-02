@@ -58,10 +58,15 @@ def render_page(
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
     raw.extend(feedback.renderer.boxes.render_boxes(page))
 
+    # TODO: REPLACE WITH UTILA CODE
+    skip = utila.rectangle_merge([item.info.bounding for item in page.images])
+
     if page.navigator:
         # some pages does not have any text content. Some pages are
         # whitepages or contain a single huge image.
         for textcontainer in page.navigator:
+            if skip and intersecting_rectangles(skip, textcontainer.bounding):
+                continue
             styles = create_textstyle(
                 textcontainer,
                 wordmarker,
@@ -98,6 +103,16 @@ def render_page(
     content = '\n'.join(raw)
     result = create_pagebox(content, page.page, page.pagesize)
     return result
+
+
+def intersecting_rectangles(
+    containers: utila.Rectangles,
+    test: utila.Rectangle,
+) -> bool:
+    for item in containers:
+        if utila.intersecting_rectangle(item, test):
+            return True
+    return False
 
 
 def create_textstyle(container, wordmarker, linemarker) -> list:
