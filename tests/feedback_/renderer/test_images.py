@@ -14,8 +14,6 @@ import utila
 import utilatest
 
 import feedback.renderer.images
-from tests.feedback_.fixtures import leftright  # pylint:disable=W0611
-from tests.feedback_.fixtures import master116  # pylint:disable=W0611
 
 
 def test_renderer_title_with_image(tmpdir, leftright):  # pylint:disable=W0621

@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import pytest
-
 import feedback.renderer.mark
 import tests.feedback_.renderer
 
