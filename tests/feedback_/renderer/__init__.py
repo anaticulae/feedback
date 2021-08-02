@@ -49,6 +49,7 @@ def render_and_open(
     shapes=None,
     css=None,
 ):
+    assert isinstance(page, int), f'require int: {page}'
     outpath = os.path.join(directory, 'index.html')
     content = utila.select_page(content, page)
 
