@@ -170,18 +170,19 @@ def test_render_master72_marked_lines(tmpdir, masterpage72):
     ) as source:
         # three lines are marked
         assert source.count('id="line3_0"') == 1
-        assert source.count('id="line3_16"') == 1
-        assert source.count('id="line3_19"') == 1
+        assert source.count('id="line3_16"') == 3
+        assert source.count('id="line3_19"') == 5
 
 
 @utilatest.requires(power.MASTER116_PDF)
 def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
-    """This test aims to generate and view a toc very fast to check
-    develop new html renderings."""
     page = 12
-    source = power.link(power.MASTER116_PDF)
-    pagemarks = ffpv.load_marks_from_path(source, page=page)
-    expected = list(pagemarks.linemarks.keys())[0]  # pylint:disable=E1101
+    pagemarks = feedback.renderer.mark.PageMarkConfiguration(
+        page=page,
+        wordmarks=[],
+        linemarks=[4, 5],
+    )
+    expected = 4
     css = """\
         #line12_4{
             background:blue;
@@ -200,21 +201,18 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
         # regression test after improving merger
         assert source.count('Abb. 2.1.: ') == 1
         assert source.count('Abb. 2.2.: ') == 1
-
-        # TODO: REPLACE LATER
         assert source.count(f'id="line{page}_{expected}"') == 1
 
 
 @utilatest.requires(power.DISS264_PDF)
 def test_regression_render_diss264_page21(testdir):
-    """This test aims to generate and view a toc very fast to check
-    develop new html renderings."""
     path = power.link(power.DISS264_PDF)
     loaded = feedback.renderer.loader.from_path(path)
 
     page = 21
     with tfr.render_and_open(testdir.tmpdir, loaded, page=page) as source:
-        assert source.count('transform:') == 12  # adjust later
+        # character in figure are removed by rawmaker_cleanup
+        assert source.count('transform:') == 0  # adjust later
 
 
 @utilatest.requires(power.BACHELOR090_PDF)

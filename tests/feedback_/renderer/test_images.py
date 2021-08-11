@@ -47,7 +47,7 @@ def test_load_image():
     assert len(images) in (4, 8)
     exts = sorted([item.ext for item in images])
     expected = ['jpg', 'jpg', 'jpg', 'jpg']
-    expected2 = ['jpg', 'jpg', 'jpg', 'jpg', 'png', 'png', 'png', 'png']
+    expected2 = ['png', 'png', 'png', 'png', 'png', 'png', 'png', 'png']
     assert exts in (expected, expected2)
 
 
