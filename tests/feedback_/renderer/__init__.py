@@ -60,9 +60,8 @@ def render_and_open(
     rendered = html(rendered, css=css)
     assert len(rendered) > 300, str(rendered)
 
-    yield rendered
-
     utila.file_create(outpath, rendered)
+    yield rendered
 
     with utilatest.open_webbrowser(outpath):
         pass
