@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v1.9.0
+
+### Feature
+
+* do not render figure text (abab439e62a8)
+
+### Fix
+
+* write to debug if test fail (de389fcacea5)
+
+### Documentation
+
+* extend interface documentation (7126ea098b32)
+
 ## v1.8.7
 
 ## v1.8.6
