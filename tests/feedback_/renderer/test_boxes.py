@@ -17,9 +17,9 @@ import feedback.renderer.html
 import feedback.renderer.loader
 
 
-@utilatest.requires(power.DOCU09_PDF)
+@utilatest.requires(power.DOCU009_PDF)
 def test_render_boxes(testdir):
-    source = power.link(power.DOCU09_PDF)
+    source = power.link(power.DOCU009_PDF)
     data = feedback.renderer.loader.from_path(source, pages=1)[0]
     html = feedback.renderer.html.render_page(data)
 

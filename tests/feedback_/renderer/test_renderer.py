@@ -98,6 +98,7 @@ def test_render_bachelor56_italic_style(tmpdir, bachelor56):
         assert 'font-style:italic;' in html, str(html)
 
 
+@pytest.mark.xfail(reason='we do not render tables anymore')
 def test_render_bachelor56_render_table(tmpdir, bachelor56):
     with tfr.render_and_open(tmpdir, bachelor56, page=15) as html:
         # ensure that table lines are rendered
