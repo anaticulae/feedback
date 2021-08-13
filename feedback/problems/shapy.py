@@ -30,7 +30,7 @@ def determine_shapes(findings, page: int) -> list:
     return result
 
 
-def error_2020(item) -> dict:
+def render_rectangle(item) -> dict:
     bounding = item.location.value
     bounding = utila.rectangle_ensure_bounding(bounding)
     result = {
@@ -42,15 +42,15 @@ def error_2020(item) -> dict:
     return result
 
 
-SHAPY[2020] = error_2020
-SHAPY[2025] = error_2020
-SHAPY[3030] = error_2020
-SHAPY[3031] = error_2020
-SHAPY[4000] = error_2020
-SHAPY[4001] = error_2020
-SHAPY[4002] = error_2020
-SHAPY[4003] = error_2020
-SHAPY[4004] = error_2020
-SHAPY[4005] = error_2020
-SHAPY[7000] = error_2020
-SHAPY[7770] = error_2020
+SHAPY[2020] = render_rectangle
+SHAPY[2025] = render_rectangle
+SHAPY[3030] = render_rectangle
+SHAPY[3031] = render_rectangle
+SHAPY[4000] = render_rectangle
+SHAPY[4001] = render_rectangle
+SHAPY[4002] = render_rectangle
+SHAPY[4003] = render_rectangle
+SHAPY[4004] = render_rectangle
+SHAPY[4005] = render_rectangle
+SHAPY[7000] = render_rectangle
+SHAPY[7770] = render_rectangle
