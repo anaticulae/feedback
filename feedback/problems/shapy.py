@@ -32,13 +32,10 @@ def determine_shapes(findings, page) -> list:
 
 def error_2020(item) -> dict:
     bounding = item.location.value
-    # TODO: REMOVE AFTER FIXING COORDINATES
-    ytop = min([bounding[3], bounding[1]])
-    ybottom = max([bounding[3], bounding[1]])
-    bounding_reverse = (bounding[0], ytop, bounding[2], ybottom)
+    bounding = utila.rectangle_ensure_bounding(bounding)
     result = {
         'type': 'rectangle',
-        'bounding': bounding_reverse,
+        'bounding': bounding,
         'border': '1px solid red',
         'reference': f'finding_{item.number}'
     }
