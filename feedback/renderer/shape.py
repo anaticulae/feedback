@@ -10,7 +10,15 @@
 to highlight an error message.
 
 For example - to highlight that a border was crossed, a rectangle as
-virtual border is painted."""
+virtual border is painted.
+
+regression test
+---------------
+
+Ensure that width and height is passed correctly
+>>> render_rectangle((56.7, 35.35, 527.7, 799.21))
+'...width:471.0px;height:763.86px;...'
+"""
 
 import iamraw
 import utila
@@ -59,8 +67,8 @@ def render_rectangle(
     bounding = utila.rectangle_ensure_bounding(bounding)
     x0 = bounding[0]
     y0 = bounding[1]
-    width = bounding[2] - bounding[0]
-    height = bounding[3] - bounding[1]
+    width = utila.rectangle_width(bounding)
+    height = utila.rectangle_height(bounding)
     x0, y0, width, height = utila.roundme(x0, y0, width, height)
     rendered = RECTANGLE.format(
         background=background,
