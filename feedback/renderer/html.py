@@ -119,10 +119,10 @@ def create_textline(  # pylint:disable=R0914
     fontstore=None,
 ) -> str:
     bounding = textcontainer.bounding
-    result = []
     lines = textcontainer.text.splitlines()
     start = 0
     rotated = textcontainer.style.rotation > 0.0
+    result = []
     for index, line in enumerate(lines):
         end = start + len(line)
         ranged = feedback.renderer.text.style_range(

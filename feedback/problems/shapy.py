@@ -12,7 +12,7 @@ import utila
 SHAPY = {}
 
 
-def determine_shapes(findings, page) -> list:
+def determine_shapes(findings, page: int) -> list:
     if not findings:
         return []
     selected = utila.select_page(findings, page)
@@ -22,11 +22,11 @@ def determine_shapes(findings, page) -> list:
     for item in selected:
         try:
             renderer = SHAPY[item.msgid]
-            rendered = renderer(item)
-            result.append(rendered)
         except KeyError:
             # no special renderer available
             continue
+        rendered = renderer(item)
+        result.append(rendered)
     return result
 
 

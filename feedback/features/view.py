@@ -114,7 +114,9 @@ def work(  # pylint:disable=R0914,too-many-arguments
                 page=page.page,
             )
             shapes = feedback.problems.shapy.determine_shapes(
-                findings, page.page)
+                findings,
+                page.page,
+            )
             rendered = feedback.renderer.html.render_page(
                 page,
                 pagemarks,
