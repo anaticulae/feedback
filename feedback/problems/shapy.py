@@ -42,6 +42,17 @@ def render_rectangle(item) -> dict:
     return result
 
 
+def render_rectangles(item) -> dict:
+    boundings = item.location.value
+    result = {
+        'type': 'rectangles',
+        'boundings': boundings,
+        'border': '1px solid red',
+        'reference': f'finding_{item.number}'
+    }
+    return result
+
+
 SHAPY[2020] = render_rectangle
 SHAPY[2025] = render_rectangle
 SHAPY[3030] = render_rectangle
@@ -54,3 +65,4 @@ SHAPY[4004] = render_rectangle
 SHAPY[4005] = render_rectangle
 SHAPY[7000] = render_rectangle
 SHAPY[7770] = render_rectangle
+SHAPY[7771] = render_rectangles

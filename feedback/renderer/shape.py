@@ -33,6 +33,8 @@ def render(items: list) -> list:
         rendered = None
         if typ == 'rectangle':
             rendered = render_rectangle(**item)
+        if typ == 'rectangles':
+            rendered = render_rectangles(**item)
         assert rendered, f'unsupported: {typ}'
         result.append(rendered)
     return result
@@ -82,6 +84,30 @@ def render_rectangle(
         zindex=zindex,
     )
     return rendered
+
+
+def render_rectangles(
+    boundings: iamraw.BoundingBoxes,
+    border: str = '1px solid black',
+    background: str = 'transparent',
+    more: str = '',
+    reference: str = None,
+    zindex: int = 10,
+) -> str:
+    """Render html rectangles represented as `<span>`."""
+    collected = []
+    for bounding in utila.xsome(boundings, count=4):
+        rendered = render_rectangle(
+            bounding=bounding,
+            border=border,
+            background=background,
+            more=more,
+            reference=reference,
+            zindex=zindex,
+        )
+        collected.append(rendered)
+    result = ''.join(collected)
+    return result
 
 
 LINE = """\
