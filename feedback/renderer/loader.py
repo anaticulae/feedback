@@ -352,14 +352,13 @@ def fix_alignment(alignment, oneline) -> textflow.alignment.info.AlignmentInfo:
                  for item in oneline]
     for page, content in alignment:
         if content is None:
-            utila.error(f'no alignment for page: {page}')
+            utila.debug(f'no alignment for page: {page}')
     alignment = [
         item if item is not None else textflow.serialize.PageContent(
             page=page,
             content=[],
         ) for page, item in alignment
     ]
-
     result = textflow.alignment.info.AlignmentInfo(
         oneline,
         alignment,
