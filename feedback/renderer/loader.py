@@ -220,8 +220,14 @@ def load_page(
     return result
 
 
-def soc(navigator, header):
-    """Start of Content"""
+def soc(navigator: texmex.PageTextNavigator, header) -> int:
+    """Start of Content
+
+    Empty page-textnavigator:
+    >>> assert soc(None, None) is None
+    """
+    if not navigator:
+        return None
     if not header:
         return None
     header = header.header
