@@ -131,6 +131,7 @@ def render_line(
     width = x1 - x0
     height = max([height, 1])
     width = max([width, 1])
+    width, height = utila.roundme((width, height))
     rendered = LINE.format(
         height=height,
         more=more,
@@ -148,6 +149,7 @@ HORIZONTAL = """\
 
 
 def render_horizontal(x0, y0, width, reference='') -> str:
+    width = utila.roundme(width)
     reference = html_reference(reference)
     rendered = HORIZONTAL.format(
         reference=reference,
