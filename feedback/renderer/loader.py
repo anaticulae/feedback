@@ -78,8 +78,11 @@ def load(  # pylint:disable=R0914,too-many-arguments
     )
     borders = serializeraw.load_pageborders(borders, pages=pages)
 
-    alignment = load_alignment(alignment, pages=pages) if alignment else None  # pylint:disable=E1123
-    alignment = fix_alignment(alignment, oneline)
+    if utila.exists(alignment):
+        alignment = load_alignment(alignment, pages=pages)
+        alignment = fix_alignment(alignment, oneline)
+    else:
+        alignment = None
 
     if isinstance(images, str):
         images = [images]
