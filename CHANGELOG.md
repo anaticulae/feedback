@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v1.10.0
+
+### Feature
+
+* add multiple bounding rectangle renderer (9108576325b5)
+
+### Fix
+
+* do not fail on non existing alignment (556b1a0606e8)
+* reduce accuracy (9b222454a580)
+* reduce verbosity (76fba4a8e19b)
+* do not determine soc for empty navigator (87bc125ad945)
+
 ## v1.9.0
 
 ### Feature
