@@ -22,7 +22,7 @@ def test_renderer_select_source_master116_toc(tmpdir, master116):
     ) as source:
 
         toc_lines = source.count('text-align-last:justify')
-        assert toc_lines >= 30, toc_lines
+        assert toc_lines >= 28, toc_lines
 
 
 # @pytest.mark.xfail(reason='broken header parser')
