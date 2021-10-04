@@ -79,7 +79,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
     borders = serializeraw.load_pageborders(borders, pages=pages)
 
     if utila.exists(alignment):
-        alignment = load_alignment(alignment, pages=pages)
+        alignment = load_alignment(alignment, pages=pages)  # pylint:disable=E1123
         alignment = fix_alignment(alignment, oneline)
     else:
         alignment = None

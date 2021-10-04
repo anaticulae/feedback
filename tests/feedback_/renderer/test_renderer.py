@@ -213,7 +213,7 @@ def test_regression_render_diss264_page21(testdir):
     page = 21
     with tfr.render_and_open(testdir.tmpdir, loaded, page=page) as source:
         # character in figure are removed by rawmaker_cleanup
-        assert source.count('transform:') == 0  # adjust later
+        assert not source.count('transform:')  # adjust later
 
 
 @utilatest.requires(power.BACHELOR090_PDF)
