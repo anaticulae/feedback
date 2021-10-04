@@ -43,7 +43,8 @@ def render_findings_overview(
     findings: iamraw.PageFindings,
     maxpage: int,
 ) -> bytes:
-    pages = utila.ranged_list(maxpage)
+    # use one base for better user experience
+    pages = utila.ranged_list(start=1, end=maxpage + 1)
     counted = [
         len(utila.select_page(
             findings,
