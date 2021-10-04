@@ -42,17 +42,12 @@ def load_image_informations(
 ) -> iamraw.ImageInformations:
     if not os.path.exists(path):
         return []
-
-    files = utila.file_list(path, include='yaml')
-    files = utila.files_sort(files)  # pylint:disable=R0204
-
-    result = []
-    for index, item in enumerate(files):
-        source = os.path.join(path, item)
-        loaded = serializeraw.load_image_info(source)
-        if utila.should_skip(loaded.page, pages):
-            continue
-        result.append((index, loaded))  # TODO: CHECK INDEX WHEN SKIPPING PAGES
+    loaded = serializeraw.load_image_infos_frompath(
+        path,
+        pages=pages,
+        skip_hidden=True,
+    )
+    result = utila.flatten_content(loaded)
     return result
 
 
@@ -62,43 +57,31 @@ IMAGE_EXT = ['png', 'jpg', 'jpeg']
 def load_images(path: str, pages: tuple = None) -> RawImages:
     if not os.path.exists(path):
         return []
-
     informations = load_image_informations(path, pages=pages)
-    todo = {item[0] for item in informations}
-
+    required = set(item.hashedimage for item in informations)
     # TODO: EXTEND FILE EXT?
     files = utila.file_list(path, include=IMAGE_EXT)
-    files = utila.files_sort(files)  # pylint:disable=R0204
-
     result = []
-    for index, item in enumerate(files):
-        if index not in todo:
+    for item in files:
+        hashedimage = utila.file_name(item)
+        if hashedimage not in required:
+            # image is not required
             continue
-        filename, fileext = utila.file_name(item), utila.file_ext(item)
+        fileext = utila.file_ext(item)
         loaded = utila.file_read_binary(os.path.join(path, item))
-        raw = RawImage(name=filename, ext=fileext, raw=loaded)
+        raw = RawImage(name=hashedimage, ext=fileext, raw=loaded)
         result.append(raw)
     return result
 
 
-def raw_image_names(path: str) -> list:
-    if not os.path.exists(path):
-        return []
-    files = utila.file_list(path, include=IMAGE_EXT)
-    files = utila.files_sort(files)  # pylint:disable=R0204
-    result = [os.path.split(item)[1] for item in files]
-    return result
-
-
 def zip_images(path: str, pages: tuple = None) -> ZippedImageInfos:
-    img = raw_image_names(path)
-    informations = load_image_informations(path, pages)
-    result = []
-    for index, info in informations:
-        try:
-            result.append(ZippedImageInfo(index, info, img[index]))
-        except IndexError:
-            utila.error(f'skip image {index} {len(informations)} {len(img)}')
+    informations = load_image_informations(path, pages=pages)
+    # TODO: AVOID THIS HACKY DOUBLE LOADING
+    images = load_images(path, pages=pages)
+    result = [
+        ZippedImageInfo(index, info, f'{raw.name}.{raw.ext}')
+        for index, (info, raw) in enumerate(zip(informations, images))
+    ]
     return result
 
 
