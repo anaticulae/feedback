@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.10.1
+
+### Feature
+
+* use improved loader to hide hidden images (49fbc94e0da3)
+
 ## v1.10.0
 
 ### Feature
