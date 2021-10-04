@@ -188,7 +188,7 @@ def create_alignment(alignment: textflow.alignment.style.TextAlignment):
 
 def render_images(images):
     result = []
-    for _, info, fileimage in images:
+    for info, fileimage in images:
         bounding = info.bounding
         width = utila.rectangle_width(info.bounding)
         height = utila.rectangle_height(info.bounding)

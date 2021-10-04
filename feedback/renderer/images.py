@@ -21,7 +21,7 @@ import utila
 
 ZippedImageInfo = collections.namedtuple(
     'ZippedImageInfo',
-    'number, info, filename',
+    'info, filename',
 )
 ZippedImageInfos = typing.List[ZippedImageInfo]
 
@@ -74,13 +74,20 @@ def load_images(path: str, pages: tuple = None) -> RawImages:
     return result
 
 
+def image_filename(path, hashed) -> str:
+    for ext in IMAGE_EXT:
+        imagepath = os.path.join(path, f'{hashed}.{ext}')
+        if not os.path.exists(imagepath):
+            continue
+        return os.path.split(imagepath)[1]
+    return None
+
+
 def zip_images(path: str, pages: tuple = None) -> ZippedImageInfos:
     informations = load_image_informations(path, pages=pages)
-    # TODO: AVOID THIS HACKY DOUBLE LOADING
-    images = load_images(path, pages=pages)
     result = [
-        ZippedImageInfo(index, info, f'{raw.name}.{raw.ext}')
-        for index, (info, raw) in enumerate(zip(informations, images))
+        ZippedImageInfo(info, image_filename(path, info.hashedimage))
+        for info in informations
     ]
     return result
 
@@ -88,4 +95,4 @@ def zip_images(path: str, pages: tuple = None) -> ZippedImageInfos:
 def select_images(items, page):
     if not items:
         return []
-    return [item for item in items if item[1].page == page]
+    return [item for item in items if item[0].page == page]
