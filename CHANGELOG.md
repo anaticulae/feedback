@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.11.0
+
+### Feature
+
+* use optimized as source of findings (e2cd07baed8a)
+* use one base pagination (fb35211fa5d8)
+
+### Fix
+
+* adjust correct image file name (3b43a7799711)
+
 ## v1.10.1
 
 ### Feature
