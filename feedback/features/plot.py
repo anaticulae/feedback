@@ -16,26 +16,19 @@ import protocol.group
 import serializeraw
 import utila
 
-import feedback.features.view
-
 
 def work(
     sizeandborder: str,
-    *linters: list,
+    optimized: str,
     pages: tuple = None,
 ) -> typing.Tuple[bytes, bytes]:
     sizeandborder = serializeraw.load_pageborders(sizeandborder, pages)
     maxpage = max([page.page for page in sizeandborder])
-
     with utila.profile('load findings'):
-        findings: iamraw.PageFindings = feedback.features.view.load_findings(
-            linters,
-            pages=pages,
-        )
-
+        # TODO: CHECK DIFFERENT ARRAY ELEMENTS
+        findings = serializeraw.load_grouped(optimized[0], pages=pages)
     findings_histogram = render_findings_overview(findings, maxpage)
     findings_pie = render_findings_types(findings)
-
     return findings_histogram, findings_pie
 
 

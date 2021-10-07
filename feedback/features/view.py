@@ -48,7 +48,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
     words: str,
     sections: str,
     headerfooter: str,
-    *linters: list,
+    optimized: list,
     pages: tuple = None,
 ) -> list:
     """Generate html view for selected `pages`.
@@ -73,7 +73,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         words(path): path to extracted sentences
         sections(path): path to extracted sections
         headerfooter(path): path to extracted headerfooter
-        linters(str): path to folder with linter results
+        optimized(str): path to folder with linter results
         pages(tuple): selected pages to process
     Returns:
         List of extracted html view per page.
@@ -100,8 +100,11 @@ def work(  # pylint:disable=R0914,too-many-arguments
             pages=pages,
         )
     with utila.profile('load findings'):
-        findings = load_findings(linters, pages=pages)
-
+        if optimized and utila.exists(optimized[0]):
+            optimized = optimized[0]
+            findings = serializeraw.load_grouped(optimized, pages=pages)
+        else:
+            findings = []
     with utila.profile('prepare data'):
         pagesentences = load_sentences(words, pages=pages)
         pagewords = load_single_words(html)

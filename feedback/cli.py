@@ -40,7 +40,7 @@ WORKPLAN = [
             ResultFile(producer='words', name='word_result'),
             ResultFile(producer='sections', name='section_result'),
             ResultFile(producer='groupme', name='footer_footerheader'),
-            Pattern(name='*_user', ext='yaml'),
+            utila.Directory('__optimized__'),
         ],
         (utila.File('feedback__view_pages/*', ext='html'),),
     ),
@@ -63,7 +63,7 @@ WORKPLAN = [
         name='plot',
         inputs=[
             ResultFile(producer='rawmaker', name='border_pages'),
-            Pattern(name='*_user', ext='yaml'),
+            utila.Directory('__optimized__'),
         ],
         output=[
             ('findings_histogram', 'png'),
