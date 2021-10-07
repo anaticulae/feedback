@@ -8,10 +8,6 @@
 # =============================================================================
 
 import utila
-from utila import Pattern
-from utila import ResultFile
-from utila import create_step as step
-from utila import featurepack
 
 import feedback
 import feedback.utils
@@ -20,31 +16,31 @@ FEATURE_NAME = 'problems'
 DESCRIPTION = 'generate central result view'
 
 WORKPLAN = [
-    step(
+    utila.create_step(
         'view',
         [
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
-            ResultFile(producer='rawmaker', name='oneline_text_text'),
-            ResultFile(producer='rawmaker', name='oneline_text_positions'),
-            ResultFile(producer='rawmaker', name='border_pages'),
-            ResultFile(producer='textflow', name='alignment_current'),
-            ResultFile(producer='rawmaker', name='fonts_header'),
-            ResultFile(producer='rawmaker', name='fonts_content'),
+            utila.ResultFile('rawmaker', name='text_text'),
+            utila.ResultFile('rawmaker', name='text_positions'),
+            utila.ResultFile('rawmaker', name='oneline_text_text'),
+            utila.ResultFile('rawmaker', name='oneline_text_positions'),
+            utila.ResultFile('rawmaker', name='border_pages'),
+            utila.ResultFile('textflow', name='alignment_current'),
+            utila.ResultFile('rawmaker', name='fonts_header'),
+            utila.ResultFile('rawmaker', name='fonts_content'),
             utila.Directory('rawmaker__images_images'),
             utila.Directory('rawmaker__figures_figures'),
-            ResultFile(producer='rawmaker', name='boxes_boxes'),
-            ResultFile(producer='rawmaker', name='horizontals_horizontals'),
-            ResultFile(producer='rawmaker', name='line_line'),
-            ResultFile(producer='decider_border', name='detection_hits'),
-            ResultFile(producer='words', name='word_result'),
-            ResultFile(producer='sections', name='section_result'),
-            ResultFile(producer='groupme', name='footer_footerheader'),
+            utila.ResultFile('rawmaker', name='boxes_boxes'),
+            utila.ResultFile('rawmaker', name='horizontals_horizontals'),
+            utila.ResultFile('rawmaker', name='line_line'),
+            utila.ResultFile('decider_border', name='detection_hits'),
+            utila.ResultFile('words', name='word_result'),
+            utila.ResultFile('sections', name='section_result'),
+            utila.ResultFile('groupme', name='footer_footerheader'),
             utila.Directory('__optimized__'),
         ],
         (utila.File('feedback__view_pages/*', ext='html'),),
     ),
-    step(
+    utila.create_step(
         'images',
         [
             utila.Directory('rawmaker__images_images'),
@@ -52,7 +48,7 @@ WORKPLAN = [
         (  # TODO: REPLACE THIS HACK LATER
             utila.File('feedback__view_pages/{FILEHASH}', ext='???'),),
     ),
-    step(
+    utila.create_step(
         'figures',
         [
             utila.Directory('rawmaker__figures_figures'),
@@ -62,7 +58,7 @@ WORKPLAN = [
     utila.create_step(
         name='plot',
         inputs=[
-            ResultFile(producer='rawmaker', name='border_pages'),
+            utila.ResultFile(producer='rawmaker', name='border_pages'),
             utila.Directory('__optimized__'),
         ],
         output=[
@@ -74,7 +70,7 @@ WORKPLAN = [
 
 
 def main():
-    featurepack(
+    utila.featurepack(
         workplan=WORKPLAN,
         root=feedback.ROOT,
         featurepackage='feedback.features',
