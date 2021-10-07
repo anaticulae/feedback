@@ -188,15 +188,6 @@ def load_marks_from_path(source, page: int):
     return pagemarks
 
 
-def load_findings(paths: str, pages: tuple = None) -> iamraw.PageFindings:
-    """Load findings and group them by pages."""
-    # TODO: MOVE TO PROTOCOL
-    loaded = [serializeraw.load_findings(path, pages=pages) for path in paths]
-    loaded = utila.flatten(loaded)
-    result = protocol.bypage(loaded)
-    return result
-
-
 def convert_sentence_to_word_mark(
     marks: iamraw.PageFindings,
     sentences,
