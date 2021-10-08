@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.11.1
+
+### Fix
+
+* do not use float as count or page number (e75dcf105249)
+* add missing last page (9a42c3a2f45a)
+* adjust optimized findings loader (dbf5a3459f51)
+
 ## v1.11.0
 
 ### Feature
