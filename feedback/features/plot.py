@@ -59,6 +59,7 @@ def render_findings_overview(
         grid=True,
         xlabel='Seite',
         ylabel='Anzahl',
+        intlabel=True,
     )
     raw = painter.png(rendered)
     return raw
