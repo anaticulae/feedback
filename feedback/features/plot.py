@@ -38,7 +38,8 @@ def render_findings_overview(
     maxpage: int,
 ) -> bytes:
     # use one base for better user experience
-    pages = utila.ranged_list(start=1, end=maxpage + 1)
+    # plus one for matlab rendering
+    pages = utila.ranged_list(start=1, end=maxpage + 1 + 1)
     counted = [
         len(utila.select_page(
             findings,
