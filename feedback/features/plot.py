@@ -16,6 +16,8 @@ import protocol.group
 import serializeraw
 import utila
 
+import feedback.features
+
 
 def work(
     sizeandborder: str,
@@ -25,8 +27,7 @@ def work(
     sizeandborder = serializeraw.load_pageborders(sizeandborder, pages)
     maxpage = max([page.page for page in sizeandborder])
     with utila.profile('load findings'):
-        # TODO: CHECK DIFFERENT ARRAY ELEMENTS
-        findings = serializeraw.load_grouped(optimized[0], pages=pages)
+        findings = feedback.features.load_optimized(optimized, pages=pages)
     findings_histogram = render_findings_overview(findings, maxpage)
     findings_pie = render_findings_types(findings)
     return findings_histogram, findings_pie

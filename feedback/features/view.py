@@ -22,6 +22,7 @@ import protocol
 import serializeraw
 import utila
 
+import feedback.features
 import feedback.problems.shapy
 import feedback.renderer.html
 import feedback.renderer.loader
@@ -99,11 +100,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
             pages=pages,
         )
     with utila.profile('load findings'):
-        if optimized and utila.exists(optimized[0]):
-            optimized = optimized[0]
-            findings = serializeraw.load_grouped(optimized, pages=pages)
-        else:
-            findings = []
+        findings = feedback.features.load_optimized(optimized, pages=pages)
     with utila.profile('prepare data'):
         pagesentences = load_sentences(words, pages=pages)
         pagewords = load_single_words(html)
