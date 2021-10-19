@@ -14,7 +14,7 @@ import utila
 import feedback.utils.multiple_styles
 
 # threshold to avoid invalid sups as a result of bad pdf printing.
-THRESHOLD_RISE = configo.HV_FLOAT_PLUS(2.0).value
+THRESHOLD_RISE = configo.HV_FLOAT_PLUS(default=2.0)
 
 
 def render_inline(styles) -> feedback.utils.multiple_styles.Styles:
