@@ -7,7 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
+
 import feedback.renderer.shape
+
+RENDER_BOXES_BORDER_STYLE = configo.HV_STR(default='1px solid black')
+
+RENDER_PAGEBORDER_STYLE = configo.HV_STR(default='1px dotted gray')
 
 
 def render_boxes(page):
@@ -17,7 +23,7 @@ def render_boxes(page):
     for index, item in enumerate(page.boxes):
         box = feedback.renderer.shape.render_rectangle(
             item.box,
-            border='1px solid black',
+            border=RENDER_BOXES_BORDER_STYLE,
             reference=f'page_{page.page}_boxed_{index}',
         )
         result.append(box)
@@ -35,10 +41,9 @@ def render_pageborder(page):
         width - page.border[1],
         height - page.border[3],
     )
-    # TODO: Think about style concept, USE HOLY VALUE?
     border = feedback.renderer.shape.render_rectangle(
         rectangle,
-        border='1px dotted gray',
+        border=RENDER_PAGEBORDER_STYLE,
         reference=f'page_{page.page}_border_content',
     )
     return [border]
