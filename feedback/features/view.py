@@ -39,8 +39,8 @@ def work(  # pylint:disable=R0914,too-many-arguments
     alignment: str,
     fontheader: str,
     fontcontent: str,
-    images: list,
-    figures: list,
+    ximages: list,
+    xfigures: list,
     boxes: str,
     horizontals: str,
     lines: str,
@@ -64,8 +64,8 @@ def work(  # pylint:disable=R0914,too-many-arguments
         alignment: path to expected text alignment
         fontheader: path to extracted font header
         fontcontent: path to extracted font content
-        images: path to load extracted images and information from
-        figures: path to extracted figures and figure informations
+        ximages: path to load extracted images and information from
+        xfigures: path to extracted figures and figure informations
         hits(str): path to hits extracted from decider_border-hits
         boxes(str): path to extracted boxes
         horizontals(str): path to extracted horizontals
@@ -92,8 +92,8 @@ def work(  # pylint:disable=R0914,too-many-arguments
             fontheader=fontheader,
             hits=hits,
             horizontals=horizontals,
-            images=images,
-            figures=figures,
+            images=ximages,
+            figures=xfigures,
             lines=lines,
             sections=sections,
             headerfooter=headerfooter,
