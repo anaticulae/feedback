@@ -25,7 +25,6 @@ def test_renderer_select_source_master116_toc(tmpdir, master116):
         assert toc_lines >= 28, toc_lines
 
 
-# @pytest.mark.xfail(reason='broken header parser')
 def test_renderer_select_source_master116_startofcontent(tmpdir, master116):
     """Ensure that `start of content/soc` which means the offset between
     pagetextnavigator and pagetextcontentnavigator is handled properly
