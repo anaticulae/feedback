@@ -41,13 +41,15 @@ def pytest_sessionstart():
 
 
 def extract(files):
-    decider.example.SELECTED['figureo'] = True
+    config = dict(decider.example.SELECTED)
+    config['figureo'] = True
     decider.example.extract(
         files=files,
         destination=power.generated(),
         pages='0:20',
         worker=WORKER,
         base=power.REPOSITORY,
+        selected=config,
         morefeatures=[
             'decider_border',
         ],
