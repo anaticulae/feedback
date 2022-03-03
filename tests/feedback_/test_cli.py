@@ -26,28 +26,26 @@ def test_run_feedback_help():
 
 
 @pytest.mark.parametrize('source', [
-    pytest.param(power.link(power.BOOK007_PDF), id='leftright'),
-    pytest.param(power.link(power.MASTER072_PDF), id='master72'),
+    pytest.param(power.BOOK007_PDF, id='leftright'),
+    pytest.param(power.MASTER072_PDF, id='master72'),
 ])
-@utilatest.requires(power.BOOK007_PDF)
-@utilatest.requires(power.MASTER072_PDF)
 def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     """Run linted example where findings are converted to shapes to
     display more information to the user."""
-    root = str(testdir)
+    utilatest.fixture_requires(source)
+    source = power.link(source)
     utila.copy_content(
         source,
-        root,
+        testdir.tmpdir,
         pattern='(rawmaker|groupme|textflow|words)__*.yaml',
     )
     completed = utila.run('decider_border')
     assert completed.returncode == utila.SUCCESS, str(completed)
-
+    # run feedback
     tests.feedback_.run('--view', monkeypatch=monkeypatch)
-
-    first_file = os.path.join(root, 'feedback__view_pages/0.html')
+    # open result
+    first_file = testdir.tmpdir.join('feedback__view_pages/0.html')
     assert os.path.exists(first_file), str(first_file)
-
     with utilatest.open_webbrowser(first_file):
         pass
 
