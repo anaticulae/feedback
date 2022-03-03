@@ -14,37 +14,23 @@ import re
 import setuptools
 
 ROOT = os.path.abspath(os.path.dirname(__file__))
-UTF8 = 'utf8'
 
-with open(os.path.join(ROOT, 'README.md'), mode='rt', encoding=UTF8) as fp:
+with open(os.path.join(ROOT, 'README.md'), encoding='utf8') as fp:
     README = fp.read()
 
-VERSION_PATH = os.path.join(ROOT, 'feedback/__init__.py')
-with open(VERSION_PATH, mode='rt', encoding=UTF8) as fp:
+with open(os.path.join(ROOT, 'feedback/__init__.py'), encoding='utf8') as fp:
     VERSION = re.search(r'__version__ = \'(.*?)\'', fp.read()).group(1)
 
-REQUIREMENTS_PATH = os.path.join(ROOT, 'requirements.txt')
-with open(REQUIREMENTS_PATH, mode='rt', encoding=UTF8) as fp:
-    INSTALL_REQUIRES = [
-        line for line in fp.readlines() if line and '#' not in line
-    ]
-
-REQUIREMENTS_DEV = os.path.join(ROOT, 'requirements.dev')
-with open(REQUIREMENTS_DEV, mode='rt', encoding=UTF8) as fp:
-    REQUIREMENTS_DEV = [
-        line for line in fp.readlines() if line and '#' not in line
-    ]
+with open(os.path.join(ROOT, "requirements.txt"), encoding='utf8') as fp:
+    REQUIRES = [line for line in fp.readlines() if line and '#' not in line]
 
 if __name__ == "__main__":
-    # allow setup.py to run from another directory
-    os.chdir(ROOT)
     setuptools.setup(
         author='Helmut Konrad Fahrendholz',
         author_email='info@checkitweg.de',
         description='It\'s important!',
         include_package_data=True,
-        tests_require=REQUIREMENTS_DEV,
-        install_requires=INSTALL_REQUIRES,
+        install_requires=REQUIRES,
         long_description=README,
         name='feedback',
         platforms='any',
@@ -52,8 +38,8 @@ if __name__ == "__main__":
         version=VERSION,
         zip_safe=False,  # create 'zip'-file if True. Don't do it!
         classifiers=[
-            'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.9',
         ],
         packages=[
             'feedback',
@@ -63,6 +49,6 @@ if __name__ == "__main__":
             'feedback.utils',
         ],
         entry_points={
-            'console_scripts': ['feedback = feedback.cli:main',],
+            'console_scripts': ['feedback = feedback.cli:main'],
         },
     )
