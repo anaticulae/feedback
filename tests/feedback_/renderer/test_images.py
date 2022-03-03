@@ -47,8 +47,9 @@ def test_load_image():
     assert len(images) in (4, 8)
     exts = sorted([item.ext for item in images])
     expected = ['jpg', 'jpg', 'jpg', 'jpg']
-    expected2 = ['png', 'png', 'png', 'png', 'png', 'png', 'png', 'png']
-    assert exts in (expected, expected2)
+    expected1 = ['png', 'png', 'png', 'png', 'png', 'png', 'png', 'png']
+    expected2 = ['png', 'png', 'png', 'png']
+    assert exts in (expected, expected1, expected2)
 
 
 def test_renderer_figures_as_image(tmpdir, master116):  # pylint:disable=W0621
