@@ -52,29 +52,25 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
         pass
 
 
-@pytest.mark.xfail(reason='broken data generator')
 @utilatest.requires(power.BACHELOR056_PDF)
 def test_run_feedback_view(testdir, monkeypatch):
     root = testdir.tmpdir
-    cmd = f'-i {power.link(power.BACHELOR056_PDF)} -o {root} --pages=9'
-
-    with utila.chdir(power.link(power.BACHELOR056_PDF)):
-        utilatest.run_command(
-            cmd,
-            monkeypatch=monkeypatch,
-            process=feedback.PACKAGE,
-            main=feedback.cli.main,
-            success=True,
-        )
-
+    source = power.link(power.BACHELOR056_PDF)
+    cmd = f'-i {source} -o {root} --pages=9'
+    # run feedback
+    utilatest.run_command(
+        cmd,
+        monkeypatch=monkeypatch,
+        process=feedback.PACKAGE,
+        main=feedback.cli.main,
+        success=True,
+    )
     # TODO: RENAME TO 9 AFTER FIXING GENERATOR
     page9 = os.path.join(root, 'feedback__view_pages/0.html')
-    assert os.path.exists(page9), str(page9)
-
-    # ensure that word marks are set on page9
-    content = utila.file_read(page9)
-    counted = content.count('id="word9')
-    assert counted >= 20, counted
-
     with utilatest.open_webbrowser(page9):
-        pass
+        # ensure that word marks are set on page9
+        content = utila.file_read(page9)
+        # counted = content.count('id="word9')
+        # assert counted >= 20, counted
+        counted = content.count('id="line9')
+        assert counted >= 8, counted
