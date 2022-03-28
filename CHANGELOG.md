@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.11.5
+
+### Fix
+
+* adjust import path (4f602351b715)
+
 ## v1.11.4
 
 ### Documentation
