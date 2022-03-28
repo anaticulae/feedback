@@ -15,7 +15,6 @@ import iamraw.path
 import iamraw.sections
 import serializeraw
 import texmex
-import textflow.alignment.style
 import textflow.features.alignment
 import textflow.path
 import textflow.serialize
@@ -197,7 +196,7 @@ def load_page(
 
             def alignment(bounding):  # pylint:disable=W0613,function-redefined
                 # justify all text
-                return [textflow.alignment.style.TextAlignment.BLOCK]
+                return [texmex.TextAlignment.BLOCK]
 
         else:
             utila.error('could not select oneline layout, '
@@ -334,7 +333,7 @@ def load_alignment(items):
 
     def load_raw(item):
         item = item.replace('TextAlignment.', '')
-        return textflow.alignment.style.TextAlignment[item]
+        return texmex.TextAlignment[item]
 
     if isinstance(items, str):
         alignments = load_raw(items)
@@ -357,7 +356,7 @@ def fix_alignment(alignment, oneline) -> textflow.alignment.info.AlignmentInfo:
         if content is None:
             utila.debug(f'no alignment for page: {page}')
     alignment = [
-        item if item is not None else textflow.serialize.PageContent(
+        item if item is not None else iamraw.PageContent(
             page=page,
             content=[],
         ) for page, item in alignment

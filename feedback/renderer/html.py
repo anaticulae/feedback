@@ -17,7 +17,7 @@ References
 """
 
 import iamraw
-import textflow.alignment.style
+import texmex
 import utila
 
 import feedback.renderer.boxes
@@ -175,13 +175,13 @@ def create_div(
     return raw
 
 
-def create_alignment(alignment: textflow.alignment.style.TextAlignment):
+def create_alignment(alignment: texmex.TextAlignment):
     raw = 'justify'
     if alignment and len(alignment) == 1:
         alignment = alignment[0]
-        if alignment == textflow.alignment.style.TextAlignment.LEFT:
+        if alignment == texmex.TextAlignment.LEFT:
             raw = 'left'
-        if alignment == textflow.alignment.style.TextAlignment.RIGHT:
+        if alignment == texmex.TextAlignment.RIGHT:
             raw = 'right'
     return f'text-align:{raw};text-align-last:{raw};'
 
