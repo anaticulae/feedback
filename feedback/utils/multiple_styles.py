@@ -76,6 +76,7 @@ def sort_style(items):
 def merge(items, current):
     result = sort_style(items)
     candiate = should_split(result, current)
+    candiate = remove_duplication_hack(candiate)
     if len(candiate) == 1:
         merged = merge_two(*sort_style([candiate[0], current]))
         result.remove(candiate[0])
@@ -100,6 +101,33 @@ def merge(items, current):
         # assert not candiate, len(candiate)
         result.append(current)
     result = sort_style(result)
+    return result
+
+
+def remove_duplication_hack(items) -> list:
+    """\
+    >>> len(remove_duplication_hack([Style(start=58, end=65, first='<span '
+    ... 'style=\"font-size:12.0px;font-family:Times-Roman;\">{*}<span '
+    ... 'id="line27_23">', last='</span>{*}</span>'), Style(start=62, end=65,
+    ... first='<span id=\"line27_23\">', last='</span>'), Style(start=65,
+    ... end=90, first='', last=''), Style(start=65, end=90, first='<span'
+    ... 'style=\"font-size:12.0px;font-family:Times-Roman;\">',
+    ... last='</span>')]))
+    3
+    """
+    # TODO: REMOVE THIS HACK
+    if not items:
+        return []
+    result = []
+    for index, item in enumerate(items):
+        if item.first or item.last:
+            result.append(item)
+            continue
+        # does empty item exisits twice?
+        if any(test for test in items[index + 1:]
+               if test.start == item.start and test.end == item.end):
+            continue
+        result.append(item)
     return result
 
 
