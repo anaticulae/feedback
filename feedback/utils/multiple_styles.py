@@ -97,7 +97,7 @@ def merge(items, current):
         if candiate:
             utila.error('should not happen')
             utila.error(candiate)
-        assert not candiate, len(candiate)
+        # assert not candiate, len(candiate)
         result.append(current)
     result = sort_style(result)
     return result
