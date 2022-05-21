@@ -71,4 +71,4 @@ def test_run_feedback_view(testdir, monkeypatch):
         # counted = content.count('id="word9')
         # assert counted >= 20, counted
         counted = content.count('id="line9')
-        assert counted >= 8, counted
+        assert counted >= 4, counted
