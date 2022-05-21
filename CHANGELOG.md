@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.11.6
+
+### Fix
+
+* remove useless empty duplicated style (54b508ebce13)
+* do not fail on invalid merge (745603eb5baa)
+
 ## v1.11.5
 
 ### Fix
