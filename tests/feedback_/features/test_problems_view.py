@@ -12,15 +12,15 @@ import os
 import power
 import utilatest
 
-import tests.feedback_
+import tests
 
 
 @utilatest.requires(power.MASTER072_PDF)
 def test_report_problems_view(testdir, monkeypatch):
     inpath = power.link(power.MASTER072_PDF)
     cmd = f'-i {inpath} -o {testdir.tmpdir} --view'
-    tests.feedback_.run(cmd, monkeypatch=monkeypatch)
-
+    tests.run(cmd, monkeypatch=monkeypatch)
+    # eval
     outpath = os.path.join(testdir.tmpdir, 'feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
@@ -31,10 +31,9 @@ def test_report_problems_view(testdir, monkeypatch):
 def test_view_master116_border_size(testdir, monkeypatch):
     inpath = power.link(power.MASTER116_PDF)
     cmd = f'-i {inpath} -o {testdir.tmpdir} --view '
-    tests.feedback_.run(cmd, monkeypatch=monkeypatch)
-
+    tests.run(cmd, monkeypatch=monkeypatch)
+    # eval
     outpath = os.path.join(testdir.tmpdir, 'feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
-
     # TODO: ADD CHECK FOR CHANGING PAGE DIMENSION

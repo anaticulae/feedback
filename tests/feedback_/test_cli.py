@@ -14,9 +14,7 @@ import pytest
 import utila
 import utilatest
 
-import feedback
-import feedback.cli
-import tests.feedback_
+import tests
 
 
 def test_run_feedback_help():
@@ -42,7 +40,7 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
     completed = utila.run('decider_border')
     assert completed.returncode == utila.SUCCESS, str(completed)
     # run feedback
-    tests.feedback_.run('--view', monkeypatch=monkeypatch)
+    tests.run('--view', monkeypatch=monkeypatch)
     # open result
     first_file = testdir.tmpdir.join('feedback__view_pages/0.html')
     assert os.path.exists(first_file), str(first_file)
@@ -56,13 +54,7 @@ def test_run_feedback_view(testdir, monkeypatch):
     source = power.link(power.BACHELOR056_PDF)
     cmd = f'-i {source} -o {root} --pages=9'
     # run feedback
-    utilatest.run_command(
-        cmd,
-        monkeypatch=monkeypatch,
-        process=feedback.PACKAGE,
-        main=feedback.cli.main,
-        success=True,
-    )
+    tests.run(cmd, monkeypatch=monkeypatch)
     # TODO: RENAME TO 9 AFTER FIXING GENERATOR
     page9 = os.path.join(root, 'feedback__view_pages/0.html')
     with utilatest.open_webbrowser(page9):

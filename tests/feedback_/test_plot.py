@@ -12,14 +12,14 @@ import power
 import utila
 import utilatest
 
-import tests.feedback_
+import tests
 
 
 @utilatest.requires(power.BACHELOR090_PDF)
 def test_render_findings_histogram(testdir, monkeypatch):
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
-    tests.feedback_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
     rendered = utila.file_read_binary('feedback__plot_findings_histogram.png')
     assert len(rendered) > 1000
 
@@ -28,7 +28,7 @@ def test_render_findings_histogram(testdir, monkeypatch):
 def test_render_findings_pie(testdir, monkeypatch):
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
-    tests.feedback_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
     rendered = utila.file_read_binary('feedback__plot_findings_types_pie.png')
     assert len(rendered) > 1000
     painter.show_figure(rendered)

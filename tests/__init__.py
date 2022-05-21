@@ -6,3 +6,10 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""The feedback generates the central document view"""
+
+import utilatest
+
+import feedback
+
+run, fail = utilatest.create_cli_runner(feedback)
