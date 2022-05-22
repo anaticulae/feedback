@@ -52,7 +52,7 @@ def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
 def test_run_feedback_view(testdir, monkeypatch):
     root = testdir.tmpdir
     source = power.link(power.BACHELOR056_PDF)
-    cmd = f'-i {source} -o {root} --pages=9'
+    cmd = f'--pdf {power.BACHELOR056_PDF} -i {source} -o {root} --pages=9'
     # run feedback
     tests.run(cmd, monkeypatch=monkeypatch)
     # TODO: RENAME TO 9 AFTER FIXING GENERATOR

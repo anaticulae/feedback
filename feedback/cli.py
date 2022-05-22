@@ -56,6 +56,13 @@ WORKPLAN = [
         (utila.File('feedback__view_pages/{FILEHASHS}', ext='png'),),
     ),
     utila.create_step(
+        'findings',
+        inputs=[
+            utila.Directory('__optimized__'),
+            utila.Value(name='pdf', typ=None, defaultvar=None),
+        ],
+    ),
+    utila.create_step(
         name='plot',
         inputs=[
             utila.ResultFile(producer='rawmaker', name='border_pages'),
