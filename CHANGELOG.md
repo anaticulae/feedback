@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.12.0
+
+### Feature
+
+* skip step if pdf is not given (15eedbba89e8)
+* add findings step (0eb820c33908)
+
 ## v1.11.6
 
 ### Fix
