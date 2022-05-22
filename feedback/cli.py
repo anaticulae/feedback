@@ -58,7 +58,6 @@ WORKPLAN = [
     utila.create_step(
         'findings',
         inputs=[
-            utila.Directory('__optimized__'),
             utila.Value(name='pdf', typ=None, defaultvar=None),
         ],
     ),

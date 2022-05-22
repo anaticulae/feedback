@@ -15,13 +15,15 @@ import feedback.features
 
 
 def work(
-    optimized: tuple,
     document: str,
+    inputs: tuple,
     outputs: str,
     pages: tuple = None,
 ):
+    utila.debug(f'pdf: {document}')
+    utila.debug(f'dir: {inputs}')
     with utila.profile('load findings'):
-        findings = feedback.features.load_optimized(optimized, pages=pages)
+        findings = feedback.features.load_optimized(inputs, pages=pages)
     prepared = prepare_findings(findings)
     if not prepared:
         utila.error('could not render any findings')

@@ -16,6 +16,7 @@ import tests
 def test_finding_feature(testdir, monkeypatch):
     pdf = power.BACHELOR090_PDF
     source = power.link(pdf)
-    cmd = f'--findings -i {source} --pdf {pdf} -o {testdir.tmpdir}'
+    optimized = utila.join(source, '__optimized__')
+    cmd = f'--findings -i {optimized} --pdf {pdf} -o {testdir.tmpdir}'
     tests.run(cmd, monkeypatch=monkeypatch)
     assert utila.file_count(testdir.tmpdir, ext='png') >= 8
