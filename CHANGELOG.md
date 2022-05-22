@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.12.1
+
+### Fix
+
+* make input folder less strict (9b71461b8d3d)
+
 ## v1.12.0
 
 ### Feature
