@@ -26,6 +26,9 @@ def work(
     if not prepared:
         utila.error('could not render any findings')
         return utila.NO_RESULT
+    if not utila.exists(document):
+        utila.error(f'--pdf {document} does not exists')
+        return utila.NO_RESULT
     ghost.run(
         src=document,
         dst=outputs,
