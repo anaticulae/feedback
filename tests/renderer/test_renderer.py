@@ -19,7 +19,7 @@ import feedback.features.view as ffpv
 import feedback.renderer.html
 import feedback.renderer.loader
 import feedback.renderer.mark
-import tests.feedback_.renderer as tfr
+import tests.renderer as tfr
 
 
 def test_renderer_load(masterpage72):

@@ -12,6 +12,12 @@ import power
 import pytest
 
 import feedback
+# pylint:disable=W0611
+from tests.fixtures import bachelor56
+from tests.fixtures import bachelor128page10
+from tests.fixtures import leftright
+from tests.fixtures import master116
+from tests.fixtures import masterpage72
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 

@@ -8,14 +8,14 @@
 # =============================================================================
 
 import feedback.renderer.mark
-import tests.feedback_.renderer
+import tests.renderer
 
 
 def test_renderer_select_source_master116_toc(tmpdir, master116):
     """Ensure that toc lines are printed justifieded and as a result of
     this, the dots are printed over the whole line."""
     page = 4
-    with tests.feedback_.renderer.render_and_open(
+    with tests.renderer.render_and_open(
             tmpdir,
             master116,
             page=page,
@@ -31,7 +31,7 @@ def test_renderer_select_source_master116_startofcontent(tmpdir, master116):
     and `1. Einleitung` is marked with red background."""
     page = 8
     marks = feedback.renderer.mark.PageMarkConfiguration(page=8, linemarks={0})
-    with tests.feedback_.renderer.render_and_open(
+    with tests.renderer.render_and_open(
             tmpdir,
             master116,
             marks=marks,
