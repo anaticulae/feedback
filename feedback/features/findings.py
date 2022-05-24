@@ -50,9 +50,11 @@ def prepare_findings(findings: list) -> list:
         fname = item.number
         page = item.location.page
         bounding = ghost.bounding_convert(item.location.value)
-        result.append(ghost.Part(
-            page=page,
-            bounding=bounding,
-            name=fname,
-        ))
+        result.append(
+            ghost.Part(
+                page=page,
+                bounding=bounding,
+                name=fname,
+                color=(255, 0, 0, 50),
+            ))
     return result
