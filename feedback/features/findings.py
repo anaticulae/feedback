@@ -39,6 +39,9 @@ def work(
     return utila.NO_RESULT
 
 
+OVERLAY_COLOR = (255, 0, 0, 50)
+
+
 def prepare_findings(findings: list) -> list:
     findings: list = utila.flatten_content(findings)
     findings = [
@@ -55,6 +58,6 @@ def prepare_findings(findings: list) -> list:
                 page=page,
                 bounding=bounding,
                 name=fname,
-                color=(255, 0, 0, 50),
+                color=OVERLAY_COLOR,
             ))
     return result
