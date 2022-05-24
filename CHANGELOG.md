@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.12.2
+
+### Feature
+
+* make color configurable (35c77c3278b5)
+
+### Fix
+
+* blend alpha color to improve view (4f5e2029a812)
+
 ## v1.12.1
 
 ### Fix
