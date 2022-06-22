@@ -64,7 +64,7 @@ WORKPLAN = [
     utila.create_step(
         name='plot',
         inputs=[
-            utila.ResultFile(producer='rawmaker', name='border_pages'),
+            utila.ResultFile(producer='groupme', name='pagenumbers_magic'),
             utila.Directory('__optimized__'),
         ],
         output=[

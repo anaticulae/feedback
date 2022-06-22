@@ -20,46 +20,52 @@ import feedback.features
 
 
 def work(
-    sizeandborder: str,
+    pagenumbers: str,
     optimized: str,
     pages: tuple = None,
 ) -> typing.Tuple[bytes, bytes]:
     with utila.profile('load findings'):
         findings = feedback.features.load_optimized(optimized, pages=pages)
-    sizeandborder = serializeraw.load_pageborders(sizeandborder, pages)
-    maxpage = max([page.page for page in sizeandborder])
-    findings_histogram = render_findings_overview(findings, maxpage)
+    pagenumbers = serializeraw.load_pagenumbers_magic(
+        pagenumbers,
+        pages=pages,
+    )
+    findings_histogram = render_findings_overview(
+        findings,
+        pagenumbers=pagenumbers,
+    )
     findings_pie = render_findings_types(findings)
     return findings_histogram, findings_pie
 
 
 def render_findings_overview(
     findings: iamraw.PageFindings,
-    maxpage: int,
+    pagenumbers: dict,
 ) -> bytes:
     # use one base for better user experience
     # plus one for matlab rendering
-    pages = utila.ranged_list(start=1, end=maxpage + 1 + 1)
+    pages = [str(item) for item in pagenumbers.values()]
+    if not pages:
+        utila.debug('no findings given, skip plotting findings')
+        return utila.NO_RESULT
     counted = [
         len(utila.select_page(
             findings,
             page=page,
             default=[],
-        )) for page in pages
+        )) for page in pagenumbers.keys()
     ]
-    if not pages:
-        utila.debug('no findings given, skip plotting findings')
-        return utila.NO_RESULT
+    ylim = max(max(counted) + 1, 5)
     rendered = painter.bar_render(
         x=pages,
         y=counted,
-        xlim=(0, maxpage),
+        ylim=(0, ylim),
         width=20.0,
         height=0.75 * golden(15.0),
         grid=True,
         xlabel='Seite',
         ylabel='Anzahl',
-        intlabel=True,
+        intlabel=(False, True),
     )
     raw = painter.png(rendered)
     return raw
