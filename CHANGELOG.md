@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.13.0
+
+### Feature
+
+* use magic page numbers in finding overview (98096e0b445d)
+
 ## v1.12.3
 
 ## v1.12.2
