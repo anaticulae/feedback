@@ -12,7 +12,6 @@ import typing
 import iamraw
 import painter
 import protocol
-import protocol.group
 import serializeraw
 import utila
 
@@ -73,7 +72,7 @@ def render_findings_overview(
 
 def render_findings_types(findings: iamraw.PageFindings) -> bytes:
     # TODO: REFACTOR IMPORT AFTER UPGRADING
-    findings = protocol.group.flat(findings)
+    findings = protocol.flat(findings)
     typed = bytype(findings)
 
     labels = ['Fehler', 'Warnung', 'Vorschlag']
