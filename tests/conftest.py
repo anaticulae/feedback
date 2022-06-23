@@ -26,7 +26,7 @@ PACKAGE = feedback.PACKAGE
 power.setup(feedback.ROOT)
 
 RESOURCES = [
-    (power.BACHELOR090_PDF, '0:30'),
+    (power.BACHELOR090_PDF, ':'),
     (power.BACHELOR128_PDF, '0:20'),
     (power.DISS264_PDF, '0:30'),
     (power.HOME025_PDF, '0:10'),
@@ -60,4 +60,5 @@ def extract(files):
         morefeatures=[
             'decider_border',
         ],
+        full=True,
     )
