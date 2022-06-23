@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import copy
+
 import ghost
 import iamraw
 import serializeraw
@@ -17,18 +19,18 @@ import feedback.features
 
 def work(
     sentence_bounding: str,
+    optimized: str,
     document: str,
-    inputs: tuple,
     outputs: str,
     pages: tuple = None,
 ):
     utila.debug(f'pdf: {document}')
     findings, sentence_bounding = load_resources(
-        inputs,
+        optimized,
         sentence_bounding,
         pages=pages,
     )
-    prepared = prepare_findings(findings)
+    prepared = prepare_findings(findings, sentence_bounding)
     if not prepared:
         utila.error('could not render any findings')
         return utila.NO_RESULT
@@ -52,6 +54,12 @@ def load_resources(inputs, sentence_bounding, pages: tuple = None):
             source=sentence_bounding,
             pages=pages,
         )
+        if sentence_bounding:
+            maxpage = sentence_bounding[-1].page
+            sentence_bounding = [
+                utila.select_content(sentence_bounding, page=page)
+                for page in utila.rlist(maxpage)
+            ]
     else:
         sentence_bounding = []
     return findings, sentence_bounding
@@ -60,17 +68,33 @@ def load_resources(inputs, sentence_bounding, pages: tuple = None):
 OVERLAY_COLOR = (255, 0, 0, 50)
 
 
-def prepare_findings(findings: list) -> list:
+def prepare_findings(findings: list, sentence_bounding: list) -> list:
     findings: list = utila.flatten_content(findings)
-    findings = [
-        item for item in findings
-        if isinstance(item.location, iamraw.BoundingLocation)
-    ]
+    selected = []
+    for finding in findings:
+        if isinstance(finding.location, iamraw.BoundingLocation):
+            selected.append(finding)
+            continue
+        if finding.location.shortcut == 's':
+            try:
+                loca = finding.location
+                sentence = sentence_bounding[loca.page][loca.value]
+            except IndexError:
+                utila.error(f'missing sentence bounding: {loca}')
+                continue
+            # TODO: MAY CHANGE THIS LATER
+            finding = copy.deepcopy(finding)
+            finding.location = iamraw.BoundingLocation(
+                page=loca.page,
+                value=sentence,
+            )
+            selected.append(finding)
+            continue
     result = []
-    for item in findings:
-        fname = item.number
-        page = item.location.page
-        bounding = ghost.bounding_convert(item.location.value)
+    for finding in selected:
+        fname = finding.number
+        page = finding.location.page
+        bounding = bounding_convert(finding.location.value)
         result.append(
             ghost.Part(
                 page=page,
@@ -79,3 +103,11 @@ def prepare_findings(findings: list) -> list:
                 color=OVERLAY_COLOR,
             ))
     return result
+
+
+def bounding_convert(bounding) -> list:
+    single = isinstance(bounding[0], (int, float))
+    if single:
+        bounding = [bounding]
+    bounding = [ghost.bounding_convert(bbox) for bbox in bounding]
+    return bounding

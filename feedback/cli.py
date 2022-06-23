@@ -59,6 +59,7 @@ WORKPLAN = [
         'findings',
         inputs=[
             utila.ResultFile(producer='words', name='sentences_bounding'),
+            utila.Directory('__optimized__'),
             utila.Value(name='pdf', typ=None, defaultvar=None),
         ],
     ),
