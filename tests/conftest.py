@@ -26,16 +26,16 @@ PACKAGE = feedback.PACKAGE
 power.setup(feedback.ROOT)
 
 RESOURCES = [
-    (power.MASTER116_PDF, '0:20,100:117'),
     (power.BACHELOR090_PDF, '0:30'),
     (power.BACHELOR128_PDF, '0:20'),
-    power.MASTER072_PDF,
-    power.BACHELOR056_PDF,
     (power.DISS264_PDF, '0:30'),
-    power.DOCU027_PDF,
-    power.DOCU009_PDF,
-    power.BOOK007_PDF,
     (power.HOME025_PDF, '0:10'),
+    (power.MASTER116_PDF, '0:20,100:117'),
+    power.BACHELOR056_PDF,
+    power.BOOK007_PDF,
+    power.DOCU009_PDF,
+    power.DOCU027_PDF,
+    power.MASTER072_PDF,
 ]
 
 WORKER = 6
