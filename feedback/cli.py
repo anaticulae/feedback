@@ -58,6 +58,7 @@ WORKPLAN = [
     utila.create_step(
         'findings',
         inputs=[
+            utila.ResultFile(producer='words', name='sentences_bounding'),
             utila.Value(name='pdf', typ=None, defaultvar=None),
         ],
     ),

@@ -9,21 +9,25 @@
 
 import ghost
 import iamraw
+import serializeraw
 import utila
 
 import feedback.features
 
 
 def work(
+    sentence_bounding: str,
     document: str,
     inputs: tuple,
     outputs: str,
     pages: tuple = None,
 ):
     utila.debug(f'pdf: {document}')
-    utila.debug(f'dir: {inputs}')
-    with utila.profile('load findings'):
-        findings = feedback.features.load_optimized(inputs, pages=pages)
+    findings, sentence_bounding = load_resources(
+        inputs,
+        sentence_bounding,
+        pages=pages,
+    )
     prepared = prepare_findings(findings)
     if not prepared:
         utila.error('could not render any findings')
@@ -37,6 +41,20 @@ def work(
         boundings=prepared,
     )
     return utila.NO_RESULT
+
+
+def load_resources(inputs, sentence_bounding, pages: tuple = None):
+    utila.debug(f'dir: {inputs}')
+    with utila.profile('load findings'):
+        findings = feedback.features.load_optimized(inputs, pages=pages)
+    if utila.exists(sentence_bounding):
+        sentence_bounding = serializeraw.load_sentence_bounding(
+            source=sentence_bounding,
+            pages=pages,
+        )
+    else:
+        sentence_bounding = []
+    return findings, sentence_bounding
 
 
 OVERLAY_COLOR = (255, 0, 0, 50)
