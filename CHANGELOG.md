@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.14.0
+
+### Feature
+
+* convert sentence to bounding (0f885ebb0a45)
+* add sentence bounding loader (82ccd6a488a6)
+
 ## v1.13.0
 
 ### Feature
