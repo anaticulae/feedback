@@ -58,7 +58,7 @@ def load_resources(inputs, sentence_bounding, pages: tuple = None):
             maxpage = sentence_bounding[-1].page
             sentence_bounding = [
                 utila.select_content(sentence_bounding, page=page, default=[])
-                for page in utila.rlist(maxpage)
+                for page in utila.rlist(maxpage + 1)
             ]
     else:
         sentence_bounding = []
