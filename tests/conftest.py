@@ -47,16 +47,12 @@ def pytest_sessionstart():
 
 
 def extract(files):
-    config = dict(decider.example.SELECTED)
-    config['figureo'] = True
-    config['optimize'] = True
     decider.example.extract(
         files=files,
         destination=power.generated(),
         pages='0:20',
         worker=WORKER,
         base=power.REPOSITORY,
-        selected=config,
         morefeatures=[
             'decider_border',
             'decider_textflow',
