@@ -9,10 +9,12 @@
 
 import power
 import utila
+import utilatest
 
 import tests
 
 
+@utilatest.requires(power.BACHELOR090_PDF)
 def test_finding_feature(testdir, monkeypatch):
     pdf = power.BACHELOR090_PDF
     source = power.link(pdf)
