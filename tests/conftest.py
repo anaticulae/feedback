@@ -59,6 +59,7 @@ def extract(files):
         selected=config,
         morefeatures=[
             'decider_border',
+            'decider_textflow',
         ],
         full=True,
     )
