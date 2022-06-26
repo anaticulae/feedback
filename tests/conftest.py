@@ -21,7 +21,7 @@ from tests.fixtures import masterpage72
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
-PACKAGE = feedback.PACKAGE
+PACKAGE = feedback.PROCESS
 
 power.setup(feedback.ROOT)
 
