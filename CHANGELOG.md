@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.14.1
+
+### Fix
+
+* enable single page selection (25b1ab44d9d3)
+* do not fail on missing sentence pages (e503759f3423)
+
 ## v1.14.0
 
 ### Feature
