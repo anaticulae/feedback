@@ -15,6 +15,7 @@ import utilatest
 import tests
 
 
+@utilatest.nightly
 @utilatest.requires(power.BACHELOR090_PDF)
 def test_finding_feature(testdir, monkeypatch):
     pdf = power.BACHELOR090_PDF
