@@ -9,8 +9,12 @@
 
 import os
 
+import configo
+
 __version__ = '1.14.1'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 PROCESS = 'feedback'
+
+configo.cloud_lookup(PROCESS)
