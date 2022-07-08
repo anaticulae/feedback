@@ -94,7 +94,9 @@ def prepare_findings(findings: list, sentence_bounding: list) -> list:
     for finding in selected:
         fname = finding.number
         page = finding.location.page
-        bounding = bounding_convert(finding.location.value)
+        if not (bounding := bounding_convert(finding.location.value)):
+            utila.error(f'invalid location: {finding}\n')
+            continue
         result.append(
             ghost.Part(
                 page=page,
@@ -106,6 +108,8 @@ def prepare_findings(findings: list, sentence_bounding: list) -> list:
 
 
 def bounding_convert(bounding) -> list:
+    if not bounding:
+        return None
     single = isinstance(bounding[0], (int, float))
     if single:
         bounding = [bounding]
