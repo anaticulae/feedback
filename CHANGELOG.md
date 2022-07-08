@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.15.0
+
+### Feature
+
+* limit number of page labels (c009a318305c)
+* load holy values (00954d13d124)
+
 ## v1.14.1
 
 ### Fix
