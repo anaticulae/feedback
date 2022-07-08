@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.15.1
+
+### Fix
+
+* fix word constructor after changing iamraw Location (5915adf863e8)
+
 ## v1.15.0
 
 ### Feature
