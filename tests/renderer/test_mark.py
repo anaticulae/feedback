@@ -100,10 +100,10 @@ def test_render_mark_filter_words():
     findings = [
         iamraw.Finding(location=create_chapter(chapter=3, page=3)),
         iamraw.Finding(location=create_chapter(chapter=5, page=3)),
-        iamraw.Finding(location=iamraw.Location.fromstr('w30p3')),
-        iamraw.Finding(location=iamraw.Location.fromstr('w130p3')),
-        iamraw.Finding(location=iamraw.Location.fromstr('w5p3')),
-        iamraw.Finding(location=iamraw.Location.fromstr('w0p3')),
+        iamraw.Finding(location=iamraw.Location.fromstr('p3w30')),
+        iamraw.Finding(location=iamraw.Location.fromstr('p3w130')),
+        iamraw.Finding(location=iamraw.Location.fromstr('p3w5')),
+        iamraw.Finding(location=iamraw.Location.fromstr('p3w0')),
         iamraw.Finding(location=create_line(line=7, page=3)),
         iamraw.Finding(location=create_chapter(chapter=1, page=3)),
     ]
