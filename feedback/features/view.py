@@ -219,7 +219,7 @@ def convert_sentence_to_word_mark(
             for item in selected:
                 # TODO: IS COPY NECESSARY?
                 new = copy.deepcopy(sentence_mark)
-                new.location = iamraw.Location.fromstr(f'w{item}p{page}')
+                new.location = iamraw.Location.from_word(word=item, page=page)
                 word_findings.append(new)
             result[page].extend(word_findings)
     # enable KeyError

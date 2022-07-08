@@ -124,7 +124,6 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
     wordmarks = [item.location.value for item in wordmarks]
     linemarks = protocol.lines(pagemarks)
     ranges = protocol.ranged(pagemarks)
-
     lines = {}
     for item in linemarks:
         lines[item.location.value] = COMPLETE_LINE
