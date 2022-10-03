@@ -16,7 +16,7 @@ import tests
 
 
 @utilatest.requires(power.BACHELOR090_PDF)
-def test_render_findings_histogram(td, mp):
+def test_render_findings_histogram(td, mp):  # pylint:disable=W0613
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
     tests.run(cmd, mp=mp)
@@ -25,7 +25,7 @@ def test_render_findings_histogram(td, mp):
 
 
 @utilatest.requires(power.BACHELOR090_PDF)
-def test_render_findings_pie(td, mp):
+def test_render_findings_pie(td, mp):  # pylint:disable=W0613
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
     tests.run(cmd, mp=mp)

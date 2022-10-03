@@ -94,7 +94,7 @@ def prepare_findings(findings: list, sentence_bounding: list) -> list:
     for finding in selected:
         fname = finding.number
         page = finding.location.page
-        if not (bounding := bounding_convert(finding.location.value)):
+        if not (bounding := bounding_convert(finding.location.value)):  # pylint:disable=superfluous-parens
             utila.error(f'invalid location: {finding}\n')
             continue
         result.append(
