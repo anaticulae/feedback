@@ -10,6 +10,7 @@
 import decider.example
 import power
 import pytest
+import utilatest
 from utilatest import mp  # pylint:disable=W0611
 from utilatest import td  # pylint:disable=W0611
 
@@ -40,8 +41,7 @@ RESOURCES = [
     power.DOCU009_PDF,
     power.DOCU027_PDF,
 ]
-
-WORKER = 6
+WORKER = utilatest.worker_count(6, onci=len(RESOURCES))
 
 
 @pytest.mark.usefixtures('session')
