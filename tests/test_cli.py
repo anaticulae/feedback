@@ -66,6 +66,7 @@ def test_run_feedback_view(testdir, monkeypatch):
         assert counted >= 4, counted
 
 
+@utilatest.requires(power.MASTER072_PDF)
 def test_feedback_plot(testdir, monkeypatch):
     source = power.link(power.MASTER072_PDF)
     cmd = f'-i {source} -o {testdir.tmpdir} --plot'
