@@ -16,9 +16,9 @@ import feedback.renderer.content
 import feedback.renderer.html
 
 
-def test_renderer_interactive_showhide(testdir):
+def test_renderer_interactive_showhide(td):
     """Ensure that `border-reference` is addet to html element."""
-    outpath = os.path.join(testdir.tmpdir, 'index.html')
+    outpath = os.path.join(td.tmpdir, 'index.html')
     html = feedback.renderer.content.HTMLPageContent(
         border=(50, 700, 50, 800),
         page=10,

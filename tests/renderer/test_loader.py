@@ -13,7 +13,7 @@ import feedback.renderer.mark
 import tests.renderer
 
 
-def test_load_navigator_soc(testdir, bachelor128page10):
+def test_load_navigator_soc(td, bachelor128page10):
     """Ensure that first content line is rendered as line0. Skip header
     content."""
     page = 10
@@ -24,7 +24,7 @@ def test_load_navigator_soc(testdir, bachelor128page10):
         linemarks=[line],
     )
     with tests.renderer.render_and_open(
-            testdir.tmpdir,
+            td.tmpdir,
             bachelor128page10,
             page=page,
             marks=pagemarks,

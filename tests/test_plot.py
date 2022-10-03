@@ -16,19 +16,19 @@ import tests
 
 
 @utilatest.requires(power.BACHELOR090_PDF)
-def test_render_findings_histogram(testdir, monkeypatch):
+def test_render_findings_histogram(td, mp):
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
-    tests.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, mp=mp)
     rendered = utila.file_read_binary('feedback__plot_findings_histogram.png')
     assert len(rendered) > 1000
 
 
 @utilatest.requires(power.BACHELOR090_PDF)
-def test_render_findings_pie(testdir, monkeypatch):
+def test_render_findings_pie(td, mp):
     source = power.link(power.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
-    tests.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, mp=mp)
     rendered = utila.file_read_binary('feedback__plot_findings_types_pie.png')
     assert len(rendered) > 1000
     painter.show_figure(rendered)

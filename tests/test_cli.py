@@ -27,34 +27,34 @@ def test_run_feedback_help():
     pytest.param(power.BOOK007_PDF, id='leftright'),
     pytest.param(power.MASTER072_PDF, id='master72'),
 ])
-def test_run_feedback_linter_findings_to_shape(source, testdir, monkeypatch):
+def test_run_feedback_linter_findings_to_shape(source, td, mp):
     """Run linted example where findings are converted to shapes to
     display more information to the user."""
     utilatest.fixture_requires(source)
     source = power.link(source)
     utila.copy_content(
         source,
-        testdir.tmpdir,
+        td.tmpdir,
         pattern='(rawmaker|groupme|textflow|words)__*.yaml',
     )
     completed = utila.run('decider_border')
     assert completed.returncode == utila.SUCCESS, str(completed)
     # run feedback
-    tests.run('--view', monkeypatch=monkeypatch)
+    tests.run('--view', mp=mp)
     # open result
-    first_file = testdir.tmpdir.join('feedback__view_pages/0.html')
+    first_file = td.tmpdir.join('feedback__view_pages/0.html')
     assert os.path.exists(first_file), str(first_file)
     with utilatest.open_webbrowser(first_file):
         pass
 
 
 @utilatest.requires(power.BACHELOR056_PDF)
-def test_run_feedback_view(testdir, monkeypatch):
-    root = testdir.tmpdir
+def test_run_feedback_view(td, mp):
+    root = td.tmpdir
     source = power.link(power.BACHELOR056_PDF)
     cmd = f'--pdf {power.BACHELOR056_PDF} -i {source} -o {root} --pages=9'
     # run feedback
-    tests.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, mp=mp)
     # TODO: RENAME TO 9 AFTER FIXING GENERATOR
     page9 = os.path.join(root, 'feedback__view_pages/0.html')
     with utilatest.open_webbrowser(page9):
@@ -67,9 +67,9 @@ def test_run_feedback_view(testdir, monkeypatch):
 
 
 @utilatest.requires(power.MASTER072_PDF)
-def test_feedback_plot(testdir, monkeypatch):
+def test_feedback_plot(td, mp):
     source = power.link(power.MASTER072_PDF)
-    cmd = f'-i {source} -o {testdir.tmpdir} --plot'
+    cmd = f'-i {source} -o {td.tmpdir} --plot'
     # run feedback
-    tests.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, mp=mp)
     assert 0

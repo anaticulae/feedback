@@ -18,11 +18,11 @@ import feedback.renderer.loader
 
 
 @utilatest.requires(power.DOCU009_PDF)
-def test_render_boxes(testdir):
+def test_render_boxes(td):
     source = power.link(power.DOCU009_PDF)
     data = feedback.renderer.loader.from_path(source, pages=1)[0]
     html = feedback.renderer.html.render_page(data)
 
-    outpath = os.path.join(testdir.tmpdir, 'index.html')
+    outpath = os.path.join(td.tmpdir, 'index.html')
     with utilatest.open_webbrowser(outpath):
         utila.file_create(outpath, html)

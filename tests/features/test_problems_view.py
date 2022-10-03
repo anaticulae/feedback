@@ -16,24 +16,24 @@ import tests
 
 
 @utilatest.requires(power.MASTER072_PDF)
-def test_report_problems_view(testdir, monkeypatch):
+def test_report_problems_view(td, mp):
     inpath = power.link(power.MASTER072_PDF)
-    cmd = f'-i {inpath} -o {testdir.tmpdir} --view'
-    tests.run(cmd, monkeypatch=monkeypatch)
+    cmd = f'-i {inpath} -o {td.tmpdir} --view'
+    tests.run(cmd, mp=mp)
     # eval
-    outpath = os.path.join(testdir.tmpdir, 'feedback__view_pages')
+    outpath = os.path.join(td.tmpdir, 'feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
     # TODO: REMOVE THIS TEST
 
 
 @utilatest.requires(power.MASTER116_PDF)
-def test_view_master116_border_size(testdir, monkeypatch):
+def test_view_master116_border_size(td, mp):
     inpath = power.link(power.MASTER116_PDF)
-    cmd = f'-i {inpath} -o {testdir.tmpdir} --view '
-    tests.run(cmd, monkeypatch=monkeypatch)
+    cmd = f'-i {inpath} -o {td.tmpdir} --view '
+    tests.run(cmd, mp=mp)
     # eval
-    outpath = os.path.join(testdir.tmpdir, 'feedback__view_pages')
+    outpath = os.path.join(td.tmpdir, 'feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
     # TODO: ADD CHECK FOR CHANGING PAGE DIMENSION

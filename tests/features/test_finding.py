@@ -17,25 +17,25 @@ import tests
 
 @utilatest.nightly
 @utilatest.requires(power.BACHELOR090_PDF)
-def test_finding_feature(testdir, monkeypatch):
+def test_finding_feature(td, mp):
     pdf = power.BACHELOR090_PDF
     source = power.link(pdf)
-    cmd = f'--findings  --pdf {pdf} -i {source} -o {testdir.tmpdir}'
-    tests.run(cmd, monkeypatch=monkeypatch)
-    assert utila.file_count(testdir.tmpdir, ext='png') >= 8
+    cmd = f'--findings  --pdf {pdf} -i {source} -o {td.tmpdir}'
+    tests.run(cmd, mp=mp)
+    assert utila.file_count(td.tmpdir, ext='png') >= 8
 
 
 @utilatest.requires(power.BACHELOR028_PDF)
-def test_finding_sentence_bachelor028(testdir, monkeypatch):
+def test_finding_sentence_bachelor028(td, mp):
     pdf = power.BACHELOR028_PDF
     source = power.link(pdf)
     cmd = f'--findings  --pdf {pdf} -i {source} --pages=7'
-    tests.run(cmd, monkeypatch=monkeypatch)
-    assert utila.file_count(testdir.tmpdir, ext='png') >= 1
+    tests.run(cmd, mp=mp)
+    assert utila.file_count(td.tmpdir, ext='png') >= 1
     findings = protocol.load_grouped(
         source=utila.join(source, '__optimized__'),
         pages=(7,),
     )[0].content
     finding = protocol.select_findings(findings, msgid=7605)[0]
-    expected = testdir.tmpdir.join(f'{finding.number}.png')
+    expected = td.tmpdir.join(f'{finding.number}.png')
     assert utila.exists(expected)

@@ -23,9 +23,9 @@ def test_render_rectangle():
     assert '90' in result, result  # width
 
 
-def test_render_overlapping_shapes(testdir):
+def test_render_overlapping_shapes(td):
     # TODO: verify test via SELENIUM
-    root = str(testdir)
+    root = str(td)
     outpath = os.path.join(root, 'index.html')
 
     html = ('<div id="page0" style="position:relative; width:595.32px; '
