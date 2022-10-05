@@ -37,11 +37,14 @@ def work(
     if not utila.exists(document):
         utila.error(f'--pdf {document} does not exists')
         return utila.NO_RESULT
-    ghost.run(
-        src=document,
-        dst=outputs,
-        boundings=prepared,
-    )
+    if ghost.HAS_GHOST:
+        ghost.run(
+            src=document,
+            dst=outputs,
+            boundings=prepared,
+        )
+    else:
+        utila.error('install ghost, skip findings renderer')
     return utila.NO_RESULT
 
 
