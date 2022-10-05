@@ -52,10 +52,9 @@ def pytest_sessionstart():
 def extract(files):
     decider.example.extract(
         files=files,
-        destination=power.generated(),
+        dest=power.generated(),
         pages='0:20',
         worker=WORKER,
-        base=power.REPOSITORY,
         morefeatures=[
             'decider_border',
             'decider_textflow',
