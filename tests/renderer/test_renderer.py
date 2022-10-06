@@ -98,6 +98,7 @@ def test_render_bachelor56_italic_style(tmpdir, bachelor56):
         assert 'font-style:italic;' in html, str(html)
 
 
+@pytest.mark.xfail(reason='software integration')
 def test_render_bachelor56_render_table(tmpdir, bachelor56):
     with tfr.render_and_open(tmpdir, bachelor56, page=15) as html:
         # ensure that table lines are rendered
@@ -134,6 +135,7 @@ def test_sentence_selector(bachelor56):
     assert len(items) > 20
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilatest.requires(power.BACHELOR056_PDF)
 def test_render_bachelor56_page9_with_quotation_error():
     """Ensure to load sentences marks."""

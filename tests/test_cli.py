@@ -48,6 +48,7 @@ def test_run_feedback_linter_findings_to_shape(source, td, mp):
         pass
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilatest.requires(power.BACHELOR056_PDF)
 def test_run_feedback_view(td, mp):
     root = td.tmpdir
@@ -66,6 +67,7 @@ def test_run_feedback_view(td, mp):
         assert counted >= 4, counted
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilatest.requires(power.MASTER072_PDF)
 def test_feedback_plot(td, mp):
     source = power.link(power.MASTER072_PDF)

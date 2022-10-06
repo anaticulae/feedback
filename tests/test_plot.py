@@ -9,12 +9,14 @@
 
 import painter
 import power
+import pytest
 import utila
 import utilatest
 
 import tests
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilatest.requires(power.BACHELOR090_PDF)
 def test_render_findings_histogram(td, mp):  # pylint:disable=W0613
     source = power.link(power.BACHELOR090_PDF)
