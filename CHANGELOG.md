@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v1.15.2 (2022-10-06)
+
+### Fix
+
+* skip ghost if ghost is not installed (902f28ab1342)
+* skip invalid bounding location (80525f228b15)
+
+### Chore
+
+* use all instead of nightly (bb4f5f578fbd)
+* privileged user is not necessary (e894ffc1d53b)
+* add separate generator step (5f2ac7abbf83)
+* increase worker count on CI (8eb282446bd6)
+* add Jenkinsfile (5ca0c394edf1)
+* upgrade requirements.txt (aee61caeeabe)
+* extend test data generator (77c06138c8b7)
+
 ## v1.15.1
 
 ### Fix
