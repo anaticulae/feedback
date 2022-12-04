@@ -9,7 +9,6 @@
 
 import power
 import protocol
-import pytest
 import utila
 import utilatest
 
@@ -26,7 +25,6 @@ def test_finding_feature(td, mp):
     assert utila.file_count(td.tmpdir, ext='png') >= 8
 
 
-@pytest.mark.xfail(reason='software integration')
 @utilatest.requires(power.BACHELOR028_PDF)
 def test_finding_sentence_bachelor028(td, mp):
     pdf = power.BACHELOR028_PDF
