@@ -27,13 +27,13 @@ power.setup(__file__)
 
 RESOURCES = [
     (power.BACHELOR090_PDF, ':'),
-    (power.BACHELOR128_PDF, '0:20'),
     (power.DISS264_PDF, '0:30'),
     (power.HOME025_PDF, '0:10'),
     (power.MASTER072_PDF, ':'),
     (power.MASTER116_PDF, '0:20,100:117'),
     power.BACHELOR028_PDF,
     power.BACHELOR056_PDF,
+    power.BACHELOR128_PDF,
     power.BOOK007_PDF,
     power.DOCU009_PDF,
     power.DOCU027_PDF,
