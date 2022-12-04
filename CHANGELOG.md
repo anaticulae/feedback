@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.15.3 (2022-12-04)
+
+### Chore
+
+* upgrade sections (c1861bb7398e)
+* remove duplication (874c157a8418)
+* remove feedback dependency (0f4cd4419036)
+* use quick installer (4165abfe1486)
+* upgrade pipeline (5502b458b3c6)
+* upgrade requirements.txt (86bcfb37bbdb)
+* add pipe library (480d7fe070e8)
+
 ## v1.15.2 (2022-10-06)
 
 ### Fix
