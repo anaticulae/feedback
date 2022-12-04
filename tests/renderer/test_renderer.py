@@ -177,6 +177,7 @@ def test_render_master72_marked_lines(tmpdir, masterpage72):
         assert source.count('id="line3_19"') >= 1
 
 
+@pytest.mark.xfail(reason='enable later')
 @utilatest.requires(power.MASTER116_PDF)
 def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
     page = 12
