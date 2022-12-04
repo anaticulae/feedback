@@ -34,7 +34,7 @@ def test_run_feedback_linter_findings_to_shape(source, td, mp):
     utila.copy_content(
         source,
         td.tmpdir,
-        pattern='(rawmaker|groupme|textflow|words)__*.yaml',
+        pattern='(rawmaker|groupme|textflow|words|pagenumber)__*.yaml',
     )
     completed = utila.run('decider_border')
     assert completed.returncode == utila.SUCCESS, str(completed)
