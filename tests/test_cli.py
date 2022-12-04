@@ -17,10 +17,9 @@ import utilatest
 import tests
 
 
-def test_run_feedback_help():
+def test_run_feedback_help(mp):
     """Ensure that installing process works correctly."""
-    completed = utila.run('feedback --help')
-    assert completed.returncode == utila.SUCCESS, str(completed)
+    tests.run('--help', mp=mp)
 
 
 @pytest.mark.parametrize('source', [
