@@ -14,7 +14,6 @@ import utilatest
 from utilatest import mp  # pylint:disable=W0611
 from utilatest import td  # pylint:disable=W0611
 
-import feedback
 # pylint:disable=W0611
 from tests.fixtures import bachelor56
 from tests.fixtures import bachelor128page10
@@ -24,9 +23,7 @@ from tests.fixtures import masterpage72
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
-PACKAGE = feedback.PROCESS
-
-power.setup(feedback.ROOT)
+power.setup(__file__)
 
 RESOURCES = [
     (power.BACHELOR090_PDF, ':'),
