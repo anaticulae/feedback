@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import typing
-
 import configo
 import iamraw
 import painter
@@ -25,7 +23,7 @@ def work(
     pagenumbers: str,
     optimized: str,
     pages: tuple = None,
-) -> typing.Tuple[bytes, bytes]:
+) -> tuple[bytes, bytes]:
     with utila.profile('load findings'):
         findings = feedback.features.load_optimized(optimized, pages=pages)
     pagenumbers = serializeraw.load_pagenumbers_magic(

@@ -57,7 +57,7 @@ def render_page(
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
     raw.extend(feedback.renderer.boxes.render_boxes(page))
     # TODO: REPLACE WITH UTILA CODE
-    skip = utila.rectangle_merge([item.info.bounding for item in page.images])
+    skip = utila.rect_merge([item.info.bounding for item in page.images])
     if page.navigator:
         # some pages does not have any text content. Some pages are
         # whitepages or contain a single huge image.
@@ -190,8 +190,8 @@ def render_images(images):
     result = []
     for info, fileimage in images:
         bounding = info.bounding
-        width = utila.rectangle_width(info.bounding)
-        height = utila.rectangle_height(info.bounding)
+        width = utila.rect_width(info.bounding)
+        height = utila.rect_height(info.bounding)
         style = (f'style="position:absolute;border:1px solid black;'
                  f'top:{bounding[1]}px;left:{bounding[0]}px;'
                  f' width:{width}px;height:{height}px"')

@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-
 import utila
 import utilatest
 
@@ -18,7 +16,7 @@ import feedback.renderer.html
 
 def test_renderer_interactive_showhide(td):
     """Ensure that `border-reference` is addet to html element."""
-    outpath = os.path.join(td.tmpdir, 'index.html')
+    outpath = td.tmpdir.join('index.html')
     html = feedback.renderer.content.HTMLPageContent(
         border=(50, 700, 50, 800),
         page=10,

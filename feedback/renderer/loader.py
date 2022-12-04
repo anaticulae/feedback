@@ -57,7 +57,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
     assert all((isinstance(item, str) or item is None)
                for item in [text, textposition, boxes, hits, horizontals])
 
-    navigators = serializeraw.create_pagetextnavigators_fromfile(
+    navigators = serializeraw.ptn_fromfile(
         text=text,
         textpositions=textposition,
         fontheader=fontheader,
@@ -66,13 +66,13 @@ def load(  # pylint:disable=R0914,too-many-arguments
         pages=pages,
     )
 
-    oneline = serializeraw.create_pagetextnavigators_fromfile(
+    oneline = serializeraw.ptn_fromfile(
         oneline_text,
         oneline_textposition,
         oneline_fontheader,
         oneline_fontcontent,
         fill_empty=False,
-        mode=texmex.PageTextNavigatorMode.HORIZONTAL,
+        mode=texmex.PTNMode.HORIZONTAL,
         pages=pages,
     )
     borders = serializeraw.load_pageborders(borders, pages=pages)
@@ -98,12 +98,12 @@ def load(  # pylint:disable=R0914,too-many-arguments
         images = [
             feedback.renderer.images.zip_images(item, pages) for item in images
         ]
-        images = utila.flatten(images)
+        images = utila.flat(images)
     if figures:
         figures = [
             feedback.renderer.images.zip_images(item, pages) for item in figures
         ]
-        figures = utila.flatten(figures)
+        figures = utila.flat(figures)
         if images:
             # add loaded figures to images
             images.extend(figures)
@@ -222,7 +222,7 @@ def load_page(
     return result
 
 
-def soc(navigator: texmex.PageTextNavigator, header) -> int:
+def soc(navigator: texmex.PTN, header) -> int:
     """Start of Content
 
     Empty page-textnavigator:
@@ -247,7 +247,7 @@ def select_layout(page: int, sections: iamraw.Section) -> str:
     if not sections:
         utila.log('require sections to perform layout selection - use default')
         return 'default'
-    flat = utila.flatten(sections)
+    flat = utila.flat(sections)
     for item in flat:
         if item.start != page or item.end != page:
             continue

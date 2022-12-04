@@ -32,7 +32,7 @@ def determine_shapes(findings, page: int) -> list:
 
 def render_rectangle(item) -> dict:
     bounding = item.location.value
-    bounding = utila.rectangle_ensure_bounding(bounding)
+    bounding = utila.rect_ensure_bounding(bounding)
     result = {
         'type': 'rectangle',
         'bounding': bounding,

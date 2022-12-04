@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 import iamraw
 import texmex
@@ -23,9 +22,9 @@ class HTMLPageContent:
     alignment: textflow.alignment.info.AlignmentInfo = None
     border: tuple = None
     boxes: utila.Rectangles = dataclasses.field(default_factory=list)
-    navigator: texmex.PageTextNavigator = None
+    navigator: texmex.PTN = None
     fontstore: iamraw.FontStore = None
-    oneline: texmex.PageTextNavigator = None
+    oneline: texmex.PTN = None
     oneline_fontstore: iamraw.FontStore = None
     pagesize: iamraw.PageSize = None
     images: fri.ZippedImageInfos = dataclasses.field(default_factory=list)
@@ -39,4 +38,4 @@ class HTMLPageContent:
         return result
 
 
-HTMLPageContents = typing.List[HTMLPageContent]
+HTMLPageContents = list[HTMLPageContent]

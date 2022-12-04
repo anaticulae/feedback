@@ -13,7 +13,6 @@ printing.
 import collections
 import dataclasses
 import os
-import typing
 
 import iamraw
 import serializeraw
@@ -23,7 +22,7 @@ ZippedImageInfo = collections.namedtuple(
     'ZippedImageInfo',
     'info, filename',
 )
-ZippedImageInfos = typing.List[ZippedImageInfo]
+ZippedImageInfos = list[ZippedImageInfo]
 
 
 @dataclasses.dataclass
@@ -33,7 +32,7 @@ class RawImage:
     raw: bytes = None
 
 
-RawImages = typing.List[RawImage]
+RawImages = list[RawImage]
 
 
 def load_image_informations(

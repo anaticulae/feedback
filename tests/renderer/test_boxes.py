@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-
 import power
 import utila
 import utilatest
@@ -23,6 +21,6 @@ def test_render_boxes(td):
     data = feedback.renderer.loader.from_path(source, pages=1)[0]
     html = feedback.renderer.html.render_page(data)
 
-    outpath = os.path.join(td.tmpdir, 'index.html')
+    outpath = td.tmpdir.join('index.html')
     with utilatest.open_webbrowser(outpath):
         utila.file_create(outpath, html)

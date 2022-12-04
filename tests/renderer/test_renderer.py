@@ -144,7 +144,7 @@ def test_render_bachelor56_page9_with_quotation_error():
     # load findings
     findings = protocol.findings_from_path(source)
     # NOT VALIDATED but data/algo had changed if broken
-    assert len(findings) in (10, 19, 20)
+    assert len(findings) in {10, 19, 20}
     marks = ffpv.load_marks(findings, sentences, wordx)
     assert marks
     # TODO: GIVE THIS TEST A PURPOSE

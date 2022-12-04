@@ -20,7 +20,7 @@ ater we need ImageMark, TableMark, DiagramMark
         start: int
         end: int
 
-    Marks = typing.List[Mark]
+    Marks = list[Mark]
 
     class WordMark:
         page: int
@@ -50,7 +50,6 @@ ater we need ImageMark, TableMark, DiagramMark
 
 import contextlib
 import dataclasses
-import typing
 
 import german
 import protocol
@@ -67,7 +66,7 @@ class TextMark:
     end: int = None
 
 
-TextMarks = typing.List[TextMark]
+TextMarks = list[TextMark]
 
 
 class WordAccess:
@@ -101,7 +100,7 @@ class PageMarkConfiguration:
     linemarks: dict = dataclasses.field(default_factory=dict)
 
 
-PageMarkConfigurations = typing.List[PageMarkConfiguration]
+PageMarkConfigurations = list[PageMarkConfiguration]
 
 COMPLETE_LINE = None
 
@@ -136,7 +135,7 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
             end = start
         # TODO: REPLACE WITH UTILA CODE
         if start is not None and end is not None:  # no line is defined
-            for number in utila.ranged_tuple(start, end + 1):
+            for number in utila.rtuple(start, end + 1):
                 if charstart is None:
                     lines[number] = COMPLETE_LINE
                 else:
@@ -255,7 +254,7 @@ class LineMarker:
             # take complete line
             self.marks = {item: None for item in set(marks)}
         else:
-            self.marks = dict()
+            self.marks = {}
 
     def markme(self, line: str) -> fums.Style:
         if not line:

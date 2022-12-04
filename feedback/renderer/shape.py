@@ -66,11 +66,11 @@ def render_rectangle(
         utila.error(f'invalid bounding: {bounding}')
     if not bounding[0] <= bounding[2]:
         utila.error(f'invalid bounding: {bounding}')
-    bounding = utila.rectangle_ensure_bounding(bounding)
+    bounding = utila.rect_ensure_bounding(bounding)
     x0 = bounding[0]
     y0 = bounding[1]
-    width = utila.rectangle_width(bounding)
-    height = utila.rectangle_height(bounding)
+    width = utila.rect_width(bounding)
+    height = utila.rect_height(bounding)
     x0, y0, width, height = utila.roundme(x0, y0, width, height)
     rendered = RECTANGLE.format(
         background=background,

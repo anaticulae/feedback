@@ -21,7 +21,7 @@ def test_report_problems_view(td, mp):
     cmd = f'-i {inpath} -o {td.tmpdir} --view'
     tests.run(cmd, mp=mp)
     # eval
-    outpath = os.path.join(td.tmpdir, 'feedback__view_pages')
+    outpath = td.tmpdir.join('feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
     # TODO: REMOVE THIS TEST
@@ -33,7 +33,7 @@ def test_view_master116_border_size(td, mp):
     cmd = f'-i {inpath} -o {td.tmpdir} --view '
     tests.run(cmd, mp=mp)
     # eval
-    outpath = os.path.join(td.tmpdir, 'feedback__view_pages')
+    outpath = td.tmpdir.join('feedback__view_pages')
     written = list(os.listdir(outpath))
     assert len(written) >= 10, written
     # TODO: ADD CHECK FOR CHANGING PAGE DIMENSION

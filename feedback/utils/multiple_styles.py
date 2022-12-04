@@ -9,12 +9,11 @@
 
 import collections
 import operator
-import typing
 
 import utila
 
 Style = collections.namedtuple('Style', 'start, end, first, last')
-Styles = typing.List[Style]
+Styles = list[Style]
 
 STYLE_SEPARATOR = '{*}'
 
@@ -206,12 +205,12 @@ def merge_three(left, middle, right):
     result = []
     result.extend(merge_two(left, middle))
     result.extend(merge_two(middle, right))
-    result = make_unique(result)
+    result = unique(result)
     return result
 
 
-def make_unique(items):
-    items = utila.make_unique(items)
+def unique(items):
+    items = utila.unique(items)
     # item is included in other group
     remove = [[
         index for index, check in enumerate(items) if all((
