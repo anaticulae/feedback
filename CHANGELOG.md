@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.15.4 (2022-12-19)
+
+### Chore
+
+* upgrade requirements.txt (c2b75b69e5b5)
+* upgrade Jenkinsfile (7811c33e7b35)
+* upgrade pipe library (8e4829fd5bef)
+
 ## v1.15.3 (2022-12-04)
 
 ### Chore
