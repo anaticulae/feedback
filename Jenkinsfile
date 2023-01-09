@@ -1,12 +1,15 @@
 @Library('caelum@refs/tags/v0.12.0') _
 
-pipeline {
-    agent {
-        docker {
+pipeline{
+    agent{
+        docker{
             image '169.254.149.20:6001/arch_python_git_ghost_opencv_baw:v1.49.3'
         }
     }
     stages{
+        stage('integrate'){
+            steps{script{baw.integrate()}}
+        }
         stage('setup'){
             steps{script{baw.setup()}}
         }
@@ -45,6 +48,9 @@ pipeline {
                 }
             }
         }
+        stage('pre-release'){
+            steps{script{baw.pre()}}
+        }
         stage('generate'){
             steps{
                 sh 'baw --docken generate all'
@@ -61,7 +67,10 @@ pipeline {
         }
         stage('release'){
             steps{
-                script{publish.release()}
+                script{
+                    publish.release()
+                    baw.rebase()
+                }
             }
         }
     }
