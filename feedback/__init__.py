@@ -11,7 +11,7 @@ import os
 
 import configo
 
-__version__ = '1.15.4'
+__version__ = '1.15.5'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
