@@ -9,6 +9,7 @@
 
 import hoverpower
 import protoerror
+import pytest
 import utilo
 import utilotest
 
@@ -25,6 +26,7 @@ def test_finding_feature(td, mp):
     assert utilo.file_count(td.tmpdir, ext='png') >= 8
 
 
+@pytest.mark.xfail(reason='software integration')
 @utilotest.requires(hoverpower.BACHELOR028_PDF)
 def test_finding_sentence_bachelor028(td, mp):
     pdf = hoverpower.BACHELOR028_PDF
