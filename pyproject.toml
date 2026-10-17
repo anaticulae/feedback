@@ -6,7 +6,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "feedback"
+name = "responsio"
 version = "1.15.5"
 description = ""
 requires-python = ">=3.12"

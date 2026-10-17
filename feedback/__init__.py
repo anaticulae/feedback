@@ -12,7 +12,7 @@ import os
 
 import configos
 
-__version__ = importlib.metadata.version('feedback')
+__version__ = importlib.metadata.version('responsio')
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
