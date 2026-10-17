@@ -7,11 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
+import importlib.metadata
 import os
 
 import configo
 
-__version__ = '1.15.5'
+__version__ =  importlib.metadata.version('feedback')
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
