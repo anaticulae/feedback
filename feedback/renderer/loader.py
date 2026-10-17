@@ -55,7 +55,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
     images: there are more than one images folder possible
     """
     assert all((isinstance(item, str) or item is None)
-               for item in [text, textposition, boxes, hits, horizontals])
+               for item in (text, textposition, boxes, hits, horizontals))
 
     navigators = serializeraw.ptn_fromfile(
         text=text,

@@ -195,7 +195,7 @@ def render_images(images):
         style = (f'style="position:absolute;border:1px solid black;'
                  f'top:{bounding[1]}px;left:{bounding[0]}px;'
                  f' width:{width}px;height:{height}px"')
-        img = (f'<img src="{fileimage}" {style}/>')
+        img = f'<img src="{fileimage}" {style}/>'
         result.append(img)
     return result
 
