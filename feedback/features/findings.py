@@ -9,9 +9,9 @@
 
 import copy
 
-import ghost
 import iamraw
 import serializeraw
+import ughost
 import utilo
 
 import feedback.features
@@ -37,14 +37,14 @@ def work(
     if not utilo.exists(document):
         utilo.error(f'--pdf {document} does not exists')
         return utilo.NO_RESULT
-    if ghost.HAS_GHOST:
-        ghost.run(
+    if ughost.HAS_GHOST:
+        ughost.run(
             src=document,
             dst=outputs,
             boundings=prepared,
         )
     else:
-        utilo.error('install ghost, skip findings renderer')
+        utilo.error('install ughost, skip findings renderer')
     return utilo.NO_RESULT
 
 
@@ -101,7 +101,7 @@ def prepare_findings(findings: list, sentence_bounding: list) -> list:
             utilo.error(f'invalid location: {finding}\n')
             continue
         result.append(
-            ghost.Part(
+            ughost.Part(
                 page=page,
                 bounding=bounding,
                 name=fname,
@@ -116,5 +116,5 @@ def bounding_convert(bounding) -> list:
     single = isinstance(bounding[0], (int, float))
     if single:
         bounding = [bounding]
-    bounding = [ghost.bounding_convert(bbox) for bbox in bounding]
+    bounding = [ughost.bounding_convert(bbox) for bbox in bounding]
     return bounding

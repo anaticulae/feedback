@@ -8,7 +8,7 @@
 # =============================================================================
 
 import hoverpower
-import painter
+import upainter
 import utilo
 import utilotest
 
@@ -31,4 +31,4 @@ def test_render_findings_pie(td, mp):  # pylint:disable=W0613
     tests.run(cmd, mp=mp)
     rendered = utilo.file_read_binary('feedback__plot_findings_types_pie.png')
     assert len(rendered) > 1000
-    painter.show_figure(rendered)
+    upainter.show_figure(rendered)

@@ -14,10 +14,13 @@ authors = [
     { name = "Helmut Konrad Schewe", email = "helmutus@outlook.com" },
 ]
 dependencies = [
+    "configos>=1.0.4,<2.0.0",
+    "germania>=1.33.1,<2.0.0",
     "iamraw>=4.95.1,<5.0.0",
     "protoerror>=3.20.4,<4.0.0",
+    "ughost>=1.1.1,<2.0.0",
+    "upainter>=1.0.0,<2.0.0",
     "utilo>=2.112.1,<3.0.0",
-    "configos>=1.0.4,<2.0.0",
 ]
 keywords = []
 classifiers = [

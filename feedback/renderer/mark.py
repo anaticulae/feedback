@@ -51,7 +51,7 @@ ater we need ImageMark, TableMark, DiagramMark
 import contextlib
 import dataclasses
 
-import german
+import germania
 import protoerror
 import utilo
 
@@ -157,7 +157,7 @@ class WordGenerator:
         self.index = 0
 
     def words(self, line):
-        splitted = german.split_token(line, normalize=False)
+        splitted = germania.split_token(line, normalize=False)
         for item in splitted:
             if not item or not item.strip():
                 continue
@@ -217,7 +217,7 @@ class WordMarker:
         """
         result = []
         startpos = 0
-        splitted = german.split_token(line, normalize=False)
+        splitted = germania.split_token(line, normalize=False)
         for word in splitted:
             result.append(self.decide_mark(word, startpos))
             # TODO: ADD OPTION TO INCLUDE WHITESPACE INTO WORD

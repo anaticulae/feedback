@@ -35,7 +35,7 @@ Every noteable change is logged here.
 
 ### Fix
 
-* skip ghost if ghost is not installed (902f28ab1342)
+* skip ughost if ughost is not installed (902f28ab1342)
 * skip invalid bounding location (80525f228b15)
 
 ### Chore

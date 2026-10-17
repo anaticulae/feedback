@@ -9,9 +9,9 @@
 
 import configos
 import iamraw
-import painter
 import protoerror
 import serializeraw
+import upainter
 import utilo
 
 import feedback.features
@@ -59,7 +59,7 @@ def render_findings_overview(
         )) for page in pagenumbers.keys()
     ]
     ylim = max(max(counted) + 1, 5)
-    rendered = painter.bar_render(
+    rendered = upainter.bar_render(
         x=pages,
         y=counted,
         ylim=(0, ylim),
@@ -70,7 +70,7 @@ def render_findings_overview(
         ylabel='Anzahl',
         intlabel=(False, True),
     )
-    raw = painter.png(rendered)
+    raw = upainter.png(rendered)
     return raw
 
 
@@ -109,14 +109,14 @@ def render_findings_types(findings: iamraw.PageFindings) -> bytes:
     labels = [item for item, count in zip(labels, counted) if count]
     counted = [item for item in counted if item]
 
-    rendered = painter.pie_render(
+    rendered = upainter.pie_render(
         x=counted,
         labels=labels,
         absolute=True,
         width=7.15,
         height=4.15,
     )
-    raw = painter.png(rendered)
+    raw = upainter.png(rendered)
     return raw
 
 
