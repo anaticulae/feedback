@@ -9,8 +9,8 @@
 
 import os
 
-import utila
-import utilatest
+import utilo
+import utilotest
 
 from feedback.renderer.shape import render_rectangle
 
@@ -35,5 +35,5 @@ def test_render_overlapping_shapes(td):
     html += render_rectangle((33, 33, 199, 99), background='transparent')
     html += '</div>'
 
-    with utilatest.open_webbrowser(outpath):
-        utila.file_create(outpath, html)
+    with utilotest.open_webbrowser(outpath):
+        utilo.file_create(outpath, html)

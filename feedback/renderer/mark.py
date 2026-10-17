@@ -52,8 +52,8 @@ import contextlib
 import dataclasses
 
 import german
-import protocol
-import utila
+import protoerror
+import utilo
 
 import feedback.renderer.content
 import feedback.utils.multiple_styles as fums
@@ -118,11 +118,11 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
         pagemarks = marks[page]
     except KeyError:
         pagemarks = {}
-    wordmarks = protocol.words(pagemarks)
+    wordmarks = protoerror.words(pagemarks)
     # require selected word only, reason etc. is not important here
     wordmarks = [item.location.value for item in wordmarks]
-    linemarks = protocol.lines(pagemarks)
-    ranges = protocol.ranged(pagemarks)
+    linemarks = protoerror.lines(pagemarks)
+    ranges = protoerror.ranged(pagemarks)
     lines = {}
     for item in linemarks:
         lines[item.location.value] = COMPLETE_LINE
@@ -135,7 +135,7 @@ def create_configuration(marks: dict, page: int) -> PageMarkConfiguration:
             end = start
         # TODO: REPLACE WITH UTILA CODE
         if start is not None and end is not None:  # no line is defined
-            for number in utila.rtuple(start, end + 1):
+            for number in utilo.rtuple(start, end + 1):
                 if charstart is None:
                     lines[number] = COMPLETE_LINE
                 else:
@@ -165,7 +165,7 @@ class WordGenerator:
             self.index += 1
 
 
-def best_sync(left, right) -> utila.Numbers:
+def best_sync(left, right) -> utilo.Numbers:
     result = []
     rightlength = len(right)
     rightside = set(right)

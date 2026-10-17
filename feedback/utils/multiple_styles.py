@@ -10,7 +10,7 @@
 import collections
 import operator
 
-import utila
+import utilo
 
 Style = collections.namedtuple('Style', 'start, end, first, last')
 Styles = list[Style]
@@ -22,7 +22,7 @@ def merger(text: str, styles: Styles) -> str:
     validate_range(styles, len(text))
     # determine max length if defined style is longer than given text
     # TODO: ADD LOG INFO?
-    length = utila.maxs([item.end for item in styles], len(text))
+    length = utilo.maxs([item.end for item in styles], len(text))
     merged = [create_raw(' ' * length)]
 
     styles = sort_style(styles)
@@ -95,8 +95,8 @@ def merge(items, current):
         result.extend(merged)
     else:
         if candiate:
-            utila.error('should not happen')
-            utila.error(candiate)
+            utilo.error('should not happen')
+            utilo.error(candiate)
         # assert not candiate, len(candiate)
         result.append(current)
     result = sort_style(result)
@@ -210,7 +210,7 @@ def merge_three(left, middle, right):
 
 
 def unique(items):
-    items = utila.unique(items)
+    items = utilo.unique(items)
     # item is included in other group
     remove = [[
         index for index, check in enumerate(items) if all((

@@ -7,14 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
-import utila
+import utilo
 
 import feedback.utils.multiple_styles
 
 # threshold to avoid invalid sups as a result of bad pdf printing.
-THRESHOLD_RISE = configo.HV_FLOAT_PLUS(default=2.0)
+THRESHOLD_RISE = configos.HV_FLOAT_PLUS(default=2.0)
 
 
 def render_inline(styles) -> feedback.utils.multiple_styles.Styles:
@@ -56,7 +56,7 @@ def style_range(textcontainer, start, end, fontstore: iamraw.FontStore):
             continue
         if start_ >= end:
             continue
-        end_ = utila.mins(end_, end)  # shrink upper border
+        end_ = utilo.mins(end_, end)  # shrink upper border
         font = fontstore[font_]
         assert font is not None, 'HINT: regenerate resources'
         flags = list(font.flags) if font.flags else []

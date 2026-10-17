@@ -8,8 +8,8 @@
 # =============================================================================
 """The feedback generates the central document view"""
 
-import utilatest
+import utilotest
 
 import feedback
 
-run, fail = utilatest.create_cli_runner(feedback)
+run, fail = utilotest.create_cli_runner(feedback)

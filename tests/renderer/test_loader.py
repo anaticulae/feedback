@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import feedback.renderer.mark
 import tests.renderer
@@ -30,11 +30,11 @@ def test_load_navigator_soc(td, bachelor128page10):
             marks=pagemarks,
             css=css,
     ) as source:
-        indexes = utila.findindex(source, f'"line{page}_{line}"')
+        indexes = utilo.findindex(source, f'"line{page}_{line}"')
         first, middle, last = (
-            utila.findindex(source, 'Im')[0],
-            utila.findindex(source, 'zweiten Kapitel')[0],
-            utila.findindex(source, 'folgt eine kurze')[0],
+            utilo.findindex(source, 'Im')[0],
+            utilo.findindex(source, 'zweiten Kapitel')[0],
+            utilo.findindex(source, 'folgt eine kurze')[0],
         )
         # mark first content line(ptcn) as #line_10_0
         assert indexes[0] <= first <= indexes[1] <= middle <= indexes[2] <= last

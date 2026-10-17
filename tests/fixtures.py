@@ -7,48 +7,48 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
-import utilatest
+import utilotest
 
 import feedback.renderer.loader
 
 
 @pytest.fixture
 def masterpage72():
-    path = power.link(power.MASTER072_PDF)
-    utilatest.fixture_requires(path)
+    path = hoverpower.link(hoverpower.MASTER072_PDF)
+    utilotest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded
 
 
 @pytest.fixture
 def bachelor128page10():
-    path = power.link(power.BACHELOR128_PDF)
-    utilatest.fixture_requires(path)
+    path = hoverpower.link(hoverpower.BACHELOR128_PDF)
+    utilotest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path, pages=10)
     return loaded
 
 
 @pytest.fixture
 def leftright():
-    path = power.link(power.BOOK007_PDF)
-    utilatest.fixture_requires(path)
+    path = hoverpower.link(hoverpower.BOOK007_PDF)
+    utilotest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded
 
 
 @pytest.fixture
 def bachelor56():
-    path = power.link(power.BACHELOR056_PDF)
-    utilatest.fixture_requires(path)
+    path = hoverpower.link(hoverpower.BACHELOR056_PDF)
+    utilotest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded
 
 
 @pytest.fixture
 def master116():
-    path = power.link(power.MASTER116_PDF)
-    utilatest.fixture_requires(path)
+    path = hoverpower.link(hoverpower.MASTER116_PDF)
+    utilotest.fixture_requires(path)
     loaded = feedback.renderer.loader.from_path(path)
     return loaded

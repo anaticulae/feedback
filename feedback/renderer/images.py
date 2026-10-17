@@ -16,7 +16,7 @@ import os
 
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 ZippedImageInfo = collections.namedtuple(
     'ZippedImageInfo',
@@ -46,7 +46,7 @@ def load_image_informations(
         pages=pages,
         skip_hidden=True,
     )
-    result = utila.flatten_content(loaded)
+    result = utilo.flatten_content(loaded)
     return result
 
 
@@ -59,15 +59,15 @@ def load_images(path: str, pages: tuple = None) -> RawImages:
     informations = load_image_informations(path, pages=pages)
     required = set(item.hashedimage for item in informations)
     # TODO: EXTEND FILE EXT?
-    files = utila.file_list(path, include=IMAGE_EXT)
+    files = utilo.file_list(path, include=IMAGE_EXT)
     result = []
     for item in files:
-        hashedimage = utila.file_name(item)
+        hashedimage = utilo.file_name(item)
         if hashedimage not in required:
             # image is not required
             continue
-        fileext = utila.file_ext(item)
-        loaded = utila.file_read_binary(os.path.join(path, item))
+        fileext = utilo.file_ext(item)
+        loaded = utilo.file_read_binary(os.path.join(path, item))
         raw = RawImage(name=hashedimage, ext=fileext, raw=loaded)
         result.append(raw)
     return result

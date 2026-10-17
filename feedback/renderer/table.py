@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import feedback.renderer.shape
 
@@ -15,9 +15,9 @@ import feedback.renderer.shape
 def render(lines):
     if len(lines) < 22:  # TODO: WORKAROUND
         return []
-    lines = utila.unique_lines(lines)
-    lines = [item for item in lines if not utila.isdot(item)]
-    lines = [utila.round_line(*item) for item in lines]
+    lines = utilo.unique_lines(lines)
+    lines = [item for item in lines if not utilo.isdot(item)]
+    lines = [utilo.round_line(*item) for item in lines]
     result = []
     for line in lines:
         rendered = feedback.renderer.shape.render_line(line)

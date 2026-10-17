@@ -9,11 +9,11 @@
 
 import os
 
-import power
-import protocol
+import hoverpower
+import protoerror
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import feedback.features.view as ffpv
 import feedback.renderer.html
@@ -35,7 +35,7 @@ def test_renderer_firstpage(tmpdir, masterpage72):
 def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):
     # TODO: VERIFY WITH SELENIUM
     outpath = os.path.join(tmpdir, 'secondpage.html')
-    secondpage = utila.select_page(masterpage72, 1)
+    secondpage = utilo.select_page(masterpage72, 1)
 
     marks = feedback.renderer.mark.PageMarkConfiguration(
         page=1,
@@ -54,8 +54,8 @@ def test_renderer_secondpage_mark_line_and_words(tmpdir, masterpage72):
         </style>
         """
     output = style + rendered
-    with utilatest.open_webbrowser(outpath):
-        utila.file_create(outpath, output)
+    with utilotest.open_webbrowser(outpath):
+        utilo.file_create(outpath, output)
 
 
 def test_renderer_shapes_mark_bounding(tmpdir, leftright):
@@ -72,7 +72,7 @@ def test_renderer_shapes_mark_bounding(tmpdir, leftright):
         assert '1px solid red' in html  # ensure to render red box
 
 
-@utila.todo(major=3, minor=2, description='verify with selenium')
+@utilo.todo(major=3, minor=2, description='verify with selenium')
 def test_renderer_toc(tmpdir, masterpage72):
     """This test aims to generate and view a toc very fast to check
     develop new html renderings."""
@@ -118,7 +118,7 @@ def test_render_bachelor56_page20(tmpdir, bachelor56):
 
 def test_sentence_selector(bachelor56):
     content = bachelor56
-    selected = utila.select_page(content, 10)
+    selected = utilo.select_page(content, 10)
     matched = (
         'Dieser Effekt wird umso effektiver, umso häufiger Alkohol '
         'konsumiert wird. Voraussetzung, um solche Reaktionen zu zeigen, sind '
@@ -136,13 +136,13 @@ def test_sentence_selector(bachelor56):
 
 
 @pytest.mark.xfail(reason='software integration')
-@utilatest.requires(power.BACHELOR056_PDF)
+@utilotest.requires(hoverpower.BACHELOR056_PDF)
 def test_render_bachelor56_page9_with_quotation_error():
     """Ensure to load sentences marks."""
-    source = power.link(power.BACHELOR056_PDF)
+    source = hoverpower.link(hoverpower.BACHELOR056_PDF)
     sentences, wordx = {}, {}
     # load findings
-    findings = protocol.findings_from_path(source)
+    findings = protoerror.findings_from_path(source)
     # NOT VALIDATED but data/algo had changed if broken
     assert len(findings) in {10, 19, 20}
     marks = ffpv.load_marks(findings, sentences, wordx)
@@ -178,7 +178,7 @@ def test_render_master72_marked_lines(tmpdir, masterpage72):
 
 
 @pytest.mark.xfail(reason='enable later')
-@utilatest.requires(power.MASTER116_PDF)
+@utilotest.requires(hoverpower.MASTER116_PDF)
 def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
     page = 12
     pagemarks = feedback.renderer.mark.PageMarkConfiguration(
@@ -208,9 +208,9 @@ def test_regression_render_master116_marked_lines_page12(tmpdir, master116):
         assert source.count(f'id="line{page}_{expected}"') == 1
 
 
-@utilatest.requires(power.DISS264_PDF)
+@utilotest.requires(hoverpower.DISS264_PDF)
 def test_regression_render_diss264_page21(td):
-    path = power.link(power.DISS264_PDF)
+    path = hoverpower.link(hoverpower.DISS264_PDF)
     loaded = feedback.renderer.loader.from_path(path)
 
     page = 21
@@ -219,10 +219,10 @@ def test_regression_render_diss264_page21(td):
         assert not source.count('transform:')  # adjust later
 
 
-@utilatest.requires(power.BACHELOR090_PDF)
+@utilotest.requires(hoverpower.BACHELOR090_PDF)
 def test_figure_notext(td):
     """Do not render text in figure area twice."""
-    path = power.link(power.BACHELOR090_PDF)
+    path = hoverpower.link(hoverpower.BACHELOR090_PDF)
     page = 23
     loaded = feedback.renderer.loader.from_path(path, pages=page)
     with tfr.render_and_open(td.tmpdir, loaded, page=page) as source:

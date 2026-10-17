@@ -10,12 +10,12 @@
 import importlib.metadata
 import os
 
-import configo
+import configos
 
-__version__ =  importlib.metadata.version('feedback')
+__version__ = importlib.metadata.version('feedback')
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 PROCESS = 'feedback'
 
-configo.cloud_lookup(PROCESS)
+configos.cloud_lookup(PROCESS)

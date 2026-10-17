@@ -12,8 +12,8 @@ import inspect
 import os
 import sys
 
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import feedback.renderer.html
 
@@ -50,7 +50,7 @@ def render_and_open(
 ):
     assert isinstance(page, int), f'require int: {page}'
     outpath = os.path.join(directory, 'index.html')
-    content = utila.select_page(content, page)
+    content = utilo.select_page(content, page)
 
     rendered = feedback.renderer.html.render_page(
         content,
@@ -60,8 +60,8 @@ def render_and_open(
     rendered = html(rendered, css=css)
     assert len(rendered) > 300, str(rendered)
 
-    utila.file_create(outpath, rendered)
+    utilo.file_create(outpath, rendered)
     yield rendered
 
-    with utilatest.open_webbrowser(outpath):
+    with utilotest.open_webbrowser(outpath):
         pass

@@ -8,11 +8,11 @@
 # =============================================================================
 
 import decider.example
-import power
+import hoverpower
 import pytest
-import utilatest
-from utilatest import mp  # pylint:disable=W0611
-from utilatest import td  # pylint:disable=W0611
+import utilotest
+from utilotest import mp  # pylint:disable=W0611
+from utilotest import td  # pylint:disable=W0611
 
 # pylint:disable=W0611
 from tests.fixtures import bachelor56
@@ -23,33 +23,33 @@ from tests.fixtures import masterpage72
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
-power.setup(__file__)
+hoverpower.setup(__file__)
 
 RESOURCES = [
-    (power.BACHELOR090_PDF, ':'),
-    (power.DISS264_PDF, '0:30'),
-    (power.HOME025_PDF, '0:10'),
-    (power.MASTER072_PDF, ':'),
-    (power.MASTER116_PDF, '0:20,100:117'),
-    power.BACHELOR028_PDF,
-    power.BACHELOR056_PDF,
-    power.BACHELOR128_PDF,
-    power.BOOK007_PDF,
-    power.DOCU009_PDF,
-    power.DOCU027_PDF,
+    (hoverpower.BACHELOR090_PDF, ':'),
+    (hoverpower.DISS264_PDF, '0:30'),
+    (hoverpower.HOME025_PDF, '0:10'),
+    (hoverpower.MASTER072_PDF, ':'),
+    (hoverpower.MASTER116_PDF, '0:20,100:117'),
+    hoverpower.BACHELOR028_PDF,
+    hoverpower.BACHELOR056_PDF,
+    hoverpower.BACHELOR128_PDF,
+    hoverpower.BOOK007_PDF,
+    hoverpower.DOCU009_PDF,
+    hoverpower.DOCU027_PDF,
 ]
-WORKER = utilatest.worker_count(6, onci=len(RESOURCES))
+WORKER = utilotest.worker_count(6, onci=len(RESOURCES))
 
 
 @pytest.mark.usefixtures('session')
 def pytest_sessionstart():
-    power.run()
+    hoverpower.run()
 
 
 def extract(files):
     decider.example.extract(
         files=files,
-        dest=power.generated(),
+        dest=hoverpower.generated(),
         pages='0:20',
         worker=WORKER,
         morefeatures=[

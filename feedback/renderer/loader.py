@@ -18,7 +18,7 @@ import texmex
 import textflow.features.alignment
 import textflow.path
 import textflow.serialize
-import utila
+import utilo
 
 import feedback.renderer.boxes
 import feedback.renderer.content
@@ -77,7 +77,7 @@ def load(  # pylint:disable=R0914,too-many-arguments
     )
     borders = serializeraw.load_pageborders(borders, pages=pages)
 
-    if utila.exists(alignment):
+    if utilo.exists(alignment):
         alignment = load_alignment(alignment, pages=pages)  # pylint:disable=E1123
         alignment = fix_alignment(alignment, oneline)
     else:
@@ -98,12 +98,12 @@ def load(  # pylint:disable=R0914,too-many-arguments
         images = [
             feedback.renderer.images.zip_images(item, pages) for item in images
         ]
-        images = utila.flat(images)
+        images = utilo.flat(images)
     if figures:
         figures = [
             feedback.renderer.images.zip_images(item, pages) for item in figures
         ]
-        figures = utila.flat(figures)
+        figures = utilo.flat(figures)
         if images:
             # add loaded figures to images
             images.extend(figures)
@@ -165,21 +165,21 @@ def load_page(
     headerfooter,
     **kwargs,
 ):  # pylint:disable=R0914
-    navigator = utila.select_page(navigators, page)
-    oneline = utila.select_page(onelines, page)
+    navigator = utilo.select_page(navigators, page)
+    oneline = utilo.select_page(onelines, page)
 
     if headerfooter:
-        headerfooter = utila.select_page(headerfooter, page)
+        headerfooter = utilo.select_page(headerfooter, page)
 
     navigator_soc = soc(navigator, headerfooter)
     oneline_soc = soc(oneline, headerfooter)
 
-    pagesize = utila.select_page(border, page).size
+    pagesize = utilo.select_page(border, page).size
     alignment = kwargs.pop('alignment', None)
     if alignment:
         alignment = functools.partial(alignment.alignment, page=page)
     try:
-        hits = utila.select_page(kwargs['hits'], page=page)
+        hits = utilo.select_page(kwargs['hits'], page=page)
         border = hits.border if hits else []
     except ValueError:
         border = []
@@ -199,7 +199,7 @@ def load_page(
                 return [texmex.TextAlignment.BLOCK]
 
         else:
-            utila.error('could not select oneline layout, '
+            utilo.error('could not select oneline layout, '
                         'there is no oneline fontstore available')
 
     images = feedback.renderer.images.select_images(kwargs.pop('images'), page)
@@ -245,9 +245,9 @@ def select_layout(page: int, sections: iamraw.Section) -> str:
     Note; This is a first weak approach.
     """
     if not sections:
-        utila.log('require sections to perform layout selection - use default')
+        utilo.log('require sections to perform layout selection - use default')
         return 'default'
-    flat = utila.flat(sections)
+    flat = utilo.flat(sections)
     for item in flat:
         if item.start != page or item.end != page:
             continue
@@ -262,7 +262,7 @@ def select_layout(page: int, sections: iamraw.Section) -> str:
 
 def select_page(args, key, page):
     try:
-        result = utila.select_page(args[key], page=page)
+        result = utilo.select_page(args[key], page=page)
         result = result.content if result else []
     except ValueError:
         result = []
@@ -350,11 +350,11 @@ def fix_alignment(alignment, oneline) -> textflow.alignment.info.AlignmentInfo:
     if not alignment:
         return None
     # TODO: REMOVE AFTER FIXING DUMPING/LOADER
-    alignment = [(item.page, utila.select_page(alignment, page=item.page))
+    alignment = [(item.page, utilo.select_page(alignment, page=item.page))
                  for item in oneline]
     for page, content in alignment:
         if content is None:
-            utila.debug(f'no alignment for page: {page}')
+            utilo.debug(f'no alignment for page: {page}')
     alignment = [
         item if item is not None else iamraw.PageContent(
             page=page,

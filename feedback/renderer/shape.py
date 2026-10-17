@@ -21,7 +21,7 @@ Ensure that width and height is passed correctly
 """
 
 import iamraw
-import utila
+import utilo
 
 
 def render(items: list) -> list:
@@ -61,17 +61,17 @@ def render_rectangle(
 ) -> str:
     """Render html rectangle represented as `<span>`."""
     reference = html_reference(reference)
-    bounding = utila.roundme(*bounding)  # reduce digits in html output
+    bounding = utilo.roundme(*bounding)  # reduce digits in html output
     if not bounding[1] <= bounding[3]:
-        utila.error(f'invalid bounding: {bounding}')
+        utilo.error(f'invalid bounding: {bounding}')
     if not bounding[0] <= bounding[2]:
-        utila.error(f'invalid bounding: {bounding}')
-    bounding = utila.rect_ensure_bounding(bounding)
+        utilo.error(f'invalid bounding: {bounding}')
+    bounding = utilo.rect_ensure_bounding(bounding)
     x0 = bounding[0]
     y0 = bounding[1]
-    width = utila.rect_width(bounding)
-    height = utila.rect_height(bounding)
-    x0, y0, width, height = utila.roundme(x0, y0, width, height)
+    width = utilo.rect_width(bounding)
+    height = utilo.rect_height(bounding)
+    x0, y0, width, height = utilo.roundme(x0, y0, width, height)
     rendered = RECTANGLE.format(
         background=background,
         border=border,
@@ -96,7 +96,7 @@ def render_rectangles(
 ) -> str:
     """Render html rectangles represented as `<span>`."""
     collected = []
-    for bounding in utila.xsome(boundings, count=4):
+    for bounding in utilo.xsome(boundings, count=4):
         rendered = render_rectangle(
             bounding=bounding,
             border=border,
@@ -123,7 +123,7 @@ def render_line(
     reference: str = '',
 ) -> str:
     reference = html_reference(reference)
-    bounding = utila.roundme(*bounding)  # reduce digits in html output
+    bounding = utilo.roundme(*bounding)  # reduce digits in html output
     x0, y0, x1, y1 = bounding
     assert y0 <= y1, str(bounding)
     assert x0 <= x1, str(bounding)
@@ -131,7 +131,7 @@ def render_line(
     width = x1 - x0
     height = max([height, 1])
     width = max([width, 1])
-    width, height = utila.roundme((width, height))
+    width, height = utilo.roundme((width, height))
     rendered = LINE.format(
         height=height,
         more=more,
@@ -149,7 +149,7 @@ HORIZONTAL = """\
 
 
 def render_horizontal(x0, y0, width, reference='') -> str:
-    width = utila.roundme(width)
+    width = utilo.roundme(width)
     reference = html_reference(reference)
     rendered = HORIZONTAL.format(
         reference=reference,

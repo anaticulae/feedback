@@ -12,7 +12,7 @@ import copy
 import ghost
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 import feedback.features
 
@@ -24,7 +24,7 @@ def work(
     outputs: str,
     pages: tuple = None,
 ):
-    utila.debug(f'pdf: {document}')
+    utilo.debug(f'pdf: {document}')
     findings, sentence_bounding = load_resources(
         optimized,
         sentence_bounding,
@@ -32,11 +32,11 @@ def work(
     )
     prepared = prepare_findings(findings, sentence_bounding)
     if not prepared:
-        utila.error('could not render any findings')
-        return utila.NO_RESULT
-    if not utila.exists(document):
-        utila.error(f'--pdf {document} does not exists')
-        return utila.NO_RESULT
+        utilo.error('could not render any findings')
+        return utilo.NO_RESULT
+    if not utilo.exists(document):
+        utilo.error(f'--pdf {document} does not exists')
+        return utilo.NO_RESULT
     if ghost.HAS_GHOST:
         ghost.run(
             src=document,
@@ -44,15 +44,15 @@ def work(
             boundings=prepared,
         )
     else:
-        utila.error('install ghost, skip findings renderer')
-    return utila.NO_RESULT
+        utilo.error('install ghost, skip findings renderer')
+    return utilo.NO_RESULT
 
 
 def load_resources(inputs, sentence_bounding, pages: tuple = None):
-    utila.debug(f'dir: {inputs}')
-    with utila.profile('load findings'):
+    utilo.debug(f'dir: {inputs}')
+    with utilo.profile('load findings'):
         findings = feedback.features.load_optimized(inputs, pages=pages)
-    if utila.exists(sentence_bounding):
+    if utilo.exists(sentence_bounding):
         sentence_bounding = serializeraw.load_sentence_bounding(
             source=sentence_bounding,
             pages=pages,
@@ -60,8 +60,8 @@ def load_resources(inputs, sentence_bounding, pages: tuple = None):
         if sentence_bounding:
             maxpage = sentence_bounding[-1].page
             sentence_bounding = [
-                utila.select_content(sentence_bounding, page=page, default=[])
-                for page in utila.rlist(maxpage + 1)
+                utilo.select_content(sentence_bounding, page=page, default=[])
+                for page in utilo.rlist(maxpage + 1)
             ]
     else:
         sentence_bounding = []
@@ -72,7 +72,7 @@ OVERLAY_COLOR = (255, 0, 0, 50)
 
 
 def prepare_findings(findings: list, sentence_bounding: list) -> list:
-    findings: list = utila.flatten_content(findings)
+    findings: list = utilo.flatten_content(findings)
     selected = []
     for finding in findings:
         if isinstance(finding.location, iamraw.BoundingLocation):
@@ -83,7 +83,7 @@ def prepare_findings(findings: list, sentence_bounding: list) -> list:
                 loca = finding.location
                 sentence = sentence_bounding[loca.page][loca.value]
             except IndexError:
-                utila.error(f'missing sentence bounding: {loca}')
+                utilo.error(f'missing sentence bounding: {loca}')
                 continue
             # TODO: MAY CHANGE THIS LATER
             finding = copy.deepcopy(finding)
@@ -98,7 +98,7 @@ def prepare_findings(findings: list, sentence_bounding: list) -> list:
         fname = finding.number
         page = finding.location.page
         if not (bounding := bounding_convert(finding.location.value)):  # pylint:disable=superfluous-parens
-            utila.error(f'invalid location: {finding}\n')
+            utilo.error(f'invalid location: {finding}\n')
             continue
         result.append(
             ghost.Part(

@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import feedback
 import feedback.utils
@@ -16,58 +16,58 @@ FEATURE_NAME = 'problems'
 DESCRIPTION = 'generate central result view'
 
 WORKPLAN = [
-    utila.create_step(
+    utilo.create_step(
         'view',
         [
-            utila.ResultFile('rawmaker', name='text_text'),
-            utila.ResultFile('rawmaker', name='text_positions'),
-            utila.ResultFile('rawmaker', name='oneline_text_text'),
-            utila.ResultFile('rawmaker', name='oneline_text_positions'),
-            utila.ResultFile('rawmaker', name='border_pages'),
-            utila.ResultFile('textflow', name='alignment_current'),
-            utila.ResultFile('rawmaker', name='fonts_header'),
-            utila.ResultFile('rawmaker', name='fonts_content'),
-            utila.Directory('rawmaker__images_images'),
-            utila.Directory('rawmaker__figures_figures'),
-            utila.ResultFile('rawmaker', name='boxes_boxes'),
-            utila.ResultFile('rawmaker', name='horizontals_horizontals'),
-            utila.ResultFile('rawmaker', name='line_line'),
-            utila.ResultFile('decider_border', name='detection_hits'),
-            utila.ResultFile('words', name='word_result'),
-            utila.ResultFile('sections', name='section_result'),
-            utila.ResultFile('groupme', name='footer_footerheader'),
-            utila.Directory('__optimized__'),
+            utilo.ResultFile('rawmaker', name='text_text'),
+            utilo.ResultFile('rawmaker', name='text_positions'),
+            utilo.ResultFile('rawmaker', name='oneline_text_text'),
+            utilo.ResultFile('rawmaker', name='oneline_text_positions'),
+            utilo.ResultFile('rawmaker', name='border_pages'),
+            utilo.ResultFile('textflow', name='alignment_current'),
+            utilo.ResultFile('rawmaker', name='fonts_header'),
+            utilo.ResultFile('rawmaker', name='fonts_content'),
+            utilo.Directory('rawmaker__images_images'),
+            utilo.Directory('rawmaker__figures_figures'),
+            utilo.ResultFile('rawmaker', name='boxes_boxes'),
+            utilo.ResultFile('rawmaker', name='horizontals_horizontals'),
+            utilo.ResultFile('rawmaker', name='line_line'),
+            utilo.ResultFile('decider_border', name='detection_hits'),
+            utilo.ResultFile('words', name='word_result'),
+            utilo.ResultFile('sections', name='section_result'),
+            utilo.ResultFile('groupme', name='footer_footerheader'),
+            utilo.Directory('__optimized__'),
         ],
-        (utila.File('feedback__view_pages/*', ext='html'),),
+        (utilo.File('feedback__view_pages/*', ext='html'),),
     ),
-    utila.create_step(
+    utilo.create_step(
         'images',
         [
-            utila.Directory('rawmaker__images_images'),
+            utilo.Directory('rawmaker__images_images'),
         ],
         (  # TODO: REPLACE THIS HACK LATER
-            utila.File('feedback__view_pages/{FILEHASH}', ext='???'),),
+            utilo.File('feedback__view_pages/{FILEHASH}', ext='???'),),
     ),
-    utila.create_step(
+    utilo.create_step(
         'figures',
         [
-            utila.Directory('rawmaker__figures_figures'),
+            utilo.Directory('rawmaker__figures_figures'),
         ],
-        (utila.File('feedback__view_pages/{FILEHASHS}', ext='png'),),
+        (utilo.File('feedback__view_pages/{FILEHASHS}', ext='png'),),
     ),
-    utila.create_step(
+    utilo.create_step(
         'findings',
         inputs=[
-            utila.ResultFile(producer='words', name='sentences_bounding'),
-            utila.Directory('__optimized__'),
-            utila.Value(name='pdf', typ=None, defaultvar=None),
+            utilo.ResultFile(producer='words', name='sentences_bounding'),
+            utilo.Directory('__optimized__'),
+            utilo.Value(name='pdf', typ=None, defaultvar=None),
         ],
     ),
-    utila.create_step(
+    utilo.create_step(
         name='plot',
         inputs=[
-            utila.ResultFile(producer='groupme', name='pagenumbers_magic'),
-            utila.Directory('__optimized__'),
+            utilo.ResultFile(producer='groupme', name='pagenumbers_magic'),
+            utilo.Directory('__optimized__'),
         ],
         output=[
             ('findings_histogram', 'png'),
@@ -78,11 +78,11 @@ WORKPLAN = [
 
 
 def main():
-    utila.featurepack(
+    utilo.featurepack(
         workplan=WORKPLAN,
         root=feedback.ROOT,
         featurepackage='feedback.features',
-        config=utila.FeaturePackConfig(
+        config=utilo.FeaturePackConfig(
             name=feedback.PROCESS,
             description=DESCRIPTION,
             version=feedback.__version__,

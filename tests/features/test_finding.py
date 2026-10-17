@@ -7,35 +7,35 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import protocol
-import utila
-import utilatest
+import hoverpower
+import protoerror
+import utilo
+import utilotest
 
 import tests
 
 
-@utilatest.nightly
-@utilatest.requires(power.BACHELOR090_PDF)
+@utilotest.nightly
+@utilotest.requires(hoverpower.BACHELOR090_PDF)
 def test_finding_feature(td, mp):
-    pdf = power.BACHELOR090_PDF
-    source = power.link(pdf)
+    pdf = hoverpower.BACHELOR090_PDF
+    source = hoverpower.link(pdf)
     cmd = f'--findings  --pdf {pdf} -i {source} -o {td.tmpdir}'
     tests.run(cmd, mp=mp)
-    assert utila.file_count(td.tmpdir, ext='png') >= 8
+    assert utilo.file_count(td.tmpdir, ext='png') >= 8
 
 
-@utilatest.requires(power.BACHELOR028_PDF)
+@utilotest.requires(hoverpower.BACHELOR028_PDF)
 def test_finding_sentence_bachelor028(td, mp):
-    pdf = power.BACHELOR028_PDF
-    source = power.link(pdf)
+    pdf = hoverpower.BACHELOR028_PDF
+    source = hoverpower.link(pdf)
     cmd = f'--findings  --pdf {pdf} -i {source} --pages=7'
     tests.run(cmd, mp=mp)
-    assert utila.file_count(td.tmpdir, ext='png') >= 1
-    findings = protocol.load_grouped(
-        source=utila.join(source, '__optimized__'),
+    assert utilo.file_count(td.tmpdir, ext='png') >= 1
+    findings = protoerror.load_grouped(
+        source=utilo.join(source, '__optimized__'),
         pages=(7,),
     )[0].content
-    finding = protocol.select_findings(findings, msgid=7605)[0]
+    finding = protoerror.select_findings(findings, msgid=7605)[0]
     expected = td.tmpdir.join(f'{finding.number}.png')
-    assert utila.exists(expected)
+    assert utilo.exists(expected)

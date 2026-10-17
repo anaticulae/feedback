@@ -9,15 +9,15 @@
 
 import os
 
-import power
-import utilatest
+import hoverpower
+import utilotest
 
 import tests
 
 
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_report_problems_view(td, mp):
-    inpath = power.link(power.MASTER072_PDF)
+    inpath = hoverpower.link(hoverpower.MASTER072_PDF)
     cmd = f'-i {inpath} -o {td.tmpdir} --view'
     tests.run(cmd, mp=mp)
     # eval
@@ -27,9 +27,9 @@ def test_report_problems_view(td, mp):
     # TODO: REMOVE THIS TEST
 
 
-@utilatest.requires(power.MASTER116_PDF)
+@utilotest.requires(hoverpower.MASTER116_PDF)
 def test_view_master116_border_size(td, mp):
-    inpath = power.link(power.MASTER116_PDF)
+    inpath = hoverpower.link(hoverpower.MASTER116_PDF)
     cmd = f'-i {inpath} -o {td.tmpdir} --view '
     tests.run(cmd, mp=mp)
     # eval

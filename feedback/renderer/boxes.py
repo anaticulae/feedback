@@ -7,13 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 
 import feedback.renderer.shape
 
-RENDER_BOXES_BORDER_STYLE = configo.HV_STR(default='1px solid black')
+RENDER_BOXES_BORDER_STYLE = configos.HV_STR(default='1px solid black')
 
-RENDER_PAGEBORDER_STYLE = configo.HV_STR(default='1px dotted gray')
+RENDER_PAGEBORDER_STYLE = configos.HV_STR(default='1px dotted gray')
 
 
 def render_boxes(page):

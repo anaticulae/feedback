@@ -9,14 +9,14 @@
 
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 
 def load_optimized(paths: list, pages: tuple = None) -> iamraw.PageFindings:
     for path in paths:
-        if not utila.exists(path):
+        if not utilo.exists(path):
             continue
         findings = serializeraw.load_grouped(path, pages=pages)
         return findings
-    utila.error(f'could not locate: {paths}')
+    utilo.error(f'could not locate: {paths}')
     return []

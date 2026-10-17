@@ -18,7 +18,7 @@ References
 
 import iamraw
 import texmex
-import utila
+import utilo
 
 import feedback.renderer.boxes
 import feedback.renderer.content
@@ -57,12 +57,12 @@ def render_page(
     raw.extend(feedback.renderer.boxes.render_pageborder(page))
     raw.extend(feedback.renderer.boxes.render_boxes(page))
     # TODO: REPLACE WITH UTILA CODE
-    skip = utila.rect_merge([item.info.bounding for item in page.images])
+    skip = utilo.rect_merge([item.info.bounding for item in page.images])
     if page.navigator:
         # some pages does not have any text content. Some pages are
         # whitepages or contain a single huge image.
         for textcontainer in page.navigator:
-            if skip and utila.rectangles_intersecting(
+            if skip and utilo.rectangles_intersecting(
                     rectangles=skip,
                     test=textcontainer.bounding,
             ):
@@ -160,7 +160,7 @@ def create_div(
 ) -> str:
     alignment = alignments(bounding=box) if alignments else DEFAULT_ALIGNMENT
     alignment = create_alignment(alignment)
-    width = utila.roundme((box.x1 - box.x0) * 1.01)
+    width = utilo.roundme((box.x1 - box.x0) * 1.01)
     position = f'top:{box.y0}px;left:{box.x0}px;min-width:{width}px;'
     location = f'position:absolute;{position}'
     line_style = []
@@ -190,8 +190,8 @@ def render_images(images):
     result = []
     for info, fileimage in images:
         bounding = info.bounding
-        width = utila.rect_width(info.bounding)
-        height = utila.rect_height(info.bounding)
+        width = utilo.rect_width(info.bounding)
+        height = utilo.rect_height(info.bounding)
         style = (f'style="position:absolute;border:1px solid black;'
                  f'top:{bounding[1]}px;left:{bounding[0]}px;'
                  f' width:{width}px;height:{height}px"')
@@ -203,7 +203,7 @@ def render_images(images):
 def create_pagebox(html: str, page: int, dimension) -> str:
     # pointer-events:none - do not effect mouse cursor handling
     assert dimension, dimension
-    dimension = utila.roundme(*dimension)
+    dimension = utilo.roundme(*dimension)
     result = (f'<div id="page{page}" '
               f'style="position:relative;width:{dimension[0]}px;'
               f'height:{dimension[1]}px;border:1px solid black;'

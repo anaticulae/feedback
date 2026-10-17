@@ -7,28 +7,28 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import hoverpower
 import painter
-import power
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import tests
 
 
-@utilatest.requires(power.BACHELOR090_PDF)
+@utilotest.requires(hoverpower.BACHELOR090_PDF)
 def test_render_findings_histogram(td, mp):  # pylint:disable=W0613
-    source = power.link(power.BACHELOR090_PDF)
+    source = hoverpower.link(hoverpower.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
     tests.run(cmd, mp=mp)
-    rendered = utila.file_read_binary('feedback__plot_findings_histogram.png')
+    rendered = utilo.file_read_binary('feedback__plot_findings_histogram.png')
     assert len(rendered) > 1000
 
 
-@utilatest.requires(power.BACHELOR090_PDF)
+@utilotest.requires(hoverpower.BACHELOR090_PDF)
 def test_render_findings_pie(td, mp):  # pylint:disable=W0613
-    source = power.link(power.BACHELOR090_PDF)
+    source = hoverpower.link(hoverpower.BACHELOR090_PDF)
     cmd = f'-i {source} --plot'
     tests.run(cmd, mp=mp)
-    rendered = utila.file_read_binary('feedback__plot_findings_types_pie.png')
+    rendered = utilo.file_read_binary('feedback__plot_findings_types_pie.png')
     assert len(rendered) > 1000
     painter.show_figure(rendered)

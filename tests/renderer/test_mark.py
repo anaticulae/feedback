@@ -8,7 +8,7 @@
 # =============================================================================
 
 import iamraw
-import protocol
+import protoerror
 
 import feedback.renderer.mark
 import feedback.utils.multiple_styles
@@ -90,7 +90,7 @@ def test_render_mark_filter_lines():
         iamraw.Finding(location=create_line(line=10, page=3)),
         iamraw.Finding(location=create_chapter(chapter=1, page=3)),
     ]
-    filtered = protocol.lines(findings)
+    filtered = protoerror.lines(findings)
     assert len(filtered) == 3, str(filtered)
 
 
@@ -107,5 +107,5 @@ def test_render_mark_filter_words():
         iamraw.Finding(location=create_line(line=7, page=3)),
         iamraw.Finding(location=create_chapter(chapter=1, page=3)),
     ]
-    filtered = protocol.words(findings)
+    filtered = protoerror.words(findings)
     assert len(filtered) == 4, str(filtered)

@@ -9,10 +9,10 @@
 
 import os
 
-import power
+import hoverpower
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import tests
 
@@ -23,43 +23,43 @@ def test_run_feedback_help(mp):
 
 
 @pytest.mark.parametrize('source', [
-    pytest.param(power.BOOK007_PDF, id='leftright'),
-    pytest.param(power.MASTER072_PDF, id='master72'),
+    pytest.param(hoverpower.BOOK007_PDF, id='leftright'),
+    pytest.param(hoverpower.MASTER072_PDF, id='master72'),
 ])
 def test_run_feedback_linter_findings_to_shape(source, td, mp):
     """Run linted example where findings are converted to shapes to
     display more information to the user."""
-    utilatest.fixture_requires(source)
-    source = power.link(source)
-    utila.copy_content(
+    utilotest.fixture_requires(source)
+    source = hoverpower.link(source)
+    utilo.copy_content(
         source,
         td.tmpdir,
         pattern='(rawmaker|groupme|textflow|words|pagenumber)__*.yaml',
     )
-    completed = utila.run('decider_border')
-    assert completed.returncode == utila.SUCCESS, str(completed)
+    completed = utilo.run('decider_border')
+    assert completed.returncode == utilo.SUCCESS, str(completed)
     # run feedback
     tests.run('--view', mp=mp)
     # open result
     first_file = td.tmpdir.join('feedback__view_pages/0.html')
     assert os.path.exists(first_file), str(first_file)
-    with utilatest.open_webbrowser(first_file):
+    with utilotest.open_webbrowser(first_file):
         pass
 
 
 @pytest.mark.xfail(reason='software integration')
-@utilatest.requires(power.BACHELOR056_PDF)
+@utilotest.requires(hoverpower.BACHELOR056_PDF)
 def test_run_feedback_view(td, mp):
     root = td.tmpdir
-    source = power.link(power.BACHELOR056_PDF)
-    cmd = f'--pdf {power.BACHELOR056_PDF} -i {source} -o {root} --pages=9'
+    source = hoverpower.link(hoverpower.BACHELOR056_PDF)
+    cmd = f'--pdf {hoverpower.BACHELOR056_PDF} -i {source} -o {root} --pages=9'
     # run feedback
     tests.run(cmd, mp=mp)
     # TODO: RENAME TO 9 AFTER FIXING GENERATOR
     page9 = os.path.join(root, 'feedback__view_pages/0.html')
-    with utilatest.open_webbrowser(page9):
+    with utilotest.open_webbrowser(page9):
         # ensure that word marks are set on page9
-        content = utila.file_read(page9)
+        content = utilo.file_read(page9)
         # counted = content.count('id="word9')
         # assert counted >= 20, counted
         counted = content.count('id="line9')
@@ -67,9 +67,9 @@ def test_run_feedback_view(td, mp):
 
 
 @pytest.mark.xfail(reason='software integration')
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_feedback_plot(td, mp):
-    source = power.link(power.MASTER072_PDF)
+    source = hoverpower.link(hoverpower.MASTER072_PDF)
     cmd = f'-i {source} -o {td.tmpdir} --plot'
     # run feedback
     tests.run(cmd, mp=mp)

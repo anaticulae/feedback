@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 SHAPY = {}
 
@@ -15,7 +15,7 @@ SHAPY = {}
 def determine_shapes(findings, page: int) -> list:
     if not findings:
         return []
-    selected = utila.select_page(findings, page)
+    selected = utilo.select_page(findings, page)
     if not selected:
         return []
     result = []
@@ -32,7 +32,7 @@ def determine_shapes(findings, page: int) -> list:
 
 def render_rectangle(item) -> dict:
     bounding = item.location.value
-    bounding = utila.rect_ensure_bounding(bounding)
+    bounding = utilo.rect_ensure_bounding(bounding)
     result = {
         'type': 'rectangle',
         'bounding': bounding,

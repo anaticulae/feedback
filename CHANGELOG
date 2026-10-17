@@ -345,7 +345,7 @@ Every noteable change is logged here.
 
 ### Fix
 
-* add workaround to solve problem with utila (04192ef4986d)
+* add workaround to solve problem with utilo (04192ef4986d)
 
 ## v1.0.1
 
@@ -587,7 +587,7 @@ Every noteable change is logged here.
 
 ### Fix
 
-* fix problem in utila handling `.tmp folder` (e67cede9e5ca)
+* fix problem in utilo handling `.tmp folder` (e67cede9e5ca)
 
 ## v0.7.1
 
@@ -738,7 +738,7 @@ Every noteable change is logged here.
 
 ### Feature
 
-* use new feature function from utila package (78f6263fd040)
+* use new feature function from utilo package (78f6263fd040)
 * improve the clarity of a workplan (f3442a432c42)
 
 ### Fix
@@ -767,7 +767,7 @@ Every noteable change is logged here.
 ### Feature
 
 * add hit the box renderer (6b629219e7f5)
-* add feature selector - remove later after utila upgrade (b434b6ee1b7e)
+* add feature selector - remove later after utilo upgrade (b434b6ee1b7e)
 
 ## v0.2.6
 
@@ -833,4 +833,3 @@ Every noteable change is logged here.
 * fix syntax-errors from baw setup template (5d98a2e35507)
 
 ## v0.0.0 Initial release
-

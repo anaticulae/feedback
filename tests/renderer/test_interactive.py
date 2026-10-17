@@ -7,8 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import feedback.renderer.content
 import feedback.renderer.html
@@ -26,5 +26,5 @@ def test_renderer_interactive_showhide(td):
     content = feedback.renderer.html.render_page(page=html)
     assert 'page_10_border_content' in content
 
-    with utilatest.open_webbrowser(outpath):
-        utila.file_create(outpath, content)
+    with utilotest.open_webbrowser(outpath):
+        utilo.file_create(outpath, content)

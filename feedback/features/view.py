@@ -18,9 +18,9 @@ import copy
 import os
 
 import iamraw
-import protocol
+import protoerror
 import serializeraw
-import utila
+import utilo
 
 import feedback.features
 import feedback.problems.shapy
@@ -53,7 +53,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
 ) -> list:
     """Generate html view for selected `pages`.
 
-    TODO: define default parameter for source of protocol parameter
+    TODO: define default parameter for source of protoerror parameter
 
     Args:
         text(str): path to extract text
@@ -79,7 +79,7 @@ def work(  # pylint:disable=R0914,too-many-arguments
         List of extracted html view per page.
     """
     sections = sections if os.path.exists(sections) else None
-    with utila.profile('load resources'):
+    with utilo.profile('load resources'):
         html = feedback.renderer.loader.load(
             text,
             textpositions,
@@ -99,14 +99,14 @@ def work(  # pylint:disable=R0914,too-many-arguments
             headerfooter=headerfooter,
             pages=pages,
         )
-    with utila.profile('load findings'):
+    with utilo.profile('load findings'):
         findings = feedback.features.load_optimized(optimized, pages=pages)
-    with utila.profile('prepare data'):
+    with utilo.profile('prepare data'):
         pagesentences = load_sentences(words, pages=pages)
         pagewords = load_single_words(html)
         marks = load_marks(findings, pagesentences, pagewords)
     result = []
-    with utila.profile('render result'):
+    with utilo.profile('render result'):
         for page in html:
             pagemarks = feedback.renderer.mark.create_configuration(
                 marks=marks,
@@ -172,7 +172,7 @@ def load_marks(
 
 def load_marks_from_path(source, page: int):
     html = feedback.renderer.loader.from_path(source)
-    findings = protocol.findings_from_path(source)
+    findings = protoerror.findings_from_path(source)
     pagesentences = load_sentences(iamraw.path.words_text(source))
     pagewords = load_single_words(html)
     marks = load_marks(findings, pagesentences, pagewords)
@@ -191,7 +191,7 @@ def convert_sentence_to_word_mark(
 ) -> dict:
     assert isinstance(sentences, dict), type(sentences)
     marks = {
-        grouped.page: protocol.sentences(grouped.content) for grouped in marks
+        grouped.page: protoerror.sentences(grouped.content) for grouped in marks
     }
     result = collections.defaultdict(list)
     for page, pagemarks in marks.items():
@@ -200,18 +200,18 @@ def convert_sentence_to_word_mark(
             try:
                 content = sentences[page][sentence_id]
             except (IndexError, KeyError):
-                utila.error(f'could not locatate sentence: {sentence_id}'
+                utilo.error(f'could not locatate sentence: {sentence_id}'
                             f' on page {page}')
                 continue
             try:
                 pagewords = words[page]
             except KeyError:
-                utila.error(f'could not sync sentence: {sentence_id}'
+                utilo.error(f'could not sync sentence: {sentence_id}'
                             f' on page {page}')
                 continue
             selected = feedback.renderer.mark.best_sync(pagewords, content)
             if selected is None:
-                utila.error(f'could not sync sentence: {sentence_id}'
+                utilo.error(f'could not sync sentence: {sentence_id}'
                             f' on page {page}')
                 continue
             # TODO: REPLACE WITH PROTOCL

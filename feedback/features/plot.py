@@ -7,16 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
 import painter
-import protocol
+import protoerror
 import serializeraw
-import utila
+import utilo
 
 import feedback.features
 
-LABEL_COUNT_MAX = configo.HV_INT_PLUS(default=50)
+LABEL_COUNT_MAX = configos.HV_INT_PLUS(default=50)
 
 
 def work(
@@ -24,7 +24,7 @@ def work(
     optimized: str,
     pages: tuple = None,
 ) -> tuple[bytes, bytes]:
-    with utila.profile('load findings'):
+    with utilo.profile('load findings'):
         findings = feedback.features.load_optimized(optimized, pages=pages)
     pagenumbers = serializeraw.load_pagenumbers_magic(
         pagenumbers,
@@ -49,10 +49,10 @@ def render_findings_overview(
         pages_count_max=LABEL_COUNT_MAX,
     )
     if not pages:
-        utila.debug('no findings given, skip plotting findings')
-        return utila.NO_RESULT
+        utilo.debug('no findings given, skip plotting findings')
+        return utilo.NO_RESULT
     counted = [
-        len(utila.select_page(
+        len(utilo.select_page(
             findings,
             page=page,
             default=[],
@@ -78,7 +78,7 @@ def pages_select(pagenumbers, pages_count_max: int = 50) -> list:
     """\
     >>> pages_select([1, 2, 3, 4, 5, 6, 7, 8], pages_count_max=50)
     ['1', '2', '3', '4', '5', '6', '7', '8']
-    >>> pages_select(utila.rlist(0, 133), pages_count_max=50)
+    >>> pages_select(utilo.rlist(0, 133), pages_count_max=50)
     ['0', '1', '3',...'127', '129', '131', '132']
     """
     assert pages_count_max > 0, pages_count_max
@@ -100,7 +100,7 @@ def pages_select(pagenumbers, pages_count_max: int = 50) -> list:
 
 def render_findings_types(findings: iamraw.PageFindings) -> bytes:
     # TODO: REFACTOR IMPORT AFTER UPGRADING
-    findings = protocol.flat(findings)
+    findings = protoerror.flat(findings)
     typed = bytype(findings)
 
     labels = ['Fehler', 'Warnung', 'Vorschlag']
