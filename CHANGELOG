@@ -1,835 +1,2849 @@
-# Changelog
+# CHANGELOG
 
-Every noteable change is logged here.
+
+## v1.15.6 (2026-10-18)
+
+### Chores
+
+- **github**: Add .github
+  ([`917c690`](https://github.com/anaticulae/feedback/commit/917c6907c4ef9e95a9576dcd05dbbafa288b3060))
+
+- **packages**: Adjust naming
+  ([`fd149ca`](https://github.com/anaticulae/feedback/commit/fd149ca452c9c33eb98b93b28249945a7f802fe0))
+
+- **pyproject**: Add missing packages
+  ([`ed62784`](https://github.com/anaticulae/feedback/commit/ed6278480996185741918d211ee364ac7b4aff7a))
+
+- **pyproject**: Add modern layout
+  ([`abcc5af`](https://github.com/anaticulae/feedback/commit/abcc5afe222688a6ecb772ab3c8451efc75363a3))
+
+- **pyproject**: Adjust project name
+  ([`73e52fa`](https://github.com/anaticulae/feedback/commit/73e52fa670fa470dec4eb9684f69f4f4f08153cb))
+
+- **readme**: Adjust file names
+  ([`e361865`](https://github.com/anaticulae/feedback/commit/e361865b30ea997ea5db67ded84d92389a9ea90c))
+
+### Refactoring
+
+- **linter**: Solve linter warnings
+  ([`efe4e66`](https://github.com/anaticulae/feedback/commit/efe4e66f26f65cfa8e2d689341cfa26dc24c930c))
+
+### Testing
+
+- **finding**: Disable test for running tests
+  ([`47ab3c6`](https://github.com/anaticulae/feedback/commit/47ab3c63c5531cf76d516dd2815d3edd2926c7c8))
+
 
 ## v1.15.5 (2023-01-09)
 
-### Chore
+### Chores
 
-* add integrate and rebase step (0e05e858c0b6)
-* upgrade requirements.txt (d8d5a9093a61)
-* upgrade Jenkinsfile (c661cf0498b2)
-* upgrade pipe library (1df91bfad0a9)
+- **Jenkins**: Add integrate and rebase step
+  ([`0e05e85`](https://github.com/anaticulae/feedback/commit/0e05e858c0b6855928e2dd6b862660e832db6820))
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`c661cf0`](https://github.com/anaticulae/feedback/commit/c661cf0498b277bab12e43af9f2cc74bdb238410))
+
+- **Jenkins**: Upgrade pipe library
+  ([`1df91bf`](https://github.com/anaticulae/feedback/commit/1df91bfad0a9ec5dac50391b0efce29e20343c15))
+
+- **requirements**: Upgrade requirements.txt
+  ([`d8d5a90`](https://github.com/anaticulae/feedback/commit/d8d5a9093a61ad2a587cf0d8566869fbf26e79c5))
+
 
 ## v1.15.4 (2022-12-19)
 
-### Chore
+### Chores
 
-* upgrade requirements.txt (c2b75b69e5b5)
-* upgrade Jenkinsfile (7811c33e7b35)
-* upgrade pipe library (8e4829fd5bef)
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`7811c33`](https://github.com/anaticulae/feedback/commit/7811c33e7b357314df5b654f905254ac21d1266d))
+
+- **Jenkins**: Upgrade pipe library
+  ([`8e4829f`](https://github.com/anaticulae/feedback/commit/8e4829fd5bef2ad0565164abf0ce3ccf294f37d9))
+
+- **requirements**: Upgrade requirements.txt
+  ([`c2b75b6`](https://github.com/anaticulae/feedback/commit/c2b75b69e5b5f083d3d7e554435f803262113edc))
+
 
 ## v1.15.3 (2022-12-04)
 
-### Chore
+### Chores
 
-* upgrade sections (c1861bb7398e)
-* remove duplication (874c157a8418)
-* remove feedback dependency (0f4cd4419036)
-* use quick installer (4165abfe1486)
-* upgrade pipeline (5502b458b3c6)
-* upgrade requirements.txt (86bcfb37bbdb)
-* add pipe library (480d7fe070e8)
+- **conftest**: Remove feedback dependency
+  ([`0f4cd44`](https://github.com/anaticulae/feedback/commit/0f4cd44190364bf27d75daf97aeccc338b55a24a))
+
+- **Jenkins**: Add pipe library
+  ([`480d7fe`](https://github.com/anaticulae/feedback/commit/480d7fe070e881cc819856a73a5298408911ff47))
+
+- **Jenkins**: Upgrade pipeline
+  ([`5502b45`](https://github.com/anaticulae/feedback/commit/5502b458b3c6201a46692f210158043d3e8046dc))
+
+- **requirements**: Upgrade requirements.txt
+  ([`86bcfb3`](https://github.com/anaticulae/feedback/commit/86bcfb37bbdb1295253c39a6003cf68fbec68abd))
+
+- **requirements**: Upgrade sections
+  ([`c1861bb`](https://github.com/anaticulae/feedback/commit/c1861bb7398e8f6c046ff1bd9b5e685297b4b3f8))
+
+- **resources**: Remove duplication
+  ([`874c157`](https://github.com/anaticulae/feedback/commit/874c157a8418d3be5ff3cc697ace468438ecf3d1))
+
+- **setup**: Use quick installer
+  ([`4165abf`](https://github.com/anaticulae/feedback/commit/4165abfe1486195cccb3aaabc6adf62e53d13d66))
+
+### Refactoring
+
+- **replace**: Automated replacement
+  ([`a28b53a`](https://github.com/anaticulae/feedback/commit/a28b53a681412fa3b67abea591d93cf19b8ee19d))
+
+### Testing
+
+- **enable**: Enable after fixing ghost
+  ([`4c196b7`](https://github.com/anaticulae/feedback/commit/4c196b7c3f7ecc5c9184b0badd53f9ad14beda19))
+
+- **fix**: Add missing test resource
+  ([`ba360d3`](https://github.com/anaticulae/feedback/commit/ba360d336c06088ba9b3ecdaf18b0353f8f82e7c))
+
+- **fix**: Run test without installed feedback
+  ([`115e797`](https://github.com/anaticulae/feedback/commit/115e7973599103b1a5ec13e2d70ec5ad92870df0))
+
+- **renderer**: Disable unit test
+  ([`535f5e8`](https://github.com/anaticulae/feedback/commit/535f5e8ee61b1b2c871ca776ca9bbe9c779cee1e))
+
 
 ## v1.15.2 (2022-10-06)
 
-### Fix
+### Bug Fixes
 
-* skip ughost if ughost is not installed (902f28ab1342)
-* skip invalid bounding location (80525f228b15)
+- **finding**: Skip invalid bounding location
+  ([`80525f2`](https://github.com/anaticulae/feedback/commit/80525f228b15daf2144aa344928d0003b6812664))
 
-### Chore
+- **findings**: Skip ghost if ghost is not installed
+  ([`902f28a`](https://github.com/anaticulae/feedback/commit/902f28ab13425921be24d55fbe9300854d1f75fd))
 
-* use all instead of nightly (bb4f5f578fbd)
-* privileged user is not necessary (e894ffc1d53b)
-* add separate generator step (5f2ac7abbf83)
-* increase worker count on CI (8eb282446bd6)
-* add Jenkinsfile (5ca0c394edf1)
-* upgrade requirements.txt (aee61caeeabe)
-* extend test data generator (77c06138c8b7)
+### Chores
 
-## v1.15.1
+- **ci**: Add Jenkinsfile
+  ([`5ca0c39`](https://github.com/anaticulae/feedback/commit/5ca0c394edf1361b5e472866a8ca4e31ae5d7ede))
 
-### Fix
+- **ci**: Increase worker count on CI
+  ([`8eb2824`](https://github.com/anaticulae/feedback/commit/8eb282446bd6d6e497d391bc0e7903bca7286158))
 
-* fix word constructor after changing iamraw Location (5915adf863e8)
+- **Jenkinsfile**: Add separate generator step
+  ([`5f2ac7a`](https://github.com/anaticulae/feedback/commit/5f2ac7abbf83421891e2de75da8cabc902205f18))
 
-## v1.15.0
+- **Jenkinsfile**: Privileged user is not necessary
+  ([`e894ffc`](https://github.com/anaticulae/feedback/commit/e894ffc1d53ba8ab7387c393342ad3ce3f9370df))
 
-### Feature
+- **Jenkinsfile**: Use all instead of nightly
+  ([`bb4f5f5`](https://github.com/anaticulae/feedback/commit/bb4f5f578fbd03d86f0a65661e055b3cee03887e))
 
-* limit number of page labels (c009a318305c)
-* load holy values (00954d13d124)
+- **requirements**: Upgrade requirements.txt
+  ([`aee61ca`](https://github.com/anaticulae/feedback/commit/aee61caeeabe6ce60c0d582815456068773f1f80))
 
-## v1.14.1
+- **resources**: Extend test data generator
+  ([`77c0613`](https://github.com/anaticulae/feedback/commit/77c06138c8b71e42f591fdeb2473b0d862b3b76f))
 
-### Fix
+### Testing
 
-* enable single page selection (25b1ab44d9d3)
-* do not fail on missing sentence pages (e503759f3423)
+- **adjust**: Adjust test after software integration
+  ([`c1b0e39`](https://github.com/anaticulae/feedback/commit/c1b0e39df1551e90b902653100c6e2f7962dbe44))
 
-## v1.14.0
+- **cli**: Render plot
+  ([`c3786ae`](https://github.com/anaticulae/feedback/commit/c3786aebba02bcdd01f63c1b0d179623b4f5251a))
 
-### Feature
+- **refactor**: Remove defaults
+  ([`0f2bc77`](https://github.com/anaticulae/feedback/commit/0f2bc77c8a9aeba609a711693177e7d9e9d5c481))
 
-* convert sentence to bounding (0f885ebb0a45)
-* add sentence bounding loader (82ccd6a488a6)
+- **refactor**: Use fixture shortcuts
+  ([`74a394e`](https://github.com/anaticulae/feedback/commit/74a394e3fe4417332fbff20e076f1dd6086d07ca))
 
-## v1.13.0
+- **skip**: Skip test if data is not generated
+  ([`9c6b65e`](https://github.com/anaticulae/feedback/commit/9c6b65e97360292f7746a50dcb5be8e174feef24))
 
-### Feature
 
-* use magic page numbers in finding overview (98096e0b445d)
+## v1.15.1 (2022-07-08)
 
-## v1.12.3
+### Bug Fixes
 
-## v1.12.2
+- **view**: Fix word constructor after changing iamraw Location
+  ([`5915adf`](https://github.com/anaticulae/feedback/commit/5915adf863e823c1b6f414a1e8a1e8d605d34312))
 
-### Feature
+### Chores
 
-* make color configurable (35c77c3278b5)
+- **requirements**: Upgrade requirements.txt
+  ([`a906d7a`](https://github.com/anaticulae/feedback/commit/a906d7a42fac781381ef0f4c29a7771f1d75fb5f))
 
-### Fix
 
-* blend alpha color to improve view (4f5e2029a812)
+## v1.15.0 (2022-07-08)
 
-## v1.12.1
+### Chores
 
-### Fix
+- **requirements**: Upgrade requirements.txt
+  ([`139d9f7`](https://github.com/anaticulae/feedback/commit/139d9f76b9be073d776a5fb86ca552849649f3bb))
 
-* make input folder less strict (9b71461b8d3d)
+### Features
 
-## v1.12.0
+- **feedback**: Load holy values
+  ([`00954d1`](https://github.com/anaticulae/feedback/commit/00954d13d124946689859258ceeb82aff6f2b9d9))
 
-### Feature
+- **plot**: Limit number of page labels
+  ([`c009a31`](https://github.com/anaticulae/feedback/commit/c009a318305cdb80c6ff8888de75a936cf6a38aa))
 
-* skip step if pdf is not given (15eedbba89e8)
-* add findings step (0eb820c33908)
+### Refactoring
 
-## v1.11.6
+- **init**: Remove duplicated code
+  ([`2eb83ea`](https://github.com/anaticulae/feedback/commit/2eb83ea81407ee98d341b49f44b6ab60eb69060a))
 
-### Fix
 
-* remove useless empty duplicated style (54b508ebce13)
-* do not fail on invalid merge (745603eb5baa)
+## v1.14.1 (2022-06-26)
 
-## v1.11.5
+### Bug Fixes
 
-### Fix
+- **finding**: Do not fail on missing sentence pages
+  ([`e503759`](https://github.com/anaticulae/feedback/commit/e503759f3423bb395113a53d31b9410600e6092c))
 
-* adjust import path (4f602351b715)
+- **finding**: Enable single page selection
+  ([`25b1ab4`](https://github.com/anaticulae/feedback/commit/25b1ab44d9d34c48bf1f81ff480333db987c9a0f))
 
-## v1.11.4
+### Chores
+
+- **requirements**: Add decider_con
+  ([`8d6142b`](https://github.com/anaticulae/feedback/commit/8d6142bb37c44dac76ebf77690127c0fd0118a1c))
+
+- **requirements**: Upgrade requirements.txt
+  ([`9fe177f`](https://github.com/anaticulae/feedback/commit/9fe177f953a53db3131808fd14c0877fdcea4943))
+
+- **resources**: Generate bachelor028
+  ([`4a1a9ba`](https://github.com/anaticulae/feedback/commit/4a1a9ba5907f060c1361b17e5a210bfdb3695138))
+
+- **resources**: Remove default
+  ([`3588dd3`](https://github.com/anaticulae/feedback/commit/3588dd3ff0abe7ca9d63d82bb6416b705095cd9a))
+
+- **resources**: Run decider textflow
+  ([`f204884`](https://github.com/anaticulae/feedback/commit/f204884a815e7d15c411befaf0e9bb78b6b17e7b))
+
+### Testing
+
+- **finding**: Keep dev build fast
+  ([`e776e6a`](https://github.com/anaticulae/feedback/commit/e776e6a055700cc7ac2bc0c62dd44779c1c0b578))
+
+- **finding**: Skip non generated tests
+  ([`5f773f3`](https://github.com/anaticulae/feedback/commit/5f773f387cbd0aadab742e2259ce3fa325642d5a))
+
+- **finding**: Verify sentence marker
+  ([`c10af8d`](https://github.com/anaticulae/feedback/commit/c10af8d844c92569ff7f4b2af649463be2ea335b))
+
+
+## v1.14.0 (2022-06-23)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`0ad5017`](https://github.com/anaticulae/feedback/commit/0ad501753da499f33ebd13dbe7665f8242439e92))
+
+- **resources**: Extend test data generator
+  ([`bd9afc4`](https://github.com/anaticulae/feedback/commit/bd9afc4c88aee5725f764be0b7d698cf5e1c65c5))
+
+- **resources**: Sort resources alphabetically
+  ([`70da775`](https://github.com/anaticulae/feedback/commit/70da77532ff859beaa8e3e8e6fbe3ba41c8ea402))
+
+### Features
+
+- **findings**: Add sentence bounding loader
+  ([`82ccd6a`](https://github.com/anaticulae/feedback/commit/82ccd6a488a64585127dae13ffb6eda5d4c35317))
+
+- **findings**: Convert sentence to bounding
+  ([`0f885eb`](https://github.com/anaticulae/feedback/commit/0f885ebb0a45638322df4b7e57aaec667aa1cd71))
+
+### Refactoring
+
+- **plot**: Use public interface
+  ([`171e695`](https://github.com/anaticulae/feedback/commit/171e69514bb7163190a5d5654da342c5bbe0beb3))
+
+
+## v1.13.0 (2022-06-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7acf01a`](https://github.com/anaticulae/feedback/commit/7acf01aa198991a58c9c56b11c269dc96e404253))
+
+### Features
+
+- **overview**: Use magic page numbers in finding overview
+  ([`98096e0`](https://github.com/anaticulae/feedback/commit/98096e0b445dd14be442beb70ba0356590651762))
+
+
+## v1.12.3 (2022-06-10)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dc5af13`](https://github.com/anaticulae/feedback/commit/dc5af1350ef675098499b5c962b474c71f2461d0))
+
+
+## v1.12.2 (2022-05-24)
+
+### Bug Fixes
+
+- **finding**: Blend alpha color to improve view
+  ([`4f5e202`](https://github.com/anaticulae/feedback/commit/4f5e2029a81240be8ca4cc76b45ef01814aa35ad))
+
+### Features
+
+- **finding**: Make color configurable
+  ([`35c77c3`](https://github.com/anaticulae/feedback/commit/35c77c3278b51430ac3dce27f74e4598f0d81a7c))
+
+
+## v1.12.1 (2022-05-22)
+
+### Bug Fixes
+
+- **findings**: Make input folder less strict
+  ([`9b71461`](https://github.com/anaticulae/feedback/commit/9b71461b8d3d35c783d57c66bc977dc867d6ffa5))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b1e32bf`](https://github.com/anaticulae/feedback/commit/b1e32bfd9064a5da2d87aa41af24558225be242e))
+
+
+## v1.12.0 (2022-05-22)
+
+### Chores
+
+- **requirements**: Add ghost
+  ([`7c6125c`](https://github.com/anaticulae/feedback/commit/7c6125c2f780e53680b43223b6f8df93c2a09e55))
+
+- **resources**: Run finding optimizer
+  ([`7becad1`](https://github.com/anaticulae/feedback/commit/7becad146c0ebb9eb767581478717f8a1a8130fb))
+
+### Features
+
+- **feature**: Add findings step
+  ([`0eb820c`](https://github.com/anaticulae/feedback/commit/0eb820c33908b49fa9a30052798c5eb6660fbc2f))
+
+- **findings**: Skip step if pdf is not given
+  ([`15eedbb`](https://github.com/anaticulae/feedback/commit/15eedbba89e82617ed6cf9775857b020bc20d01c))
+
+### Refactoring
+
+- **plot**: Load late as possible
+  ([`63e1b69`](https://github.com/anaticulae/feedback/commit/63e1b6989f9ef40a19933b9de8032325995762de))
+
+### Testing
+
+- **adjust**: Adjust unit test after regenerating
+  ([`11c3765`](https://github.com/anaticulae/feedback/commit/11c376583c3ebf904f141538582e71bdac4583a9))
+
+- **move**: Reduce project complexity
+  ([`1bc6dbb`](https://github.com/anaticulae/feedback/commit/1bc6dbba2828666bfc19d541787f1696bc4ba4cf))
+
+- **refactor**: Simplify code
+  ([`5edce7a`](https://github.com/anaticulae/feedback/commit/5edce7aa9c7a6f2e4d3f2a8110f9716bf7472a23))
+
+
+## v1.11.6 (2022-05-21)
+
+### Bug Fixes
+
+- **style**: Do not fail on invalid merge
+  ([`745603e`](https://github.com/anaticulae/feedback/commit/745603eb5baa2b4ccb99b1974d4137bfb7429463))
+
+- **style**: Remove useless empty duplicated style
+  ([`54b508e`](https://github.com/anaticulae/feedback/commit/54b508ebce1371e9a8df0557daa9473a42f556c7))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`4687f93`](https://github.com/anaticulae/feedback/commit/4687f93ef8ed64cd22197dd83e3b0f725cdea230))
+
+
+## v1.11.5 (2022-03-28)
+
+### Bug Fixes
+
+- **imports**: Adjust import path
+  ([`4f60235`](https://github.com/anaticulae/feedback/commit/4f602351b715e5eb900693ee583113bc64f347a9))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dbb0a81`](https://github.com/anaticulae/feedback/commit/dbb0a812be31614fb4308dc3c2282b65884d365e))
+
+### Testing
+
+- **cleanup**: Remove commented code
+  ([`72c8d09`](https://github.com/anaticulae/feedback/commit/72c8d0906117b00a53697f5157876790d440ac08))
+
+
+## v1.11.4 (2022-03-03)
+
+### Chores
+
+- **gitignore**: Remove unused git ignore
+  ([`b650f41`](https://github.com/anaticulae/feedback/commit/b650f4190c7c83429e3db06620a3623e87ed863c))
+
+- **project**: Move project config
+  ([`c4a3271`](https://github.com/anaticulae/feedback/commit/c4a3271ba1d596d107f4c848db0050d96e41338d))
+
+- **requirements**: Add dev package
+  ([`fb08570`](https://github.com/anaticulae/feedback/commit/fb0857038c16290b1bc69ae2cbf89f725e9bd7f8))
+
+- **requirements**: Upgrade requirements.txt
+  ([`d7cffdd`](https://github.com/anaticulae/feedback/commit/d7cffddc7a2e26e22ae3bacf343ddafea63aa2b0))
+
+- **requirements**: Upgrade requirements.txt
+  ([`6c62143`](https://github.com/anaticulae/feedback/commit/6c62143b3e5b964c2ffa694df17e1d523edc2130))
+
+- **requirements**: Upgrade requirements.txt
+  ([`525b1c4`](https://github.com/anaticulae/feedback/commit/525b1c4f21c3b5431f5d5d43e40e7d746aa22674))
+
+- **setup**: Cleanup setup
+  ([`4fa3242`](https://github.com/anaticulae/feedback/commit/4fa3242dc2c77f5a5e0d772cdea831357b9cff7b))
 
 ### Documentation
 
-* adjust modules path (ea94e4ce945b)
-* Happy New Year! (9106ed1ec64d)
+- **copyright**: Happy New Year!
+  ([`9106ed1`](https://github.com/anaticulae/feedback/commit/9106ed1ec64d91ccd2077174c7c3475ae73a9105))
 
-## v1.11.3
+- **fix**: Adjust modules path
+  ([`ea94e4c`](https://github.com/anaticulae/feedback/commit/ea94e4ce945b43e00e0cd42a9a93bf0303f99b1f))
 
-## v1.11.2
+### Testing
 
-### Fix
+- **enable**: Enable xfailing test
+  ([`63d9a7b`](https://github.com/anaticulae/feedback/commit/63d9a7bc24bfbfa82aba187743404f7a66c96e7d))
 
-* remove magic parameter (9cb2ab4bad8c)
+- **fix**: Adjust config
+  ([`9052180`](https://github.com/anaticulae/feedback/commit/90521808e21e9f37780a06695f308ed099022211))
 
-## v1.11.1
+- **images**: Adjust unit test
+  ([`c3a2561`](https://github.com/anaticulae/feedback/commit/c3a256135c469965743e28bd0bd7348ac113ef7f))
 
-### Fix
+- **refactor**: Simplify code
+  ([`d80f14e`](https://github.com/anaticulae/feedback/commit/d80f14ea04392afaf3e9886e5b61a504f7e951ca))
 
-* do not use float as count or page number (e75dcf105249)
-* add missing last page (9a42c3a2f45a)
-* adjust optimized findings loader (dbf5a3459f51)
 
-## v1.11.0
+## v1.11.3 (2021-12-07)
 
-### Feature
+### Chores
 
-* use optimized as source of findings (e2cd07baed8a)
-* use one base pagination (fb35211fa5d8)
+- **requirements**: Upgrade requirements.txt
+  ([`0854232`](https://github.com/anaticulae/feedback/commit/0854232cbd571b54afc10d95792bb4225a3f6509))
 
-### Fix
 
-* adjust correct image file name (3b43a7799711)
+## v1.11.2 (2021-11-11)
 
-## v1.10.1
+### Bug Fixes
 
-### Feature
+- **cli**: Remove magic parameter
+  ([`9cb2ab4`](https://github.com/anaticulae/feedback/commit/9cb2ab4bad8c5d0c9302c83c2848f3ea3423dcee))
 
-* use improved loader to hide hidden images (49fbc94e0da3)
+### Chores
 
-## v1.10.0
+- **requirements**: Add configo
+  ([`bc12f1d`](https://github.com/anaticulae/feedback/commit/bc12f1d37e91239bee794bc167c6646bfef55116))
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`bdb8eb0`](https://github.com/anaticulae/feedback/commit/bdb8eb06e1633d9c4fa717a61a7f983202f5a4bc))
 
-* add multiple bounding rectangle renderer (9108576325b5)
+### Refactoring
 
-### Fix
+- **hv**: Improve hv access
+  ([`bbef238`](https://github.com/anaticulae/feedback/commit/bbef238ddb74f55b83b52c66d12587e46da23e41))
 
-* do not fail on non existing alignment (556b1a0606e8)
-* reduce accuracy (9b222454a580)
-* reduce verbosity (76fba4a8e19b)
-* do not determine soc for empty navigator (87bc125ad945)
+- **hv**: Replace with real holy value
+  ([`ce3e248`](https://github.com/anaticulae/feedback/commit/ce3e248183662462b8b69fe092d7694a50c8657d))
 
-## v1.9.0
+### Testing
 
-### Feature
+- **adjust**: Adjust unit test
+  ([`6c02724`](https://github.com/anaticulae/feedback/commit/6c027243862c603b492ad59c7fe6ff0905f96666))
 
-* do not render figure text (abab439e62a8)
 
-### Fix
+## v1.11.1 (2021-10-08)
 
-* write to debug if test fail (de389fcacea5)
+### Bug Fixes
+
+- **load**: Adjust optimized findings loader
+  ([`dbf5a34`](https://github.com/anaticulae/feedback/commit/dbf5a3459f51c1c6e8183a67d8ab1917d25ca429))
+
+- **plot**: Add missing last page
+  ([`9a42c3a`](https://github.com/anaticulae/feedback/commit/9a42c3a2f45a3b0dc92a0e22a3a5823118dabf0d))
+
+- **plot**: Do not use float as count or page number
+  ([`e75dcf1`](https://github.com/anaticulae/feedback/commit/e75dcf105249d0c3e310babf435abfd0df8f7a2d))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`1cfa287`](https://github.com/anaticulae/feedback/commit/1cfa287d24ec499dba1b9cc5224e6942575f023a))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`1633bab`](https://github.com/anaticulae/feedback/commit/1633bab437e904f813b5ec4de50c70c8c6b4dbc2))
+
+
+## v1.11.0 (2021-10-07)
+
+### Bug Fixes
+
+- **images**: Adjust correct image file name
+  ([`3b43a77`](https://github.com/anaticulae/feedback/commit/3b43a7799711b6ae91a893a9ffaddc83f0a8c4b3))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`80d4d79`](https://github.com/anaticulae/feedback/commit/80d4d790e909ab890e75ccf616da9d4791894c89))
+
+### Features
+
+- **plot**: Use one base pagination
+  ([`fb35211`](https://github.com/anaticulae/feedback/commit/fb35211fa5d8d940c66566b3f0689f97ada95493))
+
+- **plot**: Use optimized as source of findings
+  ([`e2cd07b`](https://github.com/anaticulae/feedback/commit/e2cd07baed8a404d5dd12061b6361f91f0439898))
+
+### Refactoring
+
+- **cli**: Cleanup cli
+  ([`11e69f4`](https://github.com/anaticulae/feedback/commit/11e69f4a59f3847fbec706ea2ee5e5115e713518))
+
+
+## v1.10.1 (2021-10-04)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b95bfff`](https://github.com/anaticulae/feedback/commit/b95bfffe0e6007eaf68375c0d2c1ac821ed29e40))
+
+### Features
+
+- **images**: Use improved loader to hide hidden images
+  ([`49fbc94`](https://github.com/anaticulae/feedback/commit/49fbc94e0da3dd25ea4bb2ea352b6a87e947405a))
+
+### Testing
+
+- **selective**: Adjust unit test
+  ([`0e1097d`](https://github.com/anaticulae/feedback/commit/0e1097d8011d8e8818e57917a63767edffcd033e))
+
+
+## v1.10.0 (2021-09-21)
+
+### Bug Fixes
+
+- **loader**: Do not determine soc for empty navigator
+  ([`87bc125`](https://github.com/anaticulae/feedback/commit/87bc125ad9452282a903701eec508f10c68babe9))
+
+- **loader**: Do not fail on non existing alignment
+  ([`556b1a0`](https://github.com/anaticulae/feedback/commit/556b1a0606e8eb2f51e498da07d2ef8706e73d41))
+
+- **loader**: Reduce verbosity
+  ([`76fba4a`](https://github.com/anaticulae/feedback/commit/76fba4a8e19bd9e1ba9627bad28285f69e08ad12))
+
+- **shape**: Reduce accuracy
+  ([`9b22245`](https://github.com/anaticulae/feedback/commit/9b222454a580b86a7eb4894b34ceb0b16247fd7e))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`36d4a14`](https://github.com/anaticulae/feedback/commit/36d4a14873592286ccaac6e03351f1b4a4fd5777))
+
+### Features
+
+- **shape**: Add multiple bounding rectangle renderer
+  ([`9108576`](https://github.com/anaticulae/feedback/commit/9108576325b5c5320bca57415d9864491fc78a7c))
+
+### Refactoring
+
+- **html**: Replace with utila code
+  ([`780170f`](https://github.com/anaticulae/feedback/commit/780170f99271fe87c86becef821785cee13e0e0f))
+
+- **rename**: Improve naming
+  ([`426e87b`](https://github.com/anaticulae/feedback/commit/426e87b35bdacc3b66a3f68249d445d64d506ca2))
+
+- **replace**: Replace with utila code
+  ([`b8c71b5`](https://github.com/anaticulae/feedback/commit/b8c71b526311b23ab98704e53a6dffb27d27b137))
+
+- **style**: Improve code style
+  ([`66234b0`](https://github.com/anaticulae/feedback/commit/66234b07cfbae7eaa8d1bb71dc63dbe71b95ef01))
+
+### Testing
+
+- **adjust**: Make test more robust
+  ([`0a75325`](https://github.com/anaticulae/feedback/commit/0a753256d8bd53d03425a894e674e14a66bb9150))
+
+- **remove**: Remove outdated resource folder
+  ([`c2489a9`](https://github.com/anaticulae/feedback/commit/c2489a97a883f339bec6fc7e69d7aa03e38fea60))
+
+
+## v1.9.0 (2021-08-11)
+
+### Bug Fixes
+
+- **renderer**: Write to debug if test fail
+  ([`de389fc`](https://github.com/anaticulae/feedback/commit/de389fcacea5c5eff9e52b868960c4b671f07b7a))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f410f28`](https://github.com/anaticulae/feedback/commit/f410f28addf200f2f738acca03ef336afbc70c12))
+
+- **requirements**: Upgrade requirements.txt
+  ([`498bcac`](https://github.com/anaticulae/feedback/commit/498bcac5a5e9ca2fd0e8211d08c6d0d51eb567b9))
+
+- **resources**: Extend test data provider
+  ([`463e3a4`](https://github.com/anaticulae/feedback/commit/463e3a4815f55843a7c79fb2f86f7c96fca34e80))
 
 ### Documentation
 
-* extend interface documentation (7126ea098b32)
+- **renderer**: Extend interface documentation
+  ([`7126ea0`](https://github.com/anaticulae/feedback/commit/7126ea098b3271aed599cae5c18bb20a11297eff))
 
-## v1.8.7
+### Features
 
-## v1.8.6
+- **html**: Do not render figure text
+  ([`abab439`](https://github.com/anaticulae/feedback/commit/abab439e62a86d4c59b5ddf82bda8b6c9eba9c3d))
 
-## v1.8.5
+### Refactoring
 
-## v1.8.4
+- **html**: Replace with utila code
+  ([`bef1db0`](https://github.com/anaticulae/feedback/commit/bef1db001e7d5556dfbd5416cf93ffa688900b2c))
 
-## v1.8.3
+### Testing
 
-## v1.8.2
+- **adjust**: Adjust test after improving figure/table/images
+  ([`7de60a8`](https://github.com/anaticulae/feedback/commit/7de60a8feaa4b2be4c6a8dd6c4fd75552bfa5bad))
 
-### Feature
+- **fix**: Adjust unit test
+  ([`afbd520`](https://github.com/anaticulae/feedback/commit/afbd5202e82c2b8ed82645216bf2547e65cc6dca))
 
-* add 2025 bounding renderer (893993e93cdb)
+- **html**: Verify that figure text is not rendered
+  ([`8da1036`](https://github.com/anaticulae/feedback/commit/8da103675ee9ac2c91753f4ced59453e2906c057))
 
-### Fix
+- **imports**: Organize imports
+  ([`e5160f6`](https://github.com/anaticulae/feedback/commit/e5160f69e8efed1f830ab4e44f245de18b4dccf4))
 
-* do not fail on invalid rectangle (048fb0bf3684)
-* skip invalid image extraction bug (ff87e6f4ebcb)
+- **refactor**: Replace with utilatest code
+  ([`a6f8b5a`](https://github.com/anaticulae/feedback/commit/a6f8b5a53bfc6f7425572baf9fca125336b3456c))
 
-## v1.8.1
 
-## v1.8.0
+## v1.8.7 (2021-07-29)
 
-### Feature
+### Chores
 
-* add findings pie plot (8c2f80eb8465)
-* extend interface to render findings pie plot (a0779fc4e123)
+- **requirements**: Add figureo generator
+  ([`6b56874`](https://github.com/anaticulae/feedback/commit/6b56874c783fbfd37afb1843a9bce837bb321791))
+
+- **requirements**: Move rawmaker requirement to dev
+  ([`9b961d4`](https://github.com/anaticulae/feedback/commit/9b961d4edb24c1e10e42e60d6bbdb845654cf803))
+
+- **requirements**: Upgrade requirements.txt
+  ([`e8a76d9`](https://github.com/anaticulae/feedback/commit/e8a76d9d42d93ebaba506d5cbaf985e5e869b431))
+
+- **resources**: Add figureo to test data generator
+  ([`5390bea`](https://github.com/anaticulae/feedback/commit/5390beab0f9b0d8096edd90300a481255c64552f))
+
+### Refactoring
+
+- **test**: Clarify code
+  ([`1d37a49`](https://github.com/anaticulae/feedback/commit/1d37a495e5cc37cb243cf0ecbed9c1611d358a42))
+
+### Testing
+
+- **adjust**: Adjust test after merging images and figures together
+  ([`ce7c118`](https://github.com/anaticulae/feedback/commit/ce7c1186af290ae37f6f1d7d44ec7cee34e81f46))
+
+- **xpassed**: Enable xpassed test
+  ([`29dbcbf`](https://github.com/anaticulae/feedback/commit/29dbcbfc45a9c3b0adf24c482684919b91b919f9))
+
+
+## v1.8.6 (2021-07-06)
+
+### Chores
+
+- **requirements**: Split words
+  ([`bfcf7dc`](https://github.com/anaticulae/feedback/commit/bfcf7dcd943e25ec492d8dec06d9234a3840233f))
+
+- **requirements**: Upgrade requirements.txt
+  ([`9b8f850`](https://github.com/anaticulae/feedback/commit/9b8f850d39764546e7519fbec34cabfe574238b7))
+
+- **requirements**: Upgrade requirements.txt
+  ([`17f7b9c`](https://github.com/anaticulae/feedback/commit/17f7b9c13488e4832cb38d2e42728fcec9efe109))
+
+- **resources**: Extend test data generator
+  ([`7f671e7`](https://github.com/anaticulae/feedback/commit/7f671e7d0e1d63659dae2ee962bbbcf4abf7b01d))
+
+- **test**: Skip tests if data is not generated
+  ([`e9e4d97`](https://github.com/anaticulae/feedback/commit/e9e4d97b79c5db07ace6498b0b04c7b52245e9c5))
+
+### Code Style
+
+- **typo**: Fix typo
+  ([`a7bf192`](https://github.com/anaticulae/feedback/commit/a7bf19222c2f8cf9617dddd4bce4491ec70db5de))
+
+### Refactoring
+
+- **loader**: Simplify code
+  ([`76b33b9`](https://github.com/anaticulae/feedback/commit/76b33b9624391f87653818d8c842d8a036846705))
+
+### Testing
+
+- **loader**: Skip header and mark first ptcn line as line0
+  ([`15f2da9`](https://github.com/anaticulae/feedback/commit/15f2da91396d5cf5b457344845877fb36132890c))
+
+- **refactor**: Simplify test code
+  ([`39b7d9b`](https://github.com/anaticulae/feedback/commit/39b7d9b1ec1b482a1bf222508f35bd4e31f01f33))
+
+
+## v1.8.5 (2021-06-16)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bb42672`](https://github.com/anaticulae/feedback/commit/bb42672acb67524c763c8d7f5adc4721c27404a7))
+
+### Testing
+
+- **refactor**: Simplify code
+  ([`26bbad3`](https://github.com/anaticulae/feedback/commit/26bbad396c9fb8813aeb495d2cc69c8b83220466))
+
+- **style**: Organize imports
+  ([`d5a9eca`](https://github.com/anaticulae/feedback/commit/d5a9ecafab76415e36e037e644f8cd54f3e5d17f))
+
+
+## v1.8.4 (2021-06-05)
+
+### Chores
+
+- **requirements**: Add missing generator package
+  ([`8db1b62`](https://github.com/anaticulae/feedback/commit/8db1b62df4be2d57abc4bb366ffb0f4c4b5efeeb))
+
+- **requirements**: Make requirements less strict
+  ([`2a2ba57`](https://github.com/anaticulae/feedback/commit/2a2ba57896f29b7f909c422bb7564d1c397afc5c))
+
+
+## v1.8.3 (2021-06-04)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e48738f`](https://github.com/anaticulae/feedback/commit/e48738f930710100ee4559b7d00aaa5aa7e999f5))
+
+### Code Style
+
+- **format**: Format code
+  ([`ea5f796`](https://github.com/anaticulae/feedback/commit/ea5f7966ce0a7c5488682b7707fe1a33738c91f7))
+
+
+## v1.8.2 (2021-05-26)
+
+### Bug Fixes
+
+- **images**: Skip invalid image extraction bug
+  ([`ff87e6f`](https://github.com/anaticulae/feedback/commit/ff87e6f4ebcb8c99813467bc5ffcc07dcabac9b0))
+
+- **shape**: Do not fail on invalid rectangle
+  ([`048fb0b`](https://github.com/anaticulae/feedback/commit/048fb0bf36842f01ccb2879d0ac82b62057bc741))
+
+### Chores
+
+- **requirements**: Add missing words module
+  ([`b16f22c`](https://github.com/anaticulae/feedback/commit/b16f22cd7b3a4fd568054009235f8be61e2fa082))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4a58ed1`](https://github.com/anaticulae/feedback/commit/4a58ed16112ec4b3b7c601acd449a108509f0a8a))
+
+- **requirements**: Upgrade requirements.txt
+  ([`3b9335f`](https://github.com/anaticulae/feedback/commit/3b9335faf4f553e2f9e9f3a0a4740d32f908d90c))
+
+### Features
+
+- **shape**: Add 2025 bounding renderer
+  ([`893993e`](https://github.com/anaticulae/feedback/commit/893993e93cdb09a386c09b2a60f2850abd7c7bdb))
+
+
+## v1.8.1 (2021-03-11)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`cc688f0`](https://github.com/anaticulae/feedback/commit/cc688f0ccb86902154579f21526de2a6811cf209))
+
+- **resources**: Extend test data generator
+  ([`dc2b6bf`](https://github.com/anaticulae/feedback/commit/dc2b6bf2622784079e1277f6547bb67cf9776cf2))
+
+### Testing
+
+- **fix**: Adjust unit test after upgrading
+  ([`e94298f`](https://github.com/anaticulae/feedback/commit/e94298f1d75ce21ea4e72ed7cf658be5da3dca04))
+
+
+## v1.8.0 (2021-02-06)
+
+### Chores
+
+- **project**: Escape character
+  ([`23e65d5`](https://github.com/anaticulae/feedback/commit/23e65d5d4f1a2d3c1a998ba3095701fa821664df))
+
+- **requirements**: Add missing package after refactor decider
+  ([`bee7ddd`](https://github.com/anaticulae/feedback/commit/bee7ddd1b20a1c5a9662b667034ebfd20a7d9992))
+
+- **requirements**: Upgrade requirements.txt
+  ([`6e58e75`](https://github.com/anaticulae/feedback/commit/6e58e752a6f5d30ba1f11411a9ec81b82929bf87))
 
 ### Documentation
 
-* extend interface documentation (c9012d843e16)
+- **plot**: Extend interface documentation
+  ([`c9012d8`](https://github.com/anaticulae/feedback/commit/c9012d843e16edf1fb0ba32fe6850ccb01e5882e))
 
-## v1.7.0
+### Features
 
-### Feature
+- **plot**: Add findings pie plot
+  ([`8c2f80e`](https://github.com/anaticulae/feedback/commit/8c2f80eb846542310fcadd145aa8980f8cf396e5))
 
-* add render finding count step (9221e5334093)
+- **plot**: Extend interface to render findings pie plot
+  ([`a0779fc`](https://github.com/anaticulae/feedback/commit/a0779fc4e12357405484dc102c27c7d2a054add1))
 
-### Documentation
 
-* Happy New Year! (ff04e5087189)
+## v1.7.0 (2021-02-06)
 
-## v1.6.1
+### Chores
 
-### Feature
+- **requirements**: Add figure painter
+  ([`263f490`](https://github.com/anaticulae/feedback/commit/263f490892de7ce18327da8589f853c8af59f820))
 
-* enable multiprocessing (9ef4674e5277)
+- **requirements**: Upgrade requirements.txt
+  ([`961c806`](https://github.com/anaticulae/feedback/commit/961c806abcaa866c3d846b2d54bfea658e382568))
 
-## v1.6.0
-
-### Feature
-
-* render rectangle for word linting (f15f8634137c)
-* add profiling information (b729bedfe02f)
-
-### Fix
-
-* add workaround for three style merge (5b6c89b9f085)
+- **resources**: Generate more content for plotting histogram
+  ([`93ff8aa`](https://github.com/anaticulae/feedback/commit/93ff8aafb5f95137ca40363a9226969f4d778705))
 
 ### Documentation
 
-* extend style merged documentation (21d90a6f9058)
+- **copyright**: Happy New Year!
+  ([`ff04e50`](https://github.com/anaticulae/feedback/commit/ff04e5087189e3e80877fc29bec92e2ef0d1cdf1))
 
-## v1.5.15
+### Features
 
-## v1.5.14
+- **feedback**: Add render finding count step
+  ([`9221e53`](https://github.com/anaticulae/feedback/commit/9221e53340939f4da4c4f21b61f33714c9742c4f))
 
-## v1.5.13
+### Refactoring
 
-### Fix
+- **replace**: Replace with protocol code
+  ([`2d31036`](https://github.com/anaticulae/feedback/commit/2d31036900c6c4a1e2eb626b045978c340a2b9ff))
 
-* replace None reference with minus one line (a20bece20208)
+- **test**: Simplify test code
+  ([`6f78178`](https://github.com/anaticulae/feedback/commit/6f78178e52f862df4a79239ad97f52a908501441))
 
-## v1.5.12
+### Testing
 
-## v1.5.11
+- **plot**: Plot findings over pages
+  ([`15a2e5b`](https://github.com/anaticulae/feedback/commit/15a2e5bc63d88bf7736de6b8e121f222f7c90304))
 
-## v1.5.10
+- **refactor**: Use new base feature
+  ([`b60d6c2`](https://github.com/anaticulae/feedback/commit/b60d6c26bc1b212b33ea9f4d9db5459bfc06097f))
 
-## v1.5.9
 
-## v1.5.8
+## v1.6.1 (2021-01-14)
 
-## v1.5.7
+### Features
 
-## v1.5.6
+- **cli**: Enable multiprocessing
+  ([`9ef4674`](https://github.com/anaticulae/feedback/commit/9ef4674e52770816678487382a24fced8ea74f4c))
 
-## v1.5.5
 
-## v1.5.4
+## v1.6.0 (2021-01-13)
 
-## v1.5.3
+### Bug Fixes
 
-## v1.5.2
+- **style**: Add workaround for three style merge
+  ([`5b6c89b`](https://github.com/anaticulae/feedback/commit/5b6c89b9f08511ce10bbd3a5b17ae2a9c7598b61))
 
-## v1.5.1
+### Chores
 
-## v1.5.0
+- **requirements**: Upgrade requirements.txt
+  ([`d922dff`](https://github.com/anaticulae/feedback/commit/d922dff4d4cd577202caf0b806338e86c40a0ddf))
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`a8bdadc`](https://github.com/anaticulae/feedback/commit/a8bdadce1cb31d8b3366e0c7aeb6e91859fdc486))
 
-* extend debugging information (24fe2829bd2a)
-* add rotated text to renderer (6d8664f429ff)
-* use char/token information for shrinking line styling (629d38a9a7f2)
+- **resources**: Reduce required generation time
+  ([`1d27801`](https://github.com/anaticulae/feedback/commit/1d278014c5ebea9ef3092327a9ac8702679a1ea8))
 
-### Fix
+### Code Style
 
-* render empty text pages correctly (e4b0500631cf)
-* improve merging equal styles (adad58db3e9f)
-
-## v1.4.0
-
-### Feature
-
-* extend rendered shaped lintings (271eec130ad4)
-* add option to print rectangle with different zindex (c313cb6d6b74)
-
-### Fix
-
-* use red to ease looking (a216c289ba5c)
-* fix empty page alignments (f346a5114c71)
-* ignore non initialized font flags (d1014d77bed1)
-
-## v1.3.0
-
-### Feature
-
-* use `start of content` to align lines properly (a050d92d9705)
-* add navigator start of content as content offset (59513c55ec35)
-* use pages flag to copy only required images and figures (edcc01ad32d4)
-* enable justify selector (14d93f039b40)
-
-## v1.2.0
-
-### Feature
-
-* use simple approach to select rendering layout source (a30611e49083)
-* add section resource to decide which printing layout to use (68921d7e48d7)
-* remove none required headline (6d9c19b0d411)
-* load additional oneline navigator (ad2d5622b926)
-
-## v1.1.0
-
-### Feature
-
-* improve and fix style merger (c9c0223d0ef3)
-
-### Fix
-
-* increase sub threshold to avoid bad sub detection (7b69621383da)
-* adjust unit test to correct behavior (30464aae309d)
-* use new data structure (8a7f21afd39b)
-
-## v1.0.2
-
-### Fix
-
-* add workaround to solve problem with utilo (04192ef4986d)
-
-## v1.0.1
-
-### Fix
-
-* use new multiple file hashs pattern (d09de12c4d68)
-
-## v1.0.0
-
-### Fix
-
-* add missing package definition (5080e7371874)
-
-## v0.14.1
-
-### Feature
-
-* use {FILEHASH} to avoid file collisions (a5ccab233ece)
-
-## v0.14.0
-
-### Feature
-
-* add hacky figure renderer (400e9d7ca580)
-
-## v0.13.4
-
-## v0.13.3
-
-## v0.13.2
-
-## v0.13.1
-
-## v0.13.0
-
-### Feature
-
-* add method to load page marks from path (7b396fffd8ab)
-
-### Fix
-
-* solve linter warning (6444cf39c385)
-* do not overwrite findings ids (dd56908a3f2e)
-
-## v0.12.7
-
-## v0.12.6
-
-### Feature
-
-* support RangedLocations (9db49687d05c)
-
-### Fix
-
-* fix spelling error (c7fbca5abdf4)
-* disable justified alignment (e3d70e6789f8)
-* fix image path name (eea522621163)
-
-## v0.12.5
-
-### Fix
-
-* introduce threshold to avoid miss printing (78c6eb6ec1c0)
-
-## v0.12.4
-
-### Feature
-
-* use different page sizes to display rotated (db69dcfcc169)
-* add font rise to text renderer (acc1e7208b34)
-
-## v0.12.3
-
-## v0.12.2
-
-### Fix
-
-* fix style closing (8e4e1f4d47d4)
-* do not fail on missing font flags (77bf7bbe3954)
-
-## v0.12.1
-
-### Feature
-
-* load marks depending on given `linters` (2b594d047794)
-
-### Fix
-
-* ensure to avoid unnecessary digits (daeebc9a4ac9)
-
-## v0.12.0
-
-### Feature
-
-* change test to check marked words (497bdeda3e37)
-* add word selection processor to cli (b529cc1b718e)
-* load sentence marks and combine with selected text (5e07a7a3df06)
-* add method to convert sentence findings to single words (c06c6f8164ac)
-* add sentence matcher to match words to sentence (871cc76a8c09)
-* use new style merger (930f93677999)
-* validate style order (ae1d0e9eeef4)
-* use words algorithm to split token (4f358bfaf830)
-
-### Fix
-
-* load word position correctly (d9e1ef6abab5)
-* merge overlapping sections correctly (fbd17f971662)
+- **typo**: Fix typo
+  ([`dba116a`](https://github.com/anaticulae/feedback/commit/dba116aef03991ee86badb11bc8a4efe661e2b2f))
 
 ### Documentation
 
-* fix spelling error (9ea0193b33e0)
+- **style**: Extend style merged documentation
+  ([`21d90a6`](https://github.com/anaticulae/feedback/commit/21d90a6f9058413b341e248661e3ef587977b33a))
 
-## v0.11.4
+### Features
 
-### Feature
+- **problems**: Render rectangle for word linting
+  ([`f15f863`](https://github.com/anaticulae/feedback/commit/f15f8634137cd1eadf5f53dfbdd9fb76a73c08de))
 
-* select alignment depending on extracted (8db73eeadfb0)
-* add alignment loader (f5d718fdaa9b)
-* add justified text as default (82731910775c)
+- **view**: Add profiling information
+  ([`b729bed`](https://github.com/anaticulae/feedback/commit/b729bedfe02fddd2a95ec2a0f1e0e94ad5bdd667))
 
-### Fix
+### Testing
 
-* add missing bounding rendering (5cc2d2b6cfd1)
+- **disable**: Disable non working test
+  ([`0658210`](https://github.com/anaticulae/feedback/commit/0658210ee63e9aa30d13516cdf0958f0ecd5ea89))
 
-## v0.11.3
+- **styles**: Add regression test to merge styles
+  ([`074fd1b`](https://github.com/anaticulae/feedback/commit/074fd1bf3947e173bd64045c1623113ff67a51da))
 
-## v0.11.2
 
-### Fix
+## v1.5.15 (2020-12-19)
 
-* sort required test resources (1c0e05129509)
-* reduce digits and white spaces in output (9d833a9fe17c)
+### Chores
 
-## v0.11.1
+- **requirements**: Do not release so often
+  ([`288795f`](https://github.com/anaticulae/feedback/commit/288795f28a9598ad375744635bca43f80755bb5d))
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`9415913`](https://github.com/anaticulae/feedback/commit/9415913f98f8ada3f24464ba3c7bdced986d12e6))
 
-* add horizontals and lines as input resource to render (60fbc4f48496)
 
-## v0.11.0
+## v1.5.14 (2020-12-13)
 
-### Feature
+### Chores
 
-* add first simple approach of a table renderer (e53664b14996)
-* load lines in html view data (b4f03a683ac2)
-* add text style renderer (e306c67f7e4f)
-* include change of text rise, flag and font to text printer (f5924e5fdee0)
-* use simple hr renderer instead of generic line renderer (e769501edd57)
-* add horizontal line renderer (8b5a605d136c)
-* render horizontal lines in feedback view (38b5fd3df273)
-* add method to render lines (081876130063)
+- **requirements**: Upgrade requirements.txt
+  ([`38169de`](https://github.com/anaticulae/feedback/commit/38169deb94f72170d43d83f8224d000dc499659e))
 
-### Fix
 
-* use correct layout template and render line more clear (5db43f51535b)
-* solve linter warnings (54714467c2cd)
+## v1.5.13 (2020-12-05)
+
+### Bug Fixes
+
+- **mark**: Replace None reference with minus one line
+  ([`a20bece`](https://github.com/anaticulae/feedback/commit/a20bece202087abc90752ace738b656114a5f8d0))
+
+
+## v1.5.12 (2020-12-05)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bae70b3`](https://github.com/anaticulae/feedback/commit/bae70b3ed55d70803174825b934e6f43cdf13432))
+
+### Refactoring
+
+- **test**: Improve test style
+  ([`989fc68`](https://github.com/anaticulae/feedback/commit/989fc68354aaced46ccd5e4af57e5ce5870b1f02))
+
+### Testing
+
+- **disable**: Disable test, fix header parser later
+  ([`cfd7911`](https://github.com/anaticulae/feedback/commit/cfd7911e11abafd809f61287e4cf17ad87cf6a33))
+
+- **fix**: Make test robust against line changes
+  ([`e195683`](https://github.com/anaticulae/feedback/commit/e19568374e90287650f1bc9b77df6bdea023cbb0))
+
+
+## v1.5.11 (2020-11-20)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`4da24cd`](https://github.com/anaticulae/feedback/commit/4da24cdb9e52525b5538c3574327b6c6208fc1ab))
+
+
+## v1.5.10 (2020-11-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6cbc646`](https://github.com/anaticulae/feedback/commit/6cbc6465ab0fc00b2499270fdca0a789213e0ca1))
+
+
+## v1.5.9 (2020-10-28)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7fa3143`](https://github.com/anaticulae/feedback/commit/7fa314354e0c2d458eb0d47936ef87461b74aa8d))
+
+
+## v1.5.8 (2020-10-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`57558e3`](https://github.com/anaticulae/feedback/commit/57558e36b556a64b16c21b1ab7407fad41d3103d))
+
+
+## v1.5.7 (2020-10-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`ff0476a`](https://github.com/anaticulae/feedback/commit/ff0476afc9c24c73649d22ad102f37d7fae4cb0a))
+
+
+## v1.5.6 (2020-09-26)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`8a80331`](https://github.com/anaticulae/feedback/commit/8a80331973f4952d2b7ae01eef4ed0e0384b0469))
+
+
+## v1.5.5 (2020-09-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e48908e`](https://github.com/anaticulae/feedback/commit/e48908e8b8f153a57634ebb2746dd561e25518b5))
+
+- **test**: Remove genex test data generator
+  ([`6cf800f`](https://github.com/anaticulae/feedback/commit/6cf800fbce0e5fa21f2887597c28026cdc335ee1))
+
+### Code Style
+
+- **format**: Format test code
+  ([`f369f02`](https://github.com/anaticulae/feedback/commit/f369f02503c289af8ca1370b3e6cd4eeb8a847e7))
+
+### Refactoring
+
+- **remove**: Remove outdated patch
+  ([`184ba04`](https://github.com/anaticulae/feedback/commit/184ba04ad8bd47d6441bef6cc1fec4444c1e2eb6))
+
+
+## v1.5.4 (2020-09-10)
+
+### Chores
+
+- **requirements**: Remove not required dependencies
+  ([`847350f`](https://github.com/anaticulae/feedback/commit/847350ffbe36dddd00af54efb8be90dd9ecd260c))
+
+### Testing
+
+- **replace**: Use genex test data generator
+  ([`4b116c1`](https://github.com/anaticulae/feedback/commit/4b116c13f1d6a9543d0ad5eb9342077acbfdbed4))
+
+
+## v1.5.3 (2020-09-10)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e7e3515`](https://github.com/anaticulae/feedback/commit/e7e351586e8b9bb8504416720a0f24f034da86db))
+
+### Refactoring
+
+- **imports**: Fix imports to new API
+  ([`b393775`](https://github.com/anaticulae/feedback/commit/b39377569198be4d90b4ece5451e54299f727a4e))
+
+
+## v1.5.2 (2020-09-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dc4ecdd`](https://github.com/anaticulae/feedback/commit/dc4ecdd537c066448864f82bb01d02d49cd81bc1))
+
+
+## v1.5.1 (2020-09-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bbda6ba`](https://github.com/anaticulae/feedback/commit/bbda6bae5942703815e05fc5cbf7d292ad277669))
+
+
+## v1.5.0 (2020-08-29)
+
+### Bug Fixes
+
+- **renderer**: Render empty text pages correctly
+  ([`e4b0500`](https://github.com/anaticulae/feedback/commit/e4b0500631cff582ddbb9aaa5500960e69338d9f))
+
+- **styles**: Improve merging equal styles
+  ([`adad58d`](https://github.com/anaticulae/feedback/commit/adad58db3e9ff0d2416d4642991b46188145fbc0))
+
+### Chores
+
+- **fix**: Ensure single file regeneration
+  ([`e2bec01`](https://github.com/anaticulae/feedback/commit/e2bec0127c83e54d91d6c4cd74cccf4b0960e8c5))
+
+- **requirements**: Upgrade requirements.txt
+  ([`2c77fbb`](https://github.com/anaticulae/feedback/commit/2c77fbbd2aab64180f48303c3d384c570123dcb8))
+
+- **test**: Extend test data generator
+  ([`4e529ef`](https://github.com/anaticulae/feedback/commit/4e529efbdd2a513a958d63ede7132d5505956000))
+
+### Code Style
+
+- **test**: Format code
+  ([`d978c87`](https://github.com/anaticulae/feedback/commit/d978c877fa2640c91f01b224965f51b9d6916c05))
+
+### Features
+
+- **html**: Extend debugging information
+  ([`24fe282`](https://github.com/anaticulae/feedback/commit/24fe2829bd2acd9973fe032c040433dee6f6e8fd))
+
+- **mark**: Use char/token information for shrinking line styling
+  ([`629d38a`](https://github.com/anaticulae/feedback/commit/629d38a9a7f278446f44bc48faf52b22fa60e550))
+
+- **renderer**: Add rotated text to renderer
+  ([`6d8664f`](https://github.com/anaticulae/feedback/commit/6d8664f429ff0be1ac77a7868a17b7eec149962a))
+
+### Refactoring
+
+- **chore**: Use power as resource repository
+  ([`3346aba`](https://github.com/anaticulae/feedback/commit/3346abaf1785924ec8ea7a4ec36b6a6d587641ed))
+
+- **remove**: Remove outdated examples
+  ([`91db670`](https://github.com/anaticulae/feedback/commit/91db6705f0f327c0512cd52dc9f8ad48ce208dd3))
+
+- **remove**: Remove outdated patch
+  ([`447efc5`](https://github.com/anaticulae/feedback/commit/447efc53b1605cac91a92f12af1d1850c47c2b3c))
+
+
+## v1.4.0 (2020-08-10)
+
+### Bug Fixes
+
+- **border**: Use red to ease looking
+  ([`a216c28`](https://github.com/anaticulae/feedback/commit/a216c289ba5caa9fc10c4204832570a3efb258d8))
+
+- **loader**: Fix empty page alignments
+  ([`f346a51`](https://github.com/anaticulae/feedback/commit/f346a5114c71f22672315c26a30630b89daff884))
+
+- **text**: Ignore non initialized font flags
+  ([`d1014d7`](https://github.com/anaticulae/feedback/commit/d1014d77bed1969c5692ed7322a53097d3608a90))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7d90ddb`](https://github.com/anaticulae/feedback/commit/7d90ddbc3146fc75c20366a5f8d364b1e43bf383))
+
+### Features
+
+- **shape**: Add option to print rectangle with different zindex
+  ([`c313cb6`](https://github.com/anaticulae/feedback/commit/c313cb6d6b74921f359a241d9c1dd8091d366490))
+
+- **shape**: Extend rendered shaped lintings
+  ([`271eec1`](https://github.com/anaticulae/feedback/commit/271eec130ad4e5047ce5be212c94b6d2c1e5fa24))
+
+
+## v1.3.0 (2020-07-29)
+
+### Chores
+
+- **requirements**: Install new test resource provider
+  ([`b8b3e89`](https://github.com/anaticulae/feedback/commit/b8b3e89e5c65640bba3b5882dbb28519866ebd93))
+
+- **requirements**: Upgrade requirements.txt
+  ([`e4da4a5`](https://github.com/anaticulae/feedback/commit/e4da4a5cb3ff0f0607c6fefe15c5ee15a8a0dae3))
+
+- **test**: Replace with new test data provider
+  ([`1af7167`](https://github.com/anaticulae/feedback/commit/1af716717fd451a91031c889263b89e0bd1b3da3))
+
+### Features
+
+- **images**: Use pages flag to copy only required images and figures
+  ([`edcc01a`](https://github.com/anaticulae/feedback/commit/edcc01ad32d490783459e0a047e68563864671f2))
+
+- **renderer**: Add navigator start of content as content offset
+  ([`59513c5`](https://github.com/anaticulae/feedback/commit/59513c55ec351def57e7a523b2bff5cecc8b8da9))
+
+- **renderer**: Enable justify selector
+  ([`14d93f0`](https://github.com/anaticulae/feedback/commit/14d93f039b40d110d8d54fe02723ad7eda0756bd))
+
+- **renderer**: Use `start of content` to align lines properly
+  ([`a050d92`](https://github.com/anaticulae/feedback/commit/a050d92d970584dce2d41a6255fd99d2312bdac7))
+
+### Refactoring
+
+- **resources**: Remove unused paths
+  ([`abe63de`](https://github.com/anaticulae/feedback/commit/abe63de511cece41a8bcb3face1a3ae2d8538c8a))
+
+### Testing
+
+- **resources**: Add homework25 example generator
+  ([`1ca0b22`](https://github.com/anaticulae/feedback/commit/1ca0b2230528fa3f68033ca2f2fef303057cdfc3))
+
+- **toc**: Add test to verify layout selection/printing
+  ([`da78b15`](https://github.com/anaticulae/feedback/commit/da78b15ad233902b970bb825cbbd66be1fa0a8dc))
+
+
+## v1.2.0 (2020-07-22)
+
+### Features
+
+- **html**: Remove none required headline
+  ([`6d9c19b`](https://github.com/anaticulae/feedback/commit/6d9c19b0d4115c29ff4f9c19fd9510ee0a94cfb8))
+
+- **renderer**: Add section resource to decide which printing layout to use
+  ([`68921d7`](https://github.com/anaticulae/feedback/commit/68921d7e48d70cddf9aebc07f3dd415f2bba5b75))
+
+- **renderer**: Load additional oneline navigator
+  ([`ad2d562`](https://github.com/anaticulae/feedback/commit/ad2d5622b92694184ede186848495877ed9d4d9e))
+
+- **renderer**: Use simple approach to select rendering layout source
+  ([`a30611e`](https://github.com/anaticulae/feedback/commit/a30611e490834629434df0cbd90e676e8061595f))
+
+### Refactoring
+
+- **html**: Move html text rendering to separate method
+  ([`99d403c`](https://github.com/anaticulae/feedback/commit/99d403cbe9c7636b8834082f917b75d37fcfae07))
+
+- **html**: Simplify renderer
+  ([`2288b99`](https://github.com/anaticulae/feedback/commit/2288b9909844553d23dc084b17b1a3d234865534))
+
+- **remove**: Remove outdated tests
+  ([`d68a87f`](https://github.com/anaticulae/feedback/commit/d68a87f84d1d127471afa3c22abbdf13658de02d))
+
+- **remove**: Remove unused code
+  ([`58e3c03`](https://github.com/anaticulae/feedback/commit/58e3c03405deeb705ba5683eea1dae4bafbf58ba))
+
+- **renderer**: Use PageTextNavigator instead of document
+  ([`ba769ca`](https://github.com/anaticulae/feedback/commit/ba769ca30660b8669ced055c28b789630d57db66))
+
+
+## v1.1.0 (2020-07-20)
+
+### Bug Fixes
+
+- **test**: Adjust unit test to correct behavior
+  ([`30464aa`](https://github.com/anaticulae/feedback/commit/30464aae309dad8966e3fc9a9ff7be02c50dabc2))
+
+- **view**: Increase sub threshold to avoid bad sub detection
+  ([`7b69621`](https://github.com/anaticulae/feedback/commit/7b69621383da67a5f23959adad01ed63c741c8ca))
+
+- **view**: Use new data structure
+  ([`8a7f21a`](https://github.com/anaticulae/feedback/commit/8a7f21afd39b307df790864dd6497acd02f11f64))
+
+### Features
+
+- **style**: Improve and fix style merger
+  ([`c9c0223`](https://github.com/anaticulae/feedback/commit/c9c0223d0ef3f6d9f217e96c99bb6d6b81c1f696))
+
+### Testing
+
+- **merger**: Add regression test to ensure fixed rendering behavior
+  ([`4aef2bf`](https://github.com/anaticulae/feedback/commit/4aef2bff5bb2597a3ba82647a461d18b150244ed))
+
+- **styles**: Add optimal merging style result
+  ([`ae5013c`](https://github.com/anaticulae/feedback/commit/ae5013c430a56ce1446ae71dabefa94003b1ebe9))
+
+
+## v1.0.2 (2020-07-17)
+
+### Bug Fixes
+
+- **cli**: Add workaround to solve problem with utila
+  ([`04192ef`](https://github.com/anaticulae/feedback/commit/04192ef4986d7e7239ab292635d0f10293197f1e))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d81b171`](https://github.com/anaticulae/feedback/commit/d81b1715578be804f622f6eae8d68edd4bb956be))
+
+
+## v1.0.1 (2020-07-02)
+
+### Bug Fixes
+
+- **cli**: Use new multiple file hashs pattern
+  ([`d09de12`](https://github.com/anaticulae/feedback/commit/d09de12c4d684f3b0f5890e8c3adf5e69a6bb088))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2da2e4b`](https://github.com/anaticulae/feedback/commit/2da2e4b8940da78ff305ee5e7d5e2122ca09d200))
+
+### Refactoring
+
+- **remove**: Remove outdated manifest file
+  ([`c1f4896`](https://github.com/anaticulae/feedback/commit/c1f48960b73f10a45d1ad7d531133f974060a7cb))
+
+
+## v1.0.0 (2020-07-01)
+
+### Bug Fixes
+
+- **setup**: Add missing package definition
+  ([`5080e73`](https://github.com/anaticulae/feedback/commit/5080e7371874fdec9ad11599579f89918271106c))
+
+### Refactoring
+
+- **remove**: Remove outdated applications
+  ([`45012f0`](https://github.com/anaticulae/feedback/commit/45012f033eb54896340946185969879edffc1988))
+
+
+## v0.14.1 (2020-07-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dc0f606`](https://github.com/anaticulae/feedback/commit/dc0f6063b58285fdd6f510b20ddabaa8814621de))
+
+### Features
+
+- **figure**: Use {FILEHASH} to avoid file collisions
+  ([`a5ccab2`](https://github.com/anaticulae/feedback/commit/a5ccab233ece6f66b6494ad2ccca1a7506c15d3d))
+
+
+## v0.14.0 (2020-06-29)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6b2a455`](https://github.com/anaticulae/feedback/commit/6b2a455a805e710a92a34b035d723555362b2952))
+
+### Features
+
+- **figure**: Add hacky figure renderer
+  ([`400e9d7`](https://github.com/anaticulae/feedback/commit/400e9d7ca580605b85fdb737b6f912ba8c5b3c25))
+
+
+## v0.13.4 (2020-06-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`67e1e20`](https://github.com/anaticulae/feedback/commit/67e1e206dc4cf185fd0776c729f90be84b27b5ee))
+
+
+## v0.13.3 (2020-06-21)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`8b085a0`](https://github.com/anaticulae/feedback/commit/8b085a0a7526c6553f4088d59d1c897f6cd9289b))
+
+
+## v0.13.2 (2020-06-18)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`55848ca`](https://github.com/anaticulae/feedback/commit/55848cabc2fd8fba477db9cb26499f3a403da485))
+
+### Refactoring
+
+- **replace**: Replace with protocol code
+  ([`c7a00cb`](https://github.com/anaticulae/feedback/commit/c7a00cb2257907f212036804efad243a077b8cd7))
+
+
+## v0.13.1 (2020-06-13)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7bb3977`](https://github.com/anaticulae/feedback/commit/7bb3977476710dc6d18cf9bdb1b5bbaa40e740e3))
+
+
+## v0.13.0 (2020-06-12)
+
+### Bug Fixes
+
+- **linter**: Solve linter warning
+  ([`6444cf3`](https://github.com/anaticulae/feedback/commit/6444cf39c3857db4d3b8ed93563b97a911a9bdd9))
+
+- **view**: Do not overwrite findings ids
+  ([`dd56908`](https://github.com/anaticulae/feedback/commit/dd56908a3f2e9675bc3b048d4413adac6bed7b6d))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`70617e4`](https://github.com/anaticulae/feedback/commit/70617e47bbc30870a87dd7e5c9b28fdceeb6a472))
+
+- **test**: Reduce required generation time
+  ([`04778e3`](https://github.com/anaticulae/feedback/commit/04778e31e057f05d0bc48454eb66e65f202f3d33))
+
+### Code Style
+
+- **format**: Format code
+  ([`dd83f9d`](https://github.com/anaticulae/feedback/commit/dd83f9d3225a75c7858ead4d523b5485dd2bfd8c))
+
+### Features
+
+- **view**: Add method to load page marks from path
+  ([`7b396ff`](https://github.com/anaticulae/feedback/commit/7b396fffd8ab7e053513e44586008c171af79426))
+
+### Refactoring
+
+- **remove**: Remove outdated approach
+  ([`bd761eb`](https://github.com/anaticulae/feedback/commit/bd761eb3a3d962afa9878e4c20d2e4925ec31809))
+
+- **test**: Replace with protocol code
+  ([`e49eca5`](https://github.com/anaticulae/feedback/commit/e49eca5a3c49da4127c13f9053da8ce7f960b285))
+
+- **test**: Use new copy pattern
+  ([`ed206ac`](https://github.com/anaticulae/feedback/commit/ed206acaff0c3a48e0a4e132af835e5d997576c4))
+
+### Testing
+
+- **renderer**: Inform when linter result changed
+  ([`0932205`](https://github.com/anaticulae/feedback/commit/0932205af835456c07b4c1cd5a50144f74e280e0))
+
+- **style**: Add test to verify improved style merger
+  ([`5228743`](https://github.com/anaticulae/feedback/commit/5228743183344e924ac37bf49428bc817f27c074))
+
+- **view**: Verify marked lines for master72
+  ([`224799d`](https://github.com/anaticulae/feedback/commit/224799d2e6209f9cd9d4fd56855942ceef990703))
+
+
+## v0.12.7 (2020-06-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`eeec709`](https://github.com/anaticulae/feedback/commit/eeec709f6392167bf11262cb2783b740a1bb2df4))
+
+
+## v0.12.6 (2020-06-01)
+
+### Bug Fixes
+
+- **docs**: Fix spelling error
+  ([`c7fbca5`](https://github.com/anaticulae/feedback/commit/c7fbca5abdf4341361b5b9d194e12a864bfcba21))
+
+- **images**: Fix image path name
+  ([`eea5226`](https://github.com/anaticulae/feedback/commit/eea52262116379afbe203f67449aa038464afd50))
+
+- **renderer**: Disable justified alignment
+  ([`e3d70e6`](https://github.com/anaticulae/feedback/commit/e3d70e6789f86b31286ebd491947fbb8e4ddce86))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`af135b5`](https://github.com/anaticulae/feedback/commit/af135b5c5eb23e4125ab4c4702f1541646c57d5f))
+
+### Features
+
+- **renderer**: Support RangedLocations
+  ([`9db4968`](https://github.com/anaticulae/feedback/commit/9db49687d05c793ae2f66242b303cec859d28826))
+
+### Refactoring
+
+- **format**: Format code
+  ([`134fc50`](https://github.com/anaticulae/feedback/commit/134fc500f773e8339215d2df28a20c140b44d475))
+
+- **images**: Introduced data type to improve code style
+  ([`e0ca94c`](https://github.com/anaticulae/feedback/commit/e0ca94c0746eefccaa329dea173f46a07ec43029))
+
+- **prepare**: Prepare to replace code
+  ([`def915f`](https://github.com/anaticulae/feedback/commit/def915f1ed110e857a0bdec608c5f595d9beb61d))
+
+- **remove**: Remove unused code
+  ([`60c000b`](https://github.com/anaticulae/feedback/commit/60c000b49fa5d0e4cf850fa345f9bffb855191e3))
+
+### Testing
+
+- **data**: Extend test data generator
+  ([`b0efd75`](https://github.com/anaticulae/feedback/commit/b0efd75b5bef75abb069c41f00434d4b9636c8e9))
+
+
+## v0.12.5 (2020-05-30)
+
+### Bug Fixes
+
+- **text**: Introduce threshold to avoid miss printing
+  ([`78c6eb6`](https://github.com/anaticulae/feedback/commit/78c6eb6ec1c0e9a57cc5f186e955f422652982da))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`1599276`](https://github.com/anaticulae/feedback/commit/159927681cf241d749d566f70230763d10a48aa1))
+
+
+## v0.12.4 (2020-05-23)
+
+### Bug Fixes
+
+- Disable broken unit tests
+  ([`fa9ff7e`](https://github.com/anaticulae/feedback/commit/fa9ff7e17488b437b5c52e8e1c1813626bcb85c0))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`fa9ff7e`](https://github.com/anaticulae/feedback/commit/fa9ff7e17488b437b5c52e8e1c1813626bcb85c0))
+
+### Features
+
+- **renderer**: Use different page sizes to display rotated
+  ([`db69dcf`](https://github.com/anaticulae/feedback/commit/db69dcfcc1694e66dd61599e47665a9d1ded79d6))
+
+- **text**: Add font rise to text renderer
+  ([`acc1e72`](https://github.com/anaticulae/feedback/commit/acc1e7208b34325290e6550ea7b96017bfe0dc5f))
+
+### Testing
+
+- **data**: Extend test data generator
+  ([`c6eadb7`](https://github.com/anaticulae/feedback/commit/c6eadb74437937f4db94ba2751620e94bb6197eb))
+
+
+## v0.12.3 (2020-05-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`72647b8`](https://github.com/anaticulae/feedback/commit/72647b84df8f5f1b61e3e4752d9f13a98c967329))
+
+
+## v0.12.2 (2020-04-30)
+
+### Bug Fixes
+
+- **renderer**: Do not fail on missing font flags
+  ([`77bf7bb`](https://github.com/anaticulae/feedback/commit/77bf7bbe3954e1315c72cb73e74540597775f61b))
+
+- **shape**: Fix style closing
+  ([`8e4e1f4`](https://github.com/anaticulae/feedback/commit/8e4e1f4d47d482da95567595b4330341ab4f6540))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a1deccf`](https://github.com/anaticulae/feedback/commit/a1deccf030ecf5d2306de45a5e80bcc1c987804a))
+
+### Refactoring
+
+- **reference**: Use more general reference approach
+  ([`aec444f`](https://github.com/anaticulae/feedback/commit/aec444fea774c25bd6bb4c9b8b2b50fce8f08087))
+
+- **replace**: Replace with utila code
+  ([`440032a`](https://github.com/anaticulae/feedback/commit/440032a5bd5ea8c24119b7dfb0d4ae0c24fa4c88))
+
+
+## v0.12.1 (2020-04-28)
+
+### Bug Fixes
+
+- **shape**: Ensure to avoid unnecessary digits
+  ([`daeebc9`](https://github.com/anaticulae/feedback/commit/daeebc9a4ac93114ce990748f5404994d68604d8))
+
+### Features
+
+- **view**: Load marks depending on given `linters`
+  ([`2b594d0`](https://github.com/anaticulae/feedback/commit/2b594d0477947cafcadf1e7f54feb70790cbaa97))
+
+### Refactoring
+
+- **shapes**: Use default page selection approach
+  ([`9071136`](https://github.com/anaticulae/feedback/commit/9071136cc1f8dca599964d47a86670d6b47856d6))
+
+
+## v0.12.0 (2020-04-25)
+
+### Bug Fixes
+
+- **style**: Merge overlapping sections correctly
+  ([`fbd17f9`](https://github.com/anaticulae/feedback/commit/fbd17f971662180f96f055f9493256a343f5463a))
+
+- **words**: Load word position correctly
+  ([`d9e1ef6`](https://github.com/anaticulae/feedback/commit/d9e1ef6abab544315ca38a29505b96c7ab2f23a7))
+
+### Code Style
+
+- **import**: Organize imports
+  ([`d83174a`](https://github.com/anaticulae/feedback/commit/d83174ac2b6a98e3d8a5b2feb879435bf61250b4))
 
 ### Documentation
 
-* extend interface documentation (f4da2a840369)
-* extend interface documentation (8a3e577ce99a)
+- **spelling**: Fix spelling error
+  ([`9ea0193`](https://github.com/anaticulae/feedback/commit/9ea0193b33e0d5896403cecf353664ce9ef83b49))
 
-## v0.10.1
+### Features
 
-### Fix
+- **cli**: Add word selection processor to cli
+  ([`b529cc1`](https://github.com/anaticulae/feedback/commit/b529cc1b718ede6eb260164b8789b0a09f8414b2))
 
-* add support for multiple inputs -i (06d00ce021d4)
+- **html**: Use new style merger
+  ([`930f936`](https://github.com/anaticulae/feedback/commit/930f936779991a05045dba39ada9f0bb648b2eac))
 
-## v0.10.0
+- **mark**: Add sentence matcher to match words to sentence
+  ([`871cc76`](https://github.com/anaticulae/feedback/commit/871cc76a8c09ee734ee7e55b5d15b1e653449ce9))
 
-### Feature
+- **styles**: Validate style order
+  ([`ae1d0e9`](https://github.com/anaticulae/feedback/commit/ae1d0e9eeef42fbe450054c73911e173dc093cc7))
 
-* add step to copy extracted images to generated html view (a959568f4a00)
-* add image renderer to feedback view (420080d24202)
-* extend image loader (2157d53d6300)
-* add image raw loader (8e732007602a)
-* add image information loader (fbf61dbe3014)
-* add render multiline text feature (0db4bb24fc55)
+- **test**: Change test to check marked words
+  ([`497bded`](https://github.com/anaticulae/feedback/commit/497bdeda3e375fcc7cdd854177a08735027e8e35))
 
-## v0.9.0
+- **view**: Add method to convert sentence findings to single words
+  ([`c06c6f8`](https://github.com/anaticulae/feedback/commit/c06c6f8164acca7c5d893307effb721c32de7965))
 
-### Feature
+- **view**: Load sentence marks and combine with selected text
+  ([`5e07a7a`](https://github.com/anaticulae/feedback/commit/5e07a7a3df062ca329dc02ee10e51af003795fa7))
 
-* finalize and refactor new precise html view (df81f796c35a)
-* change to general marker approach (b6c6ff08ba0a)
-* add strategy to unite multiple styles (ee53fc4a6239)
+- **word**: Use words algorithm to split token
+  ([`4f358bf`](https://github.com/anaticulae/feedback/commit/4f358bfaf830ab5b8d304eb4db7cbbe0e5e87ce8))
+
+### Refactoring
+
+- **test**: Improve code style
+  ([`68112ea`](https://github.com/anaticulae/feedback/commit/68112ea4a17a0cbd32043829e78e27acfd2cf23a))
+
+- **test**: Move tests to separate location
+  ([`f74da31`](https://github.com/anaticulae/feedback/commit/f74da3178b8937c7e374a3aea2f1ec444711555a))
+
+### Testing
+
+- **html**: Ensure to add word marks
+  ([`6257d1b`](https://github.com/anaticulae/feedback/commit/6257d1b35a4fc24871b47400710c81207fbf568a))
+
+
+## v0.11.4 (2020-04-23)
+
+### Bug Fixes
+
+- **problems**: Add missing bounding rendering
+  ([`5cc2d2b`](https://github.com/anaticulae/feedback/commit/5cc2d2b6cfd1a0b3a922796cfa295f1050b2be76))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7ce127f`](https://github.com/anaticulae/feedback/commit/7ce127fb8e5f65be49be717a4ac673c25c94abac))
+
+### Features
+
+- **alignment**: Add alignment loader
+  ([`f5d718f`](https://github.com/anaticulae/feedback/commit/f5d718fdaa9b00bbe6f3b3b1cfe5ff58d91179f5))
+
+- **alignment**: Select alignment depending on extracted
+  ([`8db73ee`](https://github.com/anaticulae/feedback/commit/8db73eeadfb0bdd004a5dc83c473f1152e4adbfc))
+
+- **view**: Add justified text as default
+  ([`8273191`](https://github.com/anaticulae/feedback/commit/82731910775cf8b456739ac89c46cf1530cff1f8))
+
+### Refactoring
+
+- **loader**: Simplify loading process
+  ([`7144b6f`](https://github.com/anaticulae/feedback/commit/7144b6f8622afa51538a7582ba5a92f8446a8803))
+
+- **test**: Improve code style
+  ([`47f1fa2`](https://github.com/anaticulae/feedback/commit/47f1fa2df9b9e43c89a8a0919bf7237ca1259571))
+
+
+## v0.11.3 (2020-04-16)
+
+### Chores
+
+- **requirements**: Make test generator source explicit
+  ([`7afa023`](https://github.com/anaticulae/feedback/commit/7afa0232a668f981234b6d8593b6d47695779d18))
+
+- **requirements**: Upgrade requirements.txt
+  ([`81900fb`](https://github.com/anaticulae/feedback/commit/81900fbc962291f1a0254a8eec3429e4ddd0086d))
+
+
+## v0.11.2 (2020-04-13)
+
+### Bug Fixes
+
+- **html**: Reduce digits and white spaces in output
+  ([`9d833a9`](https://github.com/anaticulae/feedback/commit/9d833a9fe17c9406e383b5cfcdefabb9b572a4a3))
+
+- **test**: Sort required test resources
+  ([`1c0e051`](https://github.com/anaticulae/feedback/commit/1c0e051295091733da51610ce4a1b19039972fb6))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bbbdab1`](https://github.com/anaticulae/feedback/commit/bbbdab11cc25becce1c1d720280d97e19a3fa98a))
+
+### Refactoring
+
+- **replace**: Replace by general package code
+  ([`421303f`](https://github.com/anaticulae/feedback/commit/421303f78b8c9135adce605285a3fa2e644077a5))
+
+
+## v0.11.1 (2020-04-11)
+
+### Features
+
+- **cli**: Add horizontals and lines as input resource to render
+  ([`60fbc4f`](https://github.com/anaticulae/feedback/commit/60fbc4f48496d037a767ad73c8b73d70fda43b83))
+
+
+## v0.11.0 (2020-04-11)
+
+### Bug Fixes
+
+- **linter**: Solve linter warnings
+  ([`5471446`](https://github.com/anaticulae/feedback/commit/54714467c2cd3f49715b512d64cee2a11eceefb1))
+
+- **shape**: Use correct layout template and render line more clear
+  ([`5db43f5`](https://github.com/anaticulae/feedback/commit/5db43f51535be7f1179649789a8ecb8bf4d382ab))
+
+### Chores
+
+- **requirements**: Introduce dev package
+  ([`e3ad961`](https://github.com/anaticulae/feedback/commit/e3ad961794c9a133fc269f4a7c6d5e090cb61411))
+
+- **setup**: Add missing install packages
+  ([`e050c8f`](https://github.com/anaticulae/feedback/commit/e050c8f0e1948536959919c1f0a0fafe30ccbeec))
+
+- **setup**: Use single MANIFEST file
+  ([`9776afc`](https://github.com/anaticulae/feedback/commit/9776afc7a01d5b3962125b22b7dd6ad9d0e9018a))
+
+- **test**: Extend pages of generated test data
+  ([`c1fa3fd`](https://github.com/anaticulae/feedback/commit/c1fa3fd3ca7394e4694851fa975483aef694251a))
+
+- **test**: Extend test data generator
+  ([`0bf1912`](https://github.com/anaticulae/feedback/commit/0bf19124b4860acbf9e89f3f5cb72c8b8c6f7fc9))
 
 ### Documentation
 
-* add purpose of given test (60356af383cd)
+- **html**: Extend interface documentation
+  ([`8a3e577`](https://github.com/anaticulae/feedback/commit/8a3e577ce99aa38051bce00bb0c1bbb61b7ac3c0))
 
-## v0.8.3
+- **renderer**: Extend interface documentation
+  ([`f4da2a8`](https://github.com/anaticulae/feedback/commit/f4da2a8403697eb3bc82c1b0c176ff9c742b0b7c))
 
-## v0.8.2
+### Features
 
-### Feature
+- **horizontals**: Use simple hr renderer instead of generic line renderer
+  ([`e769501`](https://github.com/anaticulae/feedback/commit/e769501edd57f1ee1d95b287f86122809c50c694))
 
-* use rectangle renderer for failure 3030 and 3031 (e80f01fffa97)
-* skip mouse interaction on printed elements (c20d36e6f0e8)
-* add id to finding to show/hide it later (89c492ca8691)
+- **html**: Add first simple approach of a table renderer
+  ([`e53664b`](https://github.com/anaticulae/feedback/commit/e53664b14996cccfd8b003009ab825e0fe392a5c))
 
-### Fix
+- **html**: Load lines in html view data
+  ([`b4f03a6`](https://github.com/anaticulae/feedback/commit/b4f03a683ac24c157369a1715ba1adb144c02653))
 
-* renderer page content first to make content override able (b05d83b49288)
-* shrink html output (d5b559158428)
+- **lines**: Render horizontal lines in feedback view
+  ([`38b5fd3`](https://github.com/anaticulae/feedback/commit/38b5fd3df273f06f50a053f52ce95411af818882))
+
+- **renderer**: Add horizontal line renderer
+  ([`8b5a605`](https://github.com/anaticulae/feedback/commit/8b5a605d136c88889efb7e5b87cfbd298e40724e))
+
+- **shape**: Add method to render lines
+  ([`0818761`](https://github.com/anaticulae/feedback/commit/081876130063b2bbdf9117d788dc562ee4e01adb))
+
+- **text**: Add text style renderer
+  ([`e306c67`](https://github.com/anaticulae/feedback/commit/e306c67f7e4f3aa8e8fef6d42096217d4d428557))
+
+- **text**: Include change of text rise, flag and font to text printer
+  ([`f5924e5`](https://github.com/anaticulae/feedback/commit/f5924e5fdee0403bf246f52efc74589a510123b2))
+
+### Refactoring
+
+- **html**: Clarify naming
+  ([`bf0a61b`](https://github.com/anaticulae/feedback/commit/bf0a61bb332259a20341b6c774e9227ec2ad07ba))
+
+- **html**: Improve variable naming
+  ([`a778401`](https://github.com/anaticulae/feedback/commit/a778401c48f53ab7dee62a98e8aa3e3494db3452))
+
+- **html**: Move text renderer to separate module
+  ([`650d34f`](https://github.com/anaticulae/feedback/commit/650d34fee7b30bcd24c1762bc5b07c13fd15532b))
+
+- **move**: Move html data loader to separate module
+  ([`7d8e5c6`](https://github.com/anaticulae/feedback/commit/7d8e5c68fcb5666ac21700827cf2ebbeb8bb8778))
+
+- **remove**: Remove useless LICENCE file
+  ([`641f41a`](https://github.com/anaticulae/feedback/commit/641f41a615e8c5efb19c502b45035ab1411b3210))
+
+- **renderer**: Move boxes renderer to separate module
+  ([`00f587d`](https://github.com/anaticulae/feedback/commit/00f587d4036a22ac9f20114a440c29730a904d10))
+
+- **renderer**: Simplify html data loader
+  ([`e436534`](https://github.com/anaticulae/feedback/commit/e436534bd03eb445f7b0b1c1fa7b1810abda2e49))
+
+- **style**: Sort alphabetically
+  ([`759bce7`](https://github.com/anaticulae/feedback/commit/759bce79b6d99f98a6481827edea6dabb7435ccc))
+
+- **test**: Simplify code, do not create unnecessary test folder
+  ([`caa30f4`](https://github.com/anaticulae/feedback/commit/caa30f47f8bba37d47279c919a6340ea018c9085))
+
+- **test**: Use contextmanager to simplify tests
+  ([`ced32c5`](https://github.com/anaticulae/feedback/commit/ced32c5ff51830a27c30a2a2cd11e6d7d8341e9d))
+
+### Testing
+
+- **fixture**: Add fixture to test different renderings
+  ([`9a243ad`](https://github.com/anaticulae/feedback/commit/9a243ad1e029b2870c581244f4929ec1dc5157c1))
+
+- **horizontals**: Add test to view renderer horizontals
+  ([`a3e73cf`](https://github.com/anaticulae/feedback/commit/a3e73cfbf5a8b1a8c57b29dbd0d6a0453a4488c8))
+
+- **html**: Add html header to archive better browser view
+  ([`ecdfa4b`](https://github.com/anaticulae/feedback/commit/ecdfa4b0ba882264418f6abe11a06a112626119c))
+
+- **improve**: Add context manager to render and display html content
+  ([`890cf76`](https://github.com/anaticulae/feedback/commit/890cf7673897392945120f12d07578e78979a33e))
+
+- **renderer**: Extend checking that correct item are rendered
+  ([`e9410ae`](https://github.com/anaticulae/feedback/commit/e9410ae5371cdad1f04e3296748dc33260666074))
+
+- **text**: Add test to verify style on text
+  ([`c1b2802`](https://github.com/anaticulae/feedback/commit/c1b2802e890daa40de70eb9e9cecdcb8676a58a5))
+
+- **title**: Add test to verify renderer title page box
+  ([`09fe00e`](https://github.com/anaticulae/feedback/commit/09fe00e824670321c66293c42904305dc1a2b58a))
+
+
+## v0.10.1 (2020-04-09)
+
+### Bug Fixes
+
+- **images**: Add support for multiple inputs -i
+  ([`06d00ce`](https://github.com/anaticulae/feedback/commit/06d00ce021d4e1d8d1e11ec9bbdfcc69e0224fcd))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`a674174`](https://github.com/anaticulae/feedback/commit/a6741741bcddbee692acbafcae1c3dd642ca67d3))
+
+
+## v0.10.0 (2020-04-09)
+
+### Bug Fixes
+
+- Interface change
+  ([`7703f45`](https://github.com/anaticulae/feedback/commit/7703f4593c9a216d0cb26878beb52024459d7458))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`fd6232d`](https://github.com/anaticulae/feedback/commit/fd6232d7737c164acff97bdb50ada0f415f8f8e0))
+
+- **requirements**: Upgrade requirements.txt
+  ([`7703f45`](https://github.com/anaticulae/feedback/commit/7703f4593c9a216d0cb26878beb52024459d7458))
+
+### Features
+
+- **html**: Add render multiline text feature
+  ([`0db4bb2`](https://github.com/anaticulae/feedback/commit/0db4bb24fc5579bb06da905f54f016cc828a40bf))
+
+- **images**: Add image information loader
+  ([`fbf61db`](https://github.com/anaticulae/feedback/commit/fbf61dbe30141b91621dc07f9d857c61d7431f79))
+
+- **images**: Add image raw loader
+  ([`8e73200`](https://github.com/anaticulae/feedback/commit/8e732007602a4b6b7f61f393de7ed68d1a70628b))
+
+- **images**: Add step to copy extracted images to generated html view
+  ([`a959568`](https://github.com/anaticulae/feedback/commit/a959568f4a006803ff5aff92a778e48837bb88dd))
+
+- **images**: Extend image loader
+  ([`2157d53`](https://github.com/anaticulae/feedback/commit/2157d53d6300e04ab9c606858e8c83c9b651383e))
+
+- **renderer**: Add image renderer to feedback view
+  ([`420080d`](https://github.com/anaticulae/feedback/commit/420080d242028e40ce5af60eee49d23897aa8da0))
+
+### Refactoring
+
+- **images**: Make path explicit
+  ([`16ac753`](https://github.com/anaticulae/feedback/commit/16ac753535fc525962d0854bd159152a4bc52bb0))
+
+- **replace**: Replace due iamraw code
+  ([`8a74de8`](https://github.com/anaticulae/feedback/commit/8a74de823864b6cd9d5a492ca037e29543958eca))
+
+- **replace**: Replace due utila code
+  ([`e849deb`](https://github.com/anaticulae/feedback/commit/e849debd8006d5ec857cae757b002b4528399a9a))
+
+
+## v0.9.0 (2020-04-01)
+
+### Chores
+
+- **release**: Do not release on finding
+  ([`c39cbc1`](https://github.com/anaticulae/feedback/commit/c39cbc127724407d1c466ea500e322212275dc0f))
+
+### Code Style
+
+- **linter**: Make the linter happy
+  ([`4583a5c`](https://github.com/anaticulae/feedback/commit/4583a5cb661377ef02b552367cdf1805781056fd))
 
 ### Documentation
 
-* extend interface documentation (db7fd9e27258)
+- **test**: Add purpose of given test
+  ([`60356af`](https://github.com/anaticulae/feedback/commit/60356af383cd175b8cfa33bd5e7b9e266566d54b))
 
-## v0.8.1
+### Features
 
-### Fix
+- **html**: Finalize and refactor new precise html view
+  ([`df81f79`](https://github.com/anaticulae/feedback/commit/df81f796c35aea4ce27c2565ca5394985ef0a684))
 
-* add missing boxes resource (49b052afc62e)
+- **marker**: Change to general marker approach
+  ([`b6c6ff0`](https://github.com/anaticulae/feedback/commit/b6c6ff08ba0a8ffa5909e0d158f940aa9b67f754))
 
-## v0.8.0
+- **style**: Add strategy to unite multiple styles
+  ([`ee53fc4`](https://github.com/anaticulae/feedback/commit/ee53fc4a6239d258191325521d119db56005b2ce))
 
-### Feature
+### Refactoring
 
-* extends renderer to draw user boxes (0e3b8997dcd4)
-* add boxes to display user defined rectangles (8083e441fc75)
+- **remove**: Remove code which was moved to utila before
+  ([`db0ebd0`](https://github.com/anaticulae/feedback/commit/db0ebd0a4a4fdcfc0e149a5407fa420353bae785))
 
-## v0.7.5
+- **style**: Format code
+  ([`06b2a98`](https://github.com/anaticulae/feedback/commit/06b2a9813d901d64cd3306baa9228e110badbb3b))
 
-## v0.7.4
+- **utils**: Move to package to improve flexibility
+  ([`59645e5`](https://github.com/anaticulae/feedback/commit/59645e50800052dff271511fe00244d2aa3fc03c))
 
-### Fix
+### Testing
 
-* make shapes visible and clickable (a734c55d69fc)
+- **renderer**: Add example to render toc
+  ([`f878e7d`](https://github.com/anaticulae/feedback/commit/f878e7d7033a5d1ad25643498af632e87380351b))
 
-## v0.7.3
 
-### Fix
+## v0.8.3 (2020-03-27)
 
-* correct code replacement (cf6efaa99e92)
+### Chores
 
-## v0.7.2
+- **requirements**: Upgrade requirements.txt
+  ([`440692d`](https://github.com/anaticulae/feedback/commit/440692d686b0b3045ea0cac5cb0c97e163e53ccf))
 
-### Fix
+- **test**: Increase test logging
+  ([`e92c850`](https://github.com/anaticulae/feedback/commit/e92c850fb5eed45ba434251f2051285f051df329))
 
-* fix problem in utilo handling `.tmp folder` (e67cede9e5ca)
 
-## v0.7.1
+## v0.8.2 (2020-03-06)
 
-## v0.7.0
+### Bug Fixes
 
-### Feature
+- **renderer**: Renderer page content first to make content override able
+  ([`b05d83b`](https://github.com/anaticulae/feedback/commit/b05d83b492887ed0e91e53a31d67b04755d481c0))
 
-* add reference to access added content border (6b682303410a)
-* add reference to refer renderer object directly (60de63322d63)
-* change content border to dotted style (ca7173d5615c)
-* add border shape renderer to console (347b75e8f4a5)
-* extend shape renderer to render content-border (66b400990f06)
-* use BoundingLocation to draw rectangles in view (61ff5a9cf53b)
-* make problem view modifiable (462599e369e1)
-* enable dynamic input parameter (5d3f5dc77c9c)
-* add option to render shapes in the background of html page (49cbed7c2491)
-* add shape renderer to render figures to html page (3a7a0512446e)
+- **renderer**: Shrink html output
+  ([`d5b5591`](https://github.com/anaticulae/feedback/commit/d5b559158428d9570c5eefc75e39a436d1293ab4))
 
-### Fix
+### Chores
 
-* add import to help yaml loader (337303af9b01)
-* support to collect from multiple sources (6cd9c454958e)
-* solve cyclic import (f6b047cd0c5f)
-
-### Documentation
-
-* add module purpose of `view` (1b2fe19f8f92)
-
-## v0.6.4
-
-## v0.6.3
-
-## v0.6.2
-
-## v0.6.1
-
-## v0.6.0
-
-### Feature
-
-* add mark selector to problem view generator (d057ee76cd1e)
-* link and activate problems renderer (11b2518532a5)
-* add method to load required data from path (a8318a4c4199)
-* add step interface to run problem renderer (5f93fccf9543)
-* add method to group Findings by type(word, oneline) (8d099f783b37)
-* add id to access different pages (4bfc28e545f5)
-* handle white space and white lines correctly (0915f3d6c476)
-* use PageMarkConfiguration to mark highlights words and lines (3221132be15f)
-* add LineMarker to mark lines in renderer (fbbc0f0a9029)
-* add marker mechanism to html renderer (60e94b917f9c)
-* add word marker to add unique id for select words. (8c489be347d7)
-* add renderer to convert text data to html view (dbafac0fee15)
-
-### Fix
-
-* fix import location (3482599880fb)
-* add missing import (28e21c76ebad)
-* fix variable assignment logic (1c2220134e9e)
+- **requirements**: Upgrade requirements.txt
+  ([`e9bf315`](https://github.com/anaticulae/feedback/commit/e9bf315f81fa490c69fd102a5d7f889b7e395720))
 
 ### Documentation
 
-* Happy New Year! (93d2f24ae212)
-* extend interface documentation (a12ce8b3ab13)
-* extend interface documentation (671666501a64)
+- **comment**: Extend interface documentation
+  ([`db7fd9e`](https://github.com/anaticulae/feedback/commit/db7fd9e27258b8692ac13a2c645e1a3f77681c28))
 
-## v0.5.1
+### Features
 
-### Feature
+- **fix**: Use rectangle renderer for failure 3030 and 3031
+  ([`e80f01f`](https://github.com/anaticulae/feedback/commit/e80f01fffa97e5813d7f95285cdd1fc8d2a9f81a))
 
-* add new rst doc structure (5db430e14d3d)
+- **problems**: Add id to finding to show/hide it later
+  ([`89c492c`](https://github.com/anaticulae/feedback/commit/89c492ca86914a57fca861363e1f2f292665e148))
 
-## v0.5.0
+- **renderer**: Skip mouse interaction on printed elements
+  ([`c20d36e`](https://github.com/anaticulae/feedback/commit/c20d36e6f0e8703d21bdcdc175c76fe54a610ec6))
 
-### Feature
 
-* add linter results to pages result view (30dc85d31266)
-* add linter to prepare findings for preview (d4f6a2f9e4ea)
-* add draft to represent linter view (51ad3cc229b6)
+## v0.8.1 (2020-02-23)
 
-## v0.4.15
+### Bug Fixes
 
-### Fix
+- **cli**: Add missing boxes resource
+  ([`49b052a`](https://github.com/anaticulae/feedback/commit/49b052afc62ecd99e2ed227df041b135a86920be))
 
-* do not open generated page automatically (920d8ed49b4a)
 
-## v0.4.14
+## v0.8.0 (2020-02-23)
 
-## v0.4.13
+### Features
 
-## v0.4.12
+- **renderer**: Add boxes to display user defined rectangles
+  ([`8083e44`](https://github.com/anaticulae/feedback/commit/8083e441fc752a6c4220398bbb556e61b74e3a3d))
 
-### Fix
+- **renderer**: Extends renderer to draw user boxes
+  ([`0e3b899`](https://github.com/anaticulae/feedback/commit/0e3b8997dcd48b7181c1c2f7a4759470bfe82b1f))
 
-* add missing report template to setup/installation package (a96b55992433)
+### Refactoring
 
-## v0.4.11
+- **renderer**: Prepare extension of page render
+  ([`6b5e9c6`](https://github.com/anaticulae/feedback/commit/6b5e9c699f84422a97ddbf581eb2af514bbfcd5f))
 
-## v0.4.10
+- **renderer**: Replace path detection mechanism
+  ([`86ddd76`](https://github.com/anaticulae/feedback/commit/86ddd769881fdd8004833cb8df30af2f06e3010e))
 
-## v0.4.9
 
-## v0.4.8
+## v0.7.5 (2020-02-22)
 
-## v0.4.7
+### Chores
 
-## v0.4.6
+- **requirements**: Upgrade requirements.txt
+  ([`e978f7f`](https://github.com/anaticulae/feedback/commit/e978f7fbe6a1c1bb68c24b9e53d034cccbfcf8f5))
 
-### Feature
 
-* expose naming to use in `queuemo` (923ea04984ba)
+## v0.7.4 (2020-02-16)
 
-## v0.4.5
+### Bug Fixes
 
-## v0.4.4
+- **shape**: Make shapes visible and clickable
+  ([`a734c55`](https://github.com/anaticulae/feedback/commit/a734c55d69fce209c135ec7a00c58d7328c6ef01))
 
-### Fix
 
-* fix output data path due `featurepack` (0be4981db350)
+## v0.7.3 (2020-02-16)
 
-## v0.4.3
+### Bug Fixes
 
-### Fix
+- **fix**: Correct code replacement
+  ([`cf6efaa`](https://github.com/anaticulae/feedback/commit/cf6efaa99e9211c7915cebc6754acc0435fee753))
 
-* fix input path to `featurepack` pattern (62bafcdb891a)
 
-## v0.4.2
+## v0.7.2 (2020-02-16)
 
-### Fix
+### Bug Fixes
 
-* fix data input to `featurepack` structure (b29cdb461fee)
+- **utila**: Fix problem in utila handling `.tmp folder`
+  ([`e67cede`](https://github.com/anaticulae/feedback/commit/e67cede9e5ca69c08f6c429f12c9bf4e013e1387))
 
-## v0.4.1
 
-## v0.4.0
+## v0.7.1 (2020-02-16)
 
-### Feature
+### Chores
 
-* add workplan to generate view due `feedback` tool (3b7ac8c4645f)
-* add horizontal line and page numbers to view report (c0bf7b6f7b3d)
-* add feature to generate view with pdf content - draft (8af945cdf624)
-* add new tool `feedback` to generate main report view (c8ae1f90f290)
+- **requirements**: Upgrade requirements.txt
+  ([`5f65c8e`](https://github.com/anaticulae/feedback/commit/5f65c8e3c7c6c1fbf0847421a634b4e83927caa0))
 
-### Fix
 
-* remove duplicated requirement (0bbb75fe3e07)
+## v0.7.0 (2020-02-15)
 
-## v0.3.0
+### Bug Fixes
 
-### Feature
+- **imports**: Solve cyclic import
+  ([`f6b047c`](https://github.com/anaticulae/feedback/commit/f6b047cd0c5fe908d8d73d3c05c7a9ffe8b10a29))
 
-* use new feature function from utilo package (78f6263fd040)
-* improve the clarity of a workplan (f3442a432c42)
+- **loader**: Add import to help yaml loader
+  ([`337303a`](https://github.com/anaticulae/feedback/commit/337303af9b01fcc5fc342dc6b6dda319838dd986))
 
-### Fix
+- **mark**: Support to collect from multiple sources
+  ([`6cd9c45`](https://github.com/anaticulae/feedback/commit/6cd9c454958e2520d1c44dbc56250f0392e7530f))
 
-* fix spelling error in header (b90955d8bbab)
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6bc40b3`](https://github.com/anaticulae/feedback/commit/6bc40b369d44983a2276723c0c00f57811dc1b21))
+
+### Code Style
+
+- **linter**: Fix some linter issues - prepare zero warnings
+  ([`8fc75d6`](https://github.com/anaticulae/feedback/commit/8fc75d6c31585815c8cfb98283b90ec576cf84ea))
 
 ### Documentation
 
-* add basic information to readme (fe59f3944af0)
+- **problems**: Add module purpose of `view`
+  ([`1b2fe19`](https://github.com/anaticulae/feedback/commit/1b2fe19f8f92222b865da1b3d5ef6022d2973ce2))
 
-## v0.2.9
+### Features
 
-## v0.2.8
+- **cli**: Enable dynamic input parameter
+  ([`5d3f5dc`](https://github.com/anaticulae/feedback/commit/5d3f5dc77c9cb118f0d8e67c078102dd8cea50c6))
 
-### Feature
+- **html**: Add reference to access added content border
+  ([`6b68230`](https://github.com/anaticulae/feedback/commit/6b682303410a09c8d8dbf840df86f156124da902))
 
-* add ugly font view generation (a5c7a003cb22)
+- **problems**: Add border shape renderer to console
+  ([`347b75e`](https://github.com/anaticulae/feedback/commit/347b75e8f4a55bd8824b33318526cd550b8fa7da))
 
-### Fix
+- **problems**: Make problem view modifiable
+  ([`462599e`](https://github.com/anaticulae/feedback/commit/462599e369e15f3805aaa83c2302b46acca2d902))
 
-* add missing templates to copy job (4ed76d6a2074)
-* rename test data to correct data pattern (1a5202f8557b)
+- **problems**: Use BoundingLocation to draw rectangles in view
+  ([`61ff5a9`](https://github.com/anaticulae/feedback/commit/61ff5a9cf53bc75f1d7bb8b9872d1ba44ef9f325))
 
-## v0.2.7
+- **renderer**: Add option to render shapes in the background of html page
+  ([`49cbed7`](https://github.com/anaticulae/feedback/commit/49cbed7c249145d720fd947c020b70275bf32b1f))
 
-### Feature
+- **renderer**: Add shape renderer to render figures to html page
+  ([`3a7a051`](https://github.com/anaticulae/feedback/commit/3a7a0512446e625acbb709466f1e0962760f2528))
 
-* add hit the box renderer (6b629219e7f5)
-* add feature selector - remove later after utilo upgrade (b434b6ee1b7e)
+- **renderer**: Change content border to dotted style
+  ([`ca7173d`](https://github.com/anaticulae/feedback/commit/ca7173d5615cd126aa1a60a5b3cc9e96412ce028))
 
-## v0.2.6
+- **renderer**: Extend shape renderer to render content-border
+  ([`66b4009`](https://github.com/anaticulae/feedback/commit/66b400990f06bf8c0a6052b38cd1f37fab2070bf))
 
-### Fix
+- **shape**: Add reference to refer renderer object directly
+  ([`60de633`](https://github.com/anaticulae/feedback/commit/60de63322d63f08e59045eb402c31bd2ee832ea5))
 
-* avoid out of container overflow (4890643abca5)
+### Refactoring
 
-## v0.2.5
+- **mark**: Replace with protocol code
+  ([`49964d4`](https://github.com/anaticulae/feedback/commit/49964d4d9d189fc1d89db3732d9c92102723d0d6))
 
-### Fix
+- **test**: Cleanup test data constant names
+  ([`c883c2f`](https://github.com/anaticulae/feedback/commit/c883c2fb6392050da826d448f67fb74bbded51a2))
 
-* fix scrambled order of return parameter (dd6df3aee668)
+- **test**: Move tests to renderer test package
+  ([`5635815`](https://github.com/anaticulae/feedback/commit/5635815673c1cf735a17e47fc61ef940582acfe5))
 
-## v0.2.4
+- **test**: Replace with utila code
+  ([`5d0b5e4`](https://github.com/anaticulae/feedback/commit/5d0b5e434f356cc2cb016003dc6fff60240fc7c2))
 
-## v0.2.3
+### Testing
 
-### Fix
+- **cli**: Add second example to run linter shaper
+  ([`5be9170`](https://github.com/anaticulae/feedback/commit/5be917002543d372dadb18562021ea35a398c7e3))
 
-* if file exists, command line must fail (f973e81cc80c)
-* rename file to new convention (1d14fa4ad71d)
+- **feedback**: Add test to ensure that linting is printing with shapes
+  ([`e18dd25`](https://github.com/anaticulae/feedback/commit/e18dd251ed5abdf9cda9c938d0f1717ab90c299f))
 
-## v0.2.2
+- **resources**: Add example to verify border linter
+  ([`42b1465`](https://github.com/anaticulae/feedback/commit/42b14653cad86a9161df072828cdce289c581e62))
 
-### Feature
 
-* pass data from folder (b2fbb0a946d1)
+## v0.6.4 (2020-01-17)
 
-## v0.2.1
+### Chores
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`cb883bf`](https://github.com/anaticulae/feedback/commit/cb883bf51f52088e205684e8d26aa5b5c896bf21))
 
-* print error message when missing resources (f4d028c4913d)
-* a description and shortcut for cmdline tool (f205a19cff99)
+- **requirements**: Upgrade requirements.txt
+  ([`e3dc794`](https://github.com/anaticulae/feedback/commit/e3dc79449b2b8d31171f8736c8b8d233fd975c1b))
 
-### Fix
 
-* catch empty resources and produce help view (91958e378589)
+## v0.6.3 (2020-01-11)
 
-## v0.2.0
+### Chores
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`f838989`](https://github.com/anaticulae/feedback/commit/f8389898240eb3a3e07b3082e55f2bd7242e1576))
 
-* print help if nothing is passed to cmdinterface (7cdb8adc7560)
-* add command line interface to run generation of statistica result (2414e714059a)
-* split result template in two parts (aa79d82879ce)
 
-### Fix
+## v0.6.2 (2020-01-10)
 
-* use the single parameter, not the tuple (4a6bbc909a03)
-* add missing template to copy templates while installing (b0da2d743d05)
+### Chores
 
-## v0.1.1
+- **requirements**: Upgrade requirements.txt
+  ([`29f3207`](https://github.com/anaticulae/feedback/commit/29f320784b86806c7816826840ee8ecab618136b))
 
-## v0.1.0
+### Testing
 
-### Feature
+- **feedback**: Ensure that installing process works correctly
+  ([`4aed9b9`](https://github.com/anaticulae/feedback/commit/4aed9b9ecfbc985ec276016809aca6f30de9e89d))
 
-* basic implementation of feedback script (75c6f7931d16)
 
-### Fix
+## v0.6.1 (2020-01-02)
 
-* fix syntax-errors from baw setup template (5d98a2e35507)
+### Chores
 
-## v0.0.0 Initial release
+- **setup**: Add missing package
+  ([`8fbf5a7`](https://github.com/anaticulae/feedback/commit/8fbf5a7c735218f42c9c70f45af10488646dd203))
+
+
+## v0.6.0 (2020-01-02)
+
+### Bug Fixes
+
+- **cli**: Fix import location
+  ([`3482599`](https://github.com/anaticulae/feedback/commit/3482599880fb76b5417a003809616f3db2147d49))
+
+- **renderer**: Fix variable assignment logic
+  ([`1c22201`](https://github.com/anaticulae/feedback/commit/1c2220134e9ef0c28194c0fef80f94cbd04f3661))
+
+- **test**: Add missing import
+  ([`28e21c7`](https://github.com/anaticulae/feedback/commit/28e21c76ebad48fff6d84cc4087d6ffad266e751))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`8368fe6`](https://github.com/anaticulae/feedback/commit/8368fe6c9e97b550aa3c2b894cecb572e6b52358))
+
+### Code Style
+
+- **html**: Improve html output - increase read ability
+  ([`319ed36`](https://github.com/anaticulae/feedback/commit/319ed364bdad7a4e5738040c01f7c443ef39cb5d))
+
+- **imports**: Organize imports
+  ([`6d7d88d`](https://github.com/anaticulae/feedback/commit/6d7d88d2bb42aabfa09ec28f410436d552ea9b93))
+
+- **imports**: Organize imports
+  ([`e609a2c`](https://github.com/anaticulae/feedback/commit/e609a2cd96601adb6e286f1caab809eda6963152))
+
+- **imports**: Organize imports
+  ([`0860ebf`](https://github.com/anaticulae/feedback/commit/0860ebf3cf6c83a7913b1698a3ca587a10351723))
+
+### Documentation
+
+- **copyright**: Happy New Year!
+  ([`93d2f24`](https://github.com/anaticulae/feedback/commit/93d2f24ae212ecf26b12997e35b1bd4e6423ce92))
+
+- **mark**: Extend interface documentation
+  ([`a12ce8b`](https://github.com/anaticulae/feedback/commit/a12ce8b3ab13bcaecbf329e83ce9a0493fd80104))
+
+- **renderer**: Extend interface documentation
+  ([`6716665`](https://github.com/anaticulae/feedback/commit/671666501a64ae881f7504089385c13080dcbaec))
+
+### Features
+
+- **mark**: Add method to group Findings by type(word, oneline)
+  ([`8d099f7`](https://github.com/anaticulae/feedback/commit/8d099f783b37d7c605e146a3d6d9790b8044355f))
+
+- **problem**: Add step interface to run problem renderer
+  ([`5f93fcc`](https://github.com/anaticulae/feedback/commit/5f93fccf9543c2ad0e9614ef002e024e289e3d37))
+
+- **problems**: Add mark selector to problem view generator
+  ([`d057ee7`](https://github.com/anaticulae/feedback/commit/d057ee76cd1e755afb07bca4a534602cc92f8001))
+
+- **problems**: Link and activate problems renderer
+  ([`11b2518`](https://github.com/anaticulae/feedback/commit/11b2518532a5ebd1c39e65684daba495c235a585))
+
+- **renderer**: Add id to access different pages
+  ([`4bfc28e`](https://github.com/anaticulae/feedback/commit/4bfc28e545f5fbc0b32cce82534939ee52a0e340))
+
+- **renderer**: Add LineMarker to mark lines in renderer
+  ([`fbbc0f0`](https://github.com/anaticulae/feedback/commit/fbbc0f0a9029a11008b1ca7911aab6da5d2e1fab))
+
+- **renderer**: Add marker mechanism to html renderer
+  ([`60e94b9`](https://github.com/anaticulae/feedback/commit/60e94b917f9ce50e7b3490cecb34260e9c4034b7))
+
+- **renderer**: Add method to load required data from path
+  ([`a8318a4`](https://github.com/anaticulae/feedback/commit/a8318a4c41998ca7839c8f0e126ba61582687750))
+
+- **renderer**: Add renderer to convert text data to html view
+  ([`dbafac0`](https://github.com/anaticulae/feedback/commit/dbafac0fee15dc3b8fd0a43f68ba2de62d6e6f85))
+
+- **renderer**: Add word marker to add unique id for select words.
+  ([`8c489be`](https://github.com/anaticulae/feedback/commit/8c489be347d744bccf9568c6dc281338e1a64530))
+
+- **renderer**: Handle white space and white lines correctly
+  ([`0915f3d`](https://github.com/anaticulae/feedback/commit/0915f3d6c476f17c54e1f394b5fd00435d34d7e1))
+
+- **renderer**: Use PageMarkConfiguration to mark highlights words and lines
+  ([`3221132`](https://github.com/anaticulae/feedback/commit/3221132be15ff2ecf3c941dabc76949ea8998f3b))
+
+### Refactoring
+
+- **imports**: Remove unused imports
+  ([`cc5bed2`](https://github.com/anaticulae/feedback/commit/cc5bed29cd4d3a816dc37e1a858c8dcd5458c9af))
+
+- **problems**: Rename variables to clarify code
+  ([`5fdbecf`](https://github.com/anaticulae/feedback/commit/5fdbecf21353c1136aa6d151a669d8da13b2f41b))
+
+- **problems**: Shorten result name
+  ([`bea3573`](https://github.com/anaticulae/feedback/commit/bea357377e8d84fb6e6d898d48ba80bfebc20092))
+
+- **remove**: Remove unused code
+  ([`e84a664`](https://github.com/anaticulae/feedback/commit/e84a66451dee1b2b3972d6930fe289e3df1bc575))
+
+- **remove**: Replace with utila code
+  ([`f2a5980`](https://github.com/anaticulae/feedback/commit/f2a5980ca05d12dc6e2e07c5177788b92d7b03e4))
+
+- **renderer**: Move HTMLPageContent package file to increase re usability
+  ([`404db73`](https://github.com/anaticulae/feedback/commit/404db733e3ebf48078e9a52c08197bc4dd07faa1))
+
+- **style**: Improve code style
+  ([`020c541`](https://github.com/anaticulae/feedback/commit/020c541959aaf60d0f7af7b5347690991da2387b))
+
+- **style**: Remove unused code
+  ([`5324765`](https://github.com/anaticulae/feedback/commit/532476533db164e866dc189b1923490318682aca))
+
+- **templates**: Move to separate folder
+  ([`a96a90c`](https://github.com/anaticulae/feedback/commit/a96a90cbb222f8fa812b11cbf1f8521185145fee))
+
+- **test**: Add underline to avoid conflicting imports
+  ([`d9a44bc`](https://github.com/anaticulae/feedback/commit/d9a44bcda26d832e300b680c5fa0cc315a683614))
+
+- **test**: Move to fixture module to increase re usability
+  ([`3418177`](https://github.com/anaticulae/feedback/commit/3418177bfda01851733d07ead2a35e085ba6934d))
+
+### Testing
+
+- **fix**: Correct path and test names
+  ([`27031c8`](https://github.com/anaticulae/feedback/commit/27031c8ed24d5b9695793a0dda1843313aed5087))
+
+- **refactor**: Move selective web browser view to separate function
+  ([`501fe43`](https://github.com/anaticulae/feedback/commit/501fe43496fc4cecb2077a2fc8562883fadf79a5))
+
+
+## v0.5.1 (2019-12-23)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d4c6cf7`](https://github.com/anaticulae/feedback/commit/d4c6cf75c425c55ee214a049ebf0cdef4d2cbfbb))
+
+- **requirements**: Upgrade requirements.txt
+  ([`81cfcaf`](https://github.com/anaticulae/feedback/commit/81cfcaf007afe3ceb0b7b10e10b875d6d9e48a98))
+
+- **test**: Support generate command
+  ([`9366e2e`](https://github.com/anaticulae/feedback/commit/9366e2ecaec82ea83ce5a17937dcbd4019792aaa))
+
+- **test**: Use test data generator from decider package
+  ([`d0114e6`](https://github.com/anaticulae/feedback/commit/d0114e67ee17c3b70b60dd9e341aba2f31982fca))
+
+### Code Style
+
+- **organize**: Fix up setup.py
+  ([`bf43de9`](https://github.com/anaticulae/feedback/commit/bf43de99fb298db7fe8506c2a89dd2bfa173abbb))
+
+### Features
+
+- **docs**: Add new rst doc structure
+  ([`5db430e`](https://github.com/anaticulae/feedback/commit/5db430e14d3df4c0c5b34722ec433a66d5f9be8b))
+
+### Testing
+
+- **remove**: Remove not parallelize able test
+  ([`fd50e38`](https://github.com/anaticulae/feedback/commit/fd50e3830364f4f5ee3241c2d8ea144213d0c2a5))
+
+- **resources**: Replace pdf resource with resource from `power` module
+  ([`a80b148`](https://github.com/anaticulae/feedback/commit/a80b14851ec83cb13222f36691b643d46c550aad))
+
+
+## v0.5.0 (2019-12-10)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`de3caef`](https://github.com/anaticulae/feedback/commit/de3caefce48ae8fa2fbc54b7fe4ba9205747ba9c))
+
+- **requirements**: Upgrade requirements.txt
+  ([`a5febe2`](https://github.com/anaticulae/feedback/commit/a5febe216467a67dd6ccc310e9a11aafe07c423b))
+
+- **test**: Add option to view generated html instantly
+  ([`40da54a`](https://github.com/anaticulae/feedback/commit/40da54adc097cbc537d740e5dad1610bb026dfc3))
+
+- **test**: Detect direct invocation of test case and open in web browser instantly
+  ([`60e8312`](https://github.com/anaticulae/feedback/commit/60e83124c61ed74f36b8cb3f6d67e1917d19c8cc))
+
+- **test**: Improve test speed due reducing parsing and use multicore
+  ([`75267ba`](https://github.com/anaticulae/feedback/commit/75267ba511c69ee3a811f0ad3bd048b492249415))
+
+### Code Style
+
+- **cli**: Organize process and package name
+  ([`8d39eea`](https://github.com/anaticulae/feedback/commit/8d39eea57da7d642b65d0f13f8592114c259a412))
+
+- **imports**: Organize imports
+  ([`8d5b4a6`](https://github.com/anaticulae/feedback/commit/8d5b4a6a86206f2dc3e678cc9b22b05feb0e26b2))
+
+- **tests**: Rename test to make test intension clearer
+  ([`1c1427e`](https://github.com/anaticulae/feedback/commit/1c1427ef37e9ed0e80de26e2b4eb6c9b9114eda4))
+
+### Features
+
+- **example**: Add draft to represent linter view
+  ([`51ad3cc`](https://github.com/anaticulae/feedback/commit/51ad3cc229b67e515634c53a6a41c39f4dd3c29d))
+
+- **linter**: Add linter to prepare findings for preview
+  ([`d4f6a2f`](https://github.com/anaticulae/feedback/commit/d4f6a2f9e4ea8e1fef1686e381471ddace0703d5))
+
+- **report**: Add linter results to pages result view
+  ([`30dc85d`](https://github.com/anaticulae/feedback/commit/30dc85d312668071919fbeb718e3d0b51894637a))
+
+### Refactoring
+
+- **problems**: Split renderer into smaller chunks
+  ([`346d9e4`](https://github.com/anaticulae/feedback/commit/346d9e47799472e23ecb47d517cad82b9f5efa08))
+
+- **tests**: Replace code due utila code
+  ([`140a9cc`](https://github.com/anaticulae/feedback/commit/140a9cc357112e397fb4399341bf885d40a48c6a))
+
+- **view**: Sort methods more logical to prepare further development
+  ([`a93afdd`](https://github.com/anaticulae/feedback/commit/a93afdd654e129507e0293481fccb47bd5706aff))
+
+### Testing
+
+- **feedback**: Add three examples to run with feedback-main
+  ([`773a26a`](https://github.com/anaticulae/feedback/commit/773a26a9fe721053ebc47bbf07b535a17620a06a))
+
+- **resources**: Add more examples for test data generation
+  ([`a25badb`](https://github.com/anaticulae/feedback/commit/a25badbc83da66f3f22687a281731f93736d0746))
+
+- **utils**: Format test failure to ease debugging
+  ([`44fc527`](https://github.com/anaticulae/feedback/commit/44fc527a18c7f73bb0b43ecbd031bdf3ab6192b9))
+
+
+## v0.4.15 (2019-09-17)
+
+### Bug Fixes
+
+- **test**: Do not open generated page automatically
+  ([`920d8ed`](https://github.com/anaticulae/feedback/commit/920d8ed49b4ac844f1ce7001407dee26ff0649a9))
+
+### Chores
+
+- **cleanup**: Reduce test duration due skipping installing test on normal testing
+  ([`2dfce6d`](https://github.com/anaticulae/feedback/commit/2dfce6dcdd7d05ae402fac7cc879d6fe879fdf20))
+
+- **cleanup**: Use code from utila library
+  ([`bff4aa2`](https://github.com/anaticulae/feedback/commit/bff4aa2d399ece6ee7dc573647a12789ea2143a4))
+
+- **requirements**: Add protocol, power, and decider as requirements
+  ([`0b738d6`](https://github.com/anaticulae/feedback/commit/0b738d6c0c3916e80cce401c265b8515f113850d))
+
+- **resources**: Use test data generator due `power` library
+  ([`82db11f`](https://github.com/anaticulae/feedback/commit/82db11fc7ff3961862d41c124b4201c62d038443))
+
+### Code Style
+
+- **refactor**: Rename cmdline test to global test pattern
+  ([`a8f9b35`](https://github.com/anaticulae/feedback/commit/a8f9b3578e360a13e59576a3f693027e05f5d2ee))
+
+### Testing
+
+- **generator**: Generate test data at test startup
+  ([`21694e0`](https://github.com/anaticulae/feedback/commit/21694e0757c73c3fa30ac3bf0a50db6f446f19d9))
+
+
+## v0.4.14 (2019-08-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6c1b375`](https://github.com/anaticulae/feedback/commit/6c1b3751b0d74ff6a40a8a8716675c2df4294794))
+
+
+## v0.4.13 (2019-08-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2dc8eaf`](https://github.com/anaticulae/feedback/commit/2dc8eaf31372b9ea30d25cb35c4b50bb35e796d6))
+
+
+## v0.4.12 (2019-07-24)
+
+### Bug Fixes
+
+- **setup**: Add missing report template to setup/installation package
+  ([`a96b559`](https://github.com/anaticulae/feedback/commit/a96b559924330e4d908b926e8e67a8458cf924f0))
+
+
+## v0.4.11 (2019-07-24)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`34d9d27`](https://github.com/anaticulae/feedback/commit/34d9d27aa7066c077113610666a7240b1634557a))
+
+
+## v0.4.10 (2019-07-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`527394e`](https://github.com/anaticulae/feedback/commit/527394e04627ef0e68d4b68a2ca680b540b3fc03))
+
+
+## v0.4.9 (2019-07-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`91d41ac`](https://github.com/anaticulae/feedback/commit/91d41ac9811974c37fe3eafb84036c3c8c2c68c3))
+
+
+## v0.4.8 (2019-07-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b98a246`](https://github.com/anaticulae/feedback/commit/b98a24685616910637cc608a5e0695553637e14a))
+
+
+## v0.4.7 (2019-07-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`459d08a`](https://github.com/anaticulae/feedback/commit/459d08ad71488cfcdf29946464874a08362f298a))
+
+
+## v0.4.6 (2019-07-21)
+
+### Features
+
+- **statistica**: Expose naming to use in `queuemo`
+  ([`923ea04`](https://github.com/anaticulae/feedback/commit/923ea04984ba7acd560ea00713da70d70b7c5b8a))
+
+
+## v0.4.5 (2019-07-20)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b6ff57e`](https://github.com/anaticulae/feedback/commit/b6ff57eb655332095198a35283bf7e9b78630387))
+
+
+## v0.4.4 (2019-07-19)
+
+### Bug Fixes
+
+- **fonts**: Fix output data path due `featurepack`
+  ([`0be4981`](https://github.com/anaticulae/feedback/commit/0be4981db3503da93de36f87025b6d4159ace845))
+
+
+## v0.4.3 (2019-07-19)
+
+### Bug Fixes
+
+- **border**: Fix input path to `featurepack` pattern
+  ([`62bafcd`](https://github.com/anaticulae/feedback/commit/62bafcdb891a07e2bcb05bc09ecdcc66e40bcb5d))
+
+
+## v0.4.2 (2019-07-19)
+
+### Bug Fixes
+
+- **statistica**: Fix data input to `featurepack` structure
+  ([`b29cdb4`](https://github.com/anaticulae/feedback/commit/b29cdb461feed9e93bc0d003ad350e67117f1a55))
+
+### Testing
+
+- **refactor**: Move test resource to global test pattern
+  ([`f953713`](https://github.com/anaticulae/feedback/commit/f953713e743f59a13439b23733cd9b5f24826b2f))
+
+
+## v0.4.1 (2019-07-19)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`17525b0`](https://github.com/anaticulae/feedback/commit/17525b022094bf45e2d932cf2450cb996b2808be))
+
+
+## v0.4.0 (2019-07-18)
+
+### Bug Fixes
+
+- **requirements**: Remove duplicated requirement
+  ([`0bbb75f`](https://github.com/anaticulae/feedback/commit/0bbb75fe3e072d1f5d12dd6fe4e15281ab5d13a9))
+
+### Chores
+
+- **requirements**: Add dependency to `hey` to fix version of test content
+  ([`300e50e`](https://github.com/anaticulae/feedback/commit/300e50e387e065f6e94a1882934834cb2685fc7a))
+
+- **requirements**: Upgrade requirements.txt
+  ([`ad2c60d`](https://github.com/anaticulae/feedback/commit/ad2c60d8f71145a7f762e3825fbf9bf8f66f7294))
+
+- **requirements**: Upgrade requirements.txt
+  ([`34cbbc3`](https://github.com/anaticulae/feedback/commit/34cbbc3b92926d4b64e2a079617decf3d2abd004))
+
+- **requirements**: Upgrade requirements.txt
+  ([`e2bae9c`](https://github.com/anaticulae/feedback/commit/e2bae9cc0bc95f20a4e539fd5e561425cf65ba20))
+
+### Features
+
+- **feedback**: Add new tool `feedback` to generate main report view
+  ([`c8ae1f9`](https://github.com/anaticulae/feedback/commit/c8ae1f90f290473e5b0af035ced40e533d682dbd))
+
+- **feedback**: Add workplan to generate view due `feedback` tool
+  ([`3b7ac8c`](https://github.com/anaticulae/feedback/commit/3b7ac8c4645f653e91b9b98fdadf0202e312d2b0))
+
+- **report**: Add feature to generate view with pdf content - draft
+  ([`8af945c`](https://github.com/anaticulae/feedback/commit/8af945cdf624fc7f6038710c091d975c585cfe15))
+
+- **view**: Add horizontal line and page numbers to view report
+  ([`c0bf7b6`](https://github.com/anaticulae/feedback/commit/c0bf7b6f7b3df2d050d2a37dc31bef6144edf409))
+
+### Refactoring
+
+- **feedback**: Move feedback command line interface to cli
+  ([`cff522e`](https://github.com/anaticulae/feedback/commit/cff522e8742e394404e176da9e6dce7436d74d11))
+
+### Testing
+
+- **format**: Format test resources
+  ([`856c70c`](https://github.com/anaticulae/feedback/commit/856c70cbcdbb86d435aeaa432dd5c3d98c09a9f3))
+
+- **resources**: Extend restructured resources and check existences
+  ([`bde21e4`](https://github.com/anaticulae/feedback/commit/bde21e482febc9be4972e04cc57886877ef00e3e))
+
+- **resources**: Extend test resources with groupme pagenumbers
+  ([`19d1d98`](https://github.com/anaticulae/feedback/commit/19d1d98261f7342f7e88ecf335d0c98849025b00))
+
+- **resources**: Generate test data to run feedback
+  ([`8265dfd`](https://github.com/anaticulae/feedback/commit/8265dfd1f80f10491e7987592505eb5ba49bf6c4))
+
+- **resources**: Generate toc and footer due groupme to present them
+  ([`e6c391c`](https://github.com/anaticulae/feedback/commit/e6c391c83cdac8a21be3c94ce9cc5999e3ac5f2b))
+
+
+## v0.3.0 (2019-07-16)
+
+### Bug Fixes
+
+- **header**: Fix spelling error in header
+  ([`b90955d`](https://github.com/anaticulae/feedback/commit/b90955d8bbabc1a1e58f3fe3f1c81529d07e84cf))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7509bf6`](https://github.com/anaticulae/feedback/commit/7509bf623c9bb5611c26f9b3fbc03a7e02be6abf))
+
+### Code Style
+
+- **docs**: Format docs
+  ([`2bcf613`](https://github.com/anaticulae/feedback/commit/2bcf61359a0cb13abbe5e9f03e6566b039a6912f))
+
+- **hint**: Add hint to replace code later
+  ([`57d18f6`](https://github.com/anaticulae/feedback/commit/57d18f6baf1e79d3e3450aea6b89ac8009c2a0af))
+
+### Documentation
+
+- **readme**: Add basic information to readme
+  ([`fe59f39`](https://github.com/anaticulae/feedback/commit/fe59f3944af06de2ab4a75581906803ec7c26637))
+
+### Features
+
+- **feature**: Use new feature function from utila package
+  ([`78f6263`](https://github.com/anaticulae/feedback/commit/78f6263fd0406ad3e5504d1ad4ef385d421a5252))
+
+- **workplan**: Improve the clarity of a workplan
+  ([`f3442a4`](https://github.com/anaticulae/feedback/commit/f3442a432c42eafbf399485d255cbd5c7ca3f0af))
+
+### Refactoring
+
+- **cleanup**: Remove unused code
+  ([`90366a8`](https://github.com/anaticulae/feedback/commit/90366a89de1b724b9bdb1f04213dae77cecce3f3))
+
+- **feature**: Remove feature package to use package from utila
+  ([`c31d356`](https://github.com/anaticulae/feedback/commit/c31d3566fb99a69c359a06bacecf7a8efba7f5c7))
+
+- **features**: Clarify readability of feature
+  ([`2efedfa`](https://github.com/anaticulae/feedback/commit/2efedfa8fc19275e07dcebc049e47f6d2c85dfc3))
+
+- **saveme**: Use saveme implementation from utila
+  ([`6dc7a76`](https://github.com/anaticulae/feedback/commit/6dc7a76eab2f271fb8a0ea373589f5a86f91107c))
+
+- **tests**: Replace with code from utila project
+  ([`a668245`](https://github.com/anaticulae/feedback/commit/a668245074368c49b58deb32fe659f2984508570))
+
+### Testing
+
+- **fix**: Use interface standard from feature package
+  ([`97ffdd3`](https://github.com/anaticulae/feedback/commit/97ffdd3e066b4c9a754dfea5aca624e68ffcf376))
+
+- **interface**: Ensure that html file output is generated
+  ([`6f1d466`](https://github.com/anaticulae/feedback/commit/6f1d4660a0767717ed18af30420ca71c9b3d389a))
+
+
+## v0.2.9 (2019-06-03)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6ff76d6`](https://github.com/anaticulae/feedback/commit/6ff76d65f0a55ee5160dfbac2bda52c989764c92))
+
+
+## v0.2.8 (2019-05-12)
+
+### Bug Fixes
+
+- **fonts**: Add missing templates to copy job
+  ([`4ed76d6`](https://github.com/anaticulae/feedback/commit/4ed76d6a2074628539d2bf64fdebf02ad30a8cf6))
+
+- **test**: Rename test data to correct data pattern
+  ([`1a5202f`](https://github.com/anaticulae/feedback/commit/1a5202f8557b5a43346d4b7ed637b3d836e740ca))
+
+### Chores
+
+- **requirements**: Upgrade iamraw library
+  ([`d28784c`](https://github.com/anaticulae/feedback/commit/d28784cc51af1527b31209007ac0c211eb586901))
+
+### Features
+
+- **uglyfont**: Add ugly font view generation
+  ([`a5c7a00`](https://github.com/anaticulae/feedback/commit/a5c7a003cb2254311adf07a448a82010e518b09b))
+
+### Testing
+
+- **fontugly**: Add test to ensure ugly font view generator
+  ([`9c189bd`](https://github.com/anaticulae/feedback/commit/9c189bd3e087f1e1cdbff2365a18354c8ae11ea6))
+
+
+## v0.2.7 (2019-05-10)
+
+### Chores
+
+- **requirement**: Add `iamraw` to requirements
+  ([`2ffa365`](https://github.com/anaticulae/feedback/commit/2ffa365038a4ad2b3e2c4aeafe444552fd46f72e))
+
+### Features
+
+- **feature**: Add feature selector - remove later after utila upgrade
+  ([`b434b6e`](https://github.com/anaticulae/feedback/commit/b434b6ee1b7e26a915b6b2924f4137142334901d))
+
+- **hitthebox**: Add hit the box renderer
+  ([`6b62921`](https://github.com/anaticulae/feedback/commit/6b629219e7f533580744a0eb222238ed94b00896))
+
+### Testing
+
+- **hitthebox**: Add test to invoke hitthebox with sample data
+  ([`87553da`](https://github.com/anaticulae/feedback/commit/87553dabe8a593a538af6be7c53acbb940fa63b5))
+
+
+## v0.2.6 (2019-05-07)
+
+### Bug Fixes
+
+- **htmlview**: Avoid out of container overflow
+  ([`4890643`](https://github.com/anaticulae/feedback/commit/4890643abca5245e4db408206a6a9c8a4c5b359b))
+
+
+## v0.2.5 (2019-05-06)
+
+### Bug Fixes
+
+- **statistica**: Fix scrambled order of return parameter
+  ([`dd6df3a`](https://github.com/anaticulae/feedback/commit/dd6df3aee6687c33541f901d7f1e99f6f892d767))
+
+
+## v0.2.4 (2019-05-06)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`54731de`](https://github.com/anaticulae/feedback/commit/54731dea72970a993a826cabb8d47131249915f8))
+
+
+## v0.2.3 (2019-05-04)
+
+### Bug Fixes
+
+- **cmdline**: If file exists, command line must fail
+  ([`f973e81`](https://github.com/anaticulae/feedback/commit/f973e81cc80cac116c20ba81c95656bec4094b52))
+
+- **test**: Rename file to new convention
+  ([`1d14fa4`](https://github.com/anaticulae/feedback/commit/1d14fa4ad71d9d30725e7ce385206b977ccca512))
+
+
+## v0.2.2 (2019-05-02)
+
+### Chores
+
+- **requirements**: Update utila to 0.0.15
+  ([`66d7a8b`](https://github.com/anaticulae/feedback/commit/66d7a8bd2748690bbf0831147b0adfe90064c7c9))
+
+- **vscode**: Use generated workspace with baw --ide
+  ([`79eb055`](https://github.com/anaticulae/feedback/commit/79eb05518af0585fe4ff9d0de3bab79b9a6bed7f))
+
+### Code Style
+
+- **imports**: Remove unused import
+  ([`6684f9e`](https://github.com/anaticulae/feedback/commit/6684f9e8f1f03a6a6646295c69da41e7827e0f97))
+
+### Features
+
+- **cmdline**: Pass data from folder
+  ([`b2fbb0a`](https://github.com/anaticulae/feedback/commit/b2fbb0a946d13d56acfb250a2ac6ba7ea5427e3f))
+
+### Testing
+
+- **refactor**: Rename test sample and refactor
+  ([`bcb1399`](https://github.com/anaticulae/feedback/commit/bcb13999fbfe6b4307c5258581426750e7105bd8))
+
+
+## v0.2.1 (2019-04-26)
+
+### Bug Fixes
+
+- **cmdline**: Catch empty resources and produce help view
+  ([`91958e3`](https://github.com/anaticulae/feedback/commit/91958e378589d816a422aebe05364bfa47804847))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`766f20a`](https://github.com/anaticulae/feedback/commit/766f20a82d99ac14528f1f80ed1d1dacba3ae1c1))
+
+### Features
+
+- **cmdline**: A description and shortcut for cmdline tool
+  ([`f205a19`](https://github.com/anaticulae/feedback/commit/f205a19cff99588ac3c4b1b4b1096dbd02d929be))
+
+- **cmdline**: Print error message when missing resources
+  ([`f4d028c`](https://github.com/anaticulae/feedback/commit/f4d028c4913dcf1919f0c8ad8cf81ec17b4c5c7b))
+
+### Testing
+
+- **cmdline**: Add test which fails with missing resource parameter
+  ([`fffa9df`](https://github.com/anaticulae/feedback/commit/fffa9dfda773a20900839fd7b8d9fda76bfc9fa1))
+
+
+## v0.2.0 (2019-04-26)
+
+### Bug Fixes
+
+- **cmdline**: Use the single parameter, not the tuple
+  ([`4a6bbc9`](https://github.com/anaticulae/feedback/commit/4a6bbc909a03b1f581935103d8a25fe9e2302f4c))
+
+- **setup**: Add missing template to copy templates while installing
+  ([`b0da2d7`](https://github.com/anaticulae/feedback/commit/b0da2d743d0530724816da7f9fcf81353890c6b5))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`10e957b`](https://github.com/anaticulae/feedback/commit/10e957bfcd5dc1f1751ccbc4a4a3099312a03838))
+
+- **requirements**: Upgrade requirements.txt
+  ([`d6955e4`](https://github.com/anaticulae/feedback/commit/d6955e46a23c3926f882f1a7b2d4af3bc66cb027))
+
+### Code Style
+
+- **formater**: Run yapf formatter
+  ([`4aa0625`](https://github.com/anaticulae/feedback/commit/4aa0625c2c74fafa40b56d66faeed1fd63bfc1f6))
+
+### Features
+
+- **cmdline**: Add command line interface to run generation of statistica result
+  ([`2414e71`](https://github.com/anaticulae/feedback/commit/2414e714059a5cae37c39d57e37fcaf019e11f34))
+
+- **cmdline**: Print help if nothing is passed to cmdinterface
+  ([`7cdb8ad`](https://github.com/anaticulae/feedback/commit/7cdb8adc75600bb8778a09dac643fd4e0c936700))
+
+- **templates**: Split result template in two parts
+  ([`aa79d82`](https://github.com/anaticulae/feedback/commit/aa79d82879ce72015c698c74319a311dc8fa8e15))
+
+### Refactoring
+
+- **cmdline**: Use new Parameter class to reduce code
+  ([`5c4b71f`](https://github.com/anaticulae/feedback/commit/5c4b71fb956f0283efa8f7791176313e9a63dc9f))
+
+- **generation**: Clean up result generation
+  ([`bf51f75`](https://github.com/anaticulae/feedback/commit/bf51f754aedfb9540b375dd0fe050401ceb8e319))
+
+- **rename**: Rename example data
+  ([`dd8763e`](https://github.com/anaticulae/feedback/commit/dd8763e2c5ec29170bb26cd568fa2a32ea5e663d))
+
+### Testing
+
+- **cmdline**: Activate cmdline tests
+  ([`83a6fa2`](https://github.com/anaticulae/feedback/commit/83a6fa23ab91f4fc328e5071dfd004dd11469360))
+
+- **cmdline**: Add test with basic example
+  ([`175287d`](https://github.com/anaticulae/feedback/commit/175287d8e499c849d280b3f5bcbaad1281059fb7))
+
+- **cmdline**: Add tests to ensure setup process works correctly
+  ([`a5e357b`](https://github.com/anaticulae/feedback/commit/a5e357bbf1827b57cb2ede2ed60f3115932b2d89))
+
+- **sample**: Clarify naming belong to sample
+  ([`9c7a4f5`](https://github.com/anaticulae/feedback/commit/9c7a4f5267d88c391648c59228e8db6583f21f27))
+
+
+## v0.1.1 (2019-04-25)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dad8bef`](https://github.com/anaticulae/feedback/commit/dad8bef48f2b2e50d681b64cbbf66f7073a6aca0))
+
+
+## v0.1.0 (2019-04-19)
+
+### Bug Fixes
+
+- **setup**: Fix syntax-errors from baw setup template
+  ([`5d98a2e`](https://github.com/anaticulae/feedback/commit/5d98a2e355079436668798845e3712c5ceaab81b))
+
+### Chores
+
+- **requirements**: Add Jinja2 and PyYAML
+  ([`7001912`](https://github.com/anaticulae/feedback/commit/70019125c43c03ef9297f71c4dfac8790e5cadf8))
+
+### Features
+
+- **view**: Basic implementation of feedback script
+  ([`75c6f79`](https://github.com/anaticulae/feedback/commit/75c6f7931d16853321e2cbf33456aad14d87a717))
+
+
+## v0.0.0 (2019-04-15)
+
+- Initial Release
